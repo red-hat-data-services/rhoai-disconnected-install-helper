@@ -1,0 +1,14 @@
+name: Run rhods-disconnected-install-helper script every 5 minutes
+
+on: 
+  schedule:
+    - cron:  '*/5 * * * *'
+
+jobs:
+  run-discinfo:
+    runs-on: self-hosted
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Run discinfo command
+      run: ./rhods-disconnected-install-helper.sh
