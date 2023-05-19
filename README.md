@@ -1,4 +1,4 @@
-# rhods-disconnected-install-helper
+# Rhods disconnected install helper
 
 This repository contains the updated list of additional images needed to install RHODS in a disconnected environment using oc-mirror for the current releases supported by RHODS.
 
