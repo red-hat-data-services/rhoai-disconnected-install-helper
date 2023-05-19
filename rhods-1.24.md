@@ -4,7 +4,7 @@
     - quay.io/modh/odh-minimal-notebook-container@sha256:a5a7738b09a204804e084a45f96360b568b0b9d85709c0ce6742d440ff917183
     - quay.io/modh/cuda-notebooks@sha256:492c37fb4b71c07d929ac7963896e074871ded506230fe926cdac21eb1ab9db8
     - quay.io/modh/cuda-notebooks@sha256:2163ba74f602ec4b3049a88dcfa4fe0a8d0fff231090001947da66ef8e75ab9a
-    - quay.io/modh/must-gather@sha256:5de36f9f89b068ac2f15dae103384a4947a6815f896263cee10d8c9bf24dc219
+    - quay.io/modh/must-gather@sha256:2a5abc16745d72c14c4144d89edbe373d6d56c8b6ce7965fcbed1862519092ab
 
 # ImageSetConfiguration example:
 ```yaml
