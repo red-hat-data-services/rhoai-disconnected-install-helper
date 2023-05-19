@@ -24,9 +24,9 @@ jobs:
         git add .
         git commit -m "Update rhods_disconnected_install_helper.sh"
         git push
-    - name: Commit & Push changes to feature/search-quay-images branch
+    - name: Commit and push changes to feature/search-quay-images branch
       uses: actions-js/push@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         branch: feature/search-quay-images
-        repository: https://github.com/pablofelix/rhods-disconnected-install-helper
+        repository: github.com/pablofelix/rhods-disconnected-install-helper
