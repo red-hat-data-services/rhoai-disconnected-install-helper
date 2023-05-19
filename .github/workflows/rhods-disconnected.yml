@@ -11,8 +11,6 @@ jobs:
   run-rhods-disconnected-install-helper:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
     - name: Run run-rhods-disconnected-install-helper script
-      run: ./rhods-disconnected-install-helper.sh
+      run: ./rhods_disconnected_install_helper.sh
       shell: bash
