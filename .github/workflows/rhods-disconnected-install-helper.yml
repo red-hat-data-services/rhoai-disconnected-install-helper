@@ -23,4 +23,4 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         branch: feature/search-quay-images
         message: "Update rhods_disconnected_install_helper.sh script"
-        repository: github.com/pablofelix/rhods-disconnected-install-helper
+        repository: pablofelix/rhods-disconnected-install-helper
