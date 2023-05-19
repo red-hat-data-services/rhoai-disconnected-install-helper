@@ -15,11 +15,12 @@ jobs:
     - name: Run rhods_disconnected_install_helper.sh script
       run: |
         chmod +x rhods_disconnected_install_helper.sh
-        ./rhods_disconnected_install_helper.sh
+        ./rhods_disconnected_install_helper.sh --set-file-name 
       shell: bash
     - name: Commit and push changes to feature/search-quay-images branch
       uses: actions-js/push@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         branch: feature/search-quay-images
+        message: "Update rhods_disconnected_install_helper.sh script"
         repository: github.com/pablofelix/rhods-disconnected-install-helper

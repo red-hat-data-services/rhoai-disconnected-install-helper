@@ -6,7 +6,7 @@ set -o pipefail
 
 rhods_version=""
 repository_folder=".odh-manifests"
-file_name="imageset-config.md"
+file_name="$rhods_version.md"
 skip_tls="false"
 mirror_url="registry.example.com:5000/mirror/oc-mirror-metadata"
 repository_url="https://github.com/red-hat-data-services/odh-manifests"
@@ -35,6 +35,46 @@ get_latest_rhods_version() {
   local rhods_version
   rhods_version=$(git branch -a | grep remotes/origin/rhods | awk -F '/' '{print $NF}' | sort -V | tail -1)
   echo "$rhods_version"
+}
+
+get_supported_versions() {
+  #!/bin/bash
+
+  # Get the latest version
+  pushd "$repository_folder" || echo "Error: Directory $repository_folder does not exist"
+  latest_rhods_version=$(get_latest_rhods_version)
+  popd || exit 1
+  # Split the version into major and minor parts
+  major_version=$(echo $latest_rhods_version | cut -d'-' -f2 | cut -d'.' -f1)
+  minor_version=$(echo $latest_rhods_version | cut -d'-' -f2 | cut -d'.' -f2)
+
+  # Loop through the previous 4 versions
+  for i in {1..4}; do
+    pushd "$repository_folder" || echo "Error: Directory $repository_folder does not exist"
+    # Decrement the minor version
+    if [ $i == 1 ]; then
+      minor_version=$((minor_version))
+    else
+      minor_version=$((minor_version - 1))
+    fi
+
+    # If the minor version is less than 0, decrement the major version and set the minor version to 99
+    if [ $minor_version -lt 0 ]; then
+      major_version=$((major_version - 1))
+      minor_version=99
+    fi
+
+    # Construct the version string
+    version="rhods-$major_version.$minor_version"
+
+    # Do something with the version
+    rhods_version=$version
+    file_name="$rhods_version.md"
+    change_rhods_version
+    popd || exit 1
+    image_set_configuration
+  done
+  cleanup
 }
 
 verify_image_exists() {
@@ -76,7 +116,7 @@ image_set_configuration() {
     echo "Skipping image verification"
   fi
 
-  cat <<EOF >"$file_name"
+cat <<EOF >"$file_name"
 # Additional images:
 $(grep -rE 'quay\.io/modh/.+@sha256:[a-f0-9]+' "$repository_folder" | awk -F ' ' '{print $3}' | sed 's/^/    - /')
 $(image_tag_to_digest "$openvino_image" | sed 's/^/    - /')
@@ -125,6 +165,25 @@ change_rhods_version() {
   return 0
 }
 
+fetch_repository() {
+  if [ -d "$repository_folder" ]; then
+    echo "Update $repository_folder"
+    pushd "$repository_folder" || echo "Error: Directory $repository_folder does not exist"
+    git pull
+    popd || echo "Error: Directory $repository_folder does not exist"
+  else
+    echo "Clone $repository_folder"
+    git clone "$repository_url" "$repository_folder"
+  fi
+}
+
+cleanup() {
+  if [ -d "$repository_folder" ]; then
+    echo "Remove $repository_folder"
+    rm -rf "$repository_folder"
+  fi
+}
+
 while [ "$#" -gt 0 ]; do
   case "$1" in
   -h | --help)
@@ -134,7 +193,8 @@ while [ "$#" -gt 0 ]; do
   --rhods-version | -v)
     rhods_version="$2"
     file_name="imageset-config-$rhods_version.md"
-    shift; shift
+    shift
+    shift
     ;;
   --skip-image-verification)
     skip_image_verification=true
@@ -146,23 +206,33 @@ while [ "$#" -gt 0 ]; do
     ;;
   --set-file-name)
     file_name="$2"
-    shift; shift
+    shift
+    shift
     ;;
   --set-registry)
     mirror_url="$2"
-    shift; shift
+    shift
+    shift
     ;;
   --set-repository-folder)
     repository_folder="$2"
-    shift; shift
+    shift
+    shift
     ;;
   --channel)
     channel="$2"
-    shift; shift
+    shift
+    shift
     ;;
   --openshift-version)
     openshift_version="$2"
-    shift; shift
+    shift
+    shift
+    ;;
+  --supported-versions)
+    fetch_repository
+    get_supported_versions
+    exit
     ;;
   --)
     shift
@@ -175,29 +245,16 @@ while [ "$#" -gt 0 ]; do
   esac
 done
 
-if [ -d "$repository_folder" ]; then
-  echo "Update $repository_folder"
-  pushd "$repository_folder" || echo "Error: Directory $repository_folder does not exist"
-  git pull
-  popd || echo "Error: Directory $repository_folder does not exist"
-else
-  echo "Clone $repository_folder"
-  git clone "$repository_url" "$repository_folder"
-fi
-
+fetch_repository
 pushd "$repository_folder" || echo "Error: Directory $repository_folder does not exist"
 if [ -z "$rhods_version" ]; then
   rhods_version=$(get_latest_rhods_version)
+  file_name="$rhods_version.md"
   echo ·"Use latest rhods version $rhods_version"
   change_rhods_version
 else
   change_rhods_version
 fi
 popd || exit 1
-
 image_set_configuration
-
-if [ -d "$repository_folder" ]; then
-  echo "Remove $repository_folder"
-  rm -rf "$repository_folder"
-fi
+cleanup
