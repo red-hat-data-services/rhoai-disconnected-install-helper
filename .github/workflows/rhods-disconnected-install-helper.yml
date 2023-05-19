@@ -15,7 +15,7 @@ jobs:
     - name: Run rhods_disconnected_install_helper.sh script
       run: |
         chmod +x rhods_disconnected_install_helper.sh
-        ./rhods_disconnected_install_helper.sh --set-file-name 
+        ./rhods_disconnected_install_helper.sh
       shell: bash
     - name: Commit and push changes to feature/search-quay-images branch
       uses: actions-js/push@master
