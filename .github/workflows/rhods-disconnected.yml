@@ -8,9 +8,9 @@ on:
       - feature/search-quay-images
 
 jobs:
-  run-rhods-disconnected-install-helper:
+  run-script:
     runs-on: ubuntu-latest
     steps:
-    - name: Run run-rhods-disconnected-install-helper script
+    - name: Run rhods_disconnected_install_helper.sh script
       run: ./rhods_disconnected_install_helper.sh
       shell: bash
