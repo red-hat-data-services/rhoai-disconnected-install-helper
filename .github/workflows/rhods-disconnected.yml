@@ -5,7 +5,7 @@ on:
     - cron:  '*/5 * * * *'
   push:
     branches:
-      - main
+      - feature/search-quay-images
 
 jobs:
   run-rhods-disconnected-install-helper:
@@ -15,3 +15,4 @@ jobs:
       uses: actions/checkout@v2
     - name: Run run-rhods-disconnected-install-helper script
       run: ./rhods-disconnected-install-helper.sh
+      shell: bash
