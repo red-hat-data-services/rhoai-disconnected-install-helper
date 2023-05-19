@@ -1,0 +1,26 @@
+name: Run rhods-disconnected-install-helper script once a day
+
+on: 
+  schedule:
+    - cron:  '0 12 * * *'
+  push:
+    branches:
+      - main
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Run rhods_disconnected_install_helper.sh script
+      run: |
+        chmod +x rhods_disconnected_install_helper.sh
+        ./rhods_disconnected_install_helper.sh
+      shell: bash
+    - name: Commit and push changes to main branch
+      uses: actions-js/push@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: feature/search-quay-images
+        message: "Update rhods_disconnected_install_helper.sh script"
+        repository: red-hat-data-services/rhods-disconnected-install-helper
