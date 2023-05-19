@@ -11,6 +11,9 @@ jobs:
   run-script:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v3
     - name: Run rhods_disconnected_install_helper.sh script
-      run: ./rhods_disconnected_install_helper.sh
+      run: |
+        chmod +x rhods_disconnected_install_helper.sh
+        ./rhods_disconnected_install_helper.sh
       shell: bash
