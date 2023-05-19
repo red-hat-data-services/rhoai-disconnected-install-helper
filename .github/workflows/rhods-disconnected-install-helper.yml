@@ -21,6 +21,6 @@ jobs:
       uses: actions-js/push@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        branch: feature/search-quay-images
+        branch: main
         message: "Update rhods_disconnected_install_helper.sh script"
         repository: red-hat-data-services/rhods-disconnected-install-helper
