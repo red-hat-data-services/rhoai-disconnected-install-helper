@@ -10,7 +10,7 @@
     - quay.io/modh/odh-generic-data-science-notebook@sha256:b89ff6ecb174e00749ea0fb47abd4909bb992d2b48e95d0e28089a0d7fd83100
     - quay.io/modh/odh-generic-data-science-notebook@sha256:ebb5613e6b53dc4e8efcfe3878b4cd10ccb77c67d12c00d2b8c9d41aeffd7df5
     - quay.io/modh/odh-trustyai-notebook@sha256:3ec0568dfee3ee98b0cca694b025db369f1ea79e5db033dff01af53826c44a97
-    - quay.io/modh/openvino-model-server@sha256:c89f76386bc8b59f0748cf173868e5beef21ac7d2f78dada69089c4d37c44116
+    - quay.io/opendatahub/openvino_model_server@sha256:00fbe9c6a3cb0f178a4b3e13e2351aa1f8b38455c519360f5197bbab4ac46579
     - quay.io/modh/must-gather@sha256:5de36f9f89b068ac2f15dae103384a4947a6815f896263cee10d8c9bf24dc219
 
 # ImageSetConfiguration example:
@@ -41,6 +41,6 @@ mirror:
     - name: quay.io/modh/odh-generic-data-science-notebook@sha256:b89ff6ecb174e00749ea0fb47abd4909bb992d2b48e95d0e28089a0d7fd83100
     - name: quay.io/modh/odh-generic-data-science-notebook@sha256:ebb5613e6b53dc4e8efcfe3878b4cd10ccb77c67d12c00d2b8c9d41aeffd7df5
     - name: quay.io/modh/odh-trustyai-notebook@sha256:3ec0568dfee3ee98b0cca694b025db369f1ea79e5db033dff01af53826c44a97
-    - name: quay.io/modh/openvino-model-server@sha256:c89f76386bc8b59f0748cf173868e5beef21ac7d2f78dada69089c4d37c44116
+    - name: quay.io/opendatahub/openvino_model_server@sha256:00fbe9c6a3cb0f178a4b3e13e2351aa1f8b38455c519360f5197bbab4ac46579
     - name: quay.io/modh/must-gather@sha256:5de36f9f89b068ac2f15dae103384a4947a6815f896263cee10d8c9bf24dc219
 ```
