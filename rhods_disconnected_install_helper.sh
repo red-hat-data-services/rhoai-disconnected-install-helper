@@ -15,7 +15,7 @@ skip_image_verification="false"
 channel="stable"
 
 # Other additional images
-openvino_image="quay.io/opendatahub/openvino_model_server:2022.3-gpu"
+openvino_image="quay.io/modh/openvino-model-server:2022.3-release"
 must_gather_image="quay.io/modh/must-gather:stable"
 
 help() {
