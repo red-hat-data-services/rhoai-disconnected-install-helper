@@ -15,7 +15,7 @@ skip_image_verification="false"
 channel="stable"
 
 # Other additional images
-openvino_image="quay.io/modh/openvino-model-server:2022.3-release"
+openvino_image="quay.io/opendatahub/openvino_model_server:2022.3-gpu"
 must_gather_image="quay.io/modh/must-gather:stable"
 
 help() {
@@ -44,30 +44,25 @@ get_supported_versions() {
   pushd "$repository_folder" || echo "Error: Directory $repository_folder does not exist"
   latest_rhods_version=$(get_latest_rhods_version)
   popd || exit 1
-  # Split the version into major and minor parts
+  
   major_version=$(echo $latest_rhods_version | cut -d'-' -f2 | cut -d'.' -f1)
   minor_version=$(echo $latest_rhods_version | cut -d'-' -f2 | cut -d'.' -f2)
 
-  # Loop through the previous 4 versions
+
   for i in {1..4}; do
     pushd "$repository_folder" || echo "Error: Directory $repository_folder does not exist"
-    # Decrement the minor version
     if [ $i == 1 ]; then
       minor_version=$((minor_version))
     else
       minor_version=$((minor_version - 1))
     fi
-
-    # If the minor version is less than 0, decrement the major version and set the minor version to 99
     if [ $minor_version -lt 0 ]; then
       major_version=$((major_version - 1))
       minor_version=99
     fi
 
-    # Construct the version string
     version="rhods-$major_version.$minor_version"
 
-    # Do something with the version
     rhods_version=$version
     file_name="$rhods_version.md"
     change_rhods_version
@@ -149,13 +144,11 @@ EOF
 change_rhods_version() {
   echo "Change rhods version $rhods_version branch"
 
-  # Verify version has the correct format
   if [[ ! $rhods_version =~ ^rhods-[0-9]+\.[0-9]+$ ]]; then
     echo "Error: Invalid version format $rhods_version. Valid format: rhods-X.Y"
     exit 1
   fi
 
-  # Verify version exists
   if ! git branch -a | grep -q "$rhods_version"; then
     echo "Error: Version $rhods_version does not exist"
     exit 1
