@@ -133,10 +133,6 @@ mirror:
     - name: rhods-operator
       channels:
       - name: $channel
-  additionalImages:   
-$(grep -rE 'quay\.io/modh/.+@sha256:[a-f0-9]+' "$repository_folder" | awk -F ' ' '{print $3}' | sed 's/^/    - name: /')
-$(image_tag_to_digest "$openvino_image" | sed 's/^/    - name: /')
-$(image_tag_to_digest "$must_gather_image" | sed 's/^/    - name: /')
 \`\`\`
 EOF
 }
