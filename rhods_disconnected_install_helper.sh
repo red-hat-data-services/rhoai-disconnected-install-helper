@@ -243,7 +243,7 @@ pushd "$repository_folder" || echo "Error: Directory $repository_folder does not
 if [ -z "$rhods_version" ]; then
   rhods_version=$(get_latest_rhods_version)
   file_name="$rhods_version.md"
-  echo ·"Use latest rhods version $rhods_version"
+  echo "Use latest RHODS version $rhods_version"
   change_rhods_version
 else
   change_rhods_version
