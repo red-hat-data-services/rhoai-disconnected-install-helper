@@ -82,6 +82,8 @@ verify_image_exists() {
   image_sha256=$(skopeo inspect docker://"$image" | jq -r '.Digest')
 
   echo "Verifying image $image_name"
+  echo "Image variable: $image"
+
   if [ "$image_digest" != "$image_sha256" ]; then
     echo "Error: Image $image_name does not exist"
     exit 1
@@ -97,13 +99,24 @@ image_tag_to_digest() {
   image_digest=$(skopeo inspect docker://"$image" | jq -r '.Digest')
   echo "$image_name@$image_digest"
 }
-
+image_search(){
+  grep -hrEo 'quay\.io/[^/]+/[^@{},]+@sha256:[a-f0-9]+' "$repository_folder" | sort -u
+}
 image_set_configuration() {
   if [ "$skip_image_verification" == "false" ]; then
     echo "Verify images"
-    for image in $(grep -rE 'quay\.io/modh/.+@sha256:[a-f0-9]+' $repository_folder | awk -F ' ' '{print $3}'); do
+    while read -r image; do
+      # check that the image string is not empty and have a valid format like quay.io/modh/<image-name>@sha256:<sha256> not { or } or ,
+      if [[ -z "$image" || ! $image =~ ^quay\.io/modh/[^@]+@sha256:[a-f0-9]+$ ]]; then
+        echo "Error: Invalid image format $image"
+        exit 1
+      fi
+      # verify that the image doesn't have } or { or , in the string
+      if [[ $image =~ [{}]+ ]]; then
+        continue
+      fi
       verify_image_exists "$image"
-    done
+    done < <(image_search)
 
     verify_image_exists "$(image_tag_to_digest $openvino_image)"
     verify_image_exists "$(image_tag_to_digest $must_gather_image)"
@@ -113,7 +126,7 @@ image_set_configuration() {
 
 cat <<EOF >"$file_name"
 # Additional images:
-$(grep -rE 'quay\.io/modh/.+@sha256:[a-f0-9]+' "$repository_folder" | awk -F ' ' '{print $3}' | sed 's/^/    - /')
+$(image_search | sed 's/^/    - /')
 $(image_tag_to_digest "$openvino_image" | sed 's/^/    - /')
 $(image_tag_to_digest "$must_gather_image" | sed 's/^/    - /')
 
@@ -134,7 +147,7 @@ mirror:
       channels:
       - name: $channel
   additionalImages:   
-$(grep -rE 'quay\.io/modh/.+@sha256:[a-f0-9]+' "$repository_folder" | awk -F ' ' '{print $3}' | sed 's/^/    - name: /')
+$(image_search | sed 's/^/    - name: /')
 $(image_tag_to_digest "$openvino_image" | sed 's/^/    - name: /')
 $(image_tag_to_digest "$must_gather_image" | sed 's/^/    - name: /')
 \`\`\`
