@@ -15,7 +15,6 @@ skip_image_verification="false"
 channel="stable"
 
 # Other additional images
-openvino_image="quay.io/modh/openvino-model-server:2022.3-release"
 must_gather_image="quay.io/modh/must-gather:stable"
 
 help() {
@@ -69,7 +68,7 @@ get_supported_versions() {
     popd || exit 1
     image_set_configuration
   done
-  cleanup
+  # cleanup
 }
 
 verify_image_exists() {
@@ -101,16 +100,15 @@ image_tag_to_digest() {
 }
 image_search(){
   grep -hrEo 'quay\.io/[^/]+/[^@{},]+@sha256:[a-f0-9]+' "$repository_folder" | sort -u
+  # search openvino image
+  local image_name=$(yq -r .images[0].newName "$repository_folder"/odh-dashboard/modelserving/kustomization.yaml)
+  local image_tag=$(yq -r .images[0].digest "$repository_folder"/odh-dashboard/modelserving/kustomization.yaml)
+  echo "$image_name@$image_tag"
 }
 image_set_configuration() {
   if [ "$skip_image_verification" == "false" ]; then
     echo "Verify images"
     while read -r image; do
-      # check that the image string is not empty and have a valid format like quay.io/modh/<image-name>@sha256:<sha256> not { or } or ,
-      if [[ -z "$image" || ! $image =~ ^quay\.io/modh/[^@]+@sha256:[a-f0-9]+$ ]]; then
-        echo "Error: Invalid image format $image"
-        exit 1
-      fi
       # verify that the image doesn't have } or { or , in the string
       if [[ $image =~ [{}]+ ]]; then
         continue
@@ -118,7 +116,6 @@ image_set_configuration() {
       verify_image_exists "$image"
     done < <(image_search)
 
-    verify_image_exists "$(image_tag_to_digest $openvino_image)"
     verify_image_exists "$(image_tag_to_digest $must_gather_image)"
   else
     echo "Skipping image verification"
@@ -127,7 +124,6 @@ image_set_configuration() {
 cat <<EOF >"$file_name"
 # Additional images:
 $(image_search | sed 's/^/    - /')
-$(image_tag_to_digest "$openvino_image" | sed 's/^/    - /')
 $(image_tag_to_digest "$must_gather_image" | sed 's/^/    - /')
 
 # ImageSetConfiguration example:
@@ -148,7 +144,6 @@ mirror:
       - name: $channel
   additionalImages:   
 $(image_search | sed 's/^/    - name: /')
-$(image_tag_to_digest "$openvino_image" | sed 's/^/    - name: /')
 $(image_tag_to_digest "$must_gather_image" | sed 's/^/    - name: /')
 \`\`\`
 EOF
