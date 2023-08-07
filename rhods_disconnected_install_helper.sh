@@ -4,20 +4,21 @@ set -o nounset
 set -o errexit
 set -o pipefail
 
-rhods_version=""
-repository_folder=".odh-manifests"
-file_name="$rhods_version.md"
-skip_tls="false"
-mirror_url="registry.example.com:5000/mirror/oc-mirror-metadata"
-repository_url="https://github.com/red-hat-data-services/odh-manifests"
-openshift_version="v4.12"
-skip_image_verification="false"
-channel="stable"
-
+set_defaults() {
+  rhods_version="${rhods_version:-}"
+  repository_folder="${repository_folder:-.odh-manifests}"
+  file_name="${file_name:-$rhods_version.md}"
+  skip_tls="${skip_tls:-false}"
+  mirror_url="${mirror_url:-registry.example.com:5000/mirror/oc-mirror-metadata}"
+  repository_url="${repository_url:-https://github.com/red-hat-data-services/odh-manifests}"
+  openshift_version="${openshift_version:-v4.12}"
+  skip_image_verification="${skip_image_verification:-false}"
+  channel="${channel:-stable}"
+}
 # Other additional images
 must_gather_image="quay.io/modh/must-gather:stable"
 
-help() {
+function help() {
   echo "Usage: script.sh [-h] [-v] [--skip-image-verification] [--skip-tls]"
   echo "  -h, --help  Display this help message"
   echo "  -v, --rhods-version  RHODS version. Valid format: rhods-X.Y"
@@ -30,15 +31,13 @@ help() {
   echo "  --set-channel  Set the channel"
 }
 
-get_latest_rhods_version() {
+function get_latest_rhods_version() {
   local rhods_version
   rhods_version=$(git branch -a | grep remotes/origin/rhods | awk -F '/' '{print $NF}' | sort -V | tail -1)
   echo "$rhods_version"
 }
 
-get_supported_versions() {
-  #!/bin/bash
-
+function get_supported_versions() {
   # Get the latest version
   pushd "$repository_folder" || echo "Error: Directory $repository_folder does not exist"
   latest_rhods_version=$(get_latest_rhods_version)
@@ -68,10 +67,9 @@ get_supported_versions() {
     popd || exit 1
     image_set_configuration
   done
-  # cleanup
 }
 
-verify_image_exists() {
+function verify_image_exists() {
   local image=$1
   local image_name
   local image_digest
@@ -90,7 +88,7 @@ verify_image_exists() {
   echo "Image $image_name exists with digest $image_sha256"
 }
 
-image_tag_to_digest() {
+function image_tag_to_digest() {
   local image=$1
   local image_name
   local image_digest
@@ -98,23 +96,24 @@ image_tag_to_digest() {
   image_digest=$(skopeo inspect docker://"$image" | jq -r '.Digest')
   echo "$image_name@$image_digest"
 }
-image_search(){
+
+function find_images(){
   grep -hrEo 'quay\.io/[^/]+/[^@{},]+@sha256:[a-f0-9]+' "$repository_folder" | sort -u
   # search openvino image
   local image_name=$(yq -r .images[0].newName "$repository_folder"/odh-dashboard/modelserving/kustomization.yaml)
   local image_tag=$(yq -r .images[0].digest "$repository_folder"/odh-dashboard/modelserving/kustomization.yaml)
   echo "$image_name@$image_tag"
 }
-image_set_configuration() {
+
+function image_set_configuration() {
   if [ "$skip_image_verification" == "false" ]; then
     echo "Verify images"
     while read -r image; do
-      # verify that the image doesn't have } or { or , in the string
       if [[ $image =~ [{}]+ ]]; then
         continue
       fi
       verify_image_exists "$image"
-    done < <(image_search)
+    done < <(find_images)
 
     verify_image_exists "$(image_tag_to_digest $must_gather_image)"
   else
@@ -123,7 +122,7 @@ image_set_configuration() {
 
 cat <<EOF >"$file_name"
 # Additional images:
-$(image_search | sed 's/^/    - /')
+$(find_images | sed 's/^/    - /')
 $(image_tag_to_digest "$must_gather_image" | sed 's/^/    - /')
 
 # ImageSetConfiguration example:
@@ -132,9 +131,9 @@ kind: ImageSetConfiguration
 apiVersion: mirror.openshift.io/v1alpha2
 archiveSize: 4
 storageConfig:
-  registry: $skip_tls
+  registry: 
     imageURL: $mirror_url
-    skipTLS:                         
+    skipTLS: $skip_tls                       
 mirror:
   operators:
   - catalog: registry.redhat.io/redhat/redhat-operator-index:$openshift_version
@@ -143,13 +142,13 @@ mirror:
       channels:
       - name: $channel
   additionalImages:   
-$(image_search | sed 's/^/    - name: /')
+$(find_images | sed 's/^/    - name: /')
 $(image_tag_to_digest "$must_gather_image" | sed 's/^/    - name: /')
 \`\`\`
 EOF
 }
 
-change_rhods_version() {
+function change_rhods_version() {
   echo "Change rhods version $rhods_version branch"
 
   if [[ ! $rhods_version =~ ^rhods-[0-9]+\.[0-9]+$ ]]; then
@@ -166,7 +165,7 @@ change_rhods_version() {
   return 0
 }
 
-fetch_repository() {
+function fetch_repository() {
   if [ -d "$repository_folder" ]; then
     echo "Update $repository_folder"
     pushd "$repository_folder" || echo "Error: Directory $repository_folder does not exist"
@@ -178,84 +177,92 @@ fetch_repository() {
   fi
 }
 
-cleanup() {
+function cleanup() {
   if [ -d "$repository_folder" ]; then
     echo "Remove $repository_folder"
     rm -rf "$repository_folder"
   fi
 }
 
-while [ "$#" -gt 0 ]; do
-  case "$1" in
-  -h | --help)
-    help
-    exit
-    ;;
-  --rhods-version | -v)
-    rhods_version="$2"
-    file_name="imageset-config-$rhods_version.md"
-    shift
-    shift
-    ;;
-  --skip-image-verification)
-    skip_image_verification=true
-    shift
-    ;;
-  --skip-tls)
-    skip_tls="true"
-    shift
-    ;;
-  --set-file-name)
-    file_name="$2"
-    shift
-    shift
-    ;;
-  --set-registry)
-    mirror_url="$2"
-    shift
-    shift
-    ;;
-  --set-repository-folder)
-    repository_folder="$2"
-    shift
-    shift
-    ;;
-  --channel)
-    channel="$2"
-    shift
-    shift
-    ;;
-  --openshift-version)
-    openshift_version="$2"
-    shift
-    shift
-    ;;
-  --supported-versions)
-    fetch_repository
-    get_supported_versions
-    exit
-    ;;
-  --)
-    shift
-    break
-    ;;
-  *)
-    echo "Invalid option: $1" >&2
-    exit 1
-    ;;
-  esac
-done
+parse_args() {
+  while [ "$#" -gt 0 ]; do
+    case "$1" in
+    -h | --help)
+      help
+      exit
+      ;;
+    --rhods-version | -v)
+      rhods_version="$2"
+      file_name="imageset-config-$rhods_version.md"
+      shift
+      shift
+      ;;
+    --skip-image-verification)
+      skip_image_verification=true
+      shift
+      ;;
+    --skip-tls)
+      skip_tls="true"
+      shift
+      ;;
+    --set-file-name)
+      file_name="$2"
+      shift
+      shift
+      ;;
+    --set-registry)
+      mirror_url="$2"
+      shift
+      shift
+      ;;
+    --set-repository-folder)
+      repository_folder="$2"
+      shift
+      shift
+      ;;
+    --channel)
+      channel="$2"
+      shift
+      shift
+      ;;
+    --openshift-version)
+      openshift_version="$2"
+      shift
+      shift
+      ;;
+    --supported-versions)
+      fetch_repository
+      get_supported_versions
+      exit
+      ;;
+    --)
+      shift
+      break
+      ;;
+    *)
+      echo "Invalid option: $1" >&2
+      exit 1
+      ;;
+    esac
+  done
+}
 
-fetch_repository
-pushd "$repository_folder" || echo "Error: Directory $repository_folder does not exist"
-if [ -z "$rhods_version" ]; then
-  rhods_version=$(get_latest_rhods_version)
-  file_name="$rhods_version.md"
-  echo "Use latest RHODS version $rhods_version"
-  change_rhods_version
-else
-  change_rhods_version
-fi
-popd || exit 1
-image_set_configuration
-cleanup
+function main(){
+  set_defaults
+  parse_args "$@"
+  fetch_repository
+  pushd "$repository_folder" || echo "Error: Directory $repository_folder does not exist"
+  if [ -z "$rhods_version" ]; then
+    rhods_version=$(get_latest_rhods_version)
+    file_name="$rhods_version.md"
+    echo "Use latest RHODS version $rhods_version"
+    change_rhods_version
+  else
+    change_rhods_version
+  fi
+  popd || exit 1
+  image_set_configuration
+  cleanup
+}
+
+main "$@"
