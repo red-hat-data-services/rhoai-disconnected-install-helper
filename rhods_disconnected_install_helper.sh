@@ -7,10 +7,13 @@ set -o pipefail
 set_defaults() {
   rhods_version="${rhods_version:-}"
   repository_folder="${repository_folder:-.odh-manifests}"
+  notebooks_folder="${notebooks_folder:-.odh-notebooks}"
+  notebooks_branch="${notebooks_branch:-release-2023a}"
   file_name="${file_name:-$rhods_version.md}"
   skip_tls="${skip_tls:-false}"
   mirror_url="${mirror_url:-registry.example.com:5000/mirror/oc-mirror-metadata}"
   repository_url="${repository_url:-https://github.com/red-hat-data-services/odh-manifests}"
+  notebooks_url="${notebooks_url:-https://github.com/red-hat-data-services/notebooks}"
   openshift_version="${openshift_version:-v4.12}"
   skip_image_verification="${skip_image_verification:-false}"
   channel="${channel:-stable}"
@@ -105,6 +108,10 @@ function find_images(){
   echo "$image_name@$image_tag"
 }
 
+function find_notebooks_images() {
+  grep -hrEo 'quay\.io/[^/]+/[^@{},]+@sha256:[a-f0-9]+' "$notebooks_folder" | sort -u
+}
+
 function image_set_configuration() {
   if [ "$skip_image_verification" == "false" ]; then
     echo "Verify images"
@@ -114,6 +121,12 @@ function image_set_configuration() {
       fi
       verify_image_exists "$image"
     done < <(find_images)
+    while read -r image; do
+      if [[ $image =~ [{}]+ ]]; then
+        continue
+      fi
+      verify_image_exists "$image"
+    done < <(find_notebooks_images)
 
     verify_image_exists "$(image_tag_to_digest $must_gather_image)"
   else
@@ -124,6 +137,7 @@ cat <<EOF >"$file_name"
 # Additional images:
 $(find_images | sed 's/^/    - /')
 $(image_tag_to_digest "$must_gather_image" | sed 's/^/    - /')
+$(find_notebooks_images | sed 's/^/    - /')
 
 # ImageSetConfiguration example:
 \`\`\`yaml
@@ -143,6 +157,7 @@ mirror:
       - name: $channel
   additionalImages:   
 $(find_images | sed 's/^/    - name: /')
+$(find_notebooks_images | sed 's/^/    - name: /')
 $(image_tag_to_digest "$must_gather_image" | sed 's/^/    - name: /')
 \`\`\`
 EOF
@@ -177,10 +192,31 @@ function fetch_repository() {
   fi
 }
 
+function fetch_notebooks_repository() {
+  if [ -d "$notebooks_folder" ]; then
+    echo "Update $notebooks_folder"
+    pushd "$notebooks_folder" || echo "Error: Directory $notebooks_folder does not exist"
+    git checkout $notebooks_branch
+    git pull origin $notebooks_branch
+
+    popd || echo "Error: Directory $notebooks_folder does not exist"
+  else
+    echo "Clone $notebooks_folder"
+    git clone "$notebooks_url" "$notebooks_folder"
+    pushd "$notebooks_folder" || echo "Error: Directory $notebooks_folder does not exist"
+    git checkout $notebooks_branch
+    popd || echo "Error: Directory $notebooks_folder does not exist"
+  fi
+}
+
 function cleanup() {
   if [ -d "$repository_folder" ]; then
     echo "Remove $repository_folder"
     rm -rf "$repository_folder"
+  fi
+  if [ -d "$notebooks_folder" ]; then
+    echo "Remove $notebooks_folder"
+    rm -rf "$notebooks_folder"
   fi
 }
 
@@ -261,6 +297,7 @@ function main(){
     change_rhods_version
   fi
   popd || exit 1
+  fetch_notebooks_repository
   image_set_configuration
   cleanup
 }
