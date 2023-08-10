@@ -101,11 +101,22 @@ function image_tag_to_digest() {
 }
 
 function find_images(){
+  local openvino=""
   grep -hrEo 'quay\.io/[^/]+/[^@{},]+@sha256:[a-f0-9]+' "$repository_folder" | sort -u
+
   # search openvino image
-  local image_name=$(yq -r .images[0].newName "$repository_folder"/odh-dashboard/modelserving/kustomization.yaml)
-  local image_tag=$(yq -r .images[0].digest "$repository_folder"/odh-dashboard/modelserving/kustomization.yaml)
-  echo "$image_name@$image_tag"
+  if [ -f "$repository_folder"/odh-dashboard/modelserving/kustomization.yaml ]; then
+    local image_name=$(yq -r .images[0].newName "$repository_folder"/odh-dashboard/modelserving/kustomization.yaml)
+    local image_tag=$(yq -r .images[0].digest "$repository_folder"/odh-dashboard/modelserving/kustomization.yaml)
+    echo "$image_name@$image_tag"
+  elif [ ! -f "$repository_folder"/odh-dashboard/modelserving/kustomization.yaml ]; then
+    openvino=$(grep -hrEo 'quay\.io/[^/]+/[^@{},]+:[^@{},]+' "$repository_folder" | sort -u | sed -n '/openvino/p')
+    if [ -z "$openvino" ]; then
+      echo "Error: openvino image not found"
+      exit 1
+    fi
+    image_tag_to_digest $(echo "$openvino")
+  fi
 }
 
 function find_notebooks_images() {
@@ -229,7 +240,7 @@ parse_args() {
       ;;
     --rhods-version | -v)
       rhods_version="$2"
-      file_name="imageset-config-$rhods_version.md"
+      file_name="$rhods_version.md"
       shift
       shift
       ;;
@@ -267,6 +278,7 @@ parse_args() {
       shift
       ;;
     --supported-versions)
+      fetch_notebooks_repository
       fetch_repository
       get_supported_versions
       exit
