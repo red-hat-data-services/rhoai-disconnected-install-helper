@@ -18,6 +18,7 @@ Copy the list from the file of the version you want to install and paste it in t
 - jq
 - oc
 - yq
+- skopeo
 
 #### Usage:
 
