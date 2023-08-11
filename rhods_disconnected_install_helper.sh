@@ -14,7 +14,7 @@ set_defaults() {
   mirror_url="${mirror_url:-registry.example.com:5000/mirror/oc-mirror-metadata}"
   repository_url="${repository_url:-https://github.com/red-hat-data-services/odh-manifests}"
   notebooks_url="${notebooks_url:-https://github.com/red-hat-data-services/notebooks}"
-  openshift_version="${openshift_version:-v4.12}"
+  openshift_version="${openshift_version:-v4.13}"
   skip_image_verification="${skip_image_verification:-false}"
   channel="${channel:-stable}"
 }
