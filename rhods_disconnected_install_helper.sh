@@ -30,7 +30,7 @@ function help() {
   echo "  --set-repository-source  Set the repository source"
   echo "  --set-file-name  Set the file name"
   echo "  --set-registry  Set the registry"
-  echo "  --set-openshift-version  Set the OpenShift version"
+  echo "  --openshift-version  Set the OpenShift version"
   echo "  --set-channel  Set the channel"
 }
 
