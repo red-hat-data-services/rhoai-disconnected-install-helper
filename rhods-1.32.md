@@ -14,10 +14,7 @@
     - quay.io/modh/odh-trustyai-notebook@sha256:83fa3b34eb237bb7716ac1e021f7b123099574765546f0c450ab06c43df34ad9
     - quay.io/opendatahub/openvino_model_server@sha256:20dbfbaf53d1afbd47c612d953984238cb0e207972ed544a5ea662c2404f276d
     - quay.io/modh/must-gather@sha256:c2d780156a0e7cec975c9c150bee00b1facb8f6213e7b98a7a489448d76dfd94
-    - quay.io/modh/runtime-images@sha256:03e0f71042dad9953f49e57c2f547ea8ac346feffcee5cc5f1c47c530174afcf
-    - quay.io/modh/runtime-images@sha256:c775356ad2efcb59e151cef57dab48cabc9f12e3c69f1453bcb768eabb950cbf
-    - quay.io/modh/runtime-images@sha256:cb54fa7c48b2bbca0e173470330ea37efa6d5dd0acd015ac8a0230aa31661eba
-    - quay.io/modh/runtime-images@sha256:cccbf0b9c85921578853211c3a2857e68f3cf856cfc59af7268afe2948eb19a6
+
 
 # ImageSetConfiguration example:
 ```yaml
@@ -50,9 +47,6 @@ mirror:
     - name: quay.io/modh/odh-pytorch-notebook@sha256:5e1523a2637beb5f9d3a2aaca65a18febe1b2e08e5e8a724596c38554a317b8a
     - name: quay.io/modh/odh-trustyai-notebook@sha256:83fa3b34eb237bb7716ac1e021f7b123099574765546f0c450ab06c43df34ad9
     - name: quay.io/opendatahub/openvino_model_server@sha256:20dbfbaf53d1afbd47c612d953984238cb0e207972ed544a5ea662c2404f276d
-    - name: quay.io/modh/runtime-images@sha256:03e0f71042dad9953f49e57c2f547ea8ac346feffcee5cc5f1c47c530174afcf
-    - name: quay.io/modh/runtime-images@sha256:c775356ad2efcb59e151cef57dab48cabc9f12e3c69f1453bcb768eabb950cbf
-    - name: quay.io/modh/runtime-images@sha256:cb54fa7c48b2bbca0e173470330ea37efa6d5dd0acd015ac8a0230aa31661eba
-    - name: quay.io/modh/runtime-images@sha256:cccbf0b9c85921578853211c3a2857e68f3cf856cfc59af7268afe2948eb19a6
+
     - name: quay.io/modh/must-gather@sha256:c2d780156a0e7cec975c9c150bee00b1facb8f6213e7b98a7a489448d76dfd94
 ```
