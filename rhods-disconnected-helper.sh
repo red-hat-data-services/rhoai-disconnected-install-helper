@@ -267,12 +267,12 @@ parse_args() {
       shift
       shift
       ;;
-    --channel)
+    --set-channel)
       channel="$2"
       shift
       shift
       ;;
-    --openshift-version)
+    --set-openshift-version)
       openshift_version="$2"
       shift
       shift
