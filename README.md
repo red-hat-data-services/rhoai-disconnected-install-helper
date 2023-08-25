@@ -15,10 +15,10 @@ Copy the list from the file of the version you want to install and paste it in t
 ### 2. Run the script locally:
 #### Requirements:
 - bash 4.0 or higher
-- jq
-- oc
-- yq
-- skopeo
+- jq latest
+- oc latest
+- yq latest
+- skopeo latest
 
 #### Usage:
 

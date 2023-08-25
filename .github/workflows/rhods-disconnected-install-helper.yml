@@ -12,9 +12,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - name: Run rhods_disconnected_install_helper.sh script
+    - name: Runrhods-disconnected-helper.sh script
       run: |
-        chmod +x rhods_disconnected_install_helper.sh
+        chmod +xrhods-disconnected-helper.sh
         ./rhods_disconnected_install_helper.sh
       shell: bash
     - name: Commit and push changes to main branch
@@ -22,5 +22,5 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         branch: main
-        message: "Update rhods_disconnected_install_helper.sh script"
+        message: "Updaterhods-disconnected-helper.sh script"
         repository: red-hat-data-services/rhods-disconnected-install-helper
