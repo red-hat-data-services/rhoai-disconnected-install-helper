@@ -1,4 +1,4 @@
-name: Run rhods-disconnected-install-helper script once a day
+name: Run rhods-disconnected-helper script once a day
 
 on: 
   schedule:
@@ -15,7 +15,7 @@ jobs:
     - name: Run rhods-disconnected-helper.sh script
       run: |
         chmod +x rhods-disconnected-helper.sh
-        ./rhods_disconnected_install_helper.sh
+        ./rhods-disconnected-helper.sh
       shell: bash
     - name: Commit and push changes to main branch
       uses: actions-js/push@master
