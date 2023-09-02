@@ -5,6 +5,10 @@
     - quay.io/modh/cuda-notebooks@sha256:2c177921d08563abffc8711b965e4c617aca243146cb4b43ec409a466be10a13
     - quay.io/modh/cuda-notebooks@sha256:348fa993347f86d1e0913853fb726c584ae8b5181152f0430967d380d68d804f
     - quay.io/modh/cuda-notebooks@sha256:492c37fb4b71c07d929ac7963896e074871ded506230fe926cdac21eb1ab9db8
+    - quay.io/modh/kserve-agent@sha256:0cd5e4f7513bdfc9a6efdec8f46d1fb4a48026046e5f3e59ebeeb227b03f9c0b
+    - quay.io/modh/kserve-controller@sha256:87876990f0c65080ba9b62c4f71a09e2501e795b1366473d5ab89742aef4fabb
+    - quay.io/modh/kserve-router@sha256:12f5f8f8d9d9164a827e32305b5a9f3cbc939ccb841a28a34bde7710a00f394b
+    - quay.io/modh/kserve-storage-initializer@sha256:c3c788bf67d4d7b1bc555a88b8907c08c6920f0597800c7dfd3326a65d6e74fb
     - quay.io/modh/odh-anaconda-notebook@sha256:380c07bf79f5ec7d22441cde276c50b5eb2a459485cde05087837639a566ae3d
     - quay.io/modh/odh-generic-data-science-notebook@sha256:ebb5613e6b53dc4e8efcfe3878b4cd10ccb77c67d12c00d2b8c9d41aeffd7df5
     - quay.io/modh/odh-generic-data-science-notebook@sha256:f1c285f88f37abb0d54efc1941f349dfed824896568bcd359770e15d78fdb9f9
@@ -39,6 +43,10 @@ mirror:
     - name: quay.io/modh/cuda-notebooks@sha256:2c177921d08563abffc8711b965e4c617aca243146cb4b43ec409a466be10a13
     - name: quay.io/modh/cuda-notebooks@sha256:348fa993347f86d1e0913853fb726c584ae8b5181152f0430967d380d68d804f
     - name: quay.io/modh/cuda-notebooks@sha256:492c37fb4b71c07d929ac7963896e074871ded506230fe926cdac21eb1ab9db8
+    - name: quay.io/modh/kserve-agent@sha256:0cd5e4f7513bdfc9a6efdec8f46d1fb4a48026046e5f3e59ebeeb227b03f9c0b
+    - name: quay.io/modh/kserve-controller@sha256:87876990f0c65080ba9b62c4f71a09e2501e795b1366473d5ab89742aef4fabb
+    - name: quay.io/modh/kserve-router@sha256:12f5f8f8d9d9164a827e32305b5a9f3cbc939ccb841a28a34bde7710a00f394b
+    - name: quay.io/modh/kserve-storage-initializer@sha256:c3c788bf67d4d7b1bc555a88b8907c08c6920f0597800c7dfd3326a65d6e74fb
     - name: quay.io/modh/odh-anaconda-notebook@sha256:380c07bf79f5ec7d22441cde276c50b5eb2a459485cde05087837639a566ae3d
     - name: quay.io/modh/odh-generic-data-science-notebook@sha256:ebb5613e6b53dc4e8efcfe3878b4cd10ccb77c67d12c00d2b8c9d41aeffd7df5
     - name: quay.io/modh/odh-generic-data-science-notebook@sha256:f1c285f88f37abb0d54efc1941f349dfed824896568bcd359770e15d78fdb9f9
