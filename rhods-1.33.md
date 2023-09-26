@@ -26,6 +26,20 @@
     - quay.io/modh/runtime-images@sha256:d8bac12fddaf0a3e4d4ac56773a5937d9a03858c961e5b06667cb3d7949c1fd5
     - quay.io/modh/runtime-images@sha256:d9e152ef6ae10b2b721779f8e76fc27f38a1b68a0eb46180af47503b4241ddd6
     - quay.io/modh/runtime-images@sha256:db564cdab5f7b2d305a88cd4a0146d915d1c88988b1b0819803766a79a041693
+    - quay.io/opendatahub/notebooks@sha256:5df71f5542d2e0161f0f4342aa9a390679d72dc6fae192fd8da1e5671b27e8d4
+    - quay.io/opendatahub/notebooks@sha256:94c5d01b19a0f30c0ca18153c50f18317f42c224e82321ef39c43116e7184731
+    - quay.io/opendatahub/notebooks@sha256:a138838e1c9acd7708462e420bf939e03296b97e9cf6c0aa0fd9a5d20361ab75
+    - quay.io/opendatahub/notebooks@sha256:c13cd3410e31184986d44d36ba663ca2f2225d14e5b086b09fe221219a94b6de
+    - quay.io/opendatahub/notebooks@sha256:fc52e4fbc8c1c70dfa22dbfe6b0353f5165c507c125df4438fca6a3f31fe976e
+    - quay.io/opendatahub/workbench-images@sha256:004af7a75279328bb821a6396df882e356e7d20916a837de4e74c908ba7198e9
+    - quay.io/opendatahub/workbench-images@sha256:08bbfa3f9d616161a3261d4f6cc61c992796469dbee71aa20e15c3b228146a07
+    - quay.io/opendatahub/workbench-images@sha256:65451a922fa0f13f776a6839940e24ddd442cb1d811af37b415593f50e195c5c
+    - quay.io/opendatahub/workbench-images@sha256:75d6764e1155c1d18dc4472ff319f9291d0d9703b19ee1374e902b6ab7f55cfb
+    - quay.io/opendatahub/workbench-images@sha256:a8113cbf422d24f5bae85fe93bb168e871919a66d223805fb5f2c0a2058a26a3
+    - quay.io/opendatahub/workbench-images@sha256:a8dde0cc730aeba3a8982358d01a8bea2d0811a1fa17a876c06f3ca1b9a965d5
+    - quay.io/opendatahub/workbench-images@sha256:aef5fd12264651abf286e9a4efbe25ca002cc257fbc6f1a5daf39fd55c7d6206
+    - quay.io/opendatahub/workbench-images@sha256:f69e0105e828b76adcd72bed3367df5f3d3b16a8139986441c4405a11d61992f
+    - quay.io/opendatahub/workbench-images@sha256:fd5b9f65c0f46d4c093e2f58fce305eeb125bf19ee1d88f67b9fafe56142e92d
 
 # ImageSetConfiguration example:
 ```yaml
@@ -70,5 +84,19 @@ mirror:
     - name: quay.io/modh/runtime-images@sha256:d8bac12fddaf0a3e4d4ac56773a5937d9a03858c961e5b06667cb3d7949c1fd5
     - name: quay.io/modh/runtime-images@sha256:d9e152ef6ae10b2b721779f8e76fc27f38a1b68a0eb46180af47503b4241ddd6
     - name: quay.io/modh/runtime-images@sha256:db564cdab5f7b2d305a88cd4a0146d915d1c88988b1b0819803766a79a041693
+    - name: quay.io/opendatahub/notebooks@sha256:5df71f5542d2e0161f0f4342aa9a390679d72dc6fae192fd8da1e5671b27e8d4
+    - name: quay.io/opendatahub/notebooks@sha256:94c5d01b19a0f30c0ca18153c50f18317f42c224e82321ef39c43116e7184731
+    - name: quay.io/opendatahub/notebooks@sha256:a138838e1c9acd7708462e420bf939e03296b97e9cf6c0aa0fd9a5d20361ab75
+    - name: quay.io/opendatahub/notebooks@sha256:c13cd3410e31184986d44d36ba663ca2f2225d14e5b086b09fe221219a94b6de
+    - name: quay.io/opendatahub/notebooks@sha256:fc52e4fbc8c1c70dfa22dbfe6b0353f5165c507c125df4438fca6a3f31fe976e
+    - name: quay.io/opendatahub/workbench-images@sha256:004af7a75279328bb821a6396df882e356e7d20916a837de4e74c908ba7198e9
+    - name: quay.io/opendatahub/workbench-images@sha256:08bbfa3f9d616161a3261d4f6cc61c992796469dbee71aa20e15c3b228146a07
+    - name: quay.io/opendatahub/workbench-images@sha256:65451a922fa0f13f776a6839940e24ddd442cb1d811af37b415593f50e195c5c
+    - name: quay.io/opendatahub/workbench-images@sha256:75d6764e1155c1d18dc4472ff319f9291d0d9703b19ee1374e902b6ab7f55cfb
+    - name: quay.io/opendatahub/workbench-images@sha256:a8113cbf422d24f5bae85fe93bb168e871919a66d223805fb5f2c0a2058a26a3
+    - name: quay.io/opendatahub/workbench-images@sha256:a8dde0cc730aeba3a8982358d01a8bea2d0811a1fa17a876c06f3ca1b9a965d5
+    - name: quay.io/opendatahub/workbench-images@sha256:aef5fd12264651abf286e9a4efbe25ca002cc257fbc6f1a5daf39fd55c7d6206
+    - name: quay.io/opendatahub/workbench-images@sha256:f69e0105e828b76adcd72bed3367df5f3d3b16a8139986441c4405a11d61992f
+    - name: quay.io/opendatahub/workbench-images@sha256:fd5b9f65c0f46d4c093e2f58fce305eeb125bf19ee1d88f67b9fafe56142e92d
     - name: quay.io/modh/must-gather@sha256:c2d780156a0e7cec975c9c150bee00b1facb8f6213e7b98a7a489448d76dfd94
 ```
