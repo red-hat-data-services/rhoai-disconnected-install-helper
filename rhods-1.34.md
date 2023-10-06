@@ -27,14 +27,16 @@
     - quay.io/opendatahub/notebooks@sha256:a138838e1c9acd7708462e420bf939e03296b97e9cf6c0aa0fd9a5d20361ab75
     - quay.io/opendatahub/notebooks@sha256:c13cd3410e31184986d44d36ba663ca2f2225d14e5b086b09fe221219a94b6de
     - quay.io/opendatahub/notebooks@sha256:fc52e4fbc8c1c70dfa22dbfe6b0353f5165c507c125df4438fca6a3f31fe976e
-    - quay.io/opendatahub/workbench-images@sha256:004af7a75279328bb821a6396df882e356e7d20916a837de4e74c908ba7198e9
-    - quay.io/opendatahub/workbench-images@sha256:08bbfa3f9d616161a3261d4f6cc61c992796469dbee71aa20e15c3b228146a07
-    - quay.io/opendatahub/workbench-images@sha256:65451a922fa0f13f776a6839940e24ddd442cb1d811af37b415593f50e195c5c
+    - quay.io/opendatahub/workbench-images@sha256:326af53ec96cd1a4897f0add69db5edb1e4e60428d83fa3ee60347424374b4d8
+    - quay.io/opendatahub/workbench-images@sha256:57f82c8e059ec55b0359ae14a952c1d18be915cf0d4e600ec6828eb80fdd77f5
+    - quay.io/opendatahub/workbench-images@sha256:697f067146f21102333e8607d0dfc03ddb2225214489869dec0bbfb383e0f737
     - quay.io/opendatahub/workbench-images@sha256:75d6764e1155c1d18dc4472ff319f9291d0d9703b19ee1374e902b6ab7f55cfb
-    - quay.io/opendatahub/workbench-images@sha256:a8113cbf422d24f5bae85fe93bb168e871919a66d223805fb5f2c0a2058a26a3
-    - quay.io/opendatahub/workbench-images@sha256:a8dde0cc730aeba3a8982358d01a8bea2d0811a1fa17a876c06f3ca1b9a965d5
+    - quay.io/opendatahub/workbench-images@sha256:901001f289a248f9e1cf46021efd5c0601bdeadde1e89e79112083d30600d07a
+    - quay.io/opendatahub/workbench-images@sha256:a24baff695680fa3055218643f775156f9d1c8c95a9ec68a24928642b8f0393d
+    - quay.io/opendatahub/workbench-images@sha256:a42bdf57c3d61d7a81a63d923c5a6ff1bf5e5284bb0aa972862fc063933ae733
     - quay.io/opendatahub/workbench-images@sha256:aef5fd12264651abf286e9a4efbe25ca002cc257fbc6f1a5daf39fd55c7d6206
-    - quay.io/opendatahub/workbench-images@sha256:f69e0105e828b76adcd72bed3367df5f3d3b16a8139986441c4405a11d61992f
+    - quay.io/opendatahub/workbench-images@sha256:b0821ae2abe45387a371108ac08e7474b64255e5c4519de5da594b4617fd79fe
+    - quay.io/opendatahub/workbench-images@sha256:e1092904418c1366704feccfdadcaee808bc4c94d78abc515724b2cf25c242c5
     - quay.io/opendatahub/workbench-images@sha256:fd5b9f65c0f46d4c093e2f58fce305eeb125bf19ee1d88f67b9fafe56142e92d
 
 # ImageSetConfiguration example:
@@ -81,14 +83,16 @@ mirror:
     - name: quay.io/opendatahub/notebooks@sha256:a138838e1c9acd7708462e420bf939e03296b97e9cf6c0aa0fd9a5d20361ab75
     - name: quay.io/opendatahub/notebooks@sha256:c13cd3410e31184986d44d36ba663ca2f2225d14e5b086b09fe221219a94b6de
     - name: quay.io/opendatahub/notebooks@sha256:fc52e4fbc8c1c70dfa22dbfe6b0353f5165c507c125df4438fca6a3f31fe976e
-    - name: quay.io/opendatahub/workbench-images@sha256:004af7a75279328bb821a6396df882e356e7d20916a837de4e74c908ba7198e9
-    - name: quay.io/opendatahub/workbench-images@sha256:08bbfa3f9d616161a3261d4f6cc61c992796469dbee71aa20e15c3b228146a07
-    - name: quay.io/opendatahub/workbench-images@sha256:65451a922fa0f13f776a6839940e24ddd442cb1d811af37b415593f50e195c5c
+    - name: quay.io/opendatahub/workbench-images@sha256:326af53ec96cd1a4897f0add69db5edb1e4e60428d83fa3ee60347424374b4d8
+    - name: quay.io/opendatahub/workbench-images@sha256:57f82c8e059ec55b0359ae14a952c1d18be915cf0d4e600ec6828eb80fdd77f5
+    - name: quay.io/opendatahub/workbench-images@sha256:697f067146f21102333e8607d0dfc03ddb2225214489869dec0bbfb383e0f737
     - name: quay.io/opendatahub/workbench-images@sha256:75d6764e1155c1d18dc4472ff319f9291d0d9703b19ee1374e902b6ab7f55cfb
-    - name: quay.io/opendatahub/workbench-images@sha256:a8113cbf422d24f5bae85fe93bb168e871919a66d223805fb5f2c0a2058a26a3
-    - name: quay.io/opendatahub/workbench-images@sha256:a8dde0cc730aeba3a8982358d01a8bea2d0811a1fa17a876c06f3ca1b9a965d5
+    - name: quay.io/opendatahub/workbench-images@sha256:901001f289a248f9e1cf46021efd5c0601bdeadde1e89e79112083d30600d07a
+    - name: quay.io/opendatahub/workbench-images@sha256:a24baff695680fa3055218643f775156f9d1c8c95a9ec68a24928642b8f0393d
+    - name: quay.io/opendatahub/workbench-images@sha256:a42bdf57c3d61d7a81a63d923c5a6ff1bf5e5284bb0aa972862fc063933ae733
     - name: quay.io/opendatahub/workbench-images@sha256:aef5fd12264651abf286e9a4efbe25ca002cc257fbc6f1a5daf39fd55c7d6206
-    - name: quay.io/opendatahub/workbench-images@sha256:f69e0105e828b76adcd72bed3367df5f3d3b16a8139986441c4405a11d61992f
+    - name: quay.io/opendatahub/workbench-images@sha256:b0821ae2abe45387a371108ac08e7474b64255e5c4519de5da594b4617fd79fe
+    - name: quay.io/opendatahub/workbench-images@sha256:e1092904418c1366704feccfdadcaee808bc4c94d78abc515724b2cf25c242c5
     - name: quay.io/opendatahub/workbench-images@sha256:fd5b9f65c0f46d4c093e2f58fce305eeb125bf19ee1d88f67b9fafe56142e92d
     - name: quay.io/modh/must-gather@sha256:c2d780156a0e7cec975c9c150bee00b1facb8f6213e7b98a7a489448d76dfd94
 ```
