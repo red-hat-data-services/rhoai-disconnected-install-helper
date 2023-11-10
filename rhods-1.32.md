@@ -27,6 +27,22 @@
     - quay.io/modh/runtime-images@sha256:d9e152ef6ae10b2b721779f8e76fc27f38a1b68a0eb46180af47503b4241ddd6
     - quay.io/modh/runtime-images@sha256:db564cdab5f7b2d305a88cd4a0146d915d1c88988b1b0819803766a79a041693
 
+    - quay.io/modh/odh-minimal-notebook-container@sha256:e10bef1f29915906eac38567aa74ad59dafd3ea02e513f22875bf401621d5701
+    - quay.io/modh/odh-minimal-notebook-container@sha256:39068767eebdf3a127fe8857fbdaca0832cdfef69eed6ec3ff6ed1858029420f
+    - quay.io/modh/cuda-notebooks@sha256:833f31e99823b5ed22ab51dd2d834ca274400d953a236df09f13e8a8bbd08528
+    - quay.io/modh/cuda-notebooks@sha256:00c53599f5085beedd0debb062652a1856b19921ccf59bd76134471d24c3fa7d
+    - quay.io/modh/odh-pytorch-notebook@sha256:6f62ded4d458571e0fcf9b3c623a1f6be3a3f27c4c71820ebf1c7b85928c96b9
+    - quay.io/modh/odh-pytorch-notebook@sha256:b68e0192abf7d46c8c6876d0819b66c6a2d4a1e674f8893f8a71ffdcba96866c
+    - quay.io/modh/odh-generic-data-science-notebook@sha256:258c249cc2692f7bd58299d66d1c9e15697306769c659d51587f620c26e7334f
+    - quay.io/modh/odh-generic-data-science-notebook@sha256:76e6af79c601a323f75a58e7005de0beac66b8cccc3d2b67efb6d11d85f0cfa1
+    - quay.io/modh/cuda-notebooks@sha256:00e52a0591635ac005c917ff13446a7d50823a15a5dda11ea65228d71326a331
+    - quay.io/modh/cuda-notebooks@sha256:6fadedc5a10f5a914bb7b27cd41bc644392e5757ceaf07d930db884112054265
+    - quay.io/modh/odh-trustyai-notebook@sha256:866795d62139f2be639d9591b647aae2c59adc2baab9e8d4955e0ea3b8f93867
+    - quay.io/modh/runtime-images@sha256:7dd23e58291cad7a0ab4a8e04bda06492f2c027eb33b226358380db58dcdd60b
+    - quay.io/modh/runtime-images@sha256:8b962c575adfdb46a9aa3e3fc30fdbe470d049b0ff69f68c5c9f950496ae26c5
+    - quay.io/modh/runtime-images@sha256:8df90db22b29afb1cd9c81d52be9145fed50e3b04ec80bb7ea7ecaa7476dbe5c
+    - quay.io/modh/runtime-images@sha256:7ca2509fa522cb38720a8d30f19077a1f5acefa8be2801ee541b8fc8731daf84
+
 # ImageSetConfiguration example:
 ```yaml
 kind: ImageSetConfiguration
@@ -71,4 +87,20 @@ mirror:
     - name: quay.io/modh/runtime-images@sha256:d9e152ef6ae10b2b721779f8e76fc27f38a1b68a0eb46180af47503b4241ddd6
     - name: quay.io/modh/runtime-images@sha256:db564cdab5f7b2d305a88cd4a0146d915d1c88988b1b0819803766a79a041693
     - name: quay.io/modh/must-gather@sha256:c2d780156a0e7cec975c9c150bee00b1facb8f6213e7b98a7a489448d76dfd94
+
+    - name: quay.io/modh/odh-minimal-notebook-container@sha256:e10bef1f29915906eac38567aa74ad59dafd3ea02e513f22875bf401621d5701
+    - name: quay.io/modh/odh-minimal-notebook-container@sha256:39068767eebdf3a127fe8857fbdaca0832cdfef69eed6ec3ff6ed1858029420f
+    - name: quay.io/modh/cuda-notebooks@sha256:833f31e99823b5ed22ab51dd2d834ca274400d953a236df09f13e8a8bbd08528
+    - name: quay.io/modh/cuda-notebooks@sha256:00c53599f5085beedd0debb062652a1856b19921ccf59bd76134471d24c3fa7d
+    - name: quay.io/modh/odh-pytorch-notebook@sha256:6f62ded4d458571e0fcf9b3c623a1f6be3a3f27c4c71820ebf1c7b85928c96b9
+    - name: quay.io/modh/odh-pytorch-notebook@sha256:b68e0192abf7d46c8c6876d0819b66c6a2d4a1e674f8893f8a71ffdcba96866c
+    - name: quay.io/modh/odh-generic-data-science-notebook@sha256:258c249cc2692f7bd58299d66d1c9e15697306769c659d51587f620c26e7334f
+    - name: quay.io/modh/odh-generic-data-science-notebook@sha256:76e6af79c601a323f75a58e7005de0beac66b8cccc3d2b67efb6d11d85f0cfa1
+    - name: quay.io/modh/cuda-notebooks@sha256:00e52a0591635ac005c917ff13446a7d50823a15a5dda11ea65228d71326a331
+    - name: quay.io/modh/cuda-notebooks@sha256:6fadedc5a10f5a914bb7b27cd41bc644392e5757ceaf07d930db884112054265
+    - name: quay.io/modh/odh-trustyai-notebook@sha256:866795d62139f2be639d9591b647aae2c59adc2baab9e8d4955e0ea3b8f93867
+    - name: quay.io/modh/runtime-images@sha256:7dd23e58291cad7a0ab4a8e04bda06492f2c027eb33b226358380db58dcdd60b
+    - name: quay.io/modh/runtime-images@sha256:8b962c575adfdb46a9aa3e3fc30fdbe470d049b0ff69f68c5c9f950496ae26c5
+    - name: quay.io/modh/runtime-images@sha256:8df90db22b29afb1cd9c81d52be9145fed50e3b04ec80bb7ea7ecaa7476dbe5c
+    - name: quay.io/modh/runtime-images@sha256:7ca2509fa522cb38720a8d30f19077a1f5acefa8be2801ee541b8fc8731daf84
 ```

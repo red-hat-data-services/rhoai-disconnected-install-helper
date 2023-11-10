@@ -41,6 +41,29 @@
     - quay.io/opendatahub/workbench-images@sha256:e1092904418c1366704feccfdadcaee808bc4c94d78abc515724b2cf25c242c5
     - quay.io/opendatahub/workbench-images@sha256:fd5b9f65c0f46d4c093e2f58fce305eeb125bf19ee1d88f67b9fafe56142e92d
 
+    - quay.io/modh/odh-minimal-notebook-container@sha256:e10bef1f29915906eac38567aa74ad59dafd3ea02e513f22875bf401621d5701
+    - quay.io/modh/odh-minimal-notebook-container@sha256:39068767eebdf3a127fe8857fbdaca0832cdfef69eed6ec3ff6ed1858029420f
+    - quay.io/modh/cuda-notebooks@sha256:833f31e99823b5ed22ab51dd2d834ca274400d953a236df09f13e8a8bbd08528
+    - quay.io/modh/cuda-notebooks@sha256:00c53599f5085beedd0debb062652a1856b19921ccf59bd76134471d24c3fa7d
+    - quay.io/modh/odh-pytorch-notebook@sha256:6f62ded4d458571e0fcf9b3c623a1f6be3a3f27c4c71820ebf1c7b85928c96b9
+    - quay.io/modh/odh-pytorch-notebook@sha256:b68e0192abf7d46c8c6876d0819b66c6a2d4a1e674f8893f8a71ffdcba96866c
+    - quay.io/modh/odh-generic-data-science-notebook@sha256:258c249cc2692f7bd58299d66d1c9e15697306769c659d51587f620c26e7334f
+    - quay.io/modh/odh-generic-data-science-notebook@sha256:76e6af79c601a323f75a58e7005de0beac66b8cccc3d2b67efb6d11d85f0cfa1
+    - quay.io/modh/cuda-notebooks@sha256:00e52a0591635ac005c917ff13446a7d50823a15a5dda11ea65228d71326a331
+    - quay.io/modh/cuda-notebooks@sha256:6fadedc5a10f5a914bb7b27cd41bc644392e5757ceaf07d930db884112054265
+    - quay.io/modh/odh-trustyai-notebook@sha256:866795d62139f2be639d9591b647aae2c59adc2baab9e8d4955e0ea3b8f93867
+    - quay.io/modh/runtime-images@sha256:7dd23e58291cad7a0ab4a8e04bda06492f2c027eb33b226358380db58dcdd60b
+    - quay.io/modh/runtime-images@sha256:8b962c575adfdb46a9aa3e3fc30fdbe470d049b0ff69f68c5c9f950496ae26c5
+    - quay.io/modh/runtime-images@sha256:8df90db22b29afb1cd9c81d52be9145fed50e3b04ec80bb7ea7ecaa7476dbe5c
+    - quay.io/modh/runtime-images@sha256:7ca2509fa522cb38720a8d30f19077a1f5acefa8be2801ee541b8fc8731daf84
+    - quay.io/modh/odh-minimal-notebook-container@sha256:54a5af13057df3445f917494a8cc12a0bed081c67204e00c9ed26daeaf9d0079
+    - quay.io/modh/cuda-notebooks@sha256:32d6dd081b7f07e0c221378737aaa23a6f2275ee799613c393dbd323175737e8
+    - quay.io/modh/odh-pytorch-notebook@sha256:52200670fc0cacf74f5bc88e226a4baced2f325e33213f3c73e1f7e410f81fea
+    - quay.io/modh/odh-generic-data-science-notebook@sha256:ec828e56701d9bcaf4676454ad1f89354e2bc903550c201a20b693c988485ad3
+    - quay.io/modh/cuda-notebooks@sha256:f05d344c18e8aeb0291a4333054bdf692d5d204d98c226ed0e149a9d0291f5cb
+    - quay.io/modh/odh-trustyai-notebook@sha256:de46659eccc3dd8e4b79cfbf7fc95464f76ffcc06f3f914841533130fba2985f
+    - quay.io/modh/odh-habana-notebooks@sha256:0f6ae8f0b1ef11896336e7f8611e77ccdb992b49a7942bf27e6bc64d73205d05   
+
 # ImageSetConfiguration example:
 ```yaml
 kind: ImageSetConfiguration
@@ -99,4 +122,27 @@ mirror:
     - name: quay.io/opendatahub/workbench-images@sha256:e1092904418c1366704feccfdadcaee808bc4c94d78abc515724b2cf25c242c5
     - name: quay.io/opendatahub/workbench-images@sha256:fd5b9f65c0f46d4c093e2f58fce305eeb125bf19ee1d88f67b9fafe56142e92d
     - name: quay.io/modh/must-gather@sha256:c2d780156a0e7cec975c9c150bee00b1facb8f6213e7b98a7a489448d76dfd94
+
+    - name: quay.io/modh/odh-minimal-notebook-container@sha256:e10bef1f29915906eac38567aa74ad59dafd3ea02e513f22875bf401621d5701
+    - name: quay.io/modh/odh-minimal-notebook-container@sha256:39068767eebdf3a127fe8857fbdaca0832cdfef69eed6ec3ff6ed1858029420f
+    - name: quay.io/modh/cuda-notebooks@sha256:833f31e99823b5ed22ab51dd2d834ca274400d953a236df09f13e8a8bbd08528
+    - name: quay.io/modh/cuda-notebooks@sha256:00c53599f5085beedd0debb062652a1856b19921ccf59bd76134471d24c3fa7d
+    - name: quay.io/modh/odh-pytorch-notebook@sha256:6f62ded4d458571e0fcf9b3c623a1f6be3a3f27c4c71820ebf1c7b85928c96b9
+    - name: quay.io/modh/odh-pytorch-notebook@sha256:b68e0192abf7d46c8c6876d0819b66c6a2d4a1e674f8893f8a71ffdcba96866c
+    - name: quay.io/modh/odh-generic-data-science-notebook@sha256:258c249cc2692f7bd58299d66d1c9e15697306769c659d51587f620c26e7334f
+    - name: quay.io/modh/odh-generic-data-science-notebook@sha256:76e6af79c601a323f75a58e7005de0beac66b8cccc3d2b67efb6d11d85f0cfa1
+    - name: quay.io/modh/cuda-notebooks@sha256:00e52a0591635ac005c917ff13446a7d50823a15a5dda11ea65228d71326a331
+    - name: quay.io/modh/cuda-notebooks@sha256:6fadedc5a10f5a914bb7b27cd41bc644392e5757ceaf07d930db884112054265
+    - name: quay.io/modh/odh-trustyai-notebook@sha256:866795d62139f2be639d9591b647aae2c59adc2baab9e8d4955e0ea3b8f93867
+    - name: quay.io/modh/runtime-images@sha256:7dd23e58291cad7a0ab4a8e04bda06492f2c027eb33b226358380db58dcdd60b
+    - name: quay.io/modh/runtime-images@sha256:8b962c575adfdb46a9aa3e3fc30fdbe470d049b0ff69f68c5c9f950496ae26c5
+    - name: quay.io/modh/runtime-images@sha256:8df90db22b29afb1cd9c81d52be9145fed50e3b04ec80bb7ea7ecaa7476dbe5c
+    - name: quay.io/modh/runtime-images@sha256:7ca2509fa522cb38720a8d30f19077a1f5acefa8be2801ee541b8fc8731daf84
+    - name: quay.io/modh/odh-minimal-notebook-container@sha256:54a5af13057df3445f917494a8cc12a0bed081c67204e00c9ed26daeaf9d0079
+    - name: quay.io/modh/cuda-notebooks@sha256:32d6dd081b7f07e0c221378737aaa23a6f2275ee799613c393dbd323175737e8
+    - name: quay.io/modh/odh-pytorch-notebook@sha256:52200670fc0cacf74f5bc88e226a4baced2f325e33213f3c73e1f7e410f81fea
+    - name: quay.io/modh/odh-generic-data-science-notebook@sha256:ec828e56701d9bcaf4676454ad1f89354e2bc903550c201a20b693c988485ad3
+    - name: quay.io/modh/cuda-notebooks@sha256:f05d344c18e8aeb0291a4333054bdf692d5d204d98c226ed0e149a9d0291f5cb
+    - name: quay.io/modh/odh-trustyai-notebook@sha256:de46659eccc3dd8e4b79cfbf7fc95464f76ffcc06f3f914841533130fba2985f
+    - name: quay.io/modh/odh-habana-notebooks@sha256:0f6ae8f0b1ef11896336e7f8611e77ccdb992b49a7942bf27e6bc64d73205d05
 ```
