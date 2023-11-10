@@ -8,7 +8,7 @@ set_defaults() {
   rhods_version="${rhods_version:-}"
   repository_folder="${repository_folder:-.odh-manifests}"
   notebooks_folder="${notebooks_folder:-.odh-notebooks}"
-  notebooks_branch="${notebooks_branch:-release-2023a}"
+  notebooks_branch="${notebooks_branch:-}"
   file_name="${file_name:-$rhods_version.md}"
   skip_tls="${skip_tls:-false}"
   mirror_url="${mirror_url:-registry.example.com:5000/mirror/oc-mirror-metadata}"
@@ -32,6 +32,7 @@ function help() {
   echo "  --set-registry  Set the registry"
   echo "  --set-openshift-version  Set the OpenShift version"
   echo "  --set-channel  Set the channel"
+  echo "  --notebooks-branch  Set the notebooks branch"
 }
 
 function get_latest_rhods_version() {
@@ -186,6 +187,13 @@ function change_rhods_version() {
     echo "Error: Version $rhods_version does not exist"
     exit 1
   fi
+
+  # Set the same version for notebooks if not set otherwise via
+  #   --notebooks-branch <notebooks_branch>
+  if [ -z "${notebooks_branch}" ]; then
+    notebooks_branch="${rhods_version}"
+  fi
+
   echo "Switching to $rhods_version"
   git switch "$rhods_version"
   return 0
@@ -241,6 +249,11 @@ parse_args() {
     --rhods-version | -v)
       rhods_version="$2"
       file_name="$rhods_version.md"
+      shift
+      shift
+      ;;
+    --notebooks-branch)
+      notebooks_branch="$2"
       shift
       shift
       ;;

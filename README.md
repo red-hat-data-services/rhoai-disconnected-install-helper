@@ -45,3 +45,8 @@ To get help about the script
 ```
 
 After running the script, the list of images with an example will be saved in a file by default called rhods-< version >.md with version the version of RHODS you are using.
+
+By default, the repositories for odh-manifests and notebooks are checked out to the same branch (rhods version). To use different notebooks branch, execute
+```bash
+./rhods-disconnected-helper.sh --rhods-version <version> --notebooks-branch <branch>
+```
