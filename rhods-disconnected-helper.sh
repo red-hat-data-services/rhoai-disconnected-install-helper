@@ -120,11 +120,13 @@ function find_images(){
     grep -hrEo 'quay\.io/[^/]+/[^@{},]+@sha256:[a-f0-9]+' "$repository_folder" | sort -u
   fi
   # search openvino image
-  if [ -f "$repository_folder"/odh-dashboard/modelserving/kustomization.yaml ]; then
-    local image_name=$(yq -r .images[0].newName "$repository_folder"/odh-dashboard/modelserving/kustomization.yaml)
-    local image_tag=$(yq -r .images[0].digest "$repository_folder"/odh-dashboard/modelserving/kustomization.yaml)
+  local manifests_folder=$( is_rhods_version_greater_or_equal_to rhods-2.4 && echo "/manifests" || echo "" )
+  local openvino_path="$repository_folder/odh-dashboard$manifests_folder/modelserving/kustomization.yaml"
+  if [ -f "$openvino_path" ]; then
+    local image_name=$(yq -r .images[0].newName "$openvino_path")
+    local image_tag=$(yq -r .images[0].digest "$openvino_path")
     echo "$image_name@$image_tag"
-  elif [ ! -f "$repository_folder"/odh-dashboard/modelserving/kustomization.yaml ]; then
+  elif [ ! -f "$openvino_path" ]; then
     openvino=$(grep -hrEo 'quay\.io/[^/]+/[^@{},]+:[^@{},]+' "$repository_folder" | sort -u | sed -n '/openvino/p')
     if [ -z "$openvino" ]; then
       echo "Error: openvino image not found"
