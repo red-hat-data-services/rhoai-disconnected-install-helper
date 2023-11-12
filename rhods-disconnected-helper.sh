@@ -188,10 +188,10 @@ mirror:
       - name: $channel
   additionalImages:   
 $(find_images | sed 's/^/    - name: /')
+$(image_tag_to_digest "$must_gather_image" | sed 's/^/    - name: /')
 $(if ! is_rhods_version_greater_or_equal_to rhods-2.4; then
 find_notebooks_images | sed 's/^/    - name: /' 
 fi)
-$(image_tag_to_digest "$must_gather_image" | sed 's/^/    - name: /')
 \`\`\`
 EOF
 }
