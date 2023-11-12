@@ -1,10 +1,11 @@
 #!/bin/bash
 
 set -o nounset
-set -o errexit
 set -o pipefail
 
 set_defaults() {
+  org_url_base="https://api.github.com/orgs/red-hat-data-services/repos?per_page=100&page="
+  excluded_repos=("rhods-disconnected-install-helper" "odh-manifests" "openshift-ai-handbook")
   rhods_version="${rhods_version:-}"
   repository_folder="${repository_folder:-.odh-manifests}"
   notebooks_folder="${notebooks_folder:-.odh-notebooks}"
@@ -36,19 +37,30 @@ function help() {
 
 function get_latest_rhods_version() {
   local rhods_version
-  rhods_version=$(git branch -a | grep remotes/origin/rhods | awk -F '/' '{print $NF}' | sort -V | tail -1)
+  rhods_version=$(git ls-remote --heads https://github.com/red-hat-data-services/rhods-operator | grep 'rhods' | awk -F'/' '{print $NF}' | sort -V | tail -1)
   echo "$rhods_version"
 }
 
+is_rhods_version_greater_or_equal_to() {
+  local version=$1
+  major_version=$(echo "$version" | cut -d'-' -f2 | cut -d'.' -f1)
+  minor_version=$(echo "$version" | cut -d'-' -f2 | cut -d'.' -f2)
+  actual_major_version=$(echo "$rhods_version" | cut -d'-' -f2 | cut -d'.' -f1)
+  actual_minor_version=$(echo "$rhods_version" | cut -d'-' -f2 | cut -d'.' -f2)
+  if [ "$actual_major_version" -gt "$major_version" ] || ([ "$actual_major_version" -eq "$major_version" ] && [ "$actual_minor_version" -ge "$minor_version" ]); then
+    return 0
+  else
+    return 1
+  fi
+}
+
 function get_supported_versions() {
-  # Get the latest version
   pushd "$repository_folder" || echo "Error: Directory $repository_folder does not exist"
   latest_rhods_version=$(get_latest_rhods_version)
   popd || exit 1
   
   major_version=$(echo $latest_rhods_version | cut -d'-' -f2 | cut -d'.' -f1)
   minor_version=$(echo $latest_rhods_version | cut -d'-' -f2 | cut -d'.' -f2)
-
 
   for i in {1..4}; do
     pushd "$repository_folder" || echo "Error: Directory $repository_folder does not exist"
@@ -102,8 +114,11 @@ function image_tag_to_digest() {
 
 function find_images(){
   local openvino=""
-  grep -hrEo 'quay\.io/[^/]+/[^@{},]+@sha256:[a-f0-9]+' "$repository_folder" | sort -u
-
+  if is_rhods_version_greater_or_equal_to rhods-2.4; then
+    find "$repository_folder" -maxdepth 2 -type d \( -name "manifests" -o -name "config" -o -name "jupyter" \) -exec bash -c 'grep -hrEo "quay\.io/[^/]+/[^@\{\},]+@sha256:[a-f0-9]+" "$0"' {} \; | grep -v 'quay\.io/opendatahub' | sort -u
+  else
+    grep -hrEo 'quay\.io/[^/]+/[^@{},]+@sha256:[a-f0-9]+' "$repository_folder" | sort -u
+  fi
   # search openvino image
   if [ -f "$repository_folder"/odh-dashboard/modelserving/kustomization.yaml ]; then
     local image_name=$(yq -r .images[0].newName "$repository_folder"/odh-dashboard/modelserving/kustomization.yaml)
@@ -132,13 +147,14 @@ function image_set_configuration() {
       fi
       verify_image_exists "$image"
     done < <(find_images)
-    while read -r image; do
-      if [[ $image =~ [{}]+ ]]; then
-        continue
-      fi
-      verify_image_exists "$image"
-    done < <(find_notebooks_images)
-
+    if ! is_rhods_version_greater_or_equal_to rhods-2.4; then
+      while read -r image; do
+        if [[ $image =~ [{}]+ ]]; then
+          continue
+        fi
+        verify_image_exists "$image"
+      done < <(find_notebooks_images)
+    fi
     verify_image_exists "$(image_tag_to_digest $must_gather_image)"
   else
     echo "Skipping image verification"
@@ -148,7 +164,9 @@ cat <<EOF >"$file_name"
 # Additional images:
 $(find_images | sed 's/^/    - /')
 $(image_tag_to_digest "$must_gather_image" | sed 's/^/    - /')
-$(find_notebooks_images | sed 's/^/    - /')
+$(if ! is_rhods_version_greater_or_equal_to rhods-2.4; then
+find_notebooks_images | sed 's/^/    - name: /' 
+fi)
 
 # ImageSetConfiguration example:
 \`\`\`yaml
@@ -168,7 +186,9 @@ mirror:
       - name: $channel
   additionalImages:   
 $(find_images | sed 's/^/    - name: /')
-$(find_notebooks_images | sed 's/^/    - name: /')
+$(if ! is_rhods_version_greater_or_equal_to rhods-2.4; then
+find_notebooks_images | sed 's/^/    - name: /' 
+fi)
 $(image_tag_to_digest "$must_gather_image" | sed 's/^/    - name: /')
 \`\`\`
 EOF
@@ -192,14 +212,19 @@ function change_rhods_version() {
 }
 
 function fetch_repository() {
-  if [ -d "$repository_folder" ]; then
-    echo "Update $repository_folder"
-    pushd "$repository_folder" || echo "Error: Directory $repository_folder does not exist"
-    git pull
-    popd || echo "Error: Directory $repository_folder does not exist"
+  if is_rhods_version_greater_or_equal_to rhods-2.4; then
+    echo "Cloning repositories"
+    clone_all_repos
   else
-    echo "Clone $repository_folder"
-    git clone "$repository_url" "$repository_folder"
+    if [ -d "$repository_folder" ]; then
+      echo "Update $repository_folder"
+      pushd "$repository_folder" || echo "Error: Directory $repository_folder does not exist"
+      git pull
+      popd || echo "Error: Directory $repository_folder does not exist"
+    else
+      echo "Clone $repository_folder"
+      git clone "$repository_url" "$repository_folder"
+    fi
   fi
 }
 
@@ -215,9 +240,86 @@ function fetch_notebooks_repository() {
     echo "Clone $notebooks_folder"
     git clone "$notebooks_url" "$notebooks_folder"
     pushd "$notebooks_folder" || echo "Error: Directory $notebooks_folder does not exist"
-    git checkout $notebooks_branch
+    git checkout "$notebooks_branch"
     popd || echo "Error: Directory $notebooks_folder does not exist"
   fi
+}
+
+# Check github rate limit
+check_github_rate_limit() {
+    response=$(curl -s https://api.github.com/rate_limit)
+    limit=$(echo "$response" | jq -r '.resources.core.limit')
+    remaining=$(echo "$response" | jq -r '.resources.core.remaining')
+    reset=$(echo "$response" | jq -r '.resources.core.reset')
+    reset_date=$(date -d @$reset)
+
+    if [ "$remaining" -eq 0 ]; then
+      echo "GitHub rate limit has been reached. Wait until $reset_date to continue."
+      echo "Rate limit: $limit"
+      echo "Remaining requests: $remaining"
+      echo "Reset time: $reset_date"
+      exit 1
+    fi
+}
+
+function get_next_page_url() {
+  local org_url=$1
+  curl -sI "$org_url" | awk '/Link:/ {match($0,/\<(https[^;]*)\>; rel="next"/,a); print a[1]}'
+}
+
+function branch_exists() {
+  local repo=$1
+  local version=$2
+  git ls-remote --heads "https://github.com/red-hat-data-services/$repo.git" "$version" | grep -q "$version"
+}
+
+function clone_repo() {
+  local repo=$1
+  local version=$2
+  git clone --depth 1 -b "$version" "https://github.com/red-hat-data-services/$repo.git" "$repository_folder/$repo" 
+  if [ $? -ne 0 ]; then
+    echo "Error: Failed to access $repo"
+    return 1
+  fi
+}
+
+function is_repo_excluded() {
+  local repo=$1
+  for excluded_repo in "${excluded_repos[@]}"; do
+    if [[ "$repo" == "$excluded_repo" ]]; then
+      return 0
+    fi
+  done
+  return 1
+}
+
+function clone_all_repos() {
+  local org_url="${org_url_base}"
+  check_github_rate_limit
+  while :; do
+    local repos
+    repos=$(curl -s "$org_url" | jq -r '.[] | .name')
+    if [ -z "$repos" ]; then
+      break
+    fi
+    org_url=$(get_next_page_url "$org_url")
+    for repo in $repos; do
+      if ! is_repo_excluded "$repo"; then
+        if branch_exists "$repo" "$rhods_version"; then
+          clone_repo "$repo" "$rhods_version"
+        fi
+      fi
+    done
+  done
+}
+
+function find_quay_images() {
+  local repository_folder=$repository_folder
+  find "$repository_folder" -maxdepth 2 -type d \( -name "manifests" -o -name "config" -o -name "jupyter" \) -exec bash -c 'grep -hrEo "quay\.io/[^/]+/[^@\{\},]+@sha256:[a-f0-9]+" "$0"' {} \; | grep -v 'quay\.io/opendatahub' | sort -u
+}
+
+function count_number_images() {
+  find_quay_images | wc -l
 }
 
 function cleanup() {
@@ -298,18 +400,21 @@ parse_args() {
 function main(){
   set_defaults
   parse_args "$@"
-  fetch_repository
-  pushd "$repository_folder" || echo "Error: Directory $repository_folder does not exist"
   if [ -z "$rhods_version" ]; then
     rhods_version=$(get_latest_rhods_version)
     file_name="$rhods_version.md"
-    echo "Use latest RHODS version $rhods_version"
-    change_rhods_version
-  else
-    change_rhods_version
+    echo "Use latest RHODS version $rhods_version"  
   fi
-  popd || exit 1
-  fetch_notebooks_repository
+  if is_rhods_version_greater_or_equal_to rhods-2.4; then
+    echo "Cloning repositories"
+    clone_all_repos
+  else
+    fetch_repository
+    pushd "$repository_folder" || echo "Error: Directory $repository_folder does not exist"
+    change_rhods_version
+    popd || exit 1
+    fetch_notebooks_repository
+  fi
   image_set_configuration
   cleanup
 }
