@@ -9,7 +9,7 @@ set_defaults() {
   rhods_version="${rhods_version:-}"
   repository_folder="${repository_folder:-.odh-manifests}"
   notebooks_folder="${notebooks_folder:-.odh-notebooks}"
-  notebooks_branch="${notebooks_branch:-release-2023a}"
+  notebooks_branch="${rhods_version:-main}"
   file_name="${file_name:-$rhods_version.md}"
   skip_tls="${skip_tls:-false}"
   mirror_url="${mirror_url:-registry.example.com:5000/mirror/oc-mirror-metadata}"
