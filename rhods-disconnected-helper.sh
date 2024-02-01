@@ -37,7 +37,7 @@ function help() {
 
 function get_latest_rhods_version() {
   local rhods_version
-  rhods_version=$(git ls-remote --heads https://github.com/red-hat-data-services/rhods-operator | grep 'rhods' | awk -F'/' '{print $NF}' | sort -V | tail -1)
+  rhods_version=$(git ls-remote --heads https://github.com/red-hat-data-services/rhods-operator | grep 'rhoai' | awk -F'/' '{print $NF}' | sort -V | tail -1)
   echo "$rhods_version"
 }
 
