@@ -36,10 +36,10 @@
     - quay.io/modh/runtime-images@sha256:a3ee8b8eff99e9699fba1c1a51a9eedc4499caceeb4106e708da048ea0c30ef3
     - quay.io/modh/runtime-images@sha256:d9cd06ab0f6ec763a11c602ed4482944700fc4a96c062066408686703e5327f5
     - quay.io/modh/runtime-images@sha256:e01b3041e73c8e16194cbca54d3dc12608ce555bebe410ea89da03ec372e3f15
-    - quay.io/opendatahub/openvino_model_server@sha256:2cbe8a48ab0bc6fe7fb76919bf33253e83a6218a9c4b486b744c3dcf30679616
+    - quay.io/modh/openvino_model_server@sha256:007304a96acd654ca5133c50990c6785464fcea44304c8a846d3279b9c83a9d4
     - quay.io/modh/must-gather@sha256:c2d780156a0e7cec975c9c150bee00b1facb8f6213e7b98a7a489448d76dfd94
-    - quay.io/opendatahub/caikit-tgis-serving@sha256:9d6e8bc10f3b61774f9d321790f8593f6ded5674b64a366248fcde6a07d66833
-    - quay.io/opendatahub/text-generation-inference@sha256:efcc60c671a5da62c0251bc543f6de73f6578aac40a9a745eae3f60b0208f9e9
+    - quay.io/modh/caikit-tgis-serving@sha256:ce6b66bb847608dac5eacd7f9123d2a076a06893d7f37f2da5876a8930527513
+    - quay.io/modh/text-generation-inference@sha256:a17a2868644929ee844ceb2778ac3f6db0936824d9b89d11ea7aa059466fcd0b
 
 
 # ImageSetConfiguration example:
@@ -96,9 +96,9 @@ mirror:
     - name: quay.io/modh/runtime-images@sha256:a3ee8b8eff99e9699fba1c1a51a9eedc4499caceeb4106e708da048ea0c30ef3
     - name: quay.io/modh/runtime-images@sha256:d9cd06ab0f6ec763a11c602ed4482944700fc4a96c062066408686703e5327f5
     - name: quay.io/modh/runtime-images@sha256:e01b3041e73c8e16194cbca54d3dc12608ce555bebe410ea89da03ec372e3f15
-    - name: quay.io/opendatahub/openvino_model_server@sha256:2cbe8a48ab0bc6fe7fb76919bf33253e83a6218a9c4b486b744c3dcf30679616
+    - name: quay.io/modh/openvino_model_server@sha256:007304a96acd654ca5133c50990c6785464fcea44304c8a846d3279b9c83a9d4
     - name: quay.io/modh/must-gather@sha256:c2d780156a0e7cec975c9c150bee00b1facb8f6213e7b98a7a489448d76dfd94
-    - name: quay.io/opendatahub/caikit-tgis-serving@sha256:9d6e8bc10f3b61774f9d321790f8593f6ded5674b64a366248fcde6a07d66833
-    - name: quay.io/opendatahub/text-generation-inference@sha256:efcc60c671a5da62c0251bc543f6de73f6578aac40a9a745eae3f60b0208f9e9
+    - name: quay.io/modh/caikit-tgis-serving@sha256:ce6b66bb847608dac5eacd7f9123d2a076a06893d7f37f2da5876a8930527513
+    - name: quay.io/modh/text-generation-inference@sha256:a17a2868644929ee844ceb2778ac3f6db0936824d9b89d11ea7aa059466fcd0b
 
 ```
