@@ -34,8 +34,8 @@
     - quay.io/modh/runtime-images@sha256:f894027b5e31d3f8fae5e6a88d88f7f6727254610761e202ec3946be8df9e627
     - quay.io/modh/openvino_model_server@sha256:007304a96acd654ca5133c50990c6785464fcea44304c8a846d3279b9c83a9d4
     - quay.io/modh/must-gather@sha256:c2d780156a0e7cec975c9c150bee00b1facb8f6213e7b98a7a489448d76dfd94
-    - name: quay.io/modh/caikit-tgis-serving@sha256:0fd3584362e8780aed922fe124c8829c1c7df9d55590ba2ae76bb6aef0155c1f
-    - name: quay.io/modh/text-generation-inference@sha256:9f18a63cd84b084c3cbf15534f22d5ba6916d9501298abcc03271d26ebf5cdfb
+    - quay.io/modh/caikit-tgis-serving@sha256:0fd3584362e8780aed922fe124c8829c1c7df9d55590ba2ae76bb6aef0155c1f
+    - quay.io/modh/text-generation-inference@sha256:9f18a63cd84b084c3cbf15534f22d5ba6916d9501298abcc03271d26ebf5cdfb
 
 
 
