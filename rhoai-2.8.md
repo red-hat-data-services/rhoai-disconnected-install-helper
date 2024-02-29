@@ -32,7 +32,10 @@
     - quay.io/modh/runtime-images@sha256:c07496b85a3f4f3896cbd69ddb31f33319406bdab9a62532a3809d461230ba64
     - quay.io/modh/runtime-images@sha256:f7256f8a2005a161d8a9b641fa2a8f2154f7c767a92fb83d858177441cf00b46
     - quay.io/modh/runtime-images@sha256:f918ab84601320b179ad80960f06d01e89030fc9daea06b6e7679da08883c590
-    - quay.io/opendatahub/openvino_model_server@sha256:ccfce13c89c4ddfd31e6c56fc35fd46afe10c2d3d3998ab1c2bf14448fdd389f
+    - quay.io/modh/openvino_model_server@sha256:007304a96acd654ca5133c50990c6785464fcea44304c8a846d3279b9c83a9d4
+    - quay.io/modh/caikit-tgis-serving@sha256:0fd3584362e8780aed922fe124c8829c1c7df9d55590ba2ae76bb6aef0155c1f
+    - quay.io/modh/text-generation-inference@sha256:9f18a63cd84b084c3cbf15534f22d5ba6916d9501298abcc03271d26ebf5cdfb
+    - quay.io/modh/openvino_model_server@sha256:007304a96acd654ca5133c50990c6785464fcea44304c8a846d3279b9c83a9d4
     - quay.io/modh/must-gather@sha256:c2d780156a0e7cec975c9c150bee00b1facb8f6213e7b98a7a489448d76dfd94
 
 
@@ -86,7 +89,10 @@ mirror:
     - name: quay.io/modh/runtime-images@sha256:c07496b85a3f4f3896cbd69ddb31f33319406bdab9a62532a3809d461230ba64
     - name: quay.io/modh/runtime-images@sha256:f7256f8a2005a161d8a9b641fa2a8f2154f7c767a92fb83d858177441cf00b46
     - name: quay.io/modh/runtime-images@sha256:f918ab84601320b179ad80960f06d01e89030fc9daea06b6e7679da08883c590
-    - name: quay.io/opendatahub/openvino_model_server@sha256:ccfce13c89c4ddfd31e6c56fc35fd46afe10c2d3d3998ab1c2bf14448fdd389f
+    - name: quay.io/modh/openvino_model_server@sha256:007304a96acd654ca5133c50990c6785464fcea44304c8a846d3279b9c83a9d4
+    - name: quay.io/modh/caikit-tgis-serving@sha256:0fd3584362e8780aed922fe124c8829c1c7df9d55590ba2ae76bb6aef0155c1f
+    - name: quay.io/modh/text-generation-inference@sha256:9f18a63cd84b084c3cbf15534f22d5ba6916d9501298abcc03271d26ebf5cdfb
+    - name: quay.io/modh/openvino_model_server@sha256:007304a96acd654ca5133c50990c6785464fcea44304c8a846d3279b9c83a9d4
     - name: quay.io/modh/must-gather@sha256:c2d780156a0e7cec975c9c150bee00b1facb8f6213e7b98a7a489448d76dfd94
 
 ```
