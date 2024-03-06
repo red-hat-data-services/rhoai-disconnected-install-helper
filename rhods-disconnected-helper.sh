@@ -285,6 +285,17 @@ function clone_repo() {
   fi
 }
 
+function clone_default_repo() {
+  local repo=$1
+  echo "cloning $repo repo"
+  git clone "https://github.com/red-hat-data-services/$repo.git" "$repository_folder/$repo" 
+  if [ $? -ne 0 ]; then
+    echo "Error: Failed to access $repo"
+    return 1
+  fi
+}
+
+
 function is_repo_excluded() {
   local repo=$1
   for excluded_repo in "${excluded_repos[@]}"; do
@@ -308,7 +319,11 @@ function clone_all_repos() {
     for repo in $repos; do
       if ! is_repo_excluded "$repo"; then
         if branch_exists "$repo" "$rhods_version"; then
-          clone_repo "$repo" "$rhods_version"
+          if [ -z "$branch_main" ]; then
+            clone_repo "$repo" "$rhods_version"
+          else
+            clone_default_repo "$repo"   
+          fi  
         fi
       fi
     done
@@ -332,6 +347,23 @@ function cleanup() {
   if [ -d "$notebooks_folder" ]; then
     echo "Remove $notebooks_folder"
     rm -rf "$notebooks_folder"
+  fi
+}
+
+function test_current_branch_name() {
+  branchName=$1
+
+  repo_folder="$repository_folder/kubeflow"
+  # Check if the repository folder exists
+  if [ -d "$repo_folder" ]; then
+      # Navigate to the repository folder
+      cd "$repo_folder" || exit
+
+      # Check the git branch
+      branch=$(git rev-parse --abbrev-ref HEAD)
+      echo "Current branch for $branchName: $branch"
+  else
+      echo "Repository folder not found"
   fi
 }
 
@@ -402,6 +434,7 @@ parse_args() {
 function main(){
   set_defaults
   parse_args "$@"
+  branch_main=""
   if [ -z "$rhods_version" ]; then
     rhods_version=$(get_latest_rhods_version)
     file_name="$rhods_version.md"
@@ -418,7 +451,20 @@ function main(){
     fetch_notebooks_repository
   fi
   image_set_configuration
+  #test_current_branch_name "$rhods_version"
   cleanup
+
+  # For rhoa-nightly
+  branch_main="rhoai-main"
+  file_name="$branch_main.md"
+  echo "Use latest RHODS version $branch_main"  
+  echo "Cloning repositories for main/master"
+  clone_all_repos
+  image_set_configuration
+ # test_current_branch_name "$branch_main"
+  cleanup
+
+  
 }
 
 main "$@"
