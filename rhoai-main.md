@@ -27,14 +27,18 @@
     - quay.io/modh/odh-trustyai-notebook@sha256:2f507b2dadd18dbff3bc7669be85fbf731576ee8c1740442935475d2f705b9c9
     - quay.io/modh/odh-trustyai-notebook@sha256:5d9a9038fe57650e05a7b1e0f107add2182f041742c2d07498470fa4e3a95306
     - quay.io/modh/odh-trustyai-notebook@sha256:8c5e653f6bc6a2050565cf92f397991fbec952dc05cdfea74b65b8fd3047c9d4
-    - quay.io/modh/runtime-images@sha256:19387cc2b89de3dc49f96f50aa7b85c97fafac04f49611ce53a2940b5dc096b8
-    - quay.io/modh/runtime-images@sha256:327bb23cf2b4cc1714728fda54edc2ac348d9a786668c72c406933363ab2e2f4
+    - quay.io/modh/runtime-images@sha256:1bb33637a6ceecce72a0f3f17d0c805d5fc8d33f01d570d9e6953efa7a693500
+    - quay.io/modh/runtime-images@sha256:2e479a8f9867cbd2e0b26815f9d8ee9395084f03a287696280fd9681d969ca60
+    - quay.io/modh/runtime-images@sha256:38453750ae735c764fa5908ec3c0f7a26a02ab9b3585f59274673b57137434f5
+    - quay.io/modh/runtime-images@sha256:4292f4bc22b630f66648f0f6b6edd864346794be22385d0ce43f5ebb5c1354f9
+    - quay.io/modh/runtime-images@sha256:6ca29b2726876d79d5a1334daba72eeb2324d15965d2396a62ab16b045c8cb3c
     - quay.io/modh/runtime-images@sha256:8c0f3d1e7a9baf5df5e21b67ffa22fc03d42d07c84b56b49547fd1f7607fc310
     - quay.io/modh/runtime-images@sha256:a3ee8b8eff99e9699fba1c1a51a9eedc4499caceeb4106e708da048ea0c30ef3
-    - quay.io/modh/runtime-images@sha256:b721c133c43a50e52fe426c0e182da99f9b0c2724d682660eb4a54b1518ada55
+    - quay.io/modh/runtime-images@sha256:a7e6b143c79b63a1ef7d2faf441bb02f2e5456b116e4078010ce4e68a00726f9
+    - quay.io/modh/runtime-images@sha256:cdf57b164b0521c89b4d9b7a66dda6168188f9db69afda6e885897a85302d858
     - quay.io/modh/runtime-images@sha256:d9cd06ab0f6ec763a11c602ed4482944700fc4a96c062066408686703e5327f5
     - quay.io/modh/runtime-images@sha256:e01b3041e73c8e16194cbca54d3dc12608ce555bebe410ea89da03ec372e3f15
-    - quay.io/modh/runtime-images@sha256:f2d25913baf2b2ce1805095f09c4114da30d50b2b7c9e2c17733d6e88c410a87
+    - quay.io/modh/runtime-images@sha256:fdae6a6d457a578693075a35e9785eb6ff217969d5ff8b74bfd389748ea349ea
     - quay.io/modh/openvino_model_server@sha256:5d04d405526ea4ce5b807d0cd199ccf7f71bab1228907c091e975efa770a4908
     - quay.io/modh/caikit-tgis-serving@sha256:444bca43c99bfc4b961c926f5f10c556488613912f5e333011e98b3407d76d00
     - quay.io/modh/text-generation-inference@sha256:e4d24fd401fd4eb89b49b4ab07e0c08389384d4a672b240e98a03ad7f9ef1c85
@@ -87,14 +91,18 @@ mirror:
     - name: quay.io/modh/odh-trustyai-notebook@sha256:2f507b2dadd18dbff3bc7669be85fbf731576ee8c1740442935475d2f705b9c9
     - name: quay.io/modh/odh-trustyai-notebook@sha256:5d9a9038fe57650e05a7b1e0f107add2182f041742c2d07498470fa4e3a95306
     - name: quay.io/modh/odh-trustyai-notebook@sha256:8c5e653f6bc6a2050565cf92f397991fbec952dc05cdfea74b65b8fd3047c9d4
-    - name: quay.io/modh/runtime-images@sha256:19387cc2b89de3dc49f96f50aa7b85c97fafac04f49611ce53a2940b5dc096b8
-    - name: quay.io/modh/runtime-images@sha256:327bb23cf2b4cc1714728fda54edc2ac348d9a786668c72c406933363ab2e2f4
+    - name: quay.io/modh/runtime-images@sha256:1bb33637a6ceecce72a0f3f17d0c805d5fc8d33f01d570d9e6953efa7a693500
+    - name: quay.io/modh/runtime-images@sha256:2e479a8f9867cbd2e0b26815f9d8ee9395084f03a287696280fd9681d969ca60
+    - name: quay.io/modh/runtime-images@sha256:38453750ae735c764fa5908ec3c0f7a26a02ab9b3585f59274673b57137434f5
+    - name: quay.io/modh/runtime-images@sha256:4292f4bc22b630f66648f0f6b6edd864346794be22385d0ce43f5ebb5c1354f9
+    - name: quay.io/modh/runtime-images@sha256:6ca29b2726876d79d5a1334daba72eeb2324d15965d2396a62ab16b045c8cb3c
     - name: quay.io/modh/runtime-images@sha256:8c0f3d1e7a9baf5df5e21b67ffa22fc03d42d07c84b56b49547fd1f7607fc310
     - name: quay.io/modh/runtime-images@sha256:a3ee8b8eff99e9699fba1c1a51a9eedc4499caceeb4106e708da048ea0c30ef3
-    - name: quay.io/modh/runtime-images@sha256:b721c133c43a50e52fe426c0e182da99f9b0c2724d682660eb4a54b1518ada55
+    - name: quay.io/modh/runtime-images@sha256:a7e6b143c79b63a1ef7d2faf441bb02f2e5456b116e4078010ce4e68a00726f9
+    - name: quay.io/modh/runtime-images@sha256:cdf57b164b0521c89b4d9b7a66dda6168188f9db69afda6e885897a85302d858
     - name: quay.io/modh/runtime-images@sha256:d9cd06ab0f6ec763a11c602ed4482944700fc4a96c062066408686703e5327f5
     - name: quay.io/modh/runtime-images@sha256:e01b3041e73c8e16194cbca54d3dc12608ce555bebe410ea89da03ec372e3f15
-    - name: quay.io/modh/runtime-images@sha256:f2d25913baf2b2ce1805095f09c4114da30d50b2b7c9e2c17733d6e88c410a87
+    - name: quay.io/modh/runtime-images@sha256:fdae6a6d457a578693075a35e9785eb6ff217969d5ff8b74bfd389748ea349ea
     - name: quay.io/modh/openvino_model_server@sha256:5d04d405526ea4ce5b807d0cd199ccf7f71bab1228907c091e975efa770a4908
     - name: quay.io/modh/caikit-tgis-serving@sha256:444bca43c99bfc4b961c926f5f10c556488613912f5e333011e98b3407d76d00
     - name: quay.io/modh/text-generation-inference@sha256:e4d24fd401fd4eb89b49b4ab07e0c08389384d4a672b240e98a03ad7f9ef1c85
