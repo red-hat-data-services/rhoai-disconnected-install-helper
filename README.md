@@ -1,6 +1,6 @@
-# Rhods disconnected install helper
+# RHOAI disconnected install helper
 
-This repository contains the updated list of additional images needed to install RHODS in a disconnected environment using oc-mirror for the current releases supported by RHODS.
+This repository contains the updated list of additional images needed to install rhoai in a disconnected environment using oc-mirror for the current releases supported by rhoai.
 
 The list of images and versions are updated automatically by a GitHub action.
 
@@ -22,26 +22,26 @@ Copy the list from the file of the version you want to install and paste it in t
 
 #### Usage:
 
-Get last RHODS version:
+Get last rhoai version:
 ```bash
-./rhods-disconnected-helper.sh
+./rhoai-disconnected-helper.sh
 ```
 
-Get a specific RHODS version:
+Get a specific rhoai version:
 ```bash
-./rhods-disconnected-helper.sh --rhods-version <version>
+./rhoai-disconnected-helper.sh --rhoai-version <version>
 or
-./rhods-disconnected-helper.sh -v <version>
+./rhoai-disconnected-helper.sh -v <version>
 ```
 
 Example:
 ```bash
-./rhods-disconnected-helper.sh -v rhods-1.31
+./rhoai-disconnected-helper.sh -v rhoai-1.31
 ```
 
 To get help about the script
 ```bash
-./rhods-disconnected-helper.sh -h
+./rhoai-disconnected-helper.sh -h
 ```
 
-After running the script, the list of images with an example will be saved in a file by default called rhods-< version >.md with version the version of RHODS you are using.
+After running the script, the list of images with an example will be saved in a file by default called rhoai-< version >.md with version the version of rhoai you are using.
