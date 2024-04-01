@@ -17,7 +17,7 @@ set_defaults() {
   notebooks_url="${notebooks_url:-https://github.com/red-hat-data-services/notebooks}"
   openshift_version="${openshift_version:-v4.14}"
   skip_image_verification="${skip_image_verification:-false}"
-  channel="${channel:-stable}"
+  channel="${channel:-fast}"
 }
 # Other additional images
 must_gather_image="quay.io/modh/must-gather:stable"
@@ -186,6 +186,7 @@ mirror:
     - name: rhods-operator
       channels:
       - name: $channel
+        $min_max_version
   additionalImages:   
 $(find_images | sed 's/^/    - name: /')
 $(image_tag_to_digest "$must_gather_image" | sed 's/^/    - name: /')

@@ -6,13 +6,14 @@ The list of images and versions are updated automatically by a GitHub action.
 
 ## How to use it
 
-You can copy the list directly from the repository or use the script to get the list of images for the version you want to install.
+**It is recommended to copy the list of additional images directly from the respective <rhoai-x.y>.md file. In case of any issues or conflicts, please contact the support team**. 
 
-### 1. Copy the list of images from the repository:
+### Copy the list of images from the repository:
 
 Copy the list from the file of the version you want to install and paste it in the additionalImages section of the ImageSetConfiguration file you are using to mirror the images. In the file there is also an example of ImageSetConfiguration.
 
-### 2. Run the script locally:
+
+### Run the script locally (Only if you have insights into the tool-internals):
 #### Requirements:
 - bash 4.0 or higher
 - jq latest
