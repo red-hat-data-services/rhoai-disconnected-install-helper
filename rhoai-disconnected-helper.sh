@@ -165,7 +165,7 @@ function image_set_configuration() {
   if [ -z "$branch_main" ]; then
     rhods_semver="${rhods_version/rhoai-/}.0"
     min_max_version="minVersion: $rhods_semver
-            maxVersion: $rhods_semver"
+        maxVersion: $rhods_semver"
   fi
 
 cat <<EOF >"$file_name"
