@@ -461,15 +461,15 @@ function main(){
   #test_current_branch_name "$rhods_version"
   cleanup
 
-  # For rhoa-nightly
-#   branch_main="rhoai-main"
-#   file_name="$branch_main.md"
-#   echo "Use latest RHODS version $branch_main"  
-#   echo "Cloning repositories for main/master"
-#   clone_all_repos
-#   image_set_configuration
-#  # test_current_branch_name "$branch_main"
-#   cleanup
+  # For rhoai-nightly
+  branch_main="rhoai-main"
+  file_name="$branch_main.md"
+  echo "Use latest RHODS version $branch_main"  
+  echo "Cloning repositories for main/master"
+  clone_all_repos
+  image_set_configuration
+ # test_current_branch_name "$branch_main"
+  cleanup
 
   
 }
