@@ -44,7 +44,7 @@
     - quay.io/modh/caikit-tgis-serving@sha256:c3d4c06293a5fea59ed347c410f9c8472e500816079ab380fb3c376d09f4a926
     - quay.io/modh/text-generation-inference@sha256:18048121be7624d8cfe3f387e6de7ebb2e9376213f795d66cada26d8391229ca
     - quay.io/modh/openvino_model_server@sha256:5d04d405526ea4ce5b807d0cd199ccf7f71bab1228907c091e975efa770a4908
-    - quay.io/modh/must-gather@sha256:c2d780156a0e7cec975c9c150bee00b1facb8f6213e7b98a7a489448d76dfd94
+    - quay.io/modh/must-gather@sha256:5dd8b6f7e72c7fb3a5b46a48304514e4975fd6ed171cc3b1386771151020110a
 
 
 # ImageSetConfiguration example:
@@ -111,6 +111,6 @@ mirror:
     - name: quay.io/modh/caikit-tgis-serving@sha256:c3d4c06293a5fea59ed347c410f9c8472e500816079ab380fb3c376d09f4a926
     - name: quay.io/modh/text-generation-inference@sha256:18048121be7624d8cfe3f387e6de7ebb2e9376213f795d66cada26d8391229ca
     - name: quay.io/modh/openvino_model_server@sha256:5d04d405526ea4ce5b807d0cd199ccf7f71bab1228907c091e975efa770a4908
-    - name: quay.io/modh/must-gather@sha256:c2d780156a0e7cec975c9c150bee00b1facb8f6213e7b98a7a489448d76dfd94
+    - name: quay.io/modh/must-gather@sha256:5dd8b6f7e72c7fb3a5b46a48304514e4975fd6ed171cc3b1386771151020110a
 
 ```
