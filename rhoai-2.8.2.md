@@ -10,7 +10,7 @@
     - quay.io/modh/kserve-agent@sha256:fc7ef759d199e3b9e5b2aa52db8647a92a5f1148dd745b48516d01e5f3de1dce
     - quay.io/modh/kserve-controller@sha256:3ae3440ce4bbd981efefed70a4f21b587f45faf43f6cc4b95a77d1423fa5c7b3
     - quay.io/modh/kserve-router@sha256:3c4ed363de3dd8f73e7872b68324ecb2ba3587a66eef75262cf121f33244aba2
-    - quay.io/modh/kserve-storage-initializer@sha256:8e39f7c2736f91775aa5f5929e5981ba3c30c7f63a9b7dec6ee4c655ab1d5e70
+    - quay.io/modh/kserve-storage-initializer@sha256:d9fc3b543f8736bb90cbcec3ba4f459b650c462cbd0bd4f46daf5898a3ab7f1f
     - quay.io/modh/odh-anaconda-notebook@sha256:380c07bf79f5ec7d22441cde276c50b5eb2a459485cde05087837639a566ae3d
     - quay.io/modh/odh-generic-data-science-notebook@sha256:6e10eaeb233fb7a3d5c2832906a47042ba83149f5912b8a88af5de4b3b19af41
     - quay.io/modh/odh-generic-data-science-notebook@sha256:76e6af79c601a323f75a58e7005de0beac66b8cccc3d2b67efb6d11d85f0cfa1
@@ -69,7 +69,7 @@ mirror:
     - name: quay.io/modh/kserve-agent@sha256:fc7ef759d199e3b9e5b2aa52db8647a92a5f1148dd745b48516d01e5f3de1dce
     - name: quay.io/modh/kserve-controller@sha256:3ae3440ce4bbd981efefed70a4f21b587f45faf43f6cc4b95a77d1423fa5c7b3
     - name: quay.io/modh/kserve-router@sha256:3c4ed363de3dd8f73e7872b68324ecb2ba3587a66eef75262cf121f33244aba2
-    - name: quay.io/modh/kserve-storage-initializer@sha256:8e39f7c2736f91775aa5f5929e5981ba3c30c7f63a9b7dec6ee4c655ab1d5e70
+    - name: quay.io/modh/kserve-storage-initializer@sha256:d9fc3b543f8736bb90cbcec3ba4f459b650c462cbd0bd4f46daf5898a3ab7f1f
     - name: quay.io/modh/odh-anaconda-notebook@sha256:380c07bf79f5ec7d22441cde276c50b5eb2a459485cde05087837639a566ae3d
     - name: quay.io/modh/odh-generic-data-science-notebook@sha256:6e10eaeb233fb7a3d5c2832906a47042ba83149f5912b8a88af5de4b3b19af41
     - name: quay.io/modh/odh-generic-data-science-notebook@sha256:76e6af79c601a323f75a58e7005de0beac66b8cccc3d2b67efb6d11d85f0cfa1
