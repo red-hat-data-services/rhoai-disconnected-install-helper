@@ -172,9 +172,15 @@ cat <<EOF >"$file_name"
 # Additional images:
 $(find_images | sed 's/^/    - /')
 $(image_tag_to_digest "$must_gather_image" | sed 's/^/    - /')
+$(if [ -n "$branch_main" ]; then echo "    - quay.io/modh/kserve-agent:nightly"
+    echo "    - quay.io/modh/kserve-controller:nightly"
+    echo "    - quay.io/modh/kserve-router:nightly"
+    echo "    - quay.io/modh/kserve-storage-initializer:nightly"
+fi)
 $(if ! is_rhods_version_greater_or_equal_to rhods-2.4; then
 find_notebooks_images | sed 's/^/    - name: /' 
 fi)
+
 
 # ImageSetConfiguration example:
 \`\`\`yaml
@@ -196,9 +202,15 @@ mirror:
   additionalImages:   
 $(find_images | sed 's/^/    - name: /')
 $(image_tag_to_digest "$must_gather_image" | sed 's/^/    - name: /')
+$(if [ -n "$branch_main" ]; then echo "    - name: quay.io/modh/kserve-agent:nightly"
+    echo "    - name: quay.io/modh/kserve-controller:nightly"
+    echo "    - name: quay.io/modh/kserve-router:nightly"
+    echo "    - name: quay.io/modh/kserve-storage-initializer:nightly"
+fi)
 $(if ! is_rhods_version_greater_or_equal_to rhods-2.4; then
 find_notebooks_images | sed 's/^/    - name: /' 
 fi)
+
 \`\`\`
 EOF
 }
