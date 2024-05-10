@@ -1,8 +1,6 @@
-name: Run rhoai-disconnected-helper script once a day
+name: Run rhoai-disconnected-helper z stream
 
 on: 
-  schedule:
-    - cron:  '0 12 * * *'
   workflow_dispatch:
 
 jobs:
@@ -10,11 +8,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - name: Run rhoai-disconnected-helper.sh script
+    - name: Run rhoai-disconnected-helper-z-stream.sh script
       run: |
-        chmod +x rhoai-disconnected-helper.sh
+        chmod +x rhoai-disconnected-helper-z-stream.sh
         chmod +x rhoai-dih.sh
-        ./rhoai-disconnected-helper.sh
+        ./rhoai-disconnected-helper-z-stream.sh "${{ github.event.inputs.input_variable1 }}" "${{ github.event.inputs.input_variable2 }}"
+      env:
+          INPUT_GIT_BRANCH: ${{ github.event.inputs.input_variable1 }}
+          INPUT_GIT_VERSION: ${{ github.event.inputs.input_variable2 }}
       shell: bash
     - name: Commit and push changes to main branch
       uses: actions-js/push@master
