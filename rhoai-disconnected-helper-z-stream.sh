@@ -3,12 +3,20 @@
 source rhoai-dih.sh
 
 function main(){
+  echo "Enter branch name (rhoai-x.y):"
+  read branch_name
+
+  echo "Enter z-stream version (rhoai-x.y.z):"
+  read rhoai_version
+  #branch_name=$1
+  #rhoai_version=$2
+
+   branch_main=""
+
   set_defaults
-  parse_args "$@"
-  branch_main=""
   if [ -z "$rhods_version" ]; then
-    rhods_version=$(get_latest_rhods_version)
-    file_name="$rhods_version.md"
+    rhods_version="$branch_name"
+    file_name="$rhoai_version.md"
     echo "Use latest RHODS version $rhods_version"  
   fi
   if is_rhods_version_greater_or_equal_to rhods-2.4; then
@@ -24,18 +32,6 @@ function main(){
   image_set_configuration
   #test_current_branch_name "$rhods_version"
   cleanup
-
-  # For rhoai-nightly
-  branch_main="rhoai-main"
-  file_name="$branch_main.md"
-  echo "Use latest RHODS version $branch_main"  
-  echo "Cloning repositories for main/master"
-  clone_all_repos
-  image_set_configuration
- # test_current_branch_name "$branch_main"
-  cleanup
-
   
 }
-
 main "$@"
