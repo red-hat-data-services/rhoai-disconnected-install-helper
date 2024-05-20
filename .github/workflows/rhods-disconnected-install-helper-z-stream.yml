@@ -2,6 +2,11 @@ name: Run rhoai-disconnected-helper z stream
 
 on: 
   workflow_dispatch:
+    inputs:
+      repositories:
+        type: string
+        description: "Enter z-stream version (rhoai-x.y.z)"
+
 
 jobs:
   run-script:
@@ -12,10 +17,8 @@ jobs:
       run: |
         chmod +x rhoai-disconnected-helper-z-stream.sh
         chmod +x rhoai-dih.sh
-        ./rhoai-disconnected-helper-z-stream.sh "${{ github.event.inputs.input_variable1 }}" "${{ github.event.inputs.input_variable2 }}"
-      env:
-          INPUT_GIT_BRANCH: ${{ github.event.inputs.input_variable1 }}
-          INPUT_GIT_VERSION: ${{ github.event.inputs.input_variable2 }}
+        ./rhoai-disconnected-helper-z-stream.sh "${{ github.event.inputs.input_variable1 }}"
+
       shell: bash
     - name: Commit and push changes to main branch
       uses: actions-js/push@master
