@@ -3,19 +3,24 @@
 source rhoai-dih.sh
 
 function main(){
-  echo "Enter branch name (rhoai-x.y):"
-  read branch_name
+  # echo "Enter branch name (rhoai-x.y):"
+  # read branch_name
 
-  echo "Enter z-stream version (rhoai-x.y.z):"
-  read rhoai_version
+  # echo "Enter z-stream version (rhoai-x.y.z):"
+  # read rhoai_version
   #branch_name=$1
-  #rhoai_version=$2
+  rhoai_version=$1
+
+ 
+
+
 
    branch_main=""
 
   set_defaults
-  if [ -z "$rhods_version" ]; then
-    rhods_version="$branch_name"
+  if [ -z "$rhoai_version" ]; then
+    trimmed_version=$(echo "$rhoai_version" | sed 's/rhoai-\([0-9]*\.[0-9]*\)\.[0-9]*/rhoai-\1/')
+    rhods_version="$trimmed_version"
     file_name="$rhoai_version.md"
     echo "Use latest RHODS version $rhods_version"  
   fi
