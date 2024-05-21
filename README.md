@@ -40,6 +40,16 @@ Example:
 ./rhoai-disconnected-helper.sh -v rhoai-1.31
 ```
 
+Get a z-stream rhoai version:
+```bash
+./rhoai-disconnected-helper-z-stream.sh <rhoai-x.y.z>
+```
+
+Example:
+```bash
+./rhoai-disconnected-helper-z-stream.sh rhoai-2.9.1
+```
+
 To get help about the script
 ```bash
 ./rhoai-disconnected-helper.sh -h

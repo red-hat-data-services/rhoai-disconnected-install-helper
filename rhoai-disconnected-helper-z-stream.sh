@@ -3,29 +3,30 @@
 source rhoai-dih.sh
 
 function main(){
-  # echo "Enter branch name (rhoai-x.y):"
-  # read branch_name
-
-  # echo "Enter z-stream version (rhoai-x.y.z):"
-  # read rhoai_version
-  #branch_name=$1
   rhoai_version=$1
-
- 
-
-
-
-   branch_main=""
+  rhods_version=""
+  branch_main=""
 
   set_defaults
+
   if [ -z "$rhoai_version" ]; then
-    trimmed_version=$(echo "$rhoai_version" | sed 's/rhoai-\([0-9]*\.[0-9]*\)\.[0-9]*/rhoai-\1/')
-    rhods_version="$trimmed_version"
+    echo "No version provided"
+    exit 1
+  fi
+    # Validate the version string against the pattern x.y.z
+  if [[ ! "$rhoai_version" =~ ^rhoai-[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+    echo "Invalid version format. Expected format: rhoai-x.y.z"
+    exit 1
+  fi
+  if [ -z "$rhods_version" ]; then
+    rhods_version=$(echo "$rhoai_version" | sed 's/rhoai-\([0-9]*\.[0-9]*\)\.[0-9]*/rhoai-\1/')
+    
     file_name="$rhoai_version.md"
     echo "Use latest RHODS version $rhods_version"  
+    echo "File Name $file_name"
   fi
   if is_rhods_version_greater_or_equal_to rhods-2.4; then
-    echo "Cloning repositories"
+    echo "Cloning repositories"q
     clone_all_repos
   else
     fetch_repository
