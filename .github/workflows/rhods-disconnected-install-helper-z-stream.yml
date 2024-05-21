@@ -6,24 +6,26 @@ on:
       repositories:
         type: string
         description: "Enter z-stream version (rhoai-x.y.z)"
-
+        required: true
 
 jobs:
   run-script:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: Run rhoai-disconnected-helper-z-stream.sh script
-      run: |
-        chmod +x rhoai-disconnected-helper-z-stream.sh
-        chmod +x rhoai-dih.sh
-        ./rhoai-disconnected-helper-z-stream.sh "${{ github.event.inputs.input_variable1 }}"
+      - uses: actions/checkout@v3
 
-      shell: bash
-    - name: Commit and push changes to main branch
-      uses: actions-js/push@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        branch: main
-        message: "Update rhoai-disconnected-helper.sh script"
-        repository: red-hat-data-services/rhoai-disconnected-install-helper
+      - name: Run rhoai-disconnected-helper-z-stream.sh script
+        run: |
+          chmod +x rhoai-disconnected-helper-z-stream.sh
+          chmod +x rhoai-dih.sh
+          trimmed_version=$(./rhoai-disconnected-helper-z-stream.sh "${{ github.event.inputs.repositories }}")
+          echo "Trimmed Version: $trimmed_version"
+        shell: bash
+
+      - name: Commit and push changes to main branch
+        uses: actions-js/push@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
+          message: "Update rhoai-disconnected-helper-z-stream.sh script"
+          repository: red-hat-data-services/rhoai-disconnected-install-helper

@@ -295,6 +295,7 @@ function branch_exists() {
 function clone_repo() {
   local repo=$1
   local version=$2
+  echo "cloning $repo with version $version"
   git clone --depth 1 -b "$version" "https://github.com/red-hat-data-services/$repo.git" "$repository_folder/$repo" 
   if [ $? -ne 0 ]; then
     echo "Error: Failed to access $repo"
@@ -391,7 +392,7 @@ parse_args() {
       help
       exit
       ;;
-    --rhods-version | -v)
+    --rhoai-version | -v)
       rhods_version="$2"
       file_name="$rhods_version.md"
       shift
