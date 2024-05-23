@@ -18,7 +18,7 @@ set_defaults() {
   channel="${channel:-fast}"
 }
 # Other additional images
-must_gather_image="quay.io/modh/must-gather:stable"
+must_gather_image=""
 
 function help() {
   echo "Usage: script.sh [-h] [-v] [--skip-image-verification] [--skip-tls]"
@@ -447,4 +447,12 @@ parse_args() {
       ;;
     esac
   done
+}
+function update_must_gather() {
+  if is_rhods_version_greater_or_equal_to rhods-2.10; then
+    must_gather_image="quay.io/modh/must-gather:$rhods_version"
+  else
+    must_gather_image="quay.io/modh/must-gather:stable"
+  fi
+  
 }
