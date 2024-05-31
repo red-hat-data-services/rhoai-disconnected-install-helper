@@ -36,11 +36,8 @@
     - quay.io/modh/runtime-images@sha256:da3b2ae37fda00569015c14bca0e34f2fe9730b377b7af52a4f9ea1fbba964c6
     - quay.io/modh/runtime-images@sha256:de57a9c7bd6a870697d27ba0af4e3ee5dc2a2ab05f46885791bce2bffb77342d
     - quay.io/modh/runtime-images@sha256:ef9cc4f0dc1c0dff82c8bcdee295a5c8b8c19d297844fc209316ace315c79982
-    - quay.io/modh/openvino_model_server@sha256:5d04d405526ea4ce5b807d0cd199ccf7f71bab1228907c091e975efa770a4908
-    - quay.io/modh/caikit-tgis-serving@sha256:c3d4c06293a5fea59ed347c410f9c8472e500816079ab380fb3c376d09f4a926
-    - quay.io/modh/text-generation-inference@sha256:18048121be7624d8cfe3f387e6de7ebb2e9376213f795d66cada26d8391229ca
-    - quay.io/modh/openvino_model_server@sha256:5d04d405526ea4ce5b807d0cd199ccf7f71bab1228907c091e975efa770a4908
-    - quay.io/modh/must-gather@sha256:f49988620efc6227f931c964e45e935838406340a096db84f5736c05066f1cc6
+    - quay.io/modh/odh-openvino-servingruntime-container@sha256:19980c28d38a10a8146ed695da78c982854751f08a7b2a02666db2b98b401e98
+    - quay.io/modh/must-gather@sha256:1bd8735d715b624c1eaf484454b0d6d400a334d8cbba47f99883626f36e96657
     - quay.io/modh/kserve-agent:nightly
     - quay.io/modh/kserve-controller:nightly
     - quay.io/modh/kserve-router:nightly
@@ -103,11 +100,8 @@ mirror:
     - name: quay.io/modh/runtime-images@sha256:da3b2ae37fda00569015c14bca0e34f2fe9730b377b7af52a4f9ea1fbba964c6
     - name: quay.io/modh/runtime-images@sha256:de57a9c7bd6a870697d27ba0af4e3ee5dc2a2ab05f46885791bce2bffb77342d
     - name: quay.io/modh/runtime-images@sha256:ef9cc4f0dc1c0dff82c8bcdee295a5c8b8c19d297844fc209316ace315c79982
-    - name: quay.io/modh/openvino_model_server@sha256:5d04d405526ea4ce5b807d0cd199ccf7f71bab1228907c091e975efa770a4908
-    - name: quay.io/modh/caikit-tgis-serving@sha256:c3d4c06293a5fea59ed347c410f9c8472e500816079ab380fb3c376d09f4a926
-    - name: quay.io/modh/text-generation-inference@sha256:18048121be7624d8cfe3f387e6de7ebb2e9376213f795d66cada26d8391229ca
-    - name: quay.io/modh/openvino_model_server@sha256:5d04d405526ea4ce5b807d0cd199ccf7f71bab1228907c091e975efa770a4908
-    - name: quay.io/modh/must-gather@sha256:f49988620efc6227f931c964e45e935838406340a096db84f5736c05066f1cc6
+    - name: quay.io/modh/odh-openvino-servingruntime-container@sha256:19980c28d38a10a8146ed695da78c982854751f08a7b2a02666db2b98b401e98
+    - name: quay.io/modh/must-gather@sha256:1bd8735d715b624c1eaf484454b0d6d400a334d8cbba47f99883626f36e96657
     - name: quay.io/modh/kserve-agent:nightly
     - name: quay.io/modh/kserve-controller:nightly
     - name: quay.io/modh/kserve-router:nightly
