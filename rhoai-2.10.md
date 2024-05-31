@@ -41,6 +41,10 @@
     - quay.io/modh/runtime-images@sha256:de57a9c7bd6a870697d27ba0af4e3ee5dc2a2ab05f46885791bce2bffb77342d
     - quay.io/modh/runtime-images@sha256:ef9cc4f0dc1c0dff82c8bcdee295a5c8b8c19d297844fc209316ace315c79982
     - quay.io/modh/odh-openvino-servingruntime-container@sha256:19980c28d38a10a8146ed695da78c982854751f08a7b2a02666db2b98b401e98
+    - quay.io/modh/caikit-tgis-serving@sha256:12177f54a586b9cc710a328e0fc8dfd5e7ab9296b5e0a11c637d376c707b476d
+    - quay.io/modh/text-generation-inference@sha256:2f2438084666ed6b2ad522ba76b825b4c0985e56fab25b4c10eed289e4a4832a
+    - quay.io/modh/openvino_model_server@sha256:6c7795279f9075bebfcd9aecbb4a4ce4177eec41fb3f3e1f1079ce6309b7ae45
+    - quay.io/modh/vllm@sha256:60f335015eff8c99508ff421c80f5f7b23b1310d87b0d4086b6f76f9a136b5a4
     - quay.io/modh/must-gather@sha256:1bd8735d715b624c1eaf484454b0d6d400a334d8cbba47f99883626f36e96657
 
 
@@ -107,6 +111,10 @@ mirror:
     - name: quay.io/modh/runtime-images@sha256:de57a9c7bd6a870697d27ba0af4e3ee5dc2a2ab05f46885791bce2bffb77342d
     - name: quay.io/modh/runtime-images@sha256:ef9cc4f0dc1c0dff82c8bcdee295a5c8b8c19d297844fc209316ace315c79982
     - name: quay.io/modh/odh-openvino-servingruntime-container@sha256:19980c28d38a10a8146ed695da78c982854751f08a7b2a02666db2b98b401e98
+    - name: quay.io/modh/caikit-tgis-serving@sha256:12177f54a586b9cc710a328e0fc8dfd5e7ab9296b5e0a11c637d376c707b476d
+    - name: quay.io/modh/text-generation-inference@sha256:2f2438084666ed6b2ad522ba76b825b4c0985e56fab25b4c10eed289e4a4832a
+    - name: quay.io/modh/openvino_model_server@sha256:6c7795279f9075bebfcd9aecbb4a4ce4177eec41fb3f3e1f1079ce6309b7ae45
+    - name: quay.io/modh/vllm@sha256:60f335015eff8c99508ff421c80f5f7b23b1310d87b0d4086b6f76f9a136b5a4
     - name: quay.io/modh/must-gather@sha256:1bd8735d715b624c1eaf484454b0d6d400a334d8cbba47f99883626f36e96657
 
 
