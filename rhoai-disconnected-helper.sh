@@ -10,6 +10,8 @@ function main(){
     rhods_version=$(get_latest_rhods_version)
     file_name="$rhods_version.md"
     echo "Use latest RHODS version $rhods_version"  
+    update_must_gather
+    echo $must_gather_image
   fi
   if is_rhods_version_greater_or_equal_to rhods-2.4; then
     echo "Cloning repositories"
