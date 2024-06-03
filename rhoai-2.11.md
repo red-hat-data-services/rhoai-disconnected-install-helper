@@ -36,7 +36,6 @@
     - quay.io/modh/runtime-images@sha256:da3b2ae37fda00569015c14bca0e34f2fe9730b377b7af52a4f9ea1fbba964c6
     - quay.io/modh/runtime-images@sha256:de57a9c7bd6a870697d27ba0af4e3ee5dc2a2ab05f46885791bce2bffb77342d
     - quay.io/modh/runtime-images@sha256:ef9cc4f0dc1c0dff82c8bcdee295a5c8b8c19d297844fc209316ace315c79982
-    - quay.io/modh/odh-openvino-servingruntime-container@sha256:19980c28d38a10a8146ed695da78c982854751f08a7b2a02666db2b98b401e98
     - quay.io/modh/must-gather@
 
 
@@ -98,7 +97,6 @@ mirror:
     - name: quay.io/modh/runtime-images@sha256:da3b2ae37fda00569015c14bca0e34f2fe9730b377b7af52a4f9ea1fbba964c6
     - name: quay.io/modh/runtime-images@sha256:de57a9c7bd6a870697d27ba0af4e3ee5dc2a2ab05f46885791bce2bffb77342d
     - name: quay.io/modh/runtime-images@sha256:ef9cc4f0dc1c0dff82c8bcdee295a5c8b8c19d297844fc209316ace315c79982
-    - name: quay.io/modh/odh-openvino-servingruntime-container@sha256:19980c28d38a10a8146ed695da78c982854751f08a7b2a02666db2b98b401e98
     - name: quay.io/modh/must-gather@
 
 
