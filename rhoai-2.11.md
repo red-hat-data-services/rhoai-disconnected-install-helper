@@ -38,10 +38,7 @@
     - quay.io/modh/runtime-images@sha256:ef9cc4f0dc1c0dff82c8bcdee295a5c8b8c19d297844fc209316ace315c79982
     - quay.io/modh/odh-openvino-servingruntime-container@sha256:19980c28d38a10a8146ed695da78c982854751f08a7b2a02666db2b98b401e98
     - quay.io/modh/must-gather@
-    - quay.io/modh/kserve-agent:nightly
-    - quay.io/modh/kserve-controller:nightly
-    - quay.io/modh/kserve-router:nightly
-    - quay.io/modh/kserve-storage-initializer:nightly
+
 
 
 
@@ -61,7 +58,8 @@ mirror:
     - name: rhods-operator
       channels:
       - name: fast
-        
+        minVersion: 2.11.0
+        maxVersion: 2.11.0
   additionalImages:   
     - name: quay.io/integreatly/prometheus-blackbox-exporter@sha256:35b9d2c1002201723b7f7a9f54e9406b2ec4b5b0f73d114f47c70e15956103b5
     - name: quay.io/modh/codeserver@sha256:14b73e8a62b98fb9a70cb079b6048121ab0a7798fe1eca0adf06b6716f280115
@@ -102,10 +100,7 @@ mirror:
     - name: quay.io/modh/runtime-images@sha256:ef9cc4f0dc1c0dff82c8bcdee295a5c8b8c19d297844fc209316ace315c79982
     - name: quay.io/modh/odh-openvino-servingruntime-container@sha256:19980c28d38a10a8146ed695da78c982854751f08a7b2a02666db2b98b401e98
     - name: quay.io/modh/must-gather@
-    - name: quay.io/modh/kserve-agent:nightly
-    - name: quay.io/modh/kserve-controller:nightly
-    - name: quay.io/modh/kserve-router:nightly
-    - name: quay.io/modh/kserve-storage-initializer:nightly
+
 
 
 ```
