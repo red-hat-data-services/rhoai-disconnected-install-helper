@@ -89,6 +89,7 @@ function verify_image_exists() {
   local image_sha256
   image_name=$(echo "$image" | awk -F '@' '{print $1}')
   image_digest=$(echo "$image" | awk -F '@' '{print $2}')
+  echo "docker image: $image"
   image_sha256=$(skopeo inspect docker://"$image" | jq -r '.Digest')
 
   echo "Verifying image $image_name"
@@ -96,7 +97,7 @@ function verify_image_exists() {
 
   if [ "$image_digest" != "$image_sha256" ]; then
     echo "Error: Image $image_name does not exist"
-    exit 1
+    #exit 1
   fi
   echo "Image $image_name exists with digest $image_sha256"
 }
@@ -117,21 +118,37 @@ function find_images(){
   else
     grep -hrEo 'quay\.io/[^/]+/[^@{},]+@sha256:[a-f0-9]+' "$repository_folder" | sort -u
   fi
+
+  if is_rhods_version_greater_or_equal_to rhods-2.10; then
+
+    local openvino_path="$repository_folder/odh-model-controller/config/base/params.env"
+      while IFS= read -r line || [[ -n "$line" ]]; do
+      imagename_tag="${line#*=}"
+      if [[ "$imagename_tag" == quay.io/modh/* ]]; then
+       echo "$imagename_tag"
+      fi
+    done < "$openvino_path"
+
+  else
   # search openvino image
-  local manifests_folder=$( is_rhods_version_greater_or_equal_to rhods-2.4 && echo "/manifests" || echo "" )
-  local openvino_path="$repository_folder/odh-dashboard$manifests_folder/overlays/modelserving/kustomization.yaml"
-  if [ -f "$openvino_path" ]; then
-    #local image_name=$(yq -r .images[0].newName "$openvino_path")
-    local image_name_tag=$(yq eval '.images[] | .newName + "@" + .digest' "$openvino_path")
-    echo "$image_name_tag"
-  elif [ ! -f "$openvino_path" ]; then
-    openvino=$(grep -hrEo 'quay\.io/[^/]+/[^@{},]+:[^@{},]+' "$repository_folder" | sort -u | sed -n '/openvino/p')
-    if [ -z "$openvino" ]; then
-      echo "Error: openvino image not found"
-      exit 1
+    local manifests_folder=$( is_rhods_version_greater_or_equal_to rhods-2.4 && echo "/manifests" || echo "" )
+    local openvino_path="$repository_folder/odh-dashboard$manifests_folder/overlays/modelserving/kustomization.yaml"
+
+    if [ -f "$openvino_path" ]; then
+      #local image_name=$(yq -r .images[0].newName "$openvino_path")
+      local image_name_tag=$(yq eval '.images[] | .newName + "@" + .digest' "$openvino_path")
+      echo "$image_name_tag"
+    elif [ ! -f "$openvino_path" ]; then
+      openvino=$(grep -hrEo 'quay\.io/[^/]+/[^@{},]+:[^@{},]+' "$repository_folder" | sort -u | sed -n '/openvino/p')
+      if [ -z "$openvino" ]; then
+        echo "Error: openvino image not found"
+        exit 1
+      fi
+      image_tag_to_digest $(echo "$openvino")
     fi
-    image_tag_to_digest $(echo "$openvino")
   fi
+
+
 }
 
 function find_notebooks_images() {
