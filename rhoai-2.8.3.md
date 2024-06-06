@@ -56,9 +56,9 @@ mirror:
     packages:
     - name: rhods-operator
       channels:
-      - name: fast
-        minVersion: 2.8.0
-        maxVersion: 2.8.0
+      - name: stable
+        minVersion: 2.8.3
+        maxVersion: 2.8.3
   additionalImages:   
     - name: quay.io/integreatly/prometheus-blackbox-exporter@sha256:35b9d2c1002201723b7f7a9f54e9406b2ec4b5b0f73d114f47c70e15956103b5
     - name: quay.io/modh/codeserver@sha256:575df4c8ce5bfb2c6dc355fcae74e0cc7499e0490f4d9deeb9788fe3aaa7f6d1
