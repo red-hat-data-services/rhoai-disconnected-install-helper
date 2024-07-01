@@ -50,7 +50,7 @@
     - quay.io/modh/text-generation-inference@sha256:294f07b2a94a223a18e559d497a79cac53bf7893f36cfc6c995475b6e431bcfe
     - quay.io/modh/openvino_model_server@sha256:9ccb29967f39b5003cf395cc686a443d288869578db15d0d37ed8ebbeba19375
     - quay.io/modh/vllm@sha256:23425b36194ec2a704c094a222735498b95c8eafbfe76e511b20c0112da6c542
-    - quay.io/modh/must-gather@sha256:f2757b22fa4e1bce015a492a351b9fda7e3a565ecd82d0572751ff86fc8dd591
+    - quay.io/modh/must-gather@sha256:4a8d9398fdbc073e32611364d715a7210ce695d8b6bbbe957e3f9de6e4374e45
 
 
 
@@ -125,7 +125,7 @@ mirror:
     - name: quay.io/modh/text-generation-inference@sha256:294f07b2a94a223a18e559d497a79cac53bf7893f36cfc6c995475b6e431bcfe
     - name: quay.io/modh/openvino_model_server@sha256:9ccb29967f39b5003cf395cc686a443d288869578db15d0d37ed8ebbeba19375
     - name: quay.io/modh/vllm@sha256:23425b36194ec2a704c094a222735498b95c8eafbfe76e511b20c0112da6c542
-    - name: quay.io/modh/must-gather@sha256:f2757b22fa4e1bce015a492a351b9fda7e3a565ecd82d0572751ff86fc8dd591
+    - name: quay.io/modh/must-gather@sha256:4a8d9398fdbc073e32611364d715a7210ce695d8b6bbbe957e3f9de6e4374e45
 
 
 
