@@ -122,12 +122,27 @@ function find_images(){
   if is_rhods_version_greater_or_equal_to rhods-2.10; then
 
     local openvino_path="$repository_folder/odh-model-controller/config/base/params.env"
-      while IFS= read -r line || [[ -n "$line" ]]; do
+    
+    while IFS= read -r line || [[ -n "$line" ]]; do
       imagename_tag="${line#*=}"
       if [[ "$imagename_tag" == quay.io/modh/* ]]; then
        echo "$imagename_tag"
       fi
     done < "$openvino_path"
+
+    #additional images changes
+    
+    # Path to the YAML file 
+    IMAGES_FILE="$repository_folder/rhoai-additional-images/rhoai-disconnected-images.yaml"
+
+    if [ -f "$IMAGES_FILE" ]; then
+      # Read the YAML file and parse it using yq
+      ADDITIONAL_IMAGES=$(yq e '.additional-images[]' "$IMAGES_FILE")
+
+      # Display the images
+      echo "$ADDITIONAL_IMAGES"
+    fi 
+
 
   else
   # search openvino image
