@@ -4,6 +4,7 @@ source rhoai-dih.sh
 
 function main(){
   rhoai_version=$1
+  channel=$2
   rhods_version=""
   branch_main=""
 
@@ -18,6 +19,7 @@ function main(){
     echo "Invalid version format. Expected format: rhoai-x.y.z"
     exit 1
   fi
+  minmax_version=$(echo $rhoai_version | sed 's/rhoai-//')
   if [ -z "$rhods_version" ]; then
     rhods_version=$(echo "$rhoai_version" | sed 's/rhoai-\([0-9]*\.[0-9]*\)\.[0-9]*/rhoai-\1/')
     

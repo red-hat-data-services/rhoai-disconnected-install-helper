@@ -7,6 +7,10 @@ on:
         type: string
         description: "Enter z-stream version (rhoai-x.y.z)"
         required: true
+      channel_input:
+        type: string
+        description: "Enter channel"
+        required: true  
 
 jobs:
   run-script:
@@ -18,7 +22,7 @@ jobs:
         run: |
           chmod +x rhoai-disconnected-helper-z-stream.sh
           chmod +x rhoai-dih.sh
-          trimmed_version=$(./rhoai-disconnected-helper-z-stream.sh "${{ github.event.inputs.repositories }}")
+          trimmed_version=$(./rhoai-disconnected-helper-z-stream.sh "${{ github.event.inputs.repositories }}" "${{ github.event.inputs.channel_input }}")
           echo "Trimmed Version: $trimmed_version"
         shell: bash
 
