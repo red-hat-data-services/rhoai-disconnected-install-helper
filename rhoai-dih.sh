@@ -197,7 +197,7 @@ function image_set_configuration() {
     min_max_version="minVersion: $rhods_semver
         maxVersion: $rhods_semver"
   fi
-  if [ -n "$minmax_version" ]; then
+  if [ -n "${minmax_version:-}" ]; then
     min_max_version="minVersion: $minmax_version
         maxVersion: $minmax_version"
   fi
