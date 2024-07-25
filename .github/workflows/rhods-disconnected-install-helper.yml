@@ -16,6 +16,9 @@ jobs:
         chmod +x rhoai-dih.sh
         ./rhoai-disconnected-helper.sh
       shell: bash
+    - name: Pull latest changes from main branch
+      run: git pull origin main
+      shell: bash
     - name: Commit and push changes to main branch
       uses: actions-js/push@master
       with:
