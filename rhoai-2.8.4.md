@@ -56,7 +56,7 @@ mirror:
     packages:
     - name: rhods-operator
       channels:
-      - name: stable
+      - name: stable-2.8
         minVersion: 2.8.4
         maxVersion: 2.8.4
   additionalImages:   
