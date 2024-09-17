@@ -1,6 +1,6 @@
 # Additional images:
     - quay.io/integreatly/prometheus-blackbox-exporter@sha256:35b9d2c1002201723b7f7a9f54e9406b2ec4b5b0f73d114f47c70e15956103b5
-    - quay.io/modh/caikit-nlp@sha256:3b0b8d7fbc6a05ee458950cc3967c2ea06925bc42c7b65231a1c41af3ad9c089
+    - quay.io/modh/caikit-nlp@sha256:b9ff6bdc9eed74d6c750ec9928cba727ec4e9a8a134d387ca5d3fa287e7e389b
     - quay.io/modh/caikit-tgis-serving@sha256:3a2477e143c494280a81e50c31adb54fc9f2fd0a84dde3b31cf9f6929fb2d1f9
     - quay.io/modh/codeserver@sha256:4b6b563e75f9e642bac9f21c4a2d8d72d77923fc391dd5dc985d4489c7258ef5
     - quay.io/modh/codeserver@sha256:b1a048f3711149e36a89e0eda1a5601130fb536ecc0aabae42ab6e4d26977354
@@ -46,7 +46,7 @@
     - quay.io/modh/text-generation-inference@sha256:792e1500548c293eae428cf079fce836e68fbf7d4f7a53b5958c5158a70edfbf
     - quay.io/modh/vllm@sha256:3176ad6d7cf1880bf45d3e18a3dd6e8f3d04b343b97a0291e65640fff86bf4bb
     - quay.io/modh/caikit-tgis-serving@sha256:3a2477e143c494280a81e50c31adb54fc9f2fd0a84dde3b31cf9f6929fb2d1f9
-    - quay.io/modh/caikit-nlp@sha256:3b0b8d7fbc6a05ee458950cc3967c2ea06925bc42c7b65231a1c41af3ad9c089
+    - quay.io/modh/caikit-nlp@sha256:b9ff6bdc9eed74d6c750ec9928cba727ec4e9a8a134d387ca5d3fa287e7e389b
     - quay.io/modh/text-generation-inference@sha256:792e1500548c293eae428cf079fce836e68fbf7d4f7a53b5958c5158a70edfbf
     - quay.io/modh/openvino_model_server@sha256:9086c1ba1ba30d358194c534f0563923aab02d03954e43e9f3647136b44a5daf
     - quay.io/modh/vllm@sha256:3176ad6d7cf1880bf45d3e18a3dd6e8f3d04b343b97a0291e65640fff86bf4bb
@@ -76,7 +76,7 @@ mirror:
         maxVersion: 2.14.0
   additionalImages:   
     - name: quay.io/integreatly/prometheus-blackbox-exporter@sha256:35b9d2c1002201723b7f7a9f54e9406b2ec4b5b0f73d114f47c70e15956103b5
-    - name: quay.io/modh/caikit-nlp@sha256:3b0b8d7fbc6a05ee458950cc3967c2ea06925bc42c7b65231a1c41af3ad9c089
+    - name: quay.io/modh/caikit-nlp@sha256:b9ff6bdc9eed74d6c750ec9928cba727ec4e9a8a134d387ca5d3fa287e7e389b
     - name: quay.io/modh/caikit-tgis-serving@sha256:3a2477e143c494280a81e50c31adb54fc9f2fd0a84dde3b31cf9f6929fb2d1f9
     - name: quay.io/modh/codeserver@sha256:4b6b563e75f9e642bac9f21c4a2d8d72d77923fc391dd5dc985d4489c7258ef5
     - name: quay.io/modh/codeserver@sha256:b1a048f3711149e36a89e0eda1a5601130fb536ecc0aabae42ab6e4d26977354
@@ -122,7 +122,7 @@ mirror:
     - name: quay.io/modh/text-generation-inference@sha256:792e1500548c293eae428cf079fce836e68fbf7d4f7a53b5958c5158a70edfbf
     - name: quay.io/modh/vllm@sha256:3176ad6d7cf1880bf45d3e18a3dd6e8f3d04b343b97a0291e65640fff86bf4bb
     - name: quay.io/modh/caikit-tgis-serving@sha256:3a2477e143c494280a81e50c31adb54fc9f2fd0a84dde3b31cf9f6929fb2d1f9
-    - name: quay.io/modh/caikit-nlp@sha256:3b0b8d7fbc6a05ee458950cc3967c2ea06925bc42c7b65231a1c41af3ad9c089
+    - name: quay.io/modh/caikit-nlp@sha256:b9ff6bdc9eed74d6c750ec9928cba727ec4e9a8a134d387ca5d3fa287e7e389b
     - name: quay.io/modh/text-generation-inference@sha256:792e1500548c293eae428cf079fce836e68fbf7d4f7a53b5958c5158a70edfbf
     - name: quay.io/modh/openvino_model_server@sha256:9086c1ba1ba30d358194c534f0563923aab02d03954e43e9f3647136b44a5daf
     - name: quay.io/modh/vllm@sha256:3176ad6d7cf1880bf45d3e18a3dd6e8f3d04b343b97a0291e65640fff86bf4bb
