@@ -1,5 +1,4 @@
 # Additional images:
-    - quay.io/integreatly/prometheus-blackbox-exporter@sha256:35b9d2c1002201723b7f7a9f54e9406b2ec4b5b0f73d114f47c70e15956103b5
     - quay.io/modh/caikit-nlp@sha256:b9ff6bdc9eed74d6c750ec9928cba727ec4e9a8a134d387ca5d3fa287e7e389b
     - quay.io/modh/caikit-tgis-serving@sha256:3a2477e143c494280a81e50c31adb54fc9f2fd0a84dde3b31cf9f6929fb2d1f9
     - quay.io/modh/codeserver@sha256:4b6b563e75f9e642bac9f21c4a2d8d72d77923fc391dd5dc985d4489c7258ef5
@@ -76,7 +75,6 @@ mirror:
         minVersion: 2.14.0
         maxVersion: 2.14.0
   additionalImages:   
-    - name: quay.io/integreatly/prometheus-blackbox-exporter@sha256:35b9d2c1002201723b7f7a9f54e9406b2ec4b5b0f73d114f47c70e15956103b5
     - name: quay.io/modh/caikit-nlp@sha256:b9ff6bdc9eed74d6c750ec9928cba727ec4e9a8a134d387ca5d3fa287e7e389b
     - name: quay.io/modh/caikit-tgis-serving@sha256:3a2477e143c494280a81e50c31adb54fc9f2fd0a84dde3b31cf9f6929fb2d1f9
     - name: quay.io/modh/codeserver@sha256:4b6b563e75f9e642bac9f21c4a2d8d72d77923fc391dd5dc985d4489c7258ef5
