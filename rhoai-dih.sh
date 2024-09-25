@@ -125,14 +125,14 @@ function find_images(){
 
   if is_rhods_version_greater_or_equal_to rhods-2.10; then
 
-    local openvino_path="$repository_folder/odh-model-controller/config/base/params.env"
+    # local openvino_path="$repository_folder/odh-model-controller/config/base/params.env"
     
-    while IFS= read -r line || [[ -n "$line" ]]; do
-      imagename_tag="${line#*=}"
-      if [[ "$imagename_tag" == quay.io/modh/* ]]; then
-       echo "$imagename_tag"
-      fi
-    done < "$openvino_path"
+    # while IFS= read -r line || [[ -n "$line" ]]; do
+    #   imagename_tag="${line#*=}"
+    #   if [[ "$imagename_tag" == quay.io/modh/* ]]; then
+    #    echo "$imagename_tag"
+    #   fi
+    # done < "$openvino_path"
 
     #additional images changes
     
