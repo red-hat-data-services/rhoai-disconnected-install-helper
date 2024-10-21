@@ -57,11 +57,7 @@
     - quay.io/modh/runtime-images@sha256:e46fd90085206b1d77a18635db5784bca1f34e69c87ffbc13c6bffd65fd3c9d5
     - quay.io/modh/text-generation-inference@sha256:bc9970b7f6be38266cc0c02155d377ee1f96862ea96d166dd3130c5d83c9a723
     - quay.io/modh/vllm@sha256:49db8a99b8b3048e37038d19578639cf23e3209e9c4bd35453435c4fc0ad7b5c
-    - quay.io/modh/fms-hf-tuning@sha256:8edea6f0f9c4c631cdca1e1c10abf0d4b994738fde78c40d48eda216fdd382f5
-    - quay.io/modh/ray@sha256:2cdacde3f6f0ee5843b2f7151130b91c5dfec4cea3e470720722c2fdb0779495
-    - quay.io/modh/ray@sha256:0d715f92570a2997381b7cafc0e224cfa25323f18b9545acfd23bc2b71576d06
-    - quay.io/modh/training@sha256:3f65ae8f27cef8a2bdb169ca9bdb956cc14278343317d64c4dc42994673aea0f
-    - quay.io/modh/must-gather@sha256:0025f2deb054b48938eb4bcf5eaab2d3249138b778098531366f8a810d1c7e90
+    - quay.io/modh/must-gather@sha256:f0668e37cf4c08a1069a3662049feda04ae4d9b3bcc49274b45d8e7d41871e05
 
 
 
@@ -82,8 +78,8 @@ mirror:
     - name: rhods-operator
       channels:
       - name: fast
-        minVersion: 2.15.0
-        maxVersion: 2.15.0
+        minVersion: 2.16.0
+        maxVersion: 2.16.0
   additionalImages:   
     - name: quay.io/modh/caikit-nlp@sha256:eaff5e8480376e9e6ec85e38ee7654c0c8a47ea224f7c08fcee18efa38c8272d
     - name: quay.io/modh/caikit-tgis-serving@sha256:c7b30327c5d4d37ea886e24f73003490b21d268bba952a86ef334e0c7b5f4cc9
@@ -143,11 +139,7 @@ mirror:
     - name: quay.io/modh/runtime-images@sha256:e46fd90085206b1d77a18635db5784bca1f34e69c87ffbc13c6bffd65fd3c9d5
     - name: quay.io/modh/text-generation-inference@sha256:bc9970b7f6be38266cc0c02155d377ee1f96862ea96d166dd3130c5d83c9a723
     - name: quay.io/modh/vllm@sha256:49db8a99b8b3048e37038d19578639cf23e3209e9c4bd35453435c4fc0ad7b5c
-    - name: quay.io/modh/fms-hf-tuning@sha256:8edea6f0f9c4c631cdca1e1c10abf0d4b994738fde78c40d48eda216fdd382f5
-    - name: quay.io/modh/ray@sha256:2cdacde3f6f0ee5843b2f7151130b91c5dfec4cea3e470720722c2fdb0779495
-    - name: quay.io/modh/ray@sha256:0d715f92570a2997381b7cafc0e224cfa25323f18b9545acfd23bc2b71576d06
-    - name: quay.io/modh/training@sha256:3f65ae8f27cef8a2bdb169ca9bdb956cc14278343317d64c4dc42994673aea0f
-    - name: quay.io/modh/must-gather@sha256:0025f2deb054b48938eb4bcf5eaab2d3249138b778098531366f8a810d1c7e90
+    - name: quay.io/modh/must-gather@sha256:f0668e37cf4c08a1069a3662049feda04ae4d9b3bcc49274b45d8e7d41871e05
 
 
 
