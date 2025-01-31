@@ -53,8 +53,8 @@
     - quay.io/modh/runtime-images@sha256:a2f09f6095e3ba6bc6cf3b8d702fcdd4814f9d4c43e076795bfcdeb334ef9978
     - quay.io/modh/runtime-images@sha256:df1adec7e0623afd07fbe2d6fd6f759800d93c136c33a5b322ed347cbbbd70aa
     - quay.io/modh/runtime-images@sha256:e46fd90085206b1d77a18635db5784bca1f34e69c87ffbc13c6bffd65fd3c9d5
-    - quay.io/modh/ta-lmes-driver@sha256:9e1651c4fa70b9a1bf20bb1413c931c5c385b5936ed891aca4dc3fe7c5e20540
-    - quay.io/modh/ta-lmes-job@sha256:d2c2b07cbcb1e7d9a9fd76613f3d7c051c54b298de368a1a493f4ce8b289aae2
+    - quay.io/modh/ta-lmes-driver@sha256:8fbb2f3ac8929a2d1ffaa1532b59a8e3c8b8d51f644b2955c65a3979f5f9d233
+    - quay.io/modh/ta-lmes-job@sha256:525cee1c993cefd2b028984753f269b04b1f90d4d8ef7d475733509dabbdc605
     - quay.io/modh/text-generation-inference@sha256:81e55b32d10848b403d6a267a8a5c565d6a025c6a395fc0d99787140fa0fbc88
     - quay.io/modh/vllm@sha256:611d71be1f3ce45881f37b5cf82c728e2a517767a711c8f3543ca266ba25c4fc
     - quay.io/modh/vllm@sha256:7c1dcf70adc2de4a132fcf2d4c9ec4996904ebc9cbea71cfa733b05fb8c50a1e
@@ -145,8 +145,8 @@ mirror:
     - name: quay.io/modh/runtime-images@sha256:a2f09f6095e3ba6bc6cf3b8d702fcdd4814f9d4c43e076795bfcdeb334ef9978
     - name: quay.io/modh/runtime-images@sha256:df1adec7e0623afd07fbe2d6fd6f759800d93c136c33a5b322ed347cbbbd70aa
     - name: quay.io/modh/runtime-images@sha256:e46fd90085206b1d77a18635db5784bca1f34e69c87ffbc13c6bffd65fd3c9d5
-    - name: quay.io/modh/ta-lmes-driver@sha256:9e1651c4fa70b9a1bf20bb1413c931c5c385b5936ed891aca4dc3fe7c5e20540
-    - name: quay.io/modh/ta-lmes-job@sha256:d2c2b07cbcb1e7d9a9fd76613f3d7c051c54b298de368a1a493f4ce8b289aae2
+    - name: quay.io/modh/ta-lmes-driver@sha256:8fbb2f3ac8929a2d1ffaa1532b59a8e3c8b8d51f644b2955c65a3979f5f9d233
+    - name: quay.io/modh/ta-lmes-job@sha256:525cee1c993cefd2b028984753f269b04b1f90d4d8ef7d475733509dabbdc605
     - name: quay.io/modh/text-generation-inference@sha256:81e55b32d10848b403d6a267a8a5c565d6a025c6a395fc0d99787140fa0fbc88
     - name: quay.io/modh/vllm@sha256:611d71be1f3ce45881f37b5cf82c728e2a517767a711c8f3543ca266ba25c4fc
     - name: quay.io/modh/vllm@sha256:7c1dcf70adc2de4a132fcf2d4c9ec4996904ebc9cbea71cfa733b05fb8c50a1e
