@@ -15,8 +15,8 @@
     - quay.io/modh/cuda-notebooks@sha256:b51d4364240b661830674fe11c9d9b9e8d38ae4d3b906f6b9959e5904520358e
     - quay.io/modh/cuda-notebooks@sha256:f6cdc993b4d493ffaec876abb724ce44b3c6fc37560af974072b346e45ac1a3b
     - quay.io/modh/kserve-agent@sha256:fe2c1a10babaaa48fb470bef9556d4282dd28afe2421d23148123ae2c7a7c4ff
-    - quay.io/modh/kserve-controller@sha256:04c43026540bcbd20649ca76af08f510c30c449d9b425581129ca56aed2d3acb
-    - quay.io/modh/kserve-router@sha256:ebc4552355606c567df2e2aa5be666cfa18c22a332ec1af8e1a29e9780439f62
+    - quay.io/modh/kserve-controller@sha256:f288052edd47ba08841d708c4c25dfb201a26e9c4bb69f7d193b93ae9b613ff6
+    - quay.io/modh/kserve-router@sha256:5a666c73c7da65d4644e3c34736695bbd64176ebf9543188736ce74d085769e8
     - quay.io/modh/kserve-storage-initializer@sha256:2d099e83bba90a96cb7a1f27c491d98653bdb469af8149074ed252336383fcc4
     - quay.io/modh/odh-anaconda-notebook@sha256:acfa4bc06bbd0b4640844c5403272d6138070f391264dba238441c5dc64de505
     - quay.io/modh/odh-base-rhel9@sha256:1d6f2e3c0ee7962d92c3b933f3bbfabeee24d314a2ce5f8ec2d9f18d5b6723d4
@@ -107,8 +107,8 @@ mirror:
     - name: quay.io/modh/cuda-notebooks@sha256:b51d4364240b661830674fe11c9d9b9e8d38ae4d3b906f6b9959e5904520358e
     - name: quay.io/modh/cuda-notebooks@sha256:f6cdc993b4d493ffaec876abb724ce44b3c6fc37560af974072b346e45ac1a3b
     - name: quay.io/modh/kserve-agent@sha256:fe2c1a10babaaa48fb470bef9556d4282dd28afe2421d23148123ae2c7a7c4ff
-    - name: quay.io/modh/kserve-controller@sha256:04c43026540bcbd20649ca76af08f510c30c449d9b425581129ca56aed2d3acb
-    - name: quay.io/modh/kserve-router@sha256:ebc4552355606c567df2e2aa5be666cfa18c22a332ec1af8e1a29e9780439f62
+    - name: quay.io/modh/kserve-controller@sha256:f288052edd47ba08841d708c4c25dfb201a26e9c4bb69f7d193b93ae9b613ff6
+    - name: quay.io/modh/kserve-router@sha256:5a666c73c7da65d4644e3c34736695bbd64176ebf9543188736ce74d085769e8
     - name: quay.io/modh/kserve-storage-initializer@sha256:2d099e83bba90a96cb7a1f27c491d98653bdb469af8149074ed252336383fcc4
     - name: quay.io/modh/odh-anaconda-notebook@sha256:acfa4bc06bbd0b4640844c5403272d6138070f391264dba238441c5dc64de505
     - name: quay.io/modh/odh-base-rhel9@sha256:1d6f2e3c0ee7962d92c3b933f3bbfabeee24d314a2ce5f8ec2d9f18d5b6723d4
