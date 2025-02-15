@@ -14,12 +14,13 @@
     - quay.io/modh/cuda-notebooks@sha256:99d3fb964e635873214de4676c259a96c2ea25f3f79cc4bead5bc9f39aba34c0
     - quay.io/modh/cuda-notebooks@sha256:a484d344f6feab25e025ea75575d837f5725f819b50a6e3476cef1f9925c07a5
     - quay.io/modh/cuda-notebooks@sha256:f6cdc993b4d493ffaec876abb724ce44b3c6fc37560af974072b346e45ac1a3b
-    - quay.io/modh/kserve-agent@sha256:a2ef0748b1cb4564ff10f7d9e9fb82adab7f1637acf04a5b1a0930e6d99a00e1
-    - quay.io/modh/kserve-controller@sha256:00a32ca15c59dbf7d2d9200166d1060b9c10b959a6d0d1fc42e27d792ec4b460
-    - quay.io/modh/kserve-router@sha256:f7d0602bbabdd7565783e70bcf8273ba179335c12aaa1b0502c84bc03b759d1d
-    - quay.io/modh/kserve-storage-initializer@sha256:e6d461a57bc2d2bf961818916042a81079730848e2c5ac273951c0a813f3497c
+    - quay.io/modh/kserve-agent@sha256:faa49dab2dabc88d7d098d0999c56f2a27cf89891aa3984ef7a9387afa846e3c
+    - quay.io/modh/kserve-controller@sha256:be976bfd6896c7806683b6ec24349e995dea781e02d538031bb0c59ef9ada468
+    - quay.io/modh/kserve-router@sha256:9ade6ac105ea494c10d35f26bddb3ece7bf52136b870548d918e77f96cdad803
+    - quay.io/modh/kserve-storage-initializer@sha256:a7063ac313014abd07ffaa618ae0cdbd3237ad42e2eca272c2ff7d114f10e6fd
     - quay.io/modh/odh-anaconda-notebook@sha256:acfa4bc06bbd0b4640844c5403272d6138070f391264dba238441c5dc64de505
     - quay.io/modh/odh-base-rhel9@sha256:1d6f2e3c0ee7962d92c3b933f3bbfabeee24d314a2ce5f8ec2d9f18d5b6723d4
+    - quay.io/modh/odh-fms-guardrails-orchestrator-rhel9@sha256:44e684ef77dcbb7aa002e29b1f817d6719c179464766cec1af52d898ec566e4f
     - quay.io/modh/odh-generic-data-science-notebook@sha256:39853fd63555ebba097483c5ac6a375d6039e5522c7294684efb7966ba4bc693
     - quay.io/modh/odh-generic-data-science-notebook@sha256:3e51c462fc03b5ccb080f006ced86d36480da036fa04b8685a3e4d6d51a817ba
     - quay.io/modh/odh-generic-data-science-notebook@sha256:76e6af79c601a323f75a58e7005de0beac66b8cccc3d2b67efb6d11d85f0cfa1
@@ -53,12 +54,12 @@
     - quay.io/modh/runtime-images@sha256:a2f09f6095e3ba6bc6cf3b8d702fcdd4814f9d4c43e076795bfcdeb334ef9978
     - quay.io/modh/runtime-images@sha256:df1adec7e0623afd07fbe2d6fd6f759800d93c136c33a5b322ed347cbbbd70aa
     - quay.io/modh/runtime-images@sha256:e46fd90085206b1d77a18635db5784bca1f34e69c87ffbc13c6bffd65fd3c9d5
-    - quay.io/modh/ta-lmes-driver@sha256:e6d1f3d475ff11d5f02f4444f7cede2a99972e6b994d565e2ab71979107f0613
-    - quay.io/modh/ta-lmes-job@sha256:aa0ed8e785e104cc6421ad6674c0b43bad1f0adbe51409221342f13b42af544e
+    - quay.io/modh/ta-lmes-driver@sha256:8a6ce3ccb2a7f9cbb4aa6df9ad92576c028bfbb2d9e70ab29ac0c14c1767b707
+    - quay.io/modh/ta-lmes-job@sha256:08d53a7c4566c100cf8f53d3afae895b042c08539e17445a598c22b284f60f52
     - quay.io/modh/text-generation-inference@sha256:aebf545d8048a59174f70334dc90c6b97ead4602a39cb7598ea68c8d199168a2
-    - quay.io/modh/vllm@sha256:aefdfdd481b40f65fd65b59f06f2ba7caff5033020e67ce94e40267474024a4a
-    - quay.io/modh/vllm@sha256:ca815798a852127ffaeef696c3220643e3982f40d6cb1bc80aa2e0630d724152
-    - quay.io/modh/vllm@sha256:ec341fa2308775017ba3d95fea441aacf63b3ee3b2bc39209a6a32e0f1c10e02
+    - quay.io/modh/vllm@sha256:948abad8cbff6b44eddb438f4c0a37bc00262b2130943755fe7961dedfbb7df6
+    - quay.io/modh/vllm@sha256:cdaeaaf870936edb0459b065331ccb225aa0a39da2babd4e3c1a3a1cd3bc5a84
+    - quay.io/modh/vllm@sha256:db2aa1ea8d0fe550e1c3e333c37861ed894205263746bf373ab8d7453299a8c4
     - quay.io/modh/fms-hf-tuning@sha256:6f98907f9095db72932caa54094438eae742145f4b66c28d15887d5303ff1186
     - quay.io/modh/ray@sha256:2cdacde3f6f0ee5843b2f7151130b91c5dfec4cea3e470720722c2fdb0779495
     - quay.io/modh/ray@sha256:0d715f92570a2997381b7cafc0e224cfa25323f18b9545acfd23bc2b71576d06
@@ -67,7 +68,7 @@
     - quay.io/modh/training@sha256:b98e373a972ff6f896a9dc054d56920e915675339c02ea7fa123e0f4bbef4d74
     - quay.io/modh/training@sha256:02094ab6f98a9b8a8bea8ff72bde5b4ba6789d036ce19e15cfdea0146d288061
     - registry.redhat.io/rhelai1/instructlab-nvidia-rhel9@sha256:b3dc9af0244aa6b84e6c3ef53e714a316daaefaae67e28de397cd71ee4b2ac7e
-    - quay.io/modh/must-gather@sha256:a662d59b667947d1daa7d4e93dd4c9d02f54ab091b07909e8c70e6a4563660b8
+    - quay.io/modh/must-gather@sha256:fb73afa20b1538545b34d9f7550732a8a15ed554c8d694ec3df37f127fd0c09b
 
 
 
@@ -106,12 +107,13 @@ mirror:
     - name: quay.io/modh/cuda-notebooks@sha256:99d3fb964e635873214de4676c259a96c2ea25f3f79cc4bead5bc9f39aba34c0
     - name: quay.io/modh/cuda-notebooks@sha256:a484d344f6feab25e025ea75575d837f5725f819b50a6e3476cef1f9925c07a5
     - name: quay.io/modh/cuda-notebooks@sha256:f6cdc993b4d493ffaec876abb724ce44b3c6fc37560af974072b346e45ac1a3b
-    - name: quay.io/modh/kserve-agent@sha256:a2ef0748b1cb4564ff10f7d9e9fb82adab7f1637acf04a5b1a0930e6d99a00e1
-    - name: quay.io/modh/kserve-controller@sha256:00a32ca15c59dbf7d2d9200166d1060b9c10b959a6d0d1fc42e27d792ec4b460
-    - name: quay.io/modh/kserve-router@sha256:f7d0602bbabdd7565783e70bcf8273ba179335c12aaa1b0502c84bc03b759d1d
-    - name: quay.io/modh/kserve-storage-initializer@sha256:e6d461a57bc2d2bf961818916042a81079730848e2c5ac273951c0a813f3497c
+    - name: quay.io/modh/kserve-agent@sha256:faa49dab2dabc88d7d098d0999c56f2a27cf89891aa3984ef7a9387afa846e3c
+    - name: quay.io/modh/kserve-controller@sha256:be976bfd6896c7806683b6ec24349e995dea781e02d538031bb0c59ef9ada468
+    - name: quay.io/modh/kserve-router@sha256:9ade6ac105ea494c10d35f26bddb3ece7bf52136b870548d918e77f96cdad803
+    - name: quay.io/modh/kserve-storage-initializer@sha256:a7063ac313014abd07ffaa618ae0cdbd3237ad42e2eca272c2ff7d114f10e6fd
     - name: quay.io/modh/odh-anaconda-notebook@sha256:acfa4bc06bbd0b4640844c5403272d6138070f391264dba238441c5dc64de505
     - name: quay.io/modh/odh-base-rhel9@sha256:1d6f2e3c0ee7962d92c3b933f3bbfabeee24d314a2ce5f8ec2d9f18d5b6723d4
+    - name: quay.io/modh/odh-fms-guardrails-orchestrator-rhel9@sha256:44e684ef77dcbb7aa002e29b1f817d6719c179464766cec1af52d898ec566e4f
     - name: quay.io/modh/odh-generic-data-science-notebook@sha256:39853fd63555ebba097483c5ac6a375d6039e5522c7294684efb7966ba4bc693
     - name: quay.io/modh/odh-generic-data-science-notebook@sha256:3e51c462fc03b5ccb080f006ced86d36480da036fa04b8685a3e4d6d51a817ba
     - name: quay.io/modh/odh-generic-data-science-notebook@sha256:76e6af79c601a323f75a58e7005de0beac66b8cccc3d2b67efb6d11d85f0cfa1
@@ -145,12 +147,12 @@ mirror:
     - name: quay.io/modh/runtime-images@sha256:a2f09f6095e3ba6bc6cf3b8d702fcdd4814f9d4c43e076795bfcdeb334ef9978
     - name: quay.io/modh/runtime-images@sha256:df1adec7e0623afd07fbe2d6fd6f759800d93c136c33a5b322ed347cbbbd70aa
     - name: quay.io/modh/runtime-images@sha256:e46fd90085206b1d77a18635db5784bca1f34e69c87ffbc13c6bffd65fd3c9d5
-    - name: quay.io/modh/ta-lmes-driver@sha256:e6d1f3d475ff11d5f02f4444f7cede2a99972e6b994d565e2ab71979107f0613
-    - name: quay.io/modh/ta-lmes-job@sha256:aa0ed8e785e104cc6421ad6674c0b43bad1f0adbe51409221342f13b42af544e
+    - name: quay.io/modh/ta-lmes-driver@sha256:8a6ce3ccb2a7f9cbb4aa6df9ad92576c028bfbb2d9e70ab29ac0c14c1767b707
+    - name: quay.io/modh/ta-lmes-job@sha256:08d53a7c4566c100cf8f53d3afae895b042c08539e17445a598c22b284f60f52
     - name: quay.io/modh/text-generation-inference@sha256:aebf545d8048a59174f70334dc90c6b97ead4602a39cb7598ea68c8d199168a2
-    - name: quay.io/modh/vllm@sha256:aefdfdd481b40f65fd65b59f06f2ba7caff5033020e67ce94e40267474024a4a
-    - name: quay.io/modh/vllm@sha256:ca815798a852127ffaeef696c3220643e3982f40d6cb1bc80aa2e0630d724152
-    - name: quay.io/modh/vllm@sha256:ec341fa2308775017ba3d95fea441aacf63b3ee3b2bc39209a6a32e0f1c10e02
+    - name: quay.io/modh/vllm@sha256:948abad8cbff6b44eddb438f4c0a37bc00262b2130943755fe7961dedfbb7df6
+    - name: quay.io/modh/vllm@sha256:cdaeaaf870936edb0459b065331ccb225aa0a39da2babd4e3c1a3a1cd3bc5a84
+    - name: quay.io/modh/vllm@sha256:db2aa1ea8d0fe550e1c3e333c37861ed894205263746bf373ab8d7453299a8c4
     - name: quay.io/modh/fms-hf-tuning@sha256:6f98907f9095db72932caa54094438eae742145f4b66c28d15887d5303ff1186
     - name: quay.io/modh/ray@sha256:2cdacde3f6f0ee5843b2f7151130b91c5dfec4cea3e470720722c2fdb0779495
     - name: quay.io/modh/ray@sha256:0d715f92570a2997381b7cafc0e224cfa25323f18b9545acfd23bc2b71576d06
@@ -159,7 +161,7 @@ mirror:
     - name: quay.io/modh/training@sha256:b98e373a972ff6f896a9dc054d56920e915675339c02ea7fa123e0f4bbef4d74
     - name: quay.io/modh/training@sha256:02094ab6f98a9b8a8bea8ff72bde5b4ba6789d036ce19e15cfdea0146d288061
     - name: registry.redhat.io/rhelai1/instructlab-nvidia-rhel9@sha256:b3dc9af0244aa6b84e6c3ef53e714a316daaefaae67e28de397cd71ee4b2ac7e
-    - name: quay.io/modh/must-gather@sha256:a662d59b667947d1daa7d4e93dd4c9d02f54ab091b07909e8c70e6a4563660b8
+    - name: quay.io/modh/must-gather@sha256:fb73afa20b1538545b34d9f7550732a8a15ed554c8d694ec3df37f127fd0c09b
 
 
 
