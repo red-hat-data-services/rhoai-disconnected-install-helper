@@ -1,48 +1,57 @@
-name: Run rhoai-disconnected-helper script once a day
+#!/bin/bash
 
-on: 
-  schedule:
-    - cron:  '0 12 * * *'
-  workflow_dispatch:
-    inputs:
-      branch_name:
-        description: 'Enter branch name (rhoai-x.y) (optional)'
-        required: false
+source rhoai-dih.sh
 
+function main(){
+  set_defaults
+  parse_args "$@"
 
-jobs:
-  run-script:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-    - name: Validate branch name format
-      run: |     
-        rhoai_branch="${{ github.event.inputs.branch_name }}"
-        if [[ -z "$rhoai_branch" ]]; then
-          echo "⚠️ No branch name provided. Skipping validation..."
-        else
-          # Check if branch name follows "rhoai-<number>.<number>" format
-          if [[ "$rhoai_branch" =~ ^rhoai-[0-9]+\.[0-9]+$ ]]; then
-            echo "✅ Valid format: $rhoai_branch"
-          else
-            echo "❌ Invalid format! Expected rhoai-x.y (e.g., rhoai-2.18) but found $rhoai_branch"
-            exit 1
-          fi
-        fi
-        shell: bash
-    - name: Run rhoai-disconnected-helper.sh script
-      run: |
-        chmod +x rhoai-disconnected-helper.sh
-        chmod +x rhoai-dih.sh
-        ./rhoai-disconnected-helper.sh "${{ github.event.inputs.branch_name }}"
-      shell: bash
-    - name: Pull latest changes from main branch
-      run: git pull origin main
-      shell: bash
-    - name: Commit and push changes to main branch
-      uses: actions-js/push@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        branch: main
-        message: "Update rhoai-disconnected-helper.sh script"
-        repository: red-hat-data-services/rhoai-disconnected-install-helper
+  if [[ -n "${1:-}" ]]; then
+    releases=("$1")  # Store input argument as an array
+  else
+    # Use `mapfile` to correctly read multiple values from YAML
+    mapfile -t releases < <(yq e '.releases[]' releases.yaml)
+  fi
+
+  echo "Releases: ${releases[@]}"
+
+  for release in "${releases[@]}"; do  # Correct way to loop over an array
+      branch_main=""
+     
+      if [ -z "$rhods_version" ]; then
+        #rhods_version=$(get_latest_rhods_version)
+        rhods_version=$release
+        file_name="$rhods_version.md"
+        echo "Use latest RHODS version $rhods_version"  
+        update_must_gather
+        echo $must_gather_image
+      fi
+      if is_rhods_version_greater_or_equal_to rhods-2.4; then
+        echo "Cloning repositories"
+        clone_all_repos
+      else
+        fetch_repository
+        pushd "$repository_folder" || echo "Error: Directory $repository_folder does not exist"
+        change_rhods_version
+        popd || exit 1
+        fetch_notebooks_repository
+      fi
+      image_set_configuration
+      #test_current_branch_name "$rhods_version"
+      cleanup
+      rhods_version=''
+
+      # For rhoai-nightly
+    #   branch_main="rhoai-main"
+    #   file_name="$branch_main.md"
+    #   echo "Use latest RHODS version $branch_main"  
+    #   echo "Cloning repositories for main/master"
+    #   clone_all_repos
+    #   image_set_configuration
+    #  # test_current_branch_name "$branch_main"
+    #   cleanup
+done
+  
+}
+
+main "$@"
