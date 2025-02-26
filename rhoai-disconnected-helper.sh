@@ -3,19 +3,19 @@
 source rhoai-dih.sh
 
 function main(){
-  rhoai_branch=$1
   set_defaults
   parse_args "$@"
 
-  if [ -z "$rhoai_branch" ]; then
-    releases=$(yq e '.releases[]' releases.yaml)
-  fi
+  if [[ -n "${1:-}" ]]; then
+    releases=("$1")  # Store input argument as an array
   else
-    releases=("$rhoai_branch")
+    # Use `mapfile` to correctly read multiple values from YAML
+    mapfile -t releases < <(yq e '.releases[]' releases.yaml)
+  fi
 
-  echo "$release"
-  
-  for release in $releases; do
+  echo "Releases: ${releases[@]}"
+
+  for release in "${releases[@]}"; do  # Correct way to loop over an array
       branch_main=""
      
       if [ -z "$rhods_version" ]; then
