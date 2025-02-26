@@ -8,7 +8,7 @@ on:
       branch_name:
         description: 'Enter branch name (rhoai-x.y) (optional)'
         required: false
-
+        default: ''
 
 jobs:
   run-script:
@@ -16,25 +16,26 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Validate branch name format
-      run: |     
+      run: |
         rhoai_branch="${{ github.event.inputs.branch_name }}"
-        if [[ -z "$rhoai_branch" ]]; then
-          echo "⚠️ No branch name provided. Skipping validation..."
-        else
-          # Check if branch name follows "rhoai-<number>.<number>" format
-          if [[ "$rhoai_branch" =~ ^rhoai-[0-9]+\.[0-9]+$ ]]; then
-            echo "✅ Valid format: $rhoai_branch"
-          else
-            echo "❌ Invalid format! Expected rhoai-x.y (e.g., rhoai-2.18) but found $rhoai_branch"
-            exit 1
-          fi
+        
+        # Validate format only if branch name is provided
+        if [[ -n "$rhoai_branch" && ! "$rhoai_branch" =~ ^rhoai-[0-9]+\.[0-9]+$ ]]; then
+          echo "❌ Invalid format! Expected rhoai-x.y (e.g., rhoai-2.18) but found '$rhoai_branch'"
+          exit 1
         fi
-        shell: bash
+
+        echo "Using branch: ${rhoai_branch:-'No branch specified'}"
+        echo "RHOAI_BRANCH=$rhoai_branch" >> $GITHUB_ENV
     - name: Run rhoai-disconnected-helper.sh script
       run: |
         chmod +x rhoai-disconnected-helper.sh
         chmod +x rhoai-dih.sh
-        ./rhoai-disconnected-helper.sh "${{ github.event.inputs.branch_name }}"
+        if [[ -n "$RHOAI_BRANCH" ]]; then
+          ./rhoai-disconnected-helper.sh "$RHOAI_BRANCH"
+        else
+          ./rhoai-disconnected-helper.sh
+        fi
       shell: bash
     - name: Pull latest changes from main branch
       run: git pull origin main
