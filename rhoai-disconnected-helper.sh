@@ -3,10 +3,17 @@
 source rhoai-dih.sh
 
 function main(){
+  rhoai_branch=$1
   set_defaults
   parse_args "$@"
 
-  releases=$(yq e '.releases[]' releases.yaml)
+  if [ -z "$rhoai_branch" ]; then
+    releases=$(yq e '.releases[]' releases.yaml)
+  fi
+  else
+    releases=("$rhoai_branch")
+
+  echo "$release"
   
   for release in $releases; do
       branch_main=""

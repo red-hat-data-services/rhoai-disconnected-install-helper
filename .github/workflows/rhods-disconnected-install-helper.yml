@@ -4,17 +4,34 @@ on:
   schedule:
     - cron:  '0 12 * * *'
   workflow_dispatch:
+    inputs:
+      branch_name:
+        description: 'Enter branch name (rhoai-x.y) (optional)'
+        required: false
+
 
 jobs:
   run-script:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
+    - name: Validate branch name format
+      run: |     
+        rhoai_branch="${{ github.event.inputs.branch_name }}"
+        
+        # Check if branch name follows "rhoai-<number>.<number>" format
+        if [[ "$rhoai_branch" =~ ^rhoai-[0-9]+\.[0-9]+$ ]]; then
+          echo "✅ Valid format: $rhoai_branch"
+        else
+          echo "❌ Invalid format! Expected rhoai-x.y (e.g., rhoai-2.18) but found $rhoai_branch"
+          exit 1
+        fi
+        shell: bash
     - name: Run rhoai-disconnected-helper.sh script
       run: |
         chmod +x rhoai-disconnected-helper.sh
         chmod +x rhoai-dih.sh
-        ./rhoai-disconnected-helper.sh
+        ./rhoai-disconnected-helper.sh "${{ github.event.inputs.branch_name }}"
       shell: bash
     - name: Pull latest changes from main branch
       run: git pull origin main
