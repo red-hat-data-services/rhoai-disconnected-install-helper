@@ -32,7 +32,7 @@ jobs:
         chmod +x rhoai-disconnected-helper.sh
         chmod +x rhoai-dih.sh
         if [[ -n "$RHOAI_BRANCH" ]]; then
-          ./rhoai-disconnected-helper.sh "$RHOAI_BRANCH"
+          ./rhoai-disconnected-helper.sh -v "$RHOAI_BRANCH"
         else
           ./rhoai-disconnected-helper.sh
         fi
