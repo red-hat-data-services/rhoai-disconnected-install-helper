@@ -53,8 +53,8 @@
     - quay.io/modh/ta-lmes-job@sha256:b9c01eeb521c5e78d2ed9753c73b958266507dc809930c30bdf1becf5ddfff95
     - quay.io/modh/text-generation-inference@sha256:aebf545d8048a59174f70334dc90c6b97ead4602a39cb7598ea68c8d199168a2
     - quay.io/modh/vllm@sha256:012daa2eb6313e8c64abd619e6a5f64c9a435591993bd9af280a747c05cc9f30
-    - quay.io/modh/vllm@sha256:9a32fcc6090cabf4f8d4c86b0ceff6c76fefb22a953549831c98c58db6ad93c1
-    - quay.io/modh/vllm@sha256:eac960046535e594b06f7b3bf6b1c65363ee50015a0ea77033f095939dfa0064
+    - quay.io/modh/vllm@sha256:064ab07ec0709b94a454c3d4762be3536c6368a12c2ab33414070fda989e1fbd
+    - quay.io/modh/vllm@sha256:49a77831a5e4c375af04672c3cad44f518f0c555126ec5d22ec7a7d6e73835ff
     - quay.io/modh/fms-hf-tuning@sha256:0c69cf850fd2e5850cdec1d81c303af5c3900359b97016958c9af6637ad8ee2e
     - quay.io/modh/ray@sha256:98642508c09b2b33e11cc321765c1f57a9935d97dfc63affc0d8a2e2d2a6c125
     - quay.io/modh/ray@sha256:0d715f92570a2997381b7cafc0e224cfa25323f18b9545acfd23bc2b71576d06
@@ -141,8 +141,8 @@ mirror:
     - name: quay.io/modh/ta-lmes-job@sha256:b9c01eeb521c5e78d2ed9753c73b958266507dc809930c30bdf1becf5ddfff95
     - name: quay.io/modh/text-generation-inference@sha256:aebf545d8048a59174f70334dc90c6b97ead4602a39cb7598ea68c8d199168a2
     - name: quay.io/modh/vllm@sha256:012daa2eb6313e8c64abd619e6a5f64c9a435591993bd9af280a747c05cc9f30
-    - name: quay.io/modh/vllm@sha256:9a32fcc6090cabf4f8d4c86b0ceff6c76fefb22a953549831c98c58db6ad93c1
-    - name: quay.io/modh/vllm@sha256:eac960046535e594b06f7b3bf6b1c65363ee50015a0ea77033f095939dfa0064
+    - name: quay.io/modh/vllm@sha256:064ab07ec0709b94a454c3d4762be3536c6368a12c2ab33414070fda989e1fbd
+    - name: quay.io/modh/vllm@sha256:49a77831a5e4c375af04672c3cad44f518f0c555126ec5d22ec7a7d6e73835ff
     - name: quay.io/modh/fms-hf-tuning@sha256:0c69cf850fd2e5850cdec1d81c303af5c3900359b97016958c9af6637ad8ee2e
     - name: quay.io/modh/ray@sha256:98642508c09b2b33e11cc321765c1f57a9935d97dfc63affc0d8a2e2d2a6c125
     - name: quay.io/modh/ray@sha256:0d715f92570a2997381b7cafc0e224cfa25323f18b9545acfd23bc2b71576d06
