@@ -1,6 +1,6 @@
 # Additional images:
     - quay.io/modh/caikit-nlp@sha256:044b1b2e48329dea16feb5020028d3cbc2ade86569f8cb7f0aaefd91c6b00d86
-    - quay.io/modh/caikit-tgis-serving@sha256:2fb5c995db56e1a6944a54e9a70516eeab777b0c369a532465059177e3054fe9
+    - quay.io/modh/caikit-tgis-serving@sha256:b9b511bd0177a5e300541a28e2afd52a93fe19bc96614d473ef16f34f1fba5f2
     - quay.io/modh/codeserver@sha256:1fd51b0e8a14995f1f7273a4b0b40f6e7e27e225ab179959747846e54079d61e
     - quay.io/modh/codeserver@sha256:38460e3b5536d903add40869714512e2c3a993c3dfe4a8010688e4e3b79bf090
     - quay.io/modh/codeserver@sha256:92f2a10dde5c96b29324426b4325401e8f4a0d257e439927172d5fe909289c44
@@ -100,7 +100,7 @@ mirror:
         maxVersion: 2.20.0
   additionalImages:   
     - name: quay.io/modh/caikit-nlp@sha256:044b1b2e48329dea16feb5020028d3cbc2ade86569f8cb7f0aaefd91c6b00d86
-    - name: quay.io/modh/caikit-tgis-serving@sha256:2fb5c995db56e1a6944a54e9a70516eeab777b0c369a532465059177e3054fe9
+    - name: quay.io/modh/caikit-tgis-serving@sha256:b9b511bd0177a5e300541a28e2afd52a93fe19bc96614d473ef16f34f1fba5f2
     - name: quay.io/modh/codeserver@sha256:1fd51b0e8a14995f1f7273a4b0b40f6e7e27e225ab179959747846e54079d61e
     - name: quay.io/modh/codeserver@sha256:38460e3b5536d903add40869714512e2c3a993c3dfe4a8010688e4e3b79bf090
     - name: quay.io/modh/codeserver@sha256:92f2a10dde5c96b29324426b4325401e8f4a0d257e439927172d5fe909289c44
