@@ -1,5 +1,5 @@
 # Additional images:
-    - quay.io/modh/caikit-nlp@sha256:044b1b2e48329dea16feb5020028d3cbc2ade86569f8cb7f0aaefd91c6b00d86
+    - quay.io/modh/caikit-nlp@sha256:3ddfe610d3cb879e75e0e4a3537b295bf9a242a77d843c04a44cba2d97a420a9
     - quay.io/modh/caikit-tgis-serving@sha256:b9b511bd0177a5e300541a28e2afd52a93fe19bc96614d473ef16f34f1fba5f2
     - quay.io/modh/codeserver@sha256:1fd51b0e8a14995f1f7273a4b0b40f6e7e27e225ab179959747846e54079d61e
     - quay.io/modh/codeserver@sha256:92f2a10dde5c96b29324426b4325401e8f4a0d257e439927172d5fe909289c44
@@ -35,7 +35,6 @@
     - quay.io/modh/odh-pytorch-notebook@sha256:97b346197e6fc568c2eb52cb82e13a206277f27c21e299d1c211997f140f638b
     - quay.io/modh/odh-pytorch-notebook@sha256:b68e0192abf7d46c8c6876d0819b66c6a2d4a1e674f8893f8a71ffdcba96866c
     - quay.io/modh/odh-trustyai-guardrails-regex-detector-rhel9@sha256:6faebbc137e1e2df1b82d684b4ab7aca06a55249b873427dcb073d0b596695f6
-    - quay.io/modh/odh-trustyai-hf-detector-runtime-rhel9@sha256:5f2b5616cf346450eed66de9b39c08d17c24fe61c5acb6c7c339c6d92e7cf9cc
     - quay.io/modh/odh-trustyai-notebook@sha256:70fe49cee6d5a231ddea7f94d7e21aefd3d8da71b69321f51c406a92173d3334
     - quay.io/modh/odh-trustyai-notebook@sha256:8c5e653f6bc6a2050565cf92f397991fbec952dc05cdfea74b65b8fd3047c9d4
     - quay.io/modh/odh-trustyai-notebook@sha256:a1b863c2787ba2bca292e381561ed1d92cf5bc25705edfb1ded5e0720a12d102
@@ -89,7 +88,7 @@ mirror:
         minVersion: 2.21.0
         maxVersion: 2.21.0
   additionalImages:   
-    - name: quay.io/modh/caikit-nlp@sha256:044b1b2e48329dea16feb5020028d3cbc2ade86569f8cb7f0aaefd91c6b00d86
+    - name: quay.io/modh/caikit-nlp@sha256:3ddfe610d3cb879e75e0e4a3537b295bf9a242a77d843c04a44cba2d97a420a9
     - name: quay.io/modh/caikit-tgis-serving@sha256:b9b511bd0177a5e300541a28e2afd52a93fe19bc96614d473ef16f34f1fba5f2
     - name: quay.io/modh/codeserver@sha256:1fd51b0e8a14995f1f7273a4b0b40f6e7e27e225ab179959747846e54079d61e
     - name: quay.io/modh/codeserver@sha256:92f2a10dde5c96b29324426b4325401e8f4a0d257e439927172d5fe909289c44
@@ -125,7 +124,6 @@ mirror:
     - name: quay.io/modh/odh-pytorch-notebook@sha256:97b346197e6fc568c2eb52cb82e13a206277f27c21e299d1c211997f140f638b
     - name: quay.io/modh/odh-pytorch-notebook@sha256:b68e0192abf7d46c8c6876d0819b66c6a2d4a1e674f8893f8a71ffdcba96866c
     - name: quay.io/modh/odh-trustyai-guardrails-regex-detector-rhel9@sha256:6faebbc137e1e2df1b82d684b4ab7aca06a55249b873427dcb073d0b596695f6
-    - name: quay.io/modh/odh-trustyai-hf-detector-runtime-rhel9@sha256:5f2b5616cf346450eed66de9b39c08d17c24fe61c5acb6c7c339c6d92e7cf9cc
     - name: quay.io/modh/odh-trustyai-notebook@sha256:70fe49cee6d5a231ddea7f94d7e21aefd3d8da71b69321f51c406a92173d3334
     - name: quay.io/modh/odh-trustyai-notebook@sha256:8c5e653f6bc6a2050565cf92f397991fbec952dc05cdfea74b65b8fd3047c9d4
     - name: quay.io/modh/odh-trustyai-notebook@sha256:a1b863c2787ba2bca292e381561ed1d92cf5bc25705edfb1ded5e0720a12d102
