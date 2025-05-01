@@ -63,8 +63,8 @@
     - quay.io/modh/ta-lmes-driver@sha256:674621d724df2ce04f82d4f3b92c81423f06f9bc86de6e65a6d9f8e4e6c75bb8
     - quay.io/modh/ta-lmes-job@sha256:dd77e3521e258f09c7e0a28ad84a5e064ec38933ffc3130233598e1511b76f5d
     - quay.io/modh/text-generation-inference@sha256:aebf545d8048a59174f70334dc90c6b97ead4602a39cb7598ea68c8d199168a2
-    - quay.io/modh/vllm@sha256:a970d5c6d61646c4f65273fd593f5ee1c1b3d82511a1423cc4aebc499e5884bf
-    - quay.io/modh/vllm@sha256:bc22b6139addc9eaaf25d5a7105783160673aac9abe97706c860d790fba36bd5
+    - quay.io/modh/vllm@sha256:de5d71c4fb6add81a01171bbabcd2e65fc2d75f0d6e57ca9ebcad9b4084db420
+    - quay.io/modh/vllm@sha256:e3e0f4ba3b78b53b3754bf63baf53bf22d9ec22fdc2974d4f2b5bdf8aeab276b
     - quay.io/modh/vllm@sha256:e7cba648377c6fa29fab30481f97d96ccca76498aaf8bcf5162c74dfa4e0100c
     - quay.io/modh/fms-hf-tuning@sha256:18a871cbb1fb16766266b2fb7e1e498259543a88ffb4422ebf7ba142e5e739b4
     - quay.io/modh/ray@sha256:98642508c09b2b33e11cc321765c1f57a9935d97dfc63affc0d8a2e2d2a6c125
@@ -164,8 +164,8 @@ mirror:
     - name: quay.io/modh/ta-lmes-driver@sha256:674621d724df2ce04f82d4f3b92c81423f06f9bc86de6e65a6d9f8e4e6c75bb8
     - name: quay.io/modh/ta-lmes-job@sha256:dd77e3521e258f09c7e0a28ad84a5e064ec38933ffc3130233598e1511b76f5d
     - name: quay.io/modh/text-generation-inference@sha256:aebf545d8048a59174f70334dc90c6b97ead4602a39cb7598ea68c8d199168a2
-    - name: quay.io/modh/vllm@sha256:a970d5c6d61646c4f65273fd593f5ee1c1b3d82511a1423cc4aebc499e5884bf
-    - name: quay.io/modh/vllm@sha256:bc22b6139addc9eaaf25d5a7105783160673aac9abe97706c860d790fba36bd5
+    - name: quay.io/modh/vllm@sha256:de5d71c4fb6add81a01171bbabcd2e65fc2d75f0d6e57ca9ebcad9b4084db420
+    - name: quay.io/modh/vllm@sha256:e3e0f4ba3b78b53b3754bf63baf53bf22d9ec22fdc2974d4f2b5bdf8aeab276b
     - name: quay.io/modh/vllm@sha256:e7cba648377c6fa29fab30481f97d96ccca76498aaf8bcf5162c74dfa4e0100c
     - name: quay.io/modh/fms-hf-tuning@sha256:18a871cbb1fb16766266b2fb7e1e498259543a88ffb4422ebf7ba142e5e739b4
     - name: quay.io/modh/ray@sha256:98642508c09b2b33e11cc321765c1f57a9935d97dfc63affc0d8a2e2d2a6c125
