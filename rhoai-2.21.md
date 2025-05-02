@@ -60,12 +60,14 @@
     - quay.io/modh/runtime-images@sha256:e6544a6024bbe12ad108b9d36b529cdcf9283327d1b2c7d08e699fa3cb22392c
     - quay.io/modh/runtime-images@sha256:f63eb3e5b356954d740f5c074221624c7b22bd3eab8aa9f43f30de468e22a0d2
     - quay.io/modh/runtime-images@sha256:fd101db0d5b3cd5158ab733c0df8af0a121515a823e66ceff4387e22c29dbe92
-    - quay.io/modh/ta-lmes-driver@sha256:e19e58bb3e0763f3a6321d69230464f0c2dc4011117053a84a0b9a6bb591a232
+    - quay.io/modh/ta-lmes-driver@sha256:400344afbb62a62a8faf89abe34bd61c34a817250553d693d416c073781cdcf4
     - quay.io/modh/ta-lmes-job@sha256:06d35ff3185f1fba6672eb24750edeea325519b3ef2eb5d75d75055f59da4b9e
     - quay.io/modh/text-generation-inference@sha256:aebf545d8048a59174f70334dc90c6b97ead4602a39cb7598ea68c8d199168a2
     - quay.io/modh/vllm@sha256:ac6782467a29d61d0d6d5f81d15a9f0a8fd71f0720536774cabc389d80ba5f97
     - quay.io/modh/vllm@sha256:b2ee0e9a5c178724bef68aab4ecba536809d85f99097639cc061f54b4502e0f8
     - quay.io/modh/vllm@sha256:e82c7da31db534194d40b6d711a6f9aa5985d85980a8203084b7d732b9394fea
+    - quay.io/rhoai/odh-mlmd-grpc-server-rhel8@sha256:2f175ba3f5260f3949e669a15792d00827a354c26f92c7dca35fd656c83e9c1d
+    - quay.io/rhoai/odh-modelmesh-rhel8@sha256:5983ed56ee3a35939caa67246826e126187cafc8117e4a11a2a07a1280a16871
     - quay.io/modh/fms-hf-tuning@sha256:18a871cbb1fb16766266b2fb7e1e498259543a88ffb4422ebf7ba142e5e739b4
     - quay.io/modh/ray@sha256:98642508c09b2b33e11cc321765c1f57a9935d97dfc63affc0d8a2e2d2a6c125
     - quay.io/modh/ray@sha256:0d715f92570a2997381b7cafc0e224cfa25323f18b9545acfd23bc2b71576d06
@@ -159,12 +161,14 @@ mirror:
     - name: quay.io/modh/runtime-images@sha256:e6544a6024bbe12ad108b9d36b529cdcf9283327d1b2c7d08e699fa3cb22392c
     - name: quay.io/modh/runtime-images@sha256:f63eb3e5b356954d740f5c074221624c7b22bd3eab8aa9f43f30de468e22a0d2
     - name: quay.io/modh/runtime-images@sha256:fd101db0d5b3cd5158ab733c0df8af0a121515a823e66ceff4387e22c29dbe92
-    - name: quay.io/modh/ta-lmes-driver@sha256:e19e58bb3e0763f3a6321d69230464f0c2dc4011117053a84a0b9a6bb591a232
+    - name: quay.io/modh/ta-lmes-driver@sha256:400344afbb62a62a8faf89abe34bd61c34a817250553d693d416c073781cdcf4
     - name: quay.io/modh/ta-lmes-job@sha256:06d35ff3185f1fba6672eb24750edeea325519b3ef2eb5d75d75055f59da4b9e
     - name: quay.io/modh/text-generation-inference@sha256:aebf545d8048a59174f70334dc90c6b97ead4602a39cb7598ea68c8d199168a2
     - name: quay.io/modh/vllm@sha256:ac6782467a29d61d0d6d5f81d15a9f0a8fd71f0720536774cabc389d80ba5f97
     - name: quay.io/modh/vllm@sha256:b2ee0e9a5c178724bef68aab4ecba536809d85f99097639cc061f54b4502e0f8
     - name: quay.io/modh/vllm@sha256:e82c7da31db534194d40b6d711a6f9aa5985d85980a8203084b7d732b9394fea
+    - name: quay.io/rhoai/odh-mlmd-grpc-server-rhel8@sha256:2f175ba3f5260f3949e669a15792d00827a354c26f92c7dca35fd656c83e9c1d
+    - name: quay.io/rhoai/odh-modelmesh-rhel8@sha256:5983ed56ee3a35939caa67246826e126187cafc8117e4a11a2a07a1280a16871
     - name: quay.io/modh/fms-hf-tuning@sha256:18a871cbb1fb16766266b2fb7e1e498259543a88ffb4422ebf7ba142e5e739b4
     - name: quay.io/modh/ray@sha256:98642508c09b2b33e11cc321765c1f57a9935d97dfc63affc0d8a2e2d2a6c125
     - name: quay.io/modh/ray@sha256:0d715f92570a2997381b7cafc0e224cfa25323f18b9545acfd23bc2b71576d06

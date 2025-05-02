@@ -60,7 +60,7 @@
     - quay.io/modh/runtime-images@sha256:e6544a6024bbe12ad108b9d36b529cdcf9283327d1b2c7d08e699fa3cb22392c
     - quay.io/modh/runtime-images@sha256:f63eb3e5b356954d740f5c074221624c7b22bd3eab8aa9f43f30de468e22a0d2
     - quay.io/modh/runtime-images@sha256:fd101db0d5b3cd5158ab733c0df8af0a121515a823e66ceff4387e22c29dbe92
-    - quay.io/modh/ta-lmes-driver@sha256:674621d724df2ce04f82d4f3b92c81423f06f9bc86de6e65a6d9f8e4e6c75bb8
+    - quay.io/modh/ta-lmes-driver@sha256:29737aefe0876d8ab65d7f0a0200676ed749ae5d5fa8c6c3aac1ac382624dea7
     - quay.io/modh/ta-lmes-job@sha256:dd77e3521e258f09c7e0a28ad84a5e064ec38933ffc3130233598e1511b76f5d
     - quay.io/modh/text-generation-inference@sha256:aebf545d8048a59174f70334dc90c6b97ead4602a39cb7598ea68c8d199168a2
     - quay.io/modh/vllm@sha256:de5d71c4fb6add81a01171bbabcd2e65fc2d75f0d6e57ca9ebcad9b4084db420
@@ -161,7 +161,7 @@ mirror:
     - name: quay.io/modh/runtime-images@sha256:e6544a6024bbe12ad108b9d36b529cdcf9283327d1b2c7d08e699fa3cb22392c
     - name: quay.io/modh/runtime-images@sha256:f63eb3e5b356954d740f5c074221624c7b22bd3eab8aa9f43f30de468e22a0d2
     - name: quay.io/modh/runtime-images@sha256:fd101db0d5b3cd5158ab733c0df8af0a121515a823e66ceff4387e22c29dbe92
-    - name: quay.io/modh/ta-lmes-driver@sha256:674621d724df2ce04f82d4f3b92c81423f06f9bc86de6e65a6d9f8e4e6c75bb8
+    - name: quay.io/modh/ta-lmes-driver@sha256:29737aefe0876d8ab65d7f0a0200676ed749ae5d5fa8c6c3aac1ac382624dea7
     - name: quay.io/modh/ta-lmes-job@sha256:dd77e3521e258f09c7e0a28ad84a5e064ec38933ffc3130233598e1511b76f5d
     - name: quay.io/modh/text-generation-inference@sha256:aebf545d8048a59174f70334dc90c6b97ead4602a39cb7598ea68c8d199168a2
     - name: quay.io/modh/vllm@sha256:de5d71c4fb6add81a01171bbabcd2e65fc2d75f0d6e57ca9ebcad9b4084db420
