@@ -45,7 +45,7 @@
     - quay.io/modh/odh-trustyai-notebook@sha256:8c5e653f6bc6a2050565cf92f397991fbec952dc05cdfea74b65b8fd3047c9d4
     - quay.io/modh/odh-trustyai-notebook@sha256:a1b863c2787ba2bca292e381561ed1d92cf5bc25705edfb1ded5e0720a12d102
     - quay.io/modh/odh-trustyai-notebook@sha256:fe883d8513c5d133af1ee3f7bb0b7b37d3bada8ae73fc7209052591d4be681c0
-    - quay.io/modh/odh-trustyai-vllm-orchestrator-gateway-rhel9@sha256:649a6d1264ae17d1eadc79cc6f863345e67988c8750b2f6ac4669af1b7613997
+    - quay.io/modh/odh-trustyai-vllm-orchestrator-gateway-rhel9@sha256:a21bc1adf31d5b6105cc1d4e2f8267d77549e1d57f841a81b90c40c44ad1cbe5
     - quay.io/modh/odh-workbench-codeserver-datascience-cpu-py311-ubi9@sha256:884682f889d4be1d6f330d9792ff747ee64b1b903ee32fbae35324d47e2a7994
     - quay.io/modh/odh-workbench-jupyter-datascience-cpu-py311-ubi9@sha256:b9bab85bd74ca9243927d98434566588ad71130055be2073cd64ae3ca4cf2346
     - quay.io/modh/odh-workbench-jupyter-minimal-cpu-py311-ubi9@sha256:0e83baccd11e1ef388b7edb3e9a384a3c81b8fa37c294f4e4baefca91353c429
@@ -151,7 +151,7 @@ mirror:
     - name: quay.io/modh/odh-trustyai-notebook@sha256:8c5e653f6bc6a2050565cf92f397991fbec952dc05cdfea74b65b8fd3047c9d4
     - name: quay.io/modh/odh-trustyai-notebook@sha256:a1b863c2787ba2bca292e381561ed1d92cf5bc25705edfb1ded5e0720a12d102
     - name: quay.io/modh/odh-trustyai-notebook@sha256:fe883d8513c5d133af1ee3f7bb0b7b37d3bada8ae73fc7209052591d4be681c0
-    - name: quay.io/modh/odh-trustyai-vllm-orchestrator-gateway-rhel9@sha256:649a6d1264ae17d1eadc79cc6f863345e67988c8750b2f6ac4669af1b7613997
+    - name: quay.io/modh/odh-trustyai-vllm-orchestrator-gateway-rhel9@sha256:a21bc1adf31d5b6105cc1d4e2f8267d77549e1d57f841a81b90c40c44ad1cbe5
     - name: quay.io/modh/odh-workbench-codeserver-datascience-cpu-py311-ubi9@sha256:884682f889d4be1d6f330d9792ff747ee64b1b903ee32fbae35324d47e2a7994
     - name: quay.io/modh/odh-workbench-jupyter-datascience-cpu-py311-ubi9@sha256:b9bab85bd74ca9243927d98434566588ad71130055be2073cd64ae3ca4cf2346
     - name: quay.io/modh/odh-workbench-jupyter-minimal-cpu-py311-ubi9@sha256:0e83baccd11e1ef388b7edb3e9a384a3c81b8fa37c294f4e4baefca91353c429
