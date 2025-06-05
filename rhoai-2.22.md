@@ -30,10 +30,10 @@
     - quay.io/modh/odh-minimal-notebook-container@sha256:e2296a1386e4d9756c386b4c7dc44bac6f61b99b3b894a10c9ff2d8d5602ca4e
     - quay.io/modh/odh-minimal-notebook-container@sha256:eec50e5518176d5a31da739596a7ddae032d73851f9107846a587442ebd10a82
     - quay.io/modh/odh-pipeline-runtime-datascience-cpu-py311-ubi9@sha256:07270690b62783164406e4f129839916eee8391689c85b5b69861a84d6960e10
-    - quay.io/modh/odh-pipeline-runtime-minimal-cpu-py311-ubi9@sha256:9d534e0d4ca6373e454c4a6358378fb1a07116d685b0c1942e0782c94fefe639
-    - quay.io/modh/odh-pipeline-runtime-pytorch-cuda-py311-ubi9@sha256:0f4662150602c336f802d300914f15a77168a416a42be6c86a752642fa8f0d12
+    - quay.io/modh/odh-pipeline-runtime-minimal-cpu-py311-ubi9@sha256:76006e25b161f5c1335be09c7016400324ffef5e53e365082f0a69eaf2a0ada3
+    - quay.io/modh/odh-pipeline-runtime-pytorch-cuda-py311-ubi9@sha256:c82f787562ec434b99cf761c03d136dc9477741930d77c3cfb91413eda028070
     - quay.io/modh/odh-pipeline-runtime-pytorch-rocm-py311-ubi9@sha256:9533f140e13bcc76f961fd061dd176844f1cca32d2b4cbe3306b9bc15ef47689
-    - quay.io/modh/odh-pipeline-runtime-tensorflow-cuda-py311-ubi9@sha256:9f4f479d58db4a5a0a3afbd36f2d9e9a01db16bc6a56fc5095e335538367df61
+    - quay.io/modh/odh-pipeline-runtime-tensorflow-cuda-py311-ubi9@sha256:346bcc63b3392e10032a212e42820fc6042f50bbd2390ceda089662c8be9145b
     - quay.io/modh/odh-pipeline-runtime-tensorflow-rocm-py311-ubi9@sha256:28ee389d40df0bcdeb46f6deaebb0df3284ebd948df88872400ad34db4103b94
     - quay.io/modh/odh-pytorch-notebook@sha256:20f7ab8e7954106ea5e22f3ee0ba8bc7b03975e5735049a765e021aa7eb06861
     - quay.io/modh/odh-pytorch-notebook@sha256:2403b3dccc3daf5b45a973c49331fdac4ec66e2e020597975fcd9cb4a625099b
@@ -49,14 +49,14 @@
     - quay.io/modh/odh-trustyai-vllm-orchestrator-gateway-rhel9@sha256:a21bc1adf31d5b6105cc1d4e2f8267d77549e1d57f841a81b90c40c44ad1cbe5
     - quay.io/modh/odh-workbench-codeserver-datascience-cpu-py311-ubi9@sha256:4fbb9bd41f1d9ce2da43f13dc4c00da8b4c055093b399a5fdc447bd0ff09c999
     - quay.io/modh/odh-workbench-jupyter-datascience-cpu-py311-ubi9@sha256:4b2ceb1b5d90837f091c7aef402e23e8f19b71cf673e532c8f5971a760f4a0e7
-    - quay.io/modh/odh-workbench-jupyter-minimal-cpu-py311-ubi9@sha256:1555d011dc798da08076aef0b450239a5d9af6e7b9ffe103bff471e2550c5fd8
-    - quay.io/modh/odh-workbench-jupyter-minimal-cuda-py311-ubi9@sha256:ba230606042174f1d94bc21070bbd3777ca8352b877396275719b3b0cbac409d
-    - quay.io/modh/odh-workbench-jupyter-minimal-rocm-py311-ubi9@sha256:e9e0b213a51a6673e42b2224d57396f619574b594672e49579cc5771fd129d0d
-    - quay.io/modh/odh-workbench-jupyter-pytorch-cuda-py311-ubi9@sha256:7ccbd0246ca6e7a8e557460899a1d90aaa0c8b4fd8e4343da865481782dfe264
-    - quay.io/modh/odh-workbench-jupyter-pytorch-rocm-py311-ubi9@sha256:181b0a5d3b66e817df18150adc51c9c356761ee8323bc2d8e4dc46917963cb8a
-    - quay.io/modh/odh-workbench-jupyter-tensorflow-cuda-py311-ubi9@sha256:b39852c5d370eed238565fb1ed5da1531f572ce4fb43a0e7d83c71726433fa67
-    - quay.io/modh/odh-workbench-jupyter-tensorflow-rocm-py311-ubi9@sha256:41f0e9e434713ea2439b3e877c1f4e3762b570027c1f181741744ee744a4bf65
-    - quay.io/modh/odh-workbench-jupyter-trustyai-cpu-py311-ubi9@sha256:dec6f4e817b18e657895e5402ee5b56fe1519880a150db58d306bd70b87a60f6
+    - quay.io/modh/odh-workbench-jupyter-minimal-cpu-py311-ubi9@sha256:d804f780e2c658a7a85e540035ba121930ec22288ca92dbe1ea1981ea2f7649a
+    - quay.io/modh/odh-workbench-jupyter-minimal-cuda-py311-ubi9@sha256:5c600af8752ec906e6be286d4905fef78b44dc05bd4fe614c4ea1bcbb1a751f4
+    - quay.io/modh/odh-workbench-jupyter-minimal-rocm-py311-ubi9@sha256:cd84b897e0928b4d77ec366a97da414c4d31ae17687d85584e265f855e4ad2b5
+    - quay.io/modh/odh-workbench-jupyter-pytorch-cuda-py311-ubi9@sha256:9ca476716b1f795814a1212f8a4c2f757d67dce312715854b4709e2abdf402d2
+    - quay.io/modh/odh-workbench-jupyter-pytorch-rocm-py311-ubi9@sha256:04e98f8ddb3773ab24496d653b691f3c54562b75335a4345e538591d219b204b
+    - quay.io/modh/odh-workbench-jupyter-tensorflow-cuda-py311-ubi9@sha256:505a1b3ca34b64527db2ed88a83caaed382596cd046235ef2853ed4c4fe473df
+    - quay.io/modh/odh-workbench-jupyter-tensorflow-rocm-py311-ubi9@sha256:4a39269e54794647d6843afd6cc9fd6ab230b468f1c0463de52c124c77a56f67
+    - quay.io/modh/odh-workbench-jupyter-trustyai-cpu-py311-ubi9@sha256:cb2e72e0d468c3c43edcaad18011d6afa8554714312c72a1afe56b998995c78a
     - quay.io/modh/openvino_model_server@sha256:5225aaf5a581ccb8e6f934a5d9fdd9d3d5ad90009dcee6b75d422acce29c33f3
     - quay.io/modh/rocm-notebooks@sha256:199367d2946fc8427611b4b96071cb411433ffbb5f0988279b10150020af22db
     - quay.io/modh/rocm-notebooks@sha256:1f0b19b7ae587d638e78697c67f1290d044e48bfecccfb72d7a16faeba13f980
@@ -67,7 +67,7 @@
     - quay.io/modh/runtime-images@sha256:e6544a6024bbe12ad108b9d36b529cdcf9283327d1b2c7d08e699fa3cb22392c
     - quay.io/modh/runtime-images@sha256:f63eb3e5b356954d740f5c074221624c7b22bd3eab8aa9f43f30de468e22a0d2
     - quay.io/modh/runtime-images@sha256:fd101db0d5b3cd5158ab733c0df8af0a121515a823e66ceff4387e22c29dbe92
-    - quay.io/modh/ta-lmes-driver@sha256:ace97ce6630983c968cf72441d6d3c375072afcccfd0d8d5a6083076b26882ad
+    - quay.io/modh/ta-lmes-driver@sha256:7250c05821bb7bff80149378d3c6333f66bb58ab6f718f190b4c0fc708e98679
     - quay.io/modh/ta-lmes-job@sha256:e13f6efcd42a3e677477764d7e60fd5130e2af15a3c850d6a10eec54bc0176be
     - quay.io/modh/text-generation-inference@sha256:aebf545d8048a59174f70334dc90c6b97ead4602a39cb7598ea68c8d199168a2
     - quay.io/modh/vllm@sha256:47b7e95b51d8d6a82de9d6bbc5eb61a794dc8d2998e8186bd6bd713517c97f08
@@ -136,10 +136,10 @@ mirror:
     - name: quay.io/modh/odh-minimal-notebook-container@sha256:e2296a1386e4d9756c386b4c7dc44bac6f61b99b3b894a10c9ff2d8d5602ca4e
     - name: quay.io/modh/odh-minimal-notebook-container@sha256:eec50e5518176d5a31da739596a7ddae032d73851f9107846a587442ebd10a82
     - name: quay.io/modh/odh-pipeline-runtime-datascience-cpu-py311-ubi9@sha256:07270690b62783164406e4f129839916eee8391689c85b5b69861a84d6960e10
-    - name: quay.io/modh/odh-pipeline-runtime-minimal-cpu-py311-ubi9@sha256:9d534e0d4ca6373e454c4a6358378fb1a07116d685b0c1942e0782c94fefe639
-    - name: quay.io/modh/odh-pipeline-runtime-pytorch-cuda-py311-ubi9@sha256:0f4662150602c336f802d300914f15a77168a416a42be6c86a752642fa8f0d12
+    - name: quay.io/modh/odh-pipeline-runtime-minimal-cpu-py311-ubi9@sha256:76006e25b161f5c1335be09c7016400324ffef5e53e365082f0a69eaf2a0ada3
+    - name: quay.io/modh/odh-pipeline-runtime-pytorch-cuda-py311-ubi9@sha256:c82f787562ec434b99cf761c03d136dc9477741930d77c3cfb91413eda028070
     - name: quay.io/modh/odh-pipeline-runtime-pytorch-rocm-py311-ubi9@sha256:9533f140e13bcc76f961fd061dd176844f1cca32d2b4cbe3306b9bc15ef47689
-    - name: quay.io/modh/odh-pipeline-runtime-tensorflow-cuda-py311-ubi9@sha256:9f4f479d58db4a5a0a3afbd36f2d9e9a01db16bc6a56fc5095e335538367df61
+    - name: quay.io/modh/odh-pipeline-runtime-tensorflow-cuda-py311-ubi9@sha256:346bcc63b3392e10032a212e42820fc6042f50bbd2390ceda089662c8be9145b
     - name: quay.io/modh/odh-pipeline-runtime-tensorflow-rocm-py311-ubi9@sha256:28ee389d40df0bcdeb46f6deaebb0df3284ebd948df88872400ad34db4103b94
     - name: quay.io/modh/odh-pytorch-notebook@sha256:20f7ab8e7954106ea5e22f3ee0ba8bc7b03975e5735049a765e021aa7eb06861
     - name: quay.io/modh/odh-pytorch-notebook@sha256:2403b3dccc3daf5b45a973c49331fdac4ec66e2e020597975fcd9cb4a625099b
@@ -155,14 +155,14 @@ mirror:
     - name: quay.io/modh/odh-trustyai-vllm-orchestrator-gateway-rhel9@sha256:a21bc1adf31d5b6105cc1d4e2f8267d77549e1d57f841a81b90c40c44ad1cbe5
     - name: quay.io/modh/odh-workbench-codeserver-datascience-cpu-py311-ubi9@sha256:4fbb9bd41f1d9ce2da43f13dc4c00da8b4c055093b399a5fdc447bd0ff09c999
     - name: quay.io/modh/odh-workbench-jupyter-datascience-cpu-py311-ubi9@sha256:4b2ceb1b5d90837f091c7aef402e23e8f19b71cf673e532c8f5971a760f4a0e7
-    - name: quay.io/modh/odh-workbench-jupyter-minimal-cpu-py311-ubi9@sha256:1555d011dc798da08076aef0b450239a5d9af6e7b9ffe103bff471e2550c5fd8
-    - name: quay.io/modh/odh-workbench-jupyter-minimal-cuda-py311-ubi9@sha256:ba230606042174f1d94bc21070bbd3777ca8352b877396275719b3b0cbac409d
-    - name: quay.io/modh/odh-workbench-jupyter-minimal-rocm-py311-ubi9@sha256:e9e0b213a51a6673e42b2224d57396f619574b594672e49579cc5771fd129d0d
-    - name: quay.io/modh/odh-workbench-jupyter-pytorch-cuda-py311-ubi9@sha256:7ccbd0246ca6e7a8e557460899a1d90aaa0c8b4fd8e4343da865481782dfe264
-    - name: quay.io/modh/odh-workbench-jupyter-pytorch-rocm-py311-ubi9@sha256:181b0a5d3b66e817df18150adc51c9c356761ee8323bc2d8e4dc46917963cb8a
-    - name: quay.io/modh/odh-workbench-jupyter-tensorflow-cuda-py311-ubi9@sha256:b39852c5d370eed238565fb1ed5da1531f572ce4fb43a0e7d83c71726433fa67
-    - name: quay.io/modh/odh-workbench-jupyter-tensorflow-rocm-py311-ubi9@sha256:41f0e9e434713ea2439b3e877c1f4e3762b570027c1f181741744ee744a4bf65
-    - name: quay.io/modh/odh-workbench-jupyter-trustyai-cpu-py311-ubi9@sha256:dec6f4e817b18e657895e5402ee5b56fe1519880a150db58d306bd70b87a60f6
+    - name: quay.io/modh/odh-workbench-jupyter-minimal-cpu-py311-ubi9@sha256:d804f780e2c658a7a85e540035ba121930ec22288ca92dbe1ea1981ea2f7649a
+    - name: quay.io/modh/odh-workbench-jupyter-minimal-cuda-py311-ubi9@sha256:5c600af8752ec906e6be286d4905fef78b44dc05bd4fe614c4ea1bcbb1a751f4
+    - name: quay.io/modh/odh-workbench-jupyter-minimal-rocm-py311-ubi9@sha256:cd84b897e0928b4d77ec366a97da414c4d31ae17687d85584e265f855e4ad2b5
+    - name: quay.io/modh/odh-workbench-jupyter-pytorch-cuda-py311-ubi9@sha256:9ca476716b1f795814a1212f8a4c2f757d67dce312715854b4709e2abdf402d2
+    - name: quay.io/modh/odh-workbench-jupyter-pytorch-rocm-py311-ubi9@sha256:04e98f8ddb3773ab24496d653b691f3c54562b75335a4345e538591d219b204b
+    - name: quay.io/modh/odh-workbench-jupyter-tensorflow-cuda-py311-ubi9@sha256:505a1b3ca34b64527db2ed88a83caaed382596cd046235ef2853ed4c4fe473df
+    - name: quay.io/modh/odh-workbench-jupyter-tensorflow-rocm-py311-ubi9@sha256:4a39269e54794647d6843afd6cc9fd6ab230b468f1c0463de52c124c77a56f67
+    - name: quay.io/modh/odh-workbench-jupyter-trustyai-cpu-py311-ubi9@sha256:cb2e72e0d468c3c43edcaad18011d6afa8554714312c72a1afe56b998995c78a
     - name: quay.io/modh/openvino_model_server@sha256:5225aaf5a581ccb8e6f934a5d9fdd9d3d5ad90009dcee6b75d422acce29c33f3
     - name: quay.io/modh/rocm-notebooks@sha256:199367d2946fc8427611b4b96071cb411433ffbb5f0988279b10150020af22db
     - name: quay.io/modh/rocm-notebooks@sha256:1f0b19b7ae587d638e78697c67f1290d044e48bfecccfb72d7a16faeba13f980
@@ -173,7 +173,7 @@ mirror:
     - name: quay.io/modh/runtime-images@sha256:e6544a6024bbe12ad108b9d36b529cdcf9283327d1b2c7d08e699fa3cb22392c
     - name: quay.io/modh/runtime-images@sha256:f63eb3e5b356954d740f5c074221624c7b22bd3eab8aa9f43f30de468e22a0d2
     - name: quay.io/modh/runtime-images@sha256:fd101db0d5b3cd5158ab733c0df8af0a121515a823e66ceff4387e22c29dbe92
-    - name: quay.io/modh/ta-lmes-driver@sha256:ace97ce6630983c968cf72441d6d3c375072afcccfd0d8d5a6083076b26882ad
+    - name: quay.io/modh/ta-lmes-driver@sha256:7250c05821bb7bff80149378d3c6333f66bb58ab6f718f190b4c0fc708e98679
     - name: quay.io/modh/ta-lmes-job@sha256:e13f6efcd42a3e677477764d7e60fd5130e2af15a3c850d6a10eec54bc0176be
     - name: quay.io/modh/text-generation-inference@sha256:aebf545d8048a59174f70334dc90c6b97ead4602a39cb7598ea68c8d199168a2
     - name: quay.io/modh/vllm@sha256:47b7e95b51d8d6a82de9d6bbc5eb61a794dc8d2998e8186bd6bd713517c97f08
