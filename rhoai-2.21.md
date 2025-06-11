@@ -71,7 +71,7 @@
     - quay.io/modh/ta-lmes-job@sha256:e13f6efcd42a3e677477764d7e60fd5130e2af15a3c850d6a10eec54bc0176be
     - quay.io/modh/text-generation-inference@sha256:aebf545d8048a59174f70334dc90c6b97ead4602a39cb7598ea68c8d199168a2
     - quay.io/modh/vllm@sha256:4245b079a1772569b1921f4ba902ee5691bde73d426f735cb9c3b351f801fa9a
-    - quay.io/modh/vllm@sha256:5fcbae366d3a57ecb3fbf0f4134e4de8eb9f17044c9d0c6556ac507b65e68451
+    - quay.io/modh/vllm@sha256:67822ff98835488ee34c25c2349b7b3d8c401928c45181b46ed533a9ccd7caba
     - quay.io/modh/vllm@sha256:d2549c427f91cb7af074009ca065e92f4602898a9207d43cf36a03689863454d
     - quay.io/modh/fms-hf-tuning@sha256:1ad46fe1a23f41f190c49ec2549c64f484c88fe220888a7a5700dd857ca243cc
     - quay.io/modh/ray@sha256:ac401c35d29cbd920ef982775f20e86d948b81eb67e83adbbbba8b29ad33ca31
@@ -177,7 +177,7 @@ mirror:
     - name: quay.io/modh/ta-lmes-job@sha256:e13f6efcd42a3e677477764d7e60fd5130e2af15a3c850d6a10eec54bc0176be
     - name: quay.io/modh/text-generation-inference@sha256:aebf545d8048a59174f70334dc90c6b97ead4602a39cb7598ea68c8d199168a2
     - name: quay.io/modh/vllm@sha256:4245b079a1772569b1921f4ba902ee5691bde73d426f735cb9c3b351f801fa9a
-    - name: quay.io/modh/vllm@sha256:5fcbae366d3a57ecb3fbf0f4134e4de8eb9f17044c9d0c6556ac507b65e68451
+    - name: quay.io/modh/vllm@sha256:67822ff98835488ee34c25c2349b7b3d8c401928c45181b46ed533a9ccd7caba
     - name: quay.io/modh/vllm@sha256:d2549c427f91cb7af074009ca065e92f4602898a9207d43cf36a03689863454d
     - name: quay.io/modh/fms-hf-tuning@sha256:1ad46fe1a23f41f190c49ec2549c64f484c88fe220888a7a5700dd857ca243cc
     - name: quay.io/modh/ray@sha256:ac401c35d29cbd920ef982775f20e86d948b81eb67e83adbbbba8b29ad33ca31
