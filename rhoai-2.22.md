@@ -70,9 +70,9 @@
     - quay.io/modh/ta-lmes-driver@sha256:3eb37635f540cc131fb67f20d09fb69040d891588b0f1ddf8a3d2774bab86d04
     - quay.io/modh/ta-lmes-job@sha256:e13f6efcd42a3e677477764d7e60fd5130e2af15a3c850d6a10eec54bc0176be
     - quay.io/modh/text-generation-inference@sha256:aebf545d8048a59174f70334dc90c6b97ead4602a39cb7598ea68c8d199168a2
+    - quay.io/modh/vllm@sha256:0748bcab7946f820eb83896236958611f31376c791755681edd9b775e3e42008
+    - quay.io/modh/vllm@sha256:30c73c7f7cd057b247a8ef8677d55cabe8b4cf1974fc5fbcac4585d69041a3d3
     - quay.io/modh/vllm@sha256:47b7e95b51d8d6a82de9d6bbc5eb61a794dc8d2998e8186bd6bd713517c97f08
-    - quay.io/modh/vllm@sha256:82e5ef470295acfd1f7d22dc0a2249cff05c9ccb06ff8f0638c0d4690bea26e5
-    - quay.io/modh/vllm@sha256:a1abbcf42ea41e771cd038e3c870d5e33d1c7e99434bc125a39a0cede4b95958
     - quay.io/modh/fms-hf-tuning@sha256:1ad46fe1a23f41f190c49ec2549c64f484c88fe220888a7a5700dd857ca243cc
     - quay.io/modh/ray@sha256:a5b7c04a14f180d7ca6d06a5697f6bb684e40a26b95a0c872cac23b552741707
     - quay.io/modh/ray@sha256:48c7864989c8f22ef07772c698b761f5c1b58c6781e7a99518204d521bf56a4c
@@ -176,9 +176,9 @@ mirror:
     - name: quay.io/modh/ta-lmes-driver@sha256:3eb37635f540cc131fb67f20d09fb69040d891588b0f1ddf8a3d2774bab86d04
     - name: quay.io/modh/ta-lmes-job@sha256:e13f6efcd42a3e677477764d7e60fd5130e2af15a3c850d6a10eec54bc0176be
     - name: quay.io/modh/text-generation-inference@sha256:aebf545d8048a59174f70334dc90c6b97ead4602a39cb7598ea68c8d199168a2
+    - name: quay.io/modh/vllm@sha256:0748bcab7946f820eb83896236958611f31376c791755681edd9b775e3e42008
+    - name: quay.io/modh/vllm@sha256:30c73c7f7cd057b247a8ef8677d55cabe8b4cf1974fc5fbcac4585d69041a3d3
     - name: quay.io/modh/vllm@sha256:47b7e95b51d8d6a82de9d6bbc5eb61a794dc8d2998e8186bd6bd713517c97f08
-    - name: quay.io/modh/vllm@sha256:82e5ef470295acfd1f7d22dc0a2249cff05c9ccb06ff8f0638c0d4690bea26e5
-    - name: quay.io/modh/vllm@sha256:a1abbcf42ea41e771cd038e3c870d5e33d1c7e99434bc125a39a0cede4b95958
     - name: quay.io/modh/fms-hf-tuning@sha256:1ad46fe1a23f41f190c49ec2549c64f484c88fe220888a7a5700dd857ca243cc
     - name: quay.io/modh/ray@sha256:a5b7c04a14f180d7ca6d06a5697f6bb684e40a26b95a0c872cac23b552741707
     - name: quay.io/modh/ray@sha256:48c7864989c8f22ef07772c698b761f5c1b58c6781e7a99518204d521bf56a4c
