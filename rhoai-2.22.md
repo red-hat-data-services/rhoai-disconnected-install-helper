@@ -81,7 +81,7 @@
     - quay.io/modh/training@sha256:1104eb83d7ad9cfb63c1437be38d1615a669473c5b1c2da5a9a01ddd90daceb9
     - quay.io/modh/training@sha256:f98d70edc49203537d4fec005aaff68a4830b9c9ce2390bb4d7910b89c312b97
     - registry.redhat.io/rhelai1/instructlab-nvidia-rhel9@sha256:b3dc9af0244aa6b84e6c3ef53e714a316daaefaae67e28de397cd71ee4b2ac7e
-    - quay.io/modh/must-gather@sha256:642382572c71fb6364ed9032e6bfe885a8b35b6fec0272b39ce71528fc2dc45a
+    - quay.io/modh/must-gather@sha256:3b63f056d719ecc1ddd980c99272ade594440af03836bc780f8f394a56010d43
 
 
 
@@ -187,7 +187,7 @@ mirror:
     - name: quay.io/modh/training@sha256:1104eb83d7ad9cfb63c1437be38d1615a669473c5b1c2da5a9a01ddd90daceb9
     - name: quay.io/modh/training@sha256:f98d70edc49203537d4fec005aaff68a4830b9c9ce2390bb4d7910b89c312b97
     - name: registry.redhat.io/rhelai1/instructlab-nvidia-rhel9@sha256:b3dc9af0244aa6b84e6c3ef53e714a316daaefaae67e28de397cd71ee4b2ac7e
-    - name: quay.io/modh/must-gather@sha256:642382572c71fb6364ed9032e6bfe885a8b35b6fec0272b39ce71528fc2dc45a
+    - name: quay.io/modh/must-gather@sha256:3b63f056d719ecc1ddd980c99272ade594440af03836bc780f8f394a56010d43
 
 
 
