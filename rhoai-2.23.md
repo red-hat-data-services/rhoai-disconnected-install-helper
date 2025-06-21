@@ -14,9 +14,9 @@
     - quay.io/modh/cuda-notebooks@sha256:99d3fb964e635873214de4676c259a96c2ea25f3f79cc4bead5bc9f39aba34c0
     - quay.io/modh/cuda-notebooks@sha256:a484d344f6feab25e025ea75575d837f5725f819b50a6e3476cef1f9925c07a5
     - quay.io/modh/cuda-notebooks@sha256:f6cdc993b4d493ffaec876abb724ce44b3c6fc37560af974072b346e45ac1a3b
-    - quay.io/modh/kserve-agent@sha256:5b0d5dad2141c6f34709c32ba2320f3ac31768916c840673208b713fdee8f76b
+    - quay.io/modh/kserve-agent@sha256:81d2b035ee8629ba2eafe1e4086397b768a6eaa6d10d2b3d777fdab041039495
     - quay.io/modh/kserve-controller@sha256:a88b1e3bcaef680030ccc9177c659b922f77229676084d26117d69bb62c45f1d
-    - quay.io/modh/kserve-router@sha256:cd7a509a9fbeb17a166b5a4004de6b010fafabdbe13ac789de67c1a2aa4dc123
+    - quay.io/modh/kserve-router@sha256:bbe3e7da15addef8c3ebaa7a105506517eedb42caebe99c1bc4182e6acac89f8
     - quay.io/modh/kserve-storage-initializer@sha256:a75c4262b602e4a143927c267abd130f46c129d66a250cf5bad3b50b84a9cbfa
     - quay.io/modh/odh-fms-guardrails-orchestrator-rhel9@sha256:29a21ca8afa36fbcd7cd8ae59b945a71981b91ebf22ac32ef804693355e36783
     - quay.io/modh/odh-generic-data-science-notebook@sha256:39853fd63555ebba097483c5ac6a375d6039e5522c7294684efb7966ba4bc693
@@ -112,9 +112,9 @@ mirror:
     - name: quay.io/modh/cuda-notebooks@sha256:99d3fb964e635873214de4676c259a96c2ea25f3f79cc4bead5bc9f39aba34c0
     - name: quay.io/modh/cuda-notebooks@sha256:a484d344f6feab25e025ea75575d837f5725f819b50a6e3476cef1f9925c07a5
     - name: quay.io/modh/cuda-notebooks@sha256:f6cdc993b4d493ffaec876abb724ce44b3c6fc37560af974072b346e45ac1a3b
-    - name: quay.io/modh/kserve-agent@sha256:5b0d5dad2141c6f34709c32ba2320f3ac31768916c840673208b713fdee8f76b
+    - name: quay.io/modh/kserve-agent@sha256:81d2b035ee8629ba2eafe1e4086397b768a6eaa6d10d2b3d777fdab041039495
     - name: quay.io/modh/kserve-controller@sha256:a88b1e3bcaef680030ccc9177c659b922f77229676084d26117d69bb62c45f1d
-    - name: quay.io/modh/kserve-router@sha256:cd7a509a9fbeb17a166b5a4004de6b010fafabdbe13ac789de67c1a2aa4dc123
+    - name: quay.io/modh/kserve-router@sha256:bbe3e7da15addef8c3ebaa7a105506517eedb42caebe99c1bc4182e6acac89f8
     - name: quay.io/modh/kserve-storage-initializer@sha256:a75c4262b602e4a143927c267abd130f46c129d66a250cf5bad3b50b84a9cbfa
     - name: quay.io/modh/odh-fms-guardrails-orchestrator-rhel9@sha256:29a21ca8afa36fbcd7cd8ae59b945a71981b91ebf22ac32ef804693355e36783
     - name: quay.io/modh/odh-generic-data-science-notebook@sha256:39853fd63555ebba097483c5ac6a375d6039e5522c7294684efb7966ba4bc693
