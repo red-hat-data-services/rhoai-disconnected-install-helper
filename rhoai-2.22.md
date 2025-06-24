@@ -57,7 +57,7 @@
     - quay.io/modh/odh-workbench-jupyter-tensorflow-cuda-py311-ubi9@sha256:f9621c8a35664d307e16542c319d1379f2cfe6c7ae54bdd6fd9e1c74184c8e65
     - quay.io/modh/odh-workbench-jupyter-tensorflow-rocm-py311-ubi9@sha256:2be300a60cb435fbc9edb5d0f3e1fb7ed90e7014eed49b3d8482c654ba69449d
     - quay.io/modh/odh-workbench-jupyter-trustyai-cpu-py311-ubi9@sha256:2645fb42ed6fced21df520de2d1c5eaa602d20bac6ceb9cdb6daba8d88af7b18
-    - quay.io/modh/openvino_model_server@sha256:5225aaf5a581ccb8e6f934a5d9fdd9d3d5ad90009dcee6b75d422acce29c33f3
+    - quay.io/modh/openvino_model_server@sha256:eee2857ddd5cc2df9ea7373ae7c6ae814d77bd631db5c52b91edad18ac6c73c8
     - quay.io/modh/rocm-notebooks@sha256:199367d2946fc8427611b4b96071cb411433ffbb5f0988279b10150020af22db
     - quay.io/modh/rocm-notebooks@sha256:1f0b19b7ae587d638e78697c67f1290d044e48bfecccfb72d7a16faeba13f980
     - quay.io/modh/rocm-notebooks@sha256:f94702219419e651327636b390d1872c58fd7b8f9f6b16a02c958ffb918eded3
@@ -81,6 +81,7 @@
     - quay.io/modh/training@sha256:1104eb83d7ad9cfb63c1437be38d1615a669473c5b1c2da5a9a01ddd90daceb9
     - quay.io/modh/training@sha256:f98d70edc49203537d4fec005aaff68a4830b9c9ce2390bb4d7910b89c312b97
     - registry.redhat.io/rhelai1/instructlab-nvidia-rhel9@sha256:b3dc9af0244aa6b84e6c3ef53e714a316daaefaae67e28de397cd71ee4b2ac7e
+    - quay.io/opendatahub/llama-stack-k8s-operator@sha256:f8f66ec02e7f59e510cb20eebfe0c1f6d41b62a9276c6e8e703d258f93d49119
     - quay.io/modh/must-gather@sha256:3b63f056d719ecc1ddd980c99272ade594440af03836bc780f8f394a56010d43
 
 
@@ -163,7 +164,7 @@ mirror:
     - name: quay.io/modh/odh-workbench-jupyter-tensorflow-cuda-py311-ubi9@sha256:f9621c8a35664d307e16542c319d1379f2cfe6c7ae54bdd6fd9e1c74184c8e65
     - name: quay.io/modh/odh-workbench-jupyter-tensorflow-rocm-py311-ubi9@sha256:2be300a60cb435fbc9edb5d0f3e1fb7ed90e7014eed49b3d8482c654ba69449d
     - name: quay.io/modh/odh-workbench-jupyter-trustyai-cpu-py311-ubi9@sha256:2645fb42ed6fced21df520de2d1c5eaa602d20bac6ceb9cdb6daba8d88af7b18
-    - name: quay.io/modh/openvino_model_server@sha256:5225aaf5a581ccb8e6f934a5d9fdd9d3d5ad90009dcee6b75d422acce29c33f3
+    - name: quay.io/modh/openvino_model_server@sha256:eee2857ddd5cc2df9ea7373ae7c6ae814d77bd631db5c52b91edad18ac6c73c8
     - name: quay.io/modh/rocm-notebooks@sha256:199367d2946fc8427611b4b96071cb411433ffbb5f0988279b10150020af22db
     - name: quay.io/modh/rocm-notebooks@sha256:1f0b19b7ae587d638e78697c67f1290d044e48bfecccfb72d7a16faeba13f980
     - name: quay.io/modh/rocm-notebooks@sha256:f94702219419e651327636b390d1872c58fd7b8f9f6b16a02c958ffb918eded3
@@ -187,6 +188,7 @@ mirror:
     - name: quay.io/modh/training@sha256:1104eb83d7ad9cfb63c1437be38d1615a669473c5b1c2da5a9a01ddd90daceb9
     - name: quay.io/modh/training@sha256:f98d70edc49203537d4fec005aaff68a4830b9c9ce2390bb4d7910b89c312b97
     - name: registry.redhat.io/rhelai1/instructlab-nvidia-rhel9@sha256:b3dc9af0244aa6b84e6c3ef53e714a316daaefaae67e28de397cd71ee4b2ac7e
+    - name: quay.io/opendatahub/llama-stack-k8s-operator@sha256:f8f66ec02e7f59e510cb20eebfe0c1f6d41b62a9276c6e8e703d258f93d49119
     - name: quay.io/modh/must-gather@sha256:3b63f056d719ecc1ddd980c99272ade594440af03836bc780f8f394a56010d43
 
 

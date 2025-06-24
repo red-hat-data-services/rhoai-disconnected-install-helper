@@ -16,9 +16,9 @@
     - quay.io/modh/cuda-notebooks@sha256:f6cdc993b4d493ffaec876abb724ce44b3c6fc37560af974072b346e45ac1a3b
     - quay.io/modh/kserve-agent@sha256:81d2b035ee8629ba2eafe1e4086397b768a6eaa6d10d2b3d777fdab041039495
     - quay.io/modh/kserve-controller@sha256:a88b1e3bcaef680030ccc9177c659b922f77229676084d26117d69bb62c45f1d
-    - quay.io/modh/kserve-router@sha256:bbe3e7da15addef8c3ebaa7a105506517eedb42caebe99c1bc4182e6acac89f8
-    - quay.io/modh/kserve-storage-initializer@sha256:a75c4262b602e4a143927c267abd130f46c129d66a250cf5bad3b50b84a9cbfa
-    - quay.io/modh/odh-fms-guardrails-orchestrator-rhel9@sha256:29a21ca8afa36fbcd7cd8ae59b945a71981b91ebf22ac32ef804693355e36783
+    - quay.io/modh/kserve-router@sha256:f2d9f3fdf225ff1d3f8b5890e6f01afc89e7c2dff7c0831e61c6b6c05a0c5365
+    - quay.io/modh/kserve-storage-initializer@sha256:8f43e6048601732a70559f6def50e37770be7c91c55164b76dd5a82d1d4fd677
+    - quay.io/modh/odh-fms-guardrails-orchestrator-rhel9@sha256:a98926288a13f17484b61d7b86f315a51bafa51121ccc4e9bb7dd0870c580cb4
     - quay.io/modh/odh-generic-data-science-notebook@sha256:39853fd63555ebba097483c5ac6a375d6039e5522c7294684efb7966ba4bc693
     - quay.io/modh/odh-generic-data-science-notebook@sha256:3e51c462fc03b5ccb080f006ced86d36480da036fa04b8685a3e4d6d51a817ba
     - quay.io/modh/odh-generic-data-science-notebook@sha256:76e6af79c601a323f75a58e7005de0beac66b8cccc3d2b67efb6d11d85f0cfa1
@@ -81,6 +81,7 @@
     - quay.io/modh/training@sha256:1104eb83d7ad9cfb63c1437be38d1615a669473c5b1c2da5a9a01ddd90daceb9
     - quay.io/modh/training@sha256:f98d70edc49203537d4fec005aaff68a4830b9c9ce2390bb4d7910b89c312b97
     - registry.redhat.io/rhelai1/instructlab-nvidia-rhel9@sha256:b3dc9af0244aa6b84e6c3ef53e714a316daaefaae67e28de397cd71ee4b2ac7e
+    - quay.io/opendatahub/llama-stack-k8s-operator@sha256:f8f66ec02e7f59e510cb20eebfe0c1f6d41b62a9276c6e8e703d258f93d49119
     - quay.io/modh/must-gather@sha256:d0404c401d4c619a7a41deeee798b2ec9beab8be6b70d0434bdcf043a0924330
 
 
@@ -122,9 +123,9 @@ mirror:
     - name: quay.io/modh/cuda-notebooks@sha256:f6cdc993b4d493ffaec876abb724ce44b3c6fc37560af974072b346e45ac1a3b
     - name: quay.io/modh/kserve-agent@sha256:81d2b035ee8629ba2eafe1e4086397b768a6eaa6d10d2b3d777fdab041039495
     - name: quay.io/modh/kserve-controller@sha256:a88b1e3bcaef680030ccc9177c659b922f77229676084d26117d69bb62c45f1d
-    - name: quay.io/modh/kserve-router@sha256:bbe3e7da15addef8c3ebaa7a105506517eedb42caebe99c1bc4182e6acac89f8
-    - name: quay.io/modh/kserve-storage-initializer@sha256:a75c4262b602e4a143927c267abd130f46c129d66a250cf5bad3b50b84a9cbfa
-    - name: quay.io/modh/odh-fms-guardrails-orchestrator-rhel9@sha256:29a21ca8afa36fbcd7cd8ae59b945a71981b91ebf22ac32ef804693355e36783
+    - name: quay.io/modh/kserve-router@sha256:f2d9f3fdf225ff1d3f8b5890e6f01afc89e7c2dff7c0831e61c6b6c05a0c5365
+    - name: quay.io/modh/kserve-storage-initializer@sha256:8f43e6048601732a70559f6def50e37770be7c91c55164b76dd5a82d1d4fd677
+    - name: quay.io/modh/odh-fms-guardrails-orchestrator-rhel9@sha256:a98926288a13f17484b61d7b86f315a51bafa51121ccc4e9bb7dd0870c580cb4
     - name: quay.io/modh/odh-generic-data-science-notebook@sha256:39853fd63555ebba097483c5ac6a375d6039e5522c7294684efb7966ba4bc693
     - name: quay.io/modh/odh-generic-data-science-notebook@sha256:3e51c462fc03b5ccb080f006ced86d36480da036fa04b8685a3e4d6d51a817ba
     - name: quay.io/modh/odh-generic-data-science-notebook@sha256:76e6af79c601a323f75a58e7005de0beac66b8cccc3d2b67efb6d11d85f0cfa1
@@ -187,6 +188,7 @@ mirror:
     - name: quay.io/modh/training@sha256:1104eb83d7ad9cfb63c1437be38d1615a669473c5b1c2da5a9a01ddd90daceb9
     - name: quay.io/modh/training@sha256:f98d70edc49203537d4fec005aaff68a4830b9c9ce2390bb4d7910b89c312b97
     - name: registry.redhat.io/rhelai1/instructlab-nvidia-rhel9@sha256:b3dc9af0244aa6b84e6c3ef53e714a316daaefaae67e28de397cd71ee4b2ac7e
+    - name: quay.io/opendatahub/llama-stack-k8s-operator@sha256:f8f66ec02e7f59e510cb20eebfe0c1f6d41b62a9276c6e8e703d258f93d49119
     - name: quay.io/modh/must-gather@sha256:d0404c401d4c619a7a41deeee798b2ec9beab8be6b70d0434bdcf043a0924330
 
 
