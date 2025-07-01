@@ -24,7 +24,7 @@ jobs:
       run: |
         rhoai_branch="${{ github.event.inputs.branch_name }}"
         rhoai_fbc_image="${{ github.event.inputs.fbc_image }}"
-        
+        echo "rhoai_fbc_image: '$rhoai_fbc_image'"
         # Validate format only if branch name is provided
         if [[ -n "$rhoai_branch" && ! "$rhoai_branch" =~ ^rhoai-[0-9]+\.[0-9]+$ ]]; then
           echo "❌ Invalid format! Expected rhoai-x.y (e.g., rhoai-2.18) but found '$rhoai_branch'"
@@ -51,5 +51,5 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         branch: main
-        message: "Update rhoai-disconnected-helper.sh script $rhoai_fbc_image"
+        message: "Update rhoai-disconnected-helper.sh script '$rhoai_fbc_image'"
         repository: red-hat-data-services/rhoai-disconnected-install-helper
