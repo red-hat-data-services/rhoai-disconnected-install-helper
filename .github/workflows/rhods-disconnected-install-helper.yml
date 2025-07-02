@@ -51,5 +51,5 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         branch: main
-        message: "Update rhoai-disconnected-helper.sh script '$rhoai_fbc_image'"
+        message: "Update rhoai-disconnected-helper.sh script ${rhoai_fbc_image}"
         repository: red-hat-data-services/rhoai-disconnected-install-helper
