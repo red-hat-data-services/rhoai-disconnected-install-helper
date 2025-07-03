@@ -55,7 +55,7 @@
     - quay.io/modh/odh-workbench-jupyter-pytorch-cuda-py311-ubi9@sha256:d01b47d3c26153373002796455d0349c8b9189cef9decbd9b9bcf1059db461b8
     - quay.io/modh/odh-workbench-jupyter-pytorch-rocm-py311-ubi9@sha256:f801097a3095b1dd7aa81466c51aa13b70a6e1b6098cc08ece715ed6155659dd
     - quay.io/modh/odh-workbench-jupyter-tensorflow-cuda-py311-ubi9@sha256:6ae2db4e083664c7a1301a9eeaaedcf95015472c8bad4fdf8a92e4f45686037c
-    - quay.io/modh/odh-workbench-jupyter-tensorflow-rocm-py311-ubi9@sha256:8fa8135b87f436482b62ad38d5cd7bd772866273515f47cfaf8cf5d9030b34bf
+    - quay.io/modh/odh-workbench-jupyter-tensorflow-rocm-py311-ubi9@sha256:0cd6a9cdae74d6398e2b2d262c8eaefa4b2ae78ed31672e26e85d8000cc9a3dc
     - quay.io/modh/odh-workbench-jupyter-trustyai-cpu-py311-ubi9@sha256:c961347f09b135d8c8841fea9a9d0633650d7d1f332fbcb9b199945f28de9700
     - quay.io/modh/openvino_model_server@sha256:5225aaf5a581ccb8e6f934a5d9fdd9d3d5ad90009dcee6b75d422acce29c33f3
     - quay.io/modh/rocm-notebooks@sha256:199367d2946fc8427611b4b96071cb411433ffbb5f0988279b10150020af22db
@@ -162,7 +162,7 @@ mirror:
     - name: quay.io/modh/odh-workbench-jupyter-pytorch-cuda-py311-ubi9@sha256:d01b47d3c26153373002796455d0349c8b9189cef9decbd9b9bcf1059db461b8
     - name: quay.io/modh/odh-workbench-jupyter-pytorch-rocm-py311-ubi9@sha256:f801097a3095b1dd7aa81466c51aa13b70a6e1b6098cc08ece715ed6155659dd
     - name: quay.io/modh/odh-workbench-jupyter-tensorflow-cuda-py311-ubi9@sha256:6ae2db4e083664c7a1301a9eeaaedcf95015472c8bad4fdf8a92e4f45686037c
-    - name: quay.io/modh/odh-workbench-jupyter-tensorflow-rocm-py311-ubi9@sha256:8fa8135b87f436482b62ad38d5cd7bd772866273515f47cfaf8cf5d9030b34bf
+    - name: quay.io/modh/odh-workbench-jupyter-tensorflow-rocm-py311-ubi9@sha256:0cd6a9cdae74d6398e2b2d262c8eaefa4b2ae78ed31672e26e85d8000cc9a3dc
     - name: quay.io/modh/odh-workbench-jupyter-trustyai-cpu-py311-ubi9@sha256:c961347f09b135d8c8841fea9a9d0633650d7d1f332fbcb9b199945f28de9700
     - name: quay.io/modh/openvino_model_server@sha256:5225aaf5a581ccb8e6f934a5d9fdd9d3d5ad90009dcee6b75d422acce29c33f3
     - name: quay.io/modh/rocm-notebooks@sha256:199367d2946fc8427611b4b96071cb411433ffbb5f0988279b10150020af22db
