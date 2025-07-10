@@ -61,7 +61,7 @@
     - quay.io/modh/rocm-notebooks@sha256:199367d2946fc8427611b4b96071cb411433ffbb5f0988279b10150020af22db
     - quay.io/modh/rocm-notebooks@sha256:1f0b19b7ae587d638e78697c67f1290d044e48bfecccfb72d7a16faeba13f980
     - quay.io/modh/rocm-notebooks@sha256:f94702219419e651327636b390d1872c58fd7b8f9f6b16a02c958ffb918eded3
-    - quay.io/modh/ta-lmes-driver@sha256:34ccf084a7c0ac4cfa09e38acddb1b3d6115e5e9f4feaf1415c66789f2e35be3
+    - quay.io/modh/ta-lmes-driver@sha256:0cc4cd0a23630a5b46bfe40f75ec13a3d37ce167054fbeedd74efec4482a1260
     - quay.io/modh/ta-lmes-job@sha256:d2a325b05b601743848b8249823889e168ec1157e7937315a83a4bbf60052989
     - quay.io/modh/text-generation-inference@sha256:850039122ab37c709fe4b9000c0617d2d163d5ab877e56aa611338f5911e5e8c
     - quay.io/modh/vllm@sha256:3934334c8270789a08f0b40a7a54cc712864fff0838ac2990a3b5711e175eef5
@@ -162,7 +162,7 @@ mirror:
     - name: quay.io/modh/rocm-notebooks@sha256:199367d2946fc8427611b4b96071cb411433ffbb5f0988279b10150020af22db
     - name: quay.io/modh/rocm-notebooks@sha256:1f0b19b7ae587d638e78697c67f1290d044e48bfecccfb72d7a16faeba13f980
     - name: quay.io/modh/rocm-notebooks@sha256:f94702219419e651327636b390d1872c58fd7b8f9f6b16a02c958ffb918eded3
-    - name: quay.io/modh/ta-lmes-driver@sha256:34ccf084a7c0ac4cfa09e38acddb1b3d6115e5e9f4feaf1415c66789f2e35be3
+    - name: quay.io/modh/ta-lmes-driver@sha256:0cc4cd0a23630a5b46bfe40f75ec13a3d37ce167054fbeedd74efec4482a1260
     - name: quay.io/modh/ta-lmes-job@sha256:d2a325b05b601743848b8249823889e168ec1157e7937315a83a4bbf60052989
     - name: quay.io/modh/text-generation-inference@sha256:850039122ab37c709fe4b9000c0617d2d163d5ab877e56aa611338f5911e5e8c
     - name: quay.io/modh/vllm@sha256:3934334c8270789a08f0b40a7a54cc712864fff0838ac2990a3b5711e175eef5
