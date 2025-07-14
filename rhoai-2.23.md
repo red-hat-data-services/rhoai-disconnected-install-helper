@@ -40,7 +40,6 @@
     - quay.io/modh/odh-pipeline-runtime-tensorflow-cuda-py311-ubi9@sha256:87c31d64cb5ba3a38785217e87c91868def172abd60ec2671043e836857b00f6
     - quay.io/modh/odh-pipeline-runtime-tensorflow-cuda-py312-ubi9@sha256:8176e9f60f6b888e1dd2f2a363d3b63fc8ebbfe28fcb2eac979c3f9c707f9b11
     - quay.io/modh/odh-pipeline-runtime-tensorflow-rocm-py311-ubi9@sha256:3f45e5928dd9c960be9e7b5db13da1b9f4a72e75459192d2d29f1e77c4d5b95c
-    - quay.io/modh/odh-pipeline-runtime-tensorflow-rocm-py312-ubi9@sha256:00f1841caaf7021dfbb92bf5d80e3aab9e6879e83ee44d66a4b499ffa8972090
     - quay.io/modh/odh-pytorch-notebook@sha256:20f7ab8e7954106ea5e22f3ee0ba8bc7b03975e5735049a765e021aa7eb06861
     - quay.io/modh/odh-pytorch-notebook@sha256:2403b3dccc3daf5b45a973c49331fdac4ec66e2e020597975fcd9cb4a625099b
     - quay.io/modh/odh-pytorch-notebook@sha256:806e6524cb46bcbd228e37a92191c936bb4c117100fc731604e19df80286b19d
@@ -156,7 +155,6 @@ mirror:
     - name: quay.io/modh/odh-pipeline-runtime-tensorflow-cuda-py311-ubi9@sha256:87c31d64cb5ba3a38785217e87c91868def172abd60ec2671043e836857b00f6
     - name: quay.io/modh/odh-pipeline-runtime-tensorflow-cuda-py312-ubi9@sha256:8176e9f60f6b888e1dd2f2a363d3b63fc8ebbfe28fcb2eac979c3f9c707f9b11
     - name: quay.io/modh/odh-pipeline-runtime-tensorflow-rocm-py311-ubi9@sha256:3f45e5928dd9c960be9e7b5db13da1b9f4a72e75459192d2d29f1e77c4d5b95c
-    - name: quay.io/modh/odh-pipeline-runtime-tensorflow-rocm-py312-ubi9@sha256:00f1841caaf7021dfbb92bf5d80e3aab9e6879e83ee44d66a4b499ffa8972090
     - name: quay.io/modh/odh-pytorch-notebook@sha256:20f7ab8e7954106ea5e22f3ee0ba8bc7b03975e5735049a765e021aa7eb06861
     - name: quay.io/modh/odh-pytorch-notebook@sha256:2403b3dccc3daf5b45a973c49331fdac4ec66e2e020597975fcd9cb4a625099b
     - name: quay.io/modh/odh-pytorch-notebook@sha256:806e6524cb46bcbd228e37a92191c936bb4c117100fc731604e19df80286b19d
