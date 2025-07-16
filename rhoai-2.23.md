@@ -39,7 +39,7 @@
     - quay.io/modh/odh-pipeline-runtime-pytorch-rocm-py312-ubi9@sha256:b78f0b217e76ac0f5566b5092f2deacff2fa337e378a3f5acc02a0a82c9cf4e1
     - quay.io/modh/odh-pipeline-runtime-tensorflow-cuda-py311-ubi9@sha256:7742aff86b6debbb38999585d7e8a2af2c0a6ee6f18c8c5083d00496f6620940
     - quay.io/modh/odh-pipeline-runtime-tensorflow-cuda-py312-ubi9@sha256:9c92ebf216af864ca838241de4804c2e686dd3bfd13872415b96a81f32144262
-    - quay.io/modh/odh-pipeline-runtime-tensorflow-rocm-py311-ubi9@sha256:50e89c58df149995ee53a98a03fe8622d10bddcb0bcfc34176e3375f0f394c17
+    - quay.io/modh/odh-pipeline-runtime-tensorflow-rocm-py311-ubi9@sha256:567155d718d15901106469f48f648a7313e5ea988311510a80e31c0847bfee02
     - quay.io/modh/odh-pytorch-notebook@sha256:20f7ab8e7954106ea5e22f3ee0ba8bc7b03975e5735049a765e021aa7eb06861
     - quay.io/modh/odh-pytorch-notebook@sha256:2403b3dccc3daf5b45a973c49331fdac4ec66e2e020597975fcd9cb4a625099b
     - quay.io/modh/odh-pytorch-notebook@sha256:806e6524cb46bcbd228e37a92191c936bb4c117100fc731604e19df80286b19d
@@ -65,7 +65,7 @@
     - quay.io/modh/odh-workbench-jupyter-pytorch-cuda-py311-ubi9@sha256:c15ad97d23277de8d1e787c46b1f8420f861ca999b2d1ea5fce3db5fd5afb41d
     - quay.io/modh/odh-workbench-jupyter-pytorch-cuda-py312-ubi9@sha256:586c282892320eef01ef3d2e715111f61f55cb10d9c6dc12a02b01a5ab007f0c
     - quay.io/modh/odh-workbench-jupyter-pytorch-rocm-py311-ubi9@sha256:3b899e9fc4e3003323ba84f184ccc468173655462a30af16b7b3379713079323
-    - quay.io/modh/odh-workbench-jupyter-pytorch-rocm-py312-ubi9@sha256:220d57c7d81793fda09ec7a6c6af68c1e0d5fd05d3faaa051775c796ae1b7786
+    - quay.io/modh/odh-workbench-jupyter-pytorch-rocm-py312-ubi9@sha256:eb3a4987708c239988aa3d89e2034a4b93c5c3c94c565f99f19aa5cdfee98c05
     - quay.io/modh/odh-workbench-jupyter-tensorflow-cuda-py311-ubi9@sha256:5fed8037d67860cc43547651eaa66ef36e247aceee72ee79c1a2b9e967e5d871
     - quay.io/modh/odh-workbench-jupyter-tensorflow-cuda-py312-ubi9@sha256:1b26709dc1bb9433aecb7c499a469cab3e315272d866183aa5e3c47a28870322
     - quay.io/modh/odh-workbench-jupyter-tensorflow-rocm-py311-ubi9@sha256:7b0d0dc29ff016badbc3e81295e296dff216133ea1ffb688f73b88ca2a85bfdd
@@ -154,7 +154,7 @@ mirror:
     - name: quay.io/modh/odh-pipeline-runtime-pytorch-rocm-py312-ubi9@sha256:b78f0b217e76ac0f5566b5092f2deacff2fa337e378a3f5acc02a0a82c9cf4e1
     - name: quay.io/modh/odh-pipeline-runtime-tensorflow-cuda-py311-ubi9@sha256:7742aff86b6debbb38999585d7e8a2af2c0a6ee6f18c8c5083d00496f6620940
     - name: quay.io/modh/odh-pipeline-runtime-tensorflow-cuda-py312-ubi9@sha256:9c92ebf216af864ca838241de4804c2e686dd3bfd13872415b96a81f32144262
-    - name: quay.io/modh/odh-pipeline-runtime-tensorflow-rocm-py311-ubi9@sha256:50e89c58df149995ee53a98a03fe8622d10bddcb0bcfc34176e3375f0f394c17
+    - name: quay.io/modh/odh-pipeline-runtime-tensorflow-rocm-py311-ubi9@sha256:567155d718d15901106469f48f648a7313e5ea988311510a80e31c0847bfee02
     - name: quay.io/modh/odh-pytorch-notebook@sha256:20f7ab8e7954106ea5e22f3ee0ba8bc7b03975e5735049a765e021aa7eb06861
     - name: quay.io/modh/odh-pytorch-notebook@sha256:2403b3dccc3daf5b45a973c49331fdac4ec66e2e020597975fcd9cb4a625099b
     - name: quay.io/modh/odh-pytorch-notebook@sha256:806e6524cb46bcbd228e37a92191c936bb4c117100fc731604e19df80286b19d
@@ -180,7 +180,7 @@ mirror:
     - name: quay.io/modh/odh-workbench-jupyter-pytorch-cuda-py311-ubi9@sha256:c15ad97d23277de8d1e787c46b1f8420f861ca999b2d1ea5fce3db5fd5afb41d
     - name: quay.io/modh/odh-workbench-jupyter-pytorch-cuda-py312-ubi9@sha256:586c282892320eef01ef3d2e715111f61f55cb10d9c6dc12a02b01a5ab007f0c
     - name: quay.io/modh/odh-workbench-jupyter-pytorch-rocm-py311-ubi9@sha256:3b899e9fc4e3003323ba84f184ccc468173655462a30af16b7b3379713079323
-    - name: quay.io/modh/odh-workbench-jupyter-pytorch-rocm-py312-ubi9@sha256:220d57c7d81793fda09ec7a6c6af68c1e0d5fd05d3faaa051775c796ae1b7786
+    - name: quay.io/modh/odh-workbench-jupyter-pytorch-rocm-py312-ubi9@sha256:eb3a4987708c239988aa3d89e2034a4b93c5c3c94c565f99f19aa5cdfee98c05
     - name: quay.io/modh/odh-workbench-jupyter-tensorflow-cuda-py311-ubi9@sha256:5fed8037d67860cc43547651eaa66ef36e247aceee72ee79c1a2b9e967e5d871
     - name: quay.io/modh/odh-workbench-jupyter-tensorflow-cuda-py312-ubi9@sha256:1b26709dc1bb9433aecb7c499a469cab3e315272d866183aa5e3c47a28870322
     - name: quay.io/modh/odh-workbench-jupyter-tensorflow-rocm-py311-ubi9@sha256:7b0d0dc29ff016badbc3e81295e296dff216133ea1ffb688f73b88ca2a85bfdd
