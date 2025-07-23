@@ -30,7 +30,7 @@
     - quay.io/modh/odh-minimal-notebook-container@sha256:e2296a1386e4d9756c386b4c7dc44bac6f61b99b3b894a10c9ff2d8d5602ca4e
     - quay.io/modh/odh-minimal-notebook-container@sha256:eec50e5518176d5a31da739596a7ddae032d73851f9107846a587442ebd10a82
     - quay.io/modh/odh-pipeline-runtime-datascience-cpu-py311-ubi9@sha256:4331121ffdf4aff725f8dc07bdd7a38744a4b61df977e3ebb61b73fe8dbd139d
-    - quay.io/modh/odh-pipeline-runtime-datascience-cpu-py312-ubi9@sha256:8e44cba1e8fe24b5a6a02ff4f0ddabe4ab3c5996d98aafa9e7c2bb45117d0616
+    - quay.io/modh/odh-pipeline-runtime-datascience-cpu-py312-ubi9@sha256:cf65016f50d27a3c7808fa6879f478d8b4f581a0a1221665860528d76425d59c
     - quay.io/modh/odh-pipeline-runtime-minimal-cpu-py311-ubi9@sha256:03ef79b45b10610a157316bdee4068f2847ceab66b6006d5e5c35a87c3d04c0f
     - quay.io/modh/odh-pipeline-runtime-minimal-cpu-py312-ubi9@sha256:1ba6e3c08f011e68a9e7b6666bae6592a18e4fc7cb5e077c9555be3d7fab9fe8
     - quay.io/modh/odh-pipeline-runtime-pytorch-cuda-py311-ubi9@sha256:2072d38269c465aa7a3b6a849b2ea26eed0d9fef25f9fb3a0bd17ca422328818
@@ -79,8 +79,8 @@
     - quay.io/modh/ta-lmes-job@sha256:d7e4a8cbf421d71c0f48b20b49f9e47d9b91e5d95c5fe9d3da8f4ff233c06459
     - quay.io/modh/text-generation-inference@sha256:850039122ab37c709fe4b9000c0617d2d163d5ab877e56aa611338f5911e5e8c
     - quay.io/modh/vllm@sha256:3934334c8270789a08f0b40a7a54cc712864fff0838ac2990a3b5711e175eef5
-    - quay.io/modh/vllm@sha256:91db29d553cd897911dcd64e250142178545f4e2f6f71456bb22b2649127b54f
     - quay.io/modh/vllm@sha256:bf8437d698f91ce8127dd2ea43b2bd01091d567fc49cc9b99bd56bea27cfdc45
+    - quay.io/modh/vllm@sha256:db766445a1e3455e1bf7d16b008f8946fcbe9f277377af7abb81ae358805e7e2
     - quay.io/modh/fms-hf-tuning@sha256:1ad46fe1a23f41f190c49ec2549c64f484c88fe220888a7a5700dd857ca243cc
     - quay.io/modh/ray@sha256:6d076aeb38ab3c34a6a2ef0f58dc667089aa15826fa08a73273c629333e12f1e
     - quay.io/modh/ray@sha256:6091617d45d5681058abecda57e0ee33f57b8855618e2509f1a354a20cc3403c
@@ -145,7 +145,7 @@ mirror:
     - name: quay.io/modh/odh-minimal-notebook-container@sha256:e2296a1386e4d9756c386b4c7dc44bac6f61b99b3b894a10c9ff2d8d5602ca4e
     - name: quay.io/modh/odh-minimal-notebook-container@sha256:eec50e5518176d5a31da739596a7ddae032d73851f9107846a587442ebd10a82
     - name: quay.io/modh/odh-pipeline-runtime-datascience-cpu-py311-ubi9@sha256:4331121ffdf4aff725f8dc07bdd7a38744a4b61df977e3ebb61b73fe8dbd139d
-    - name: quay.io/modh/odh-pipeline-runtime-datascience-cpu-py312-ubi9@sha256:8e44cba1e8fe24b5a6a02ff4f0ddabe4ab3c5996d98aafa9e7c2bb45117d0616
+    - name: quay.io/modh/odh-pipeline-runtime-datascience-cpu-py312-ubi9@sha256:cf65016f50d27a3c7808fa6879f478d8b4f581a0a1221665860528d76425d59c
     - name: quay.io/modh/odh-pipeline-runtime-minimal-cpu-py311-ubi9@sha256:03ef79b45b10610a157316bdee4068f2847ceab66b6006d5e5c35a87c3d04c0f
     - name: quay.io/modh/odh-pipeline-runtime-minimal-cpu-py312-ubi9@sha256:1ba6e3c08f011e68a9e7b6666bae6592a18e4fc7cb5e077c9555be3d7fab9fe8
     - name: quay.io/modh/odh-pipeline-runtime-pytorch-cuda-py311-ubi9@sha256:2072d38269c465aa7a3b6a849b2ea26eed0d9fef25f9fb3a0bd17ca422328818
@@ -194,8 +194,8 @@ mirror:
     - name: quay.io/modh/ta-lmes-job@sha256:d7e4a8cbf421d71c0f48b20b49f9e47d9b91e5d95c5fe9d3da8f4ff233c06459
     - name: quay.io/modh/text-generation-inference@sha256:850039122ab37c709fe4b9000c0617d2d163d5ab877e56aa611338f5911e5e8c
     - name: quay.io/modh/vllm@sha256:3934334c8270789a08f0b40a7a54cc712864fff0838ac2990a3b5711e175eef5
-    - name: quay.io/modh/vllm@sha256:91db29d553cd897911dcd64e250142178545f4e2f6f71456bb22b2649127b54f
     - name: quay.io/modh/vllm@sha256:bf8437d698f91ce8127dd2ea43b2bd01091d567fc49cc9b99bd56bea27cfdc45
+    - name: quay.io/modh/vllm@sha256:db766445a1e3455e1bf7d16b008f8946fcbe9f277377af7abb81ae358805e7e2
     - name: quay.io/modh/fms-hf-tuning@sha256:1ad46fe1a23f41f190c49ec2549c64f484c88fe220888a7a5700dd857ca243cc
     - name: quay.io/modh/ray@sha256:6d076aeb38ab3c34a6a2ef0f58dc667089aa15826fa08a73273c629333e12f1e
     - name: quay.io/modh/ray@sha256:6091617d45d5681058abecda57e0ee33f57b8855618e2509f1a354a20cc3403c
