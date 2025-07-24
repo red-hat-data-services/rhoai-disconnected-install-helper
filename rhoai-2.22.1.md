@@ -85,6 +85,11 @@
     - quay.io/modh/must-gather@sha256:3b63f056d719ecc1ddd980c99272ade594440af03836bc780f8f394a56010d43
 
 
+# Optional images:
+
+These images are ... hmm, do we want to document this somehow ... and what can we actually say?
+
+    - TBD
 
 
 # ImageSetConfiguration example:
@@ -190,7 +195,8 @@ mirror:
     - name: registry.redhat.io/rhelai1/instructlab-nvidia-rhel9@sha256:b3dc9af0244aa6b84e6c3ef53e714a316daaefaae67e28de397cd71ee4b2ac7e
     - name: quay.io/opendatahub/llama-stack-k8s-operator@sha256:f8f66ec02e7f59e510cb20eebfe0c1f6d41b62a9276c6e8e703d258f93d49119
     - name: quay.io/modh/must-gather@sha256:3b63f056d719ecc1ddd980c99272ade594440af03836bc780f8f394a56010d43
-
+  optionalImages:
+    - TBD
 
 
 ```
