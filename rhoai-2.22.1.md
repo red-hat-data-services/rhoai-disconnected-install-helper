@@ -1,4 +1,4 @@
-# Additional images:   
+# Additional images:
     - quay.io/modh/caikit-nlp@sha256:c867652a543eacd8288d08e9d38d8d25468c04fb838eebf450906293890b040d
     - quay.io/modh/caikit-tgis-serving@sha256:d8294f446afefc6cbba0df882bba12cdad142f79b29bda46227a6328128d7fb6
     - quay.io/modh/codeserver@sha256:92f2a10dde5c96b29324426b4325401e8f4a0d257e439927172d5fe909289c44
@@ -59,7 +59,7 @@
     - quay.io/opendatahub/llama-stack-k8s-operator@sha256:f8f66ec02e7f59e510cb20eebfe0c1f6d41b62a9276c6e8e703d258f93d49119
     - quay.io/modh/must-gather@sha256:3b63f056d719ecc1ddd980c99272ade594440af03836bc780f8f394a56010d43
 
-# Optional images:   
+# Optional images:
 These images are ... hmm, do we want to document this somehow ... and what can we actually say?
     - quay.io/modh/codeserver@sha256:1fd51b0e8a14995f1f7273a4b0b40f6e7e27e225ab179959747846e54079d61e
     - quay.io/modh/codeserver@sha256:b1a048f3711149e36a89e0eda1a5601130fb536ecc0aabae42ab6e4d26977354
@@ -107,7 +107,7 @@ mirror:
       - name: stable
         minVersion: 2.22.1
         maxVersion: 2.22.1
-  additionalImages:
+  additionalImages:   
     - name: quay.io/modh/caikit-nlp@sha256:c867652a543eacd8288d08e9d38d8d25468c04fb838eebf450906293890b040d
     - name: quay.io/modh/caikit-tgis-serving@sha256:d8294f446afefc6cbba0df882bba12cdad142f79b29bda46227a6328128d7fb6
     - name: quay.io/modh/codeserver@sha256:92f2a10dde5c96b29324426b4325401e8f4a0d257e439927172d5fe909289c44
@@ -167,7 +167,7 @@ mirror:
     - name: registry.redhat.io/rhelai1/instructlab-nvidia-rhel9@sha256:b3dc9af0244aa6b84e6c3ef53e714a316daaefaae67e28de397cd71ee4b2ac7e
     - name: quay.io/opendatahub/llama-stack-k8s-operator@sha256:f8f66ec02e7f59e510cb20eebfe0c1f6d41b62a9276c6e8e703d258f93d49119
     - name: quay.io/modh/must-gather@sha256:3b63f056d719ecc1ddd980c99272ade594440af03836bc780f8f394a56010d43
-  optionalImages:  
+  optionalImages:   
     - name: quay.io/modh/codeserver@sha256:1fd51b0e8a14995f1f7273a4b0b40f6e7e27e225ab179959747846e54079d61e
     - name: quay.io/modh/codeserver@sha256:b1a048f3711149e36a89e0eda1a5601130fb536ecc0aabae42ab6e4d26977354
     - name: quay.io/modh/cuda-notebooks@sha256:00c53599f5085beedd0debb062652a1856b19921ccf59bd76134471d24c3fa7d
