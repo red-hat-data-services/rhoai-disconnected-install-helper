@@ -60,7 +60,10 @@
     - quay.io/modh/must-gather@sha256:3b63f056d719ecc1ddd980c99272ade594440af03836bc780f8f394a56010d43
 
 # Optional images:
-These images are ... hmm, do we want to document this somehow ... and what can we actually say?
+
+These images are no longer officially supported but are still provided for convenience.
+They may be useful for users who wish to import older resources or maintain compatibility with previous setups.)
+
     - quay.io/modh/codeserver@sha256:1fd51b0e8a14995f1f7273a4b0b40f6e7e27e225ab179959747846e54079d61e
     - quay.io/modh/codeserver@sha256:b1a048f3711149e36a89e0eda1a5601130fb536ecc0aabae42ab6e4d26977354
     - quay.io/modh/cuda-notebooks@sha256:00c53599f5085beedd0debb062652a1856b19921ccf59bd76134471d24c3fa7d
