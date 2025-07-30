@@ -234,6 +234,21 @@ function image_set_configuration() {
         maxVersion: $minmax_version"
   fi
 
+# Prepare unsupported section only if condition is met
+if is_rhods_version_greater_or_equal_to rhods-2.22; then
+  unsupported_images_section=$(
+    cat <<EOF
+# Unsupported Images:
+These images are no longer officially supported but are still provided for convenience.
+(They may be useful for users who wish to import older resources or maintain compatibility with previous setups.)
+
+$(unsupported_images | sed 's/^/    - /')
+EOF
+  )
+else
+  unsupported_images_section=""
+fi
+
 cat <<EOF >"$file_name"
 # Additional images:
 $(find_images | sed 's/^/    - /')
@@ -246,8 +261,9 @@ fi)
 $(if ! is_rhods_version_greater_or_equal_to rhods-2.4; then
 find_notebooks_images | sed 's/^/    - name: /' 
 fi)
-# Unsupported Images:
-$(unsupported_images | sed 's/^/     #- name: /')
+
+$unsupported_images_section
+
 # ImageSetConfiguration example:
 \`\`\`yaml
 kind: ImageSetConfiguration
