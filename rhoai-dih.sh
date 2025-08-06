@@ -115,21 +115,8 @@ function find_images(){
   local openvino=""
   if is_rhods_version_greater_or_equal_to rhods-2.4; then
     if is_rhods_version_greater_or_equal_to rhods-2.14; then
-
-      if is_rhods_version_greater_or_equal_to rhods-2.22; then
-        # find ".odh-manifests" -type f -path "*/notebooks/manifests*"   -exec grep -hEv 'n-[2-9]' {} +   | grep -Eo "quay\.io/[^/]+/[^@\{\},]+@sha256:[a-f0-9]+"   | grep -v 'quay\.io/opendatahub'   | grep -v 'quay\.io/integreatly/prometheus-blackbox-exporter'   | sort -u
-        # find ".odh-manifests" \( -path "*/notebooks/*" -o -path "*/notebooks" \) -prune -o -type f \( -path "*/manifests/*" -o -path "*/config/*" -o -path "*/jupyter/*" \) ! -name "params-vllm-cpu.env" -exec grep -hrEo "quay\.io/[^/]+/[^@\{\},]+@sha256:[a-f0-9]+" {} + | grep -v 'quay\.io/opendatahub' | grep -v 'quay\.io/integreatly/prometheus-blackbox-exporter' | sort -u
-        (
-          find "$repository_folder" \( -path "*/notebooks/*" -o -path "*/notebooks" \) -prune -o -type f \( -path "*/manifests/*" -o -path "*/config/*" -o -path "*/jupyter/*" \) ! -name "params-vllm-cpu.env" -exec grep -hrEo "quay\.io/[^/]+/[^@\{\},]+@sha256:[a-f0-9]+" {} + ;
-          find "$repository_folder" -type f -path "*/notebooks/manifests*" -exec grep -hEv 'n-(2|[3-9]|[1-9][0-9]+)' {} + | grep -Eo "quay\.io/[^/]+/[^@\{\},]+@sha256:[a-f0-9]+"
-        ) | grep -v 'quay\.io/opendatahub' \
-          | grep -v 'quay\.io/integreatly/prometheus-blackbox-exporter' \
-          | sort -u
-      else
-       find "$repository_folder" -type f \( -path "*/manifests/*" -o -path "*/config/*" -o -path "*/jupyter/*" \) ! -name "params-vllm-cpu.env" -exec grep -hrEo "quay\.io/[^/]+/[^@\{\},]+@sha256:[a-f0-9]+" {} + | grep -v 'quay\.io/opendatahub' | grep -v 'quay\.io/integreatly/prometheus-blackbox-exporter' | sort -u
-      fi
      #find "$repository_folder" -maxdepth 2 -type d \( -name "manifests" -o -name "config" -o -name "jupyter" \) -exec bash -c 'grep -hrEo "quay\.io/[^/]+/[^@\{\},]+@sha256:[a-f0-9]+" "$0"' {} \; | grep -v 'quay\.io/opendatahub' | grep -v 'quay\.io/integreatly/prometheus-blackbox-exporter' | sort -u
-     # find "$repository_folder" -type f \( -path "*/manifests/*" -o -path "*/config/*" -o -path "*/jupyter/*" \) ! -name "params-vllm-cpu.env" -exec grep -hrEo "quay\.io/[^/]+/[^@\{\},]+@sha256:[a-f0-9]+" {} + | grep -v 'quay\.io/opendatahub' | grep -v 'quay\.io/integreatly/prometheus-blackbox-exporter' | sort -u
+     find "$repository_folder" -type f \( -path "*/manifests/*" -o -path "*/config/*" -o -path "*/jupyter/*" \) ! -name "params-vllm-cpu.env" -exec grep -hrEo "quay\.io/[^/]+/[^@\{\},]+@sha256:[a-f0-9]+" {} + | grep -v 'quay\.io/opendatahub' | grep -v 'quay\.io/integreatly/prometheus-blackbox-exporter' | sort -u
     else  
      find "$repository_folder" -maxdepth 2 -type d \( -name "manifests" -o -name "config" -o -name "jupyter" \) -exec bash -c 'grep -hrEo "quay\.io/[^/]+/[^@\{\},]+@sha256:[a-f0-9]+" "$0"' {} \; | grep -v 'quay\.io/opendatahub' | sort -u
     fi
@@ -234,21 +221,6 @@ function image_set_configuration() {
         maxVersion: $minmax_version"
   fi
 
-# Prepare unsupported section only if condition is met
-if is_rhods_version_greater_or_equal_to rhods-2.22; then
-  unsupported_images_section=$(
-    cat <<EOF
-# Unsupported Images:
-These images are no longer officially supported but are still provided for convenience.
-(They may be useful for users who wish to import older resources or maintain compatibility with previous setups.)
-
-$(unsupported_images | sed 's/^/    - /')
-EOF
-  )
-else
-  unsupported_images_section=""
-fi
-
 cat <<EOF >"$file_name"
 # Additional images:
 $(find_images | sed 's/^/    - /')
@@ -261,9 +233,6 @@ fi)
 $(if ! is_rhods_version_greater_or_equal_to rhods-2.4; then
 find_notebooks_images | sed 's/^/    - name: /' 
 fi)
-
-$unsupported_images_section
-
 # ImageSetConfiguration example:
 \`\`\`yaml
 kind: ImageSetConfiguration
