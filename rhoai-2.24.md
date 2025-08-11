@@ -1,5 +1,5 @@
 # Additional images:
-    - quay.io/modh/caikit-nlp@sha256:70fafbb3a14c444a476a8ebcb9a070869ba3c0f138ddca5f9b52512c59344505
+    - quay.io/modh/caikit-nlp@sha256:3d30419eb69073517532c9dd8da358f9e3b7b7ae16ab5ec2c7b63ad4de20c090
     - quay.io/modh/caikit-tgis-serving@sha256:3e5f2ae6cf1096b7722dbc24a3a3936c619b6bb9f4a624ad3b032af0563cd5ac
     - quay.io/modh/codeserver@sha256:92f2a10dde5c96b29324426b4325401e8f4a0d257e439927172d5fe909289c44
     - quay.io/modh/cuda-notebooks@sha256:55598c7de919afc6390cf59595549dc4554102481617ec42beaa3c47ef26d5e4
@@ -24,7 +24,7 @@
     - quay.io/modh/odh-pipeline-runtime-tensorflow-rocm-py311-ubi9@sha256:cb8c3d634e36fbfd50770807f5c580e38b6239d726ac16391e3e2a64d7f53043
     - quay.io/modh/odh-pytorch-notebook@sha256:20f7ab8e7954106ea5e22f3ee0ba8bc7b03975e5735049a765e021aa7eb06861
     - quay.io/modh/odh-trustyai-guardrails-regex-detector-rhel9@sha256:6ccc30dd697f7c88ea159cec4d22ce82336c23eb97a02bc5ecece69216aba216
-    - quay.io/modh/odh-trustyai-hf-detector-runtime-rhel9@sha256:1084f8a7b0014046620ab4f096777dd5d19561b13950de0135628e0e39a05a77
+    - quay.io/modh/odh-trustyai-hf-detector-runtime-rhel9@sha256:b25a6459cfd2da288dd16081a858f8428d27cd3b31cec2b9282962e644d1f777
     - quay.io/modh/odh-trustyai-notebook@sha256:a1b863c2787ba2bca292e381561ed1d92cf5bc25705edfb1ded5e0720a12d102
     - quay.io/modh/odh-trustyai-vllm-orchestrator-gateway-rhel9@sha256:776f9bf7d5819729b63279b9873d16dcc22d42625f631c559ac3e9d937cb05e6
     - quay.io/modh/odh-workbench-codeserver-datascience-cpu-py311-ubi9@sha256:9af3b5fd267a42e43eee2ac4b9bf5d3dced653660bdbc512799f55f399b718b5
@@ -117,7 +117,7 @@ mirror:
         minVersion: 2.24.0
         maxVersion: 2.24.0
   additionalImages:   
-    - name: quay.io/modh/caikit-nlp@sha256:70fafbb3a14c444a476a8ebcb9a070869ba3c0f138ddca5f9b52512c59344505
+    - name: quay.io/modh/caikit-nlp@sha256:3d30419eb69073517532c9dd8da358f9e3b7b7ae16ab5ec2c7b63ad4de20c090
     - name: quay.io/modh/caikit-tgis-serving@sha256:3e5f2ae6cf1096b7722dbc24a3a3936c619b6bb9f4a624ad3b032af0563cd5ac
     - name: quay.io/modh/codeserver@sha256:92f2a10dde5c96b29324426b4325401e8f4a0d257e439927172d5fe909289c44
     - name: quay.io/modh/cuda-notebooks@sha256:55598c7de919afc6390cf59595549dc4554102481617ec42beaa3c47ef26d5e4
@@ -142,7 +142,7 @@ mirror:
     - name: quay.io/modh/odh-pipeline-runtime-tensorflow-rocm-py311-ubi9@sha256:cb8c3d634e36fbfd50770807f5c580e38b6239d726ac16391e3e2a64d7f53043
     - name: quay.io/modh/odh-pytorch-notebook@sha256:20f7ab8e7954106ea5e22f3ee0ba8bc7b03975e5735049a765e021aa7eb06861
     - name: quay.io/modh/odh-trustyai-guardrails-regex-detector-rhel9@sha256:6ccc30dd697f7c88ea159cec4d22ce82336c23eb97a02bc5ecece69216aba216
-    - name: quay.io/modh/odh-trustyai-hf-detector-runtime-rhel9@sha256:1084f8a7b0014046620ab4f096777dd5d19561b13950de0135628e0e39a05a77
+    - name: quay.io/modh/odh-trustyai-hf-detector-runtime-rhel9@sha256:b25a6459cfd2da288dd16081a858f8428d27cd3b31cec2b9282962e644d1f777
     - name: quay.io/modh/odh-trustyai-notebook@sha256:a1b863c2787ba2bca292e381561ed1d92cf5bc25705edfb1ded5e0720a12d102
     - name: quay.io/modh/odh-trustyai-vllm-orchestrator-gateway-rhel9@sha256:776f9bf7d5819729b63279b9873d16dcc22d42625f631c559ac3e9d937cb05e6
     - name: quay.io/modh/odh-workbench-codeserver-datascience-cpu-py311-ubi9@sha256:9af3b5fd267a42e43eee2ac4b9bf5d3dced653660bdbc512799f55f399b718b5
