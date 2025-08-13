@@ -1,6 +1,6 @@
 # Additional images:
-    - quay.io/modh/caikit-nlp@sha256:3d30419eb69073517532c9dd8da358f9e3b7b7ae16ab5ec2c7b63ad4de20c090
-    - quay.io/modh/caikit-tgis-serving@sha256:3e5f2ae6cf1096b7722dbc24a3a3936c619b6bb9f4a624ad3b032af0563cd5ac
+    - quay.io/modh/caikit-nlp@sha256:dd2ad40af61e0eeabd95968dc8afdf44db0e774b8e3bf7d74481524179dd9738
+    - quay.io/modh/caikit-tgis-serving@sha256:e1dda3e8a0af6375ed3fc353ad3dc7c33d13fef60ceca1c5841c4d4d07a5e1b2
     - quay.io/modh/codeserver@sha256:92f2a10dde5c96b29324426b4325401e8f4a0d257e439927172d5fe909289c44
     - quay.io/modh/cuda-notebooks@sha256:55598c7de919afc6390cf59595549dc4554102481617ec42beaa3c47ef26d5e4
     - quay.io/modh/cuda-notebooks@sha256:99d3fb964e635873214de4676c259a96c2ea25f3f79cc4bead5bc9f39aba34c0
@@ -52,8 +52,8 @@
     - quay.io/modh/rocm-notebooks@sha256:f94702219419e651327636b390d1872c58fd7b8f9f6b16a02c958ffb918eded3
     - quay.io/modh/ta-lmes-driver@sha256:48ad9a19a70e3dee4ceb852b63eea1ad2aee33b2a0441e4f08ff56d400a0840d
     - quay.io/modh/ta-lmes-job@sha256:304a500884dac98a66f5a84f5fe7d8b1a597770cad73df357b8c49db1f1be25f
-    - quay.io/modh/text-generation-inference@sha256:e6cf911912ab2ed76b3bfa0104e90b467e0129ab360c4d4c5d9453095723c3c2
-    - quay.io/modh/vllm@sha256:0bfa370d27411502c7638c2e7ed3d8d9b11f3cf7788b84e4b01a2bdfc69eb600
+    - quay.io/modh/text-generation-inference@sha256:8419f73485c75b4eb0095d31879cc1a94e2be38a0ece08bc7923cef9cdd9444a
+    - quay.io/modh/vllm@sha256:4b4b2f09aa50bfe5355547f329d1e01ffb55d22ec33dda13a3d107005b270f1a
     - quay.io/modh/vllm@sha256:54d827b4f43641d01e40c3306c82faac9e6b1561ec7ebdd9d85d5dd1d9f20c41
     - quay.io/modh/vllm@sha256:7ffb902634843c9c954417ab7507fd7f9792be2287bbb0c0c1bf01171351aeae
     - quay.io/modh/fms-hf-tuning@sha256:1ad46fe1a23f41f190c49ec2549c64f484c88fe220888a7a5700dd857ca243cc
@@ -117,8 +117,8 @@ mirror:
         minVersion: 2.24.0
         maxVersion: 2.24.0
   additionalImages:   
-    - name: quay.io/modh/caikit-nlp@sha256:3d30419eb69073517532c9dd8da358f9e3b7b7ae16ab5ec2c7b63ad4de20c090
-    - name: quay.io/modh/caikit-tgis-serving@sha256:3e5f2ae6cf1096b7722dbc24a3a3936c619b6bb9f4a624ad3b032af0563cd5ac
+    - name: quay.io/modh/caikit-nlp@sha256:dd2ad40af61e0eeabd95968dc8afdf44db0e774b8e3bf7d74481524179dd9738
+    - name: quay.io/modh/caikit-tgis-serving@sha256:e1dda3e8a0af6375ed3fc353ad3dc7c33d13fef60ceca1c5841c4d4d07a5e1b2
     - name: quay.io/modh/codeserver@sha256:92f2a10dde5c96b29324426b4325401e8f4a0d257e439927172d5fe909289c44
     - name: quay.io/modh/cuda-notebooks@sha256:55598c7de919afc6390cf59595549dc4554102481617ec42beaa3c47ef26d5e4
     - name: quay.io/modh/cuda-notebooks@sha256:99d3fb964e635873214de4676c259a96c2ea25f3f79cc4bead5bc9f39aba34c0
@@ -170,8 +170,8 @@ mirror:
     - name: quay.io/modh/rocm-notebooks@sha256:f94702219419e651327636b390d1872c58fd7b8f9f6b16a02c958ffb918eded3
     - name: quay.io/modh/ta-lmes-driver@sha256:48ad9a19a70e3dee4ceb852b63eea1ad2aee33b2a0441e4f08ff56d400a0840d
     - name: quay.io/modh/ta-lmes-job@sha256:304a500884dac98a66f5a84f5fe7d8b1a597770cad73df357b8c49db1f1be25f
-    - name: quay.io/modh/text-generation-inference@sha256:e6cf911912ab2ed76b3bfa0104e90b467e0129ab360c4d4c5d9453095723c3c2
-    - name: quay.io/modh/vllm@sha256:0bfa370d27411502c7638c2e7ed3d8d9b11f3cf7788b84e4b01a2bdfc69eb600
+    - name: quay.io/modh/text-generation-inference@sha256:8419f73485c75b4eb0095d31879cc1a94e2be38a0ece08bc7923cef9cdd9444a
+    - name: quay.io/modh/vllm@sha256:4b4b2f09aa50bfe5355547f329d1e01ffb55d22ec33dda13a3d107005b270f1a
     - name: quay.io/modh/vllm@sha256:54d827b4f43641d01e40c3306c82faac9e6b1561ec7ebdd9d85d5dd1d9f20c41
     - name: quay.io/modh/vllm@sha256:7ffb902634843c9c954417ab7507fd7f9792be2287bbb0c0c1bf01171351aeae
     - name: quay.io/modh/fms-hf-tuning@sha256:1ad46fe1a23f41f190c49ec2549c64f484c88fe220888a7a5700dd857ca243cc
