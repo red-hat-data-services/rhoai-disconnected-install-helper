@@ -13,7 +13,7 @@
     - quay.io/modh/odh-minimal-notebook-container@sha256:2217d8a9cbf84c2bd3e6c6dc09089559e8a3905687ca3739e897c4b45e2b00b3
     - quay.io/modh/odh-pipeline-runtime-datascience-cpu-py311-ubi9@sha256:8b6afa5b4c75d9dce8d62fe3155a7871ae464e2a8cf8eb33fe6b0705ae01f865
     - quay.io/modh/odh-pipeline-runtime-datascience-cpu-py312-ubi9@sha256:7dd899b15d01a885377274cb4c75ee4c2e2859654580d7f384e1a9966a7ef0c2
-    - quay.io/modh/odh-pipeline-runtime-minimal-cpu-py311-ubi9@sha256:f4d3effb0d58b3c0b0604dee5f95592231b4de2b0016cdb0dad690296df9817f
+    - quay.io/modh/odh-pipeline-runtime-minimal-cpu-py311-ubi9@sha256:e626ead9cffa342ef89cf96c6f474835ef939512915d4839de3f62bce8f3d6ea
     - quay.io/modh/odh-pipeline-runtime-minimal-cpu-py312-ubi9@sha256:d87a78c8c849f5491248b0a3c83a616dcce7007b0dfd5e98040bdf3367e2e94b
     - quay.io/modh/odh-pipeline-runtime-pytorch-cuda-py311-ubi9@sha256:4abba5ae6f6fa7e9ac487ffb7df1fae39b63b32d3450912df1025946be34054e
     - quay.io/modh/odh-pipeline-runtime-pytorch-cuda-py312-ubi9@sha256:e45e4df8f5883d4948394f7b12da924782ec7a43baf304d65cac1a4d12f26988
@@ -131,7 +131,7 @@ mirror:
     - name: quay.io/modh/odh-minimal-notebook-container@sha256:2217d8a9cbf84c2bd3e6c6dc09089559e8a3905687ca3739e897c4b45e2b00b3
     - name: quay.io/modh/odh-pipeline-runtime-datascience-cpu-py311-ubi9@sha256:8b6afa5b4c75d9dce8d62fe3155a7871ae464e2a8cf8eb33fe6b0705ae01f865
     - name: quay.io/modh/odh-pipeline-runtime-datascience-cpu-py312-ubi9@sha256:7dd899b15d01a885377274cb4c75ee4c2e2859654580d7f384e1a9966a7ef0c2
-    - name: quay.io/modh/odh-pipeline-runtime-minimal-cpu-py311-ubi9@sha256:f4d3effb0d58b3c0b0604dee5f95592231b4de2b0016cdb0dad690296df9817f
+    - name: quay.io/modh/odh-pipeline-runtime-minimal-cpu-py311-ubi9@sha256:e626ead9cffa342ef89cf96c6f474835ef939512915d4839de3f62bce8f3d6ea
     - name: quay.io/modh/odh-pipeline-runtime-minimal-cpu-py312-ubi9@sha256:d87a78c8c849f5491248b0a3c83a616dcce7007b0dfd5e98040bdf3367e2e94b
     - name: quay.io/modh/odh-pipeline-runtime-pytorch-cuda-py311-ubi9@sha256:4abba5ae6f6fa7e9ac487ffb7df1fae39b63b32d3450912df1025946be34054e
     - name: quay.io/modh/odh-pipeline-runtime-pytorch-cuda-py312-ubi9@sha256:e45e4df8f5883d4948394f7b12da924782ec7a43baf304d65cac1a4d12f26988
