@@ -64,7 +64,7 @@
     - quay.io/modh/training@sha256:883739b576b485d79966d8c894fdd9ebebd226605a2abe8b33593ca67c87a394
     - quay.io/modh/training@sha256:6cdae840fa029da33cccab620367e82404d24ddf67762eb4537a9bffe1af306d
     - registry.redhat.io/rhelai1/instructlab-nvidia-rhel9@sha256:b3dc9af0244aa6b84e6c3ef53e714a316daaefaae67e28de397cd71ee4b2ac7e
-    - quay.io/modh/must-gather@sha256:413dd7e38522873c8c0839832d818bbcc384b80d559001d0fc4adfbf6cff2a2b
+    - quay.io/modh/must-gather@
 
 
 
