@@ -4,6 +4,8 @@ set -o pipefail
 set_defaults() {
   org_url_base="https://api.github.com/orgs/red-hat-data-services/repos?per_page=100&page="
   excluded_repos=("rhods-disconnected-install-helper" "odh-manifests" "openshift-ai-handbook")
+  # Repositories to exclude from rhoai-2.24 onwards
+  excluded_repos_from_rhoai_2_24=("notebooks" "must-gather" "kserve" "trustyai-service-operator" "lm-evaluation-harness" "fms-guardrails-orchestrator" "guardrails-regex-detector" "vllm-orchestrator-gateway" "guardrails-detectors")
   rhods_version="${rhods_version:-}"
   repository_folder="${repository_folder:-.odh-manifests}"
   notebooks_folder="${notebooks_folder:-.odh-notebooks}"
@@ -115,19 +117,7 @@ function find_images(){
   local openvino=""
   if is_rhods_version_greater_or_equal_to rhods-2.4; then
     if is_rhods_version_greater_or_equal_to rhods-2.14; then
-
-      if is_rhods_version_greater_or_equal_to rhods-2.22; then
-        # find ".odh-manifests" -type f -path "*/notebooks/manifests*"   -exec grep -hEv 'n-[2-9]' {} +   | grep -Eo "quay\.io/[^/]+/[^@\{\},]+@sha256:[a-f0-9]+"   | grep -v 'quay\.io/opendatahub'   | grep -v 'quay\.io/integreatly/prometheus-blackbox-exporter'   | sort -u
-        # find ".odh-manifests" \( -path "*/notebooks/*" -o -path "*/notebooks" \) -prune -o -type f \( -path "*/manifests/*" -o -path "*/config/*" -o -path "*/jupyter/*" \) ! -name "params-vllm-cpu.env" -exec grep -hrEo "quay\.io/[^/]+/[^@\{\},]+@sha256:[a-f0-9]+" {} + | grep -v 'quay\.io/opendatahub' | grep -v 'quay\.io/integreatly/prometheus-blackbox-exporter' | sort -u
-        (
-          find "$repository_folder" \( -path "*/notebooks/*" -o -path "*/notebooks" \) -prune -o -type f \( -path "*/manifests/*" -o -path "*/config/*" -o -path "*/jupyter/*" \) ! -name "params-vllm-cpu.env" -exec grep -hrEo "quay\.io/[^/]+/[^@\{\},]+@sha256:[a-f0-9]+" {} + ;
-          find "$repository_folder" -type f -path "*/notebooks/manifests*" -exec grep -hEv 'n-(2|[3-9]|[1-9][0-9]+)' {} + | grep -Eo "quay\.io/[^/]+/[^@\{\},]+@sha256:[a-f0-9]+"
-        ) | grep -v 'quay\.io/opendatahub' \
-          | grep -v 'quay\.io/integreatly/prometheus-blackbox-exporter' \
-          | sort -u
-      else
-       find "$repository_folder" -type f \( -path "*/manifests/*" -o -path "*/config/*" -o -path "*/jupyter/*" \) ! -name "params-vllm-cpu.env" -exec grep -hrEo "quay\.io/[^/]+/[^@\{\},]+@sha256:[a-f0-9]+" {} + | grep -v 'quay\.io/opendatahub' | grep -v 'quay\.io/integreatly/prometheus-blackbox-exporter' | sort -u
-      fi
+      find "$repository_folder" -type f \( -path "*/manifests/*" -o -path "*/config/*" -o -path "*/jupyter/*" \) ! -name "params-vllm-cpu.env" -exec grep -hrEo "quay\.io/[^/]+/[^@\{\},]+@sha256:[a-f0-9]+" {} + | grep -v 'quay\.io/opendatahub' | grep -v 'quay\.io/integreatly/prometheus-blackbox-exporter' | sort -u
      #find "$repository_folder" -maxdepth 2 -type d \( -name "manifests" -o -name "config" -o -name "jupyter" \) -exec bash -c 'grep -hrEo "quay\.io/[^/]+/[^@\{\},]+@sha256:[a-f0-9]+" "$0"' {} \; | grep -v 'quay\.io/opendatahub' | grep -v 'quay\.io/integreatly/prometheus-blackbox-exporter' | sort -u
      # find "$repository_folder" -type f \( -path "*/manifests/*" -o -path "*/config/*" -o -path "*/jupyter/*" \) ! -name "params-vllm-cpu.env" -exec grep -hrEo "quay\.io/[^/]+/[^@\{\},]+@sha256:[a-f0-9]+" {} + | grep -v 'quay\.io/opendatahub' | grep -v 'quay\.io/integreatly/prometheus-blackbox-exporter' | sort -u
     else  
@@ -400,11 +390,23 @@ function clone_default_repo() {
 
 function is_repo_excluded() {
   local repo=$1
+  
+  # Check general excluded repos
   for excluded_repo in "${excluded_repos[@]}"; do
     if [[ "$repo" == "$excluded_repo" ]]; then
       return 0
     fi
   done
+  
+  # Check version-specific excluded repos (rhoai-2.24 and later)
+  if is_rhods_version_greater_or_equal_to rhoai-2.24; then
+    for excluded_repo in "${excluded_repos_from_rhoai_2_24[@]}"; do
+      if [[ "$repo" == "$excluded_repo" ]]; then
+        return 0
+      fi
+    done
+  fi
+  
   return 1
 }
 
