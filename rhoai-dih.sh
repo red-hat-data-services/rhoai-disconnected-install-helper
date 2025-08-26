@@ -20,7 +20,7 @@ set_defaults() {
   channel="${channel:-fast}"
 }
 # Other additional images
-must_gather_image=""
+# must_gather_image=""
 
 function help() {
   echo "Usage: script.sh [-h] [-v] [--skip-image-verification] [--skip-tls]"
@@ -117,7 +117,19 @@ function find_images(){
   local openvino=""
   if is_rhods_version_greater_or_equal_to rhods-2.4; then
     if is_rhods_version_greater_or_equal_to rhods-2.14; then
-      find "$repository_folder" -type f \( -path "*/manifests/*" -o -path "*/config/*" -o -path "*/jupyter/*" \) ! -name "params-vllm-cpu.env" -exec grep -hrEo "quay\.io/[^/]+/[^@\{\},]+@sha256:[a-f0-9]+" {} + | grep -v 'quay\.io/opendatahub' | grep -v 'quay\.io/integreatly/prometheus-blackbox-exporter' | sort -u
+
+      # if is_rhods_version_greater_or_equal_to rhods-2.22; then
+      #   # find ".odh-manifests" -type f -path "*/notebooks/manifests*"   -exec grep -hEv 'n-[2-9]' {} +   | grep -Eo "quay\.io/[^/]+/[^@\{\},]+@sha256:[a-f0-9]+"   | grep -v 'quay\.io/opendatahub'   | grep -v 'quay\.io/integreatly/prometheus-blackbox-exporter'   | sort -u
+      #   # find ".odh-manifests" \( -path "*/notebooks/*" -o -path "*/notebooks" \) -prune -o -type f \( -path "*/manifests/*" -o -path "*/config/*" -o -path "*/jupyter/*" \) ! -name "params-vllm-cpu.env" -exec grep -hrEo "quay\.io/[^/]+/[^@\{\},]+@sha256:[a-f0-9]+" {} + | grep -v 'quay\.io/opendatahub' | grep -v 'quay\.io/integreatly/prometheus-blackbox-exporter' | sort -u
+      #   (
+      #     find "$repository_folder" \( -path "*/notebooks/*" -o -path "*/notebooks" \) -prune -o -type f \( -path "*/manifests/*" -o -path "*/config/*" -o -path "*/jupyter/*" \) ! -name "params-vllm-cpu.env" -exec grep -hrEo "quay\.io/[^/]+/[^@\{\},]+@sha256:[a-f0-9]+" {} + ;
+      #     find "$repository_folder" -type f -path "*/notebooks/manifests*" -exec grep -hEv 'n-(2|[3-9]|[1-9][0-9]+)' {} + | grep -Eo "quay\.io/[^/]+/[^@\{\},]+@sha256:[a-f0-9]+"
+      #   ) | grep -v 'quay\.io/opendatahub' \
+      #     | grep -v 'quay\.io/integreatly/prometheus-blackbox-exporter' \
+      #     | sort -u
+      # else
+       find "$repository_folder" -type f \( -path "*/manifests/*" -o -path "*/config/*" -o -path "*/jupyter/*" \) ! -name "params-vllm-cpu.env" -exec grep -hrEo "quay\.io/[^/]+/[^@\{\},]+@sha256:[a-f0-9]+" {} + | grep -v 'quay\.io/opendatahub' | grep -v 'quay\.io/integreatly/prometheus-blackbox-exporter' | sort -u
+      # fi
      #find "$repository_folder" -maxdepth 2 -type d \( -name "manifests" -o -name "config" -o -name "jupyter" \) -exec bash -c 'grep -hrEo "quay\.io/[^/]+/[^@\{\},]+@sha256:[a-f0-9]+" "$0"' {} \; | grep -v 'quay\.io/opendatahub' | grep -v 'quay\.io/integreatly/prometheus-blackbox-exporter' | sort -u
      # find "$repository_folder" -type f \( -path "*/manifests/*" -o -path "*/config/*" -o -path "*/jupyter/*" \) ! -name "params-vllm-cpu.env" -exec grep -hrEo "quay\.io/[^/]+/[^@\{\},]+@sha256:[a-f0-9]+" {} + | grep -v 'quay\.io/opendatahub' | grep -v 'quay\.io/integreatly/prometheus-blackbox-exporter' | sort -u
     else  
@@ -209,7 +221,7 @@ function image_set_configuration() {
         verify_image_exists "$image"
       done < <(find_notebooks_images)
     fi
-    verify_image_exists "$(image_tag_to_digest $must_gather_image)"
+    # verify_image_exists "$(image_tag_to_digest $must_gather_image)"
   else
     echo "Skipping image verification"
   fi
@@ -238,11 +250,11 @@ EOF
 else
   unsupported_images_section=""
 fi
-
+# $(image_tag_to_digest "$must_gather_image" | sed 's/^/    - /')
 cat <<EOF >"$file_name"
 # Additional images:
 $(find_images | sed 's/^/    - /')
-$(image_tag_to_digest "$must_gather_image" | sed 's/^/    - /')
+
 $(if [ -n "$branch_main" ]; then echo "    - quay.io/modh/kserve-agent:nightly"
     echo "    - quay.io/modh/kserve-controller:nightly"
     echo "    - quay.io/modh/kserve-router:nightly"
@@ -251,7 +263,6 @@ fi)
 $(if ! is_rhods_version_greater_or_equal_to rhods-2.4; then
 find_notebooks_images | sed 's/^/    - name: /' 
 fi)
-
 $unsupported_images_section
 
 # ImageSetConfiguration example:
@@ -273,7 +284,7 @@ mirror:
         $min_max_version
   additionalImages:   
 $(find_images | sed 's/^/    - name: /')
-$(image_tag_to_digest "$must_gather_image" | sed 's/^/    - name: /')
+
 $(if [ -n "$branch_main" ]; then echo "    - name: quay.io/modh/kserve-agent:nightly"
     echo "    - name: quay.io/modh/kserve-controller:nightly"
     echo "    - name: quay.io/modh/kserve-router:nightly"
@@ -286,7 +297,7 @@ fi)
 \`\`\`
 EOF
 }
-
+#$(image_tag_to_digest "$must_gather_image" | sed 's/^/    - name: /')
 function change_rhods_version() {
   echo "Change rhods version $rhods_version branch"
 
@@ -534,11 +545,11 @@ parse_args() {
     esac
   done
 }
-function update_must_gather() {
-  if is_rhods_version_greater_or_equal_to rhods-2.10; then
-    must_gather_image="quay.io/modh/must-gather:$rhods_version"
-  else
-    must_gather_image="quay.io/modh/must-gather:stable"
-  fi
+# function update_must_gather() {
+#   if is_rhods_version_greater_or_equal_to rhods-2.10; then
+#     must_gather_image="quay.io/modh/must-gather:$rhods_version"
+#   else
+#     must_gather_image="quay.io/modh/must-gather:stable"
+#   fi
   
-}
+# }
