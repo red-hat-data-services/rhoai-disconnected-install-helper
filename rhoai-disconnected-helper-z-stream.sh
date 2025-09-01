@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source rhoai-dih.sh
+source rhoai-z-dih.sh
 
 function main(){
   rhoai_version=$1
