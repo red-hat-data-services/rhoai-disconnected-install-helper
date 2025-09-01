@@ -6,7 +6,7 @@
     - quay.io/modh/text-generation-inference@sha256:8419f73485c75b4eb0095d31879cc1a94e2be38a0ece08bc7923cef9cdd9444a
     - quay.io/modh/vllm@sha256:4b9dd97838cf5f4b2c9dde0357abef2a7953965f028a07446e78f2a412df90fb
     - quay.io/modh/vllm@sha256:b929e167fd82825833364c8b015af7a5f14611352caf5be9e036774e808c30db
-    - quay.io/modh/vllm@sha256:dd80ef1a45580e2e290809dae8fff21fa7c2f9777023b3cf5915aafdf8bdfbc1
+    - quay.io/modh/vllm@sha256:dce9ba3af3923a1cae7087de65b08a5fdd53772d6693baaba569b4e1c6bc9de1
     - quay.io/modh/fms-hf-tuning@sha256:1ad46fe1a23f41f190c49ec2549c64f484c88fe220888a7a5700dd857ca243cc
     - quay.io/modh/ray@sha256:6d076aeb38ab3c34a6a2ef0f58dc667089aa15826fa08a73273c629333e12f1e
     - quay.io/modh/ray@sha256:6091617d45d5681058abecda57e0ee33f57b8855618e2509f1a354a20cc3403c
@@ -83,7 +83,7 @@ mirror:
     - name: quay.io/modh/text-generation-inference@sha256:8419f73485c75b4eb0095d31879cc1a94e2be38a0ece08bc7923cef9cdd9444a
     - name: quay.io/modh/vllm@sha256:4b9dd97838cf5f4b2c9dde0357abef2a7953965f028a07446e78f2a412df90fb
     - name: quay.io/modh/vllm@sha256:b929e167fd82825833364c8b015af7a5f14611352caf5be9e036774e808c30db
-    - name: quay.io/modh/vllm@sha256:dd80ef1a45580e2e290809dae8fff21fa7c2f9777023b3cf5915aafdf8bdfbc1
+    - name: quay.io/modh/vllm@sha256:dce9ba3af3923a1cae7087de65b08a5fdd53772d6693baaba569b4e1c6bc9de1
     - name: quay.io/modh/fms-hf-tuning@sha256:1ad46fe1a23f41f190c49ec2549c64f484c88fe220888a7a5700dd857ca243cc
     - name: quay.io/modh/ray@sha256:6d076aeb38ab3c34a6a2ef0f58dc667089aa15826fa08a73273c629333e12f1e
     - name: quay.io/modh/ray@sha256:6091617d45d5681058abecda57e0ee33f57b8855618e2509f1a354a20cc3403c
