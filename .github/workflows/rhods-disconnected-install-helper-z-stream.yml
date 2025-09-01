@@ -21,7 +21,7 @@ jobs:
       - name: Run rhoai-disconnected-helper-z-stream.sh script
         run: |
           chmod +x rhoai-disconnected-helper-z-stream.sh
-          chmod +x rhoai-dih.sh
+          chmod +x rhoai-z-dih.sh
           trimmed_version=$(./rhoai-disconnected-helper-z-stream.sh "${{ github.event.inputs.repositories }}" "${{ github.event.inputs.channel_input }}")
           echo "Trimmed Version: $trimmed_version"
         shell: bash
