@@ -1,12 +1,12 @@
 # Additional images:
     - quay.io/modh/caikit-nlp@sha256:8ec267a4517480c6e4604cb2e8f7e5d51ace9fd9602b88fd44b85c2112545d10
     - quay.io/modh/caikit-tgis-serving@sha256:8b322bbc76089873ae72dc49969f8fee7028d7cc4341d3669f8082850fce5051
-    - quay.io/modh/odh-trustyai-hf-detector-runtime-rhel9@sha256:5b03f7297c3a3972c3bb32780c3680acceb1492283c4680759693d5f7a0672b8
+    - quay.io/modh/odh-trustyai-hf-detector-runtime-rhel9@sha256:b6ab734ad5432e6d9567ca785e3f272c4ff624f5c18f0ea0b4abc179cd53c8e1
     - quay.io/modh/openvino_model_server@sha256:38522cc97fe12a7c6ab231534094b31e4ccc3cf2e46813ae5d91ec587a3df5f4
     - quay.io/modh/text-generation-inference@sha256:8419f73485c75b4eb0095d31879cc1a94e2be38a0ece08bc7923cef9cdd9444a
-    - quay.io/modh/vllm@sha256:45a1b312aedc14c7813c505abd9dc2172d5295ed42e520385bb69d1d8516862c
     - quay.io/modh/vllm@sha256:bb12d3279095bbf768241342765c48a27d217e7f66a0da5add951b4f6fac8416
     - quay.io/modh/vllm@sha256:dd31953cb6a187fe3f089cda0a1d97a287fe1925e4365c09f13e225045f0c4a3
+    - quay.io/modh/vllm@sha256:ea4f000e88f9bfac7de9292508cfaabc1fcdef15c909d9809839d7ac47e69497
     - quay.io/modh/fms-hf-tuning@sha256:1ad46fe1a23f41f190c49ec2549c64f484c88fe220888a7a5700dd857ca243cc
     - quay.io/modh/ray@sha256:6d076aeb38ab3c34a6a2ef0f58dc667089aa15826fa08a73273c629333e12f1e
     - quay.io/modh/ray@sha256:23860dfe2e47bb69709b3883b08fd1a4d836ce02eaf8d0afeeafe6986d0fc8fb
@@ -80,12 +80,12 @@ mirror:
   additionalImages:   
     - name: quay.io/modh/caikit-nlp@sha256:8ec267a4517480c6e4604cb2e8f7e5d51ace9fd9602b88fd44b85c2112545d10
     - name: quay.io/modh/caikit-tgis-serving@sha256:8b322bbc76089873ae72dc49969f8fee7028d7cc4341d3669f8082850fce5051
-    - name: quay.io/modh/odh-trustyai-hf-detector-runtime-rhel9@sha256:5b03f7297c3a3972c3bb32780c3680acceb1492283c4680759693d5f7a0672b8
+    - name: quay.io/modh/odh-trustyai-hf-detector-runtime-rhel9@sha256:b6ab734ad5432e6d9567ca785e3f272c4ff624f5c18f0ea0b4abc179cd53c8e1
     - name: quay.io/modh/openvino_model_server@sha256:38522cc97fe12a7c6ab231534094b31e4ccc3cf2e46813ae5d91ec587a3df5f4
     - name: quay.io/modh/text-generation-inference@sha256:8419f73485c75b4eb0095d31879cc1a94e2be38a0ece08bc7923cef9cdd9444a
-    - name: quay.io/modh/vllm@sha256:45a1b312aedc14c7813c505abd9dc2172d5295ed42e520385bb69d1d8516862c
     - name: quay.io/modh/vllm@sha256:bb12d3279095bbf768241342765c48a27d217e7f66a0da5add951b4f6fac8416
     - name: quay.io/modh/vllm@sha256:dd31953cb6a187fe3f089cda0a1d97a287fe1925e4365c09f13e225045f0c4a3
+    - name: quay.io/modh/vllm@sha256:ea4f000e88f9bfac7de9292508cfaabc1fcdef15c909d9809839d7ac47e69497
     - name: quay.io/modh/fms-hf-tuning@sha256:1ad46fe1a23f41f190c49ec2549c64f484c88fe220888a7a5700dd857ca243cc
     - name: quay.io/modh/ray@sha256:6d076aeb38ab3c34a6a2ef0f58dc667089aa15826fa08a73273c629333e12f1e
     - name: quay.io/modh/ray@sha256:23860dfe2e47bb69709b3883b08fd1a4d836ce02eaf8d0afeeafe6986d0fc8fb
