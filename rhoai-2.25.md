@@ -1,7 +1,7 @@
 # Additional images:
     - quay.io/modh/caikit-nlp@sha256:c13befe59f57255666f2e77385e8d505f73785f08439acaece28fde0f0378297
     - quay.io/modh/caikit-tgis-serving@sha256:8b322bbc76089873ae72dc49969f8fee7028d7cc4341d3669f8082850fce5051
-    - quay.io/modh/odh-trustyai-hf-detector-runtime-rhel9@sha256:b6ab734ad5432e6d9567ca785e3f272c4ff624f5c18f0ea0b4abc179cd53c8e1
+    - quay.io/modh/odh-trustyai-hf-detector-runtime-rhel9@sha256:afd0233e50a2db28bfe94191411203b8267f4e862b3d39358bd36f8f3e53cffe
     - quay.io/modh/openvino_model_server@sha256:38522cc97fe12a7c6ab231534094b31e4ccc3cf2e46813ae5d91ec587a3df5f4
     - quay.io/modh/text-generation-inference@sha256:8419f73485c75b4eb0095d31879cc1a94e2be38a0ece08bc7923cef9cdd9444a
     - quay.io/modh/vllm@sha256:af4aa75c8a97d94cc3f7c7fd71735e2c7c06348660cae99ef9bf5a0a720ccd0d
@@ -80,7 +80,7 @@ mirror:
   additionalImages:   
     - name: quay.io/modh/caikit-nlp@sha256:c13befe59f57255666f2e77385e8d505f73785f08439acaece28fde0f0378297
     - name: quay.io/modh/caikit-tgis-serving@sha256:8b322bbc76089873ae72dc49969f8fee7028d7cc4341d3669f8082850fce5051
-    - name: quay.io/modh/odh-trustyai-hf-detector-runtime-rhel9@sha256:b6ab734ad5432e6d9567ca785e3f272c4ff624f5c18f0ea0b4abc179cd53c8e1
+    - name: quay.io/modh/odh-trustyai-hf-detector-runtime-rhel9@sha256:afd0233e50a2db28bfe94191411203b8267f4e862b3d39358bd36f8f3e53cffe
     - name: quay.io/modh/openvino_model_server@sha256:38522cc97fe12a7c6ab231534094b31e4ccc3cf2e46813ae5d91ec587a3df5f4
     - name: quay.io/modh/text-generation-inference@sha256:8419f73485c75b4eb0095d31879cc1a94e2be38a0ece08bc7923cef9cdd9444a
     - name: quay.io/modh/vllm@sha256:af4aa75c8a97d94cc3f7c7fd71735e2c7c06348660cae99ef9bf5a0a720ccd0d
