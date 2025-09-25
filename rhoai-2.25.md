@@ -1,13 +1,4 @@
 # Additional images:
-    - quay.io/modh/caikit-nlp@sha256:ea1a0495ed9446c185225dd408664530412e7b71e7369eccabecec9af1d4e87c
-    - quay.io/modh/caikit-tgis-serving@sha256:da5b511dc9eeeaacccd2fab4a0f967f0b30dde5e45de9934562153e0125e9d6b
-    - quay.io/modh/odh-trustyai-hf-detector-runtime-rhel9@sha256:d1c099a1913cc6d5b99bf28fd8f89d7b6486176f78f561d80248a0e90916f9ad
-    - quay.io/modh/openvino_model_server@sha256:ae7efd08f6a1f784bca561720d994f1d0541e25b0d881e4a6dfb82d8d92b5ed9
-    - quay.io/modh/text-generation-inference@sha256:8419f73485c75b4eb0095d31879cc1a94e2be38a0ece08bc7923cef9cdd9444a
-    - quay.io/modh/vllm@sha256:4c6dc4bbcec1d75bb84d987adace09b97ce8a5433224a75b333fac446ba1e056
-    - quay.io/modh/vllm@sha256:af4aa75c8a97d94cc3f7c7fd71735e2c7c06348660cae99ef9bf5a0a720ccd0d
-    - quay.io/modh/vllm@sha256:af8ca1d2b10e834f67529ba64e476cccd360abc676fcdbf46cfdff8145b71d2c
-    - quay.io/modh/vllm@sha256:ea4f000e88f9bfac7de9292508cfaabc1fcdef15c909d9809839d7ac47e69497
     - quay.io/rhoai/odh-model-registry-job-async-upload-rhel9@sha256:2791e74c01749df5a5526f799211bcd5087c7c1e92a0ac947ede8d7ee642f9ca
     - quay.io/modh/fms-hf-tuning@sha256:1ad46fe1a23f41f190c49ec2549c64f484c88fe220888a7a5700dd857ca243cc
     - quay.io/modh/ray@sha256:6d076aeb38ab3c34a6a2ef0f58dc667089aa15826fa08a73273c629333e12f1e
@@ -81,15 +72,6 @@ mirror:
         minVersion: 2.25.0
         maxVersion: 2.25.0
   additionalImages:   
-    - name: quay.io/modh/caikit-nlp@sha256:ea1a0495ed9446c185225dd408664530412e7b71e7369eccabecec9af1d4e87c
-    - name: quay.io/modh/caikit-tgis-serving@sha256:da5b511dc9eeeaacccd2fab4a0f967f0b30dde5e45de9934562153e0125e9d6b
-    - name: quay.io/modh/odh-trustyai-hf-detector-runtime-rhel9@sha256:d1c099a1913cc6d5b99bf28fd8f89d7b6486176f78f561d80248a0e90916f9ad
-    - name: quay.io/modh/openvino_model_server@sha256:ae7efd08f6a1f784bca561720d994f1d0541e25b0d881e4a6dfb82d8d92b5ed9
-    - name: quay.io/modh/text-generation-inference@sha256:8419f73485c75b4eb0095d31879cc1a94e2be38a0ece08bc7923cef9cdd9444a
-    - name: quay.io/modh/vllm@sha256:4c6dc4bbcec1d75bb84d987adace09b97ce8a5433224a75b333fac446ba1e056
-    - name: quay.io/modh/vllm@sha256:af4aa75c8a97d94cc3f7c7fd71735e2c7c06348660cae99ef9bf5a0a720ccd0d
-    - name: quay.io/modh/vllm@sha256:af8ca1d2b10e834f67529ba64e476cccd360abc676fcdbf46cfdff8145b71d2c
-    - name: quay.io/modh/vllm@sha256:ea4f000e88f9bfac7de9292508cfaabc1fcdef15c909d9809839d7ac47e69497
     - name: quay.io/rhoai/odh-model-registry-job-async-upload-rhel9@sha256:2791e74c01749df5a5526f799211bcd5087c7c1e92a0ac947ede8d7ee642f9ca
     - name: quay.io/modh/fms-hf-tuning@sha256:1ad46fe1a23f41f190c49ec2549c64f484c88fe220888a7a5700dd857ca243cc
     - name: quay.io/modh/ray@sha256:6d076aeb38ab3c34a6a2ef0f58dc667089aa15826fa08a73273c629333e12f1e
