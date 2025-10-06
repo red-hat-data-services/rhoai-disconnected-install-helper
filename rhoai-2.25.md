@@ -1,6 +1,5 @@
 # Additional images:
     - quay.io/modh/text-generation-inference@sha256:8419f73485c75b4eb0095d31879cc1a94e2be38a0ece08bc7923cef9cdd9444a
-    - quay.io/rhoai/odh-kserve-localmodel-rhel9@sha256:2690b025e84f8adc27570499793144a6e0eec31f07e8a3d43428d3fffd23e220
     - quay.io/rhoai/odh-model-registry-job-async-upload-rhel9@sha256:2791e74c01749df5a5526f799211bcd5087c7c1e92a0ac947ede8d7ee642f9ca
     - quay.io/modh/fms-hf-tuning@sha256:1ad46fe1a23f41f190c49ec2549c64f484c88fe220888a7a5700dd857ca243cc
     - quay.io/modh/ray@sha256:6d076aeb38ab3c34a6a2ef0f58dc667089aa15826fa08a73273c629333e12f1e
@@ -75,7 +74,6 @@ mirror:
         maxVersion: 2.25.0
   additionalImages:   
     - name: quay.io/modh/text-generation-inference@sha256:8419f73485c75b4eb0095d31879cc1a94e2be38a0ece08bc7923cef9cdd9444a
-    - name: quay.io/rhoai/odh-kserve-localmodel-rhel9@sha256:2690b025e84f8adc27570499793144a6e0eec31f07e8a3d43428d3fffd23e220
     - name: quay.io/rhoai/odh-model-registry-job-async-upload-rhel9@sha256:2791e74c01749df5a5526f799211bcd5087c7c1e92a0ac947ede8d7ee642f9ca
     - name: quay.io/modh/fms-hf-tuning@sha256:1ad46fe1a23f41f190c49ec2549c64f484c88fe220888a7a5700dd857ca243cc
     - name: quay.io/modh/ray@sha256:6d076aeb38ab3c34a6a2ef0f58dc667089aa15826fa08a73273c629333e12f1e
