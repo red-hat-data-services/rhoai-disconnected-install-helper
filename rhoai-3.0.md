@@ -1,5 +1,5 @@
 # Additional images:
-    - quay.io/jtanner/kube-auth-proxy:latest@sha256:434580fd42d73727d62566ff6d8336219a31b322798b48096ed167daaec42f07
+
 
 
 
@@ -26,7 +26,7 @@ mirror:
         minVersion: 3.0.0
         maxVersion: 3.0.0
   additionalImages:   
-    - name: quay.io/jtanner/kube-auth-proxy:latest@sha256:434580fd42d73727d62566ff6d8336219a31b322798b48096ed167daaec42f07
+
 
 
 
