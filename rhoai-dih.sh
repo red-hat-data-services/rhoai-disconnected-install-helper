@@ -115,6 +115,15 @@ function image_tag_to_digest() {
 
 function find_images(){
   local openvino=""
+
+if is_rhods_version_greater_or_equal_to rhods-2.25; then
+  # Only read from rhoai-disconnected-images.yaml
+  IMAGES_FILE="$repository_folder/rhoai-additional-images/rhoai-disconnected-images.yaml"
+  if [ -f "$IMAGES_FILE" ]; then
+    ADDITIONAL_IMAGES=$(yq e '.additional-images[]' "$IMAGES_FILE")
+    echo "$ADDITIONAL_IMAGES"
+  fi
+else
   if is_rhods_version_greater_or_equal_to rhods-2.4; then
     if is_rhods_version_greater_or_equal_to rhods-2.14; then
 
@@ -188,7 +197,7 @@ function find_images(){
     fi
   fi
 
-
+fi
 }
 
 function find_notebooks_images() {
