@@ -11,7 +11,7 @@
     - quay.io/modh/training@sha256:6cdae840fa029da33cccab620367e82404d24ddf67762eb4537a9bffe1af306d
     - registry.redhat.io/rhelai1/instructlab-nvidia-rhel9@sha256:b3dc9af0244aa6b84e6c3ef53e714a316daaefaae67e28de397cd71ee4b2ac7e
     - registry.redhat.io/openshift4/ose-oauth-proxy-rhel9@sha256:d3056b35d9a205b9f2c48d924f199c5ac23904eb18d526e4bff229e7c7181415
-    - registry.redhat.io/rhel9/postgresql-16:latest@sha256:3ffdde9a8e930b9cc95d659606487aac1d4d46691c04d2d926a49256d3aee6de"
+    - registry.redhat.io/rhel9/postgresql-16:latest@sha256:3ffdde9a8e930b9cc95d659606487aac1d4d46691c04d2d926a49256d3aee6de
     - quay.io/modh/odh-minimal-notebook-container@sha256:2217d8a9cbf84c2bd3e6c6dc09089559e8a3905687ca3739e897c4b45e2b00b3
     - quay.io/modh/odh-minimal-notebook-container@sha256:e2296a1386e4d9756c386b4c7dc44bac6f61b99b3b894a10c9ff2d8d5602ca4e
     - quay.io/modh/odh-minimal-notebook-container@sha256:4ba72ae7f367a36030470fa4ac22eca0aab285c7c3f1c4cdcc33dc07aa522143
@@ -85,7 +85,7 @@ mirror:
     - name: quay.io/modh/training@sha256:6cdae840fa029da33cccab620367e82404d24ddf67762eb4537a9bffe1af306d
     - name: registry.redhat.io/rhelai1/instructlab-nvidia-rhel9@sha256:b3dc9af0244aa6b84e6c3ef53e714a316daaefaae67e28de397cd71ee4b2ac7e
     - name: registry.redhat.io/openshift4/ose-oauth-proxy-rhel9@sha256:d3056b35d9a205b9f2c48d924f199c5ac23904eb18d526e4bff229e7c7181415
-    - name: registry.redhat.io/rhel9/postgresql-16:latest@sha256:3ffdde9a8e930b9cc95d659606487aac1d4d46691c04d2d926a49256d3aee6de"
+    - name: registry.redhat.io/rhel9/postgresql-16:latest@sha256:3ffdde9a8e930b9cc95d659606487aac1d4d46691c04d2d926a49256d3aee6de
     - name: quay.io/modh/odh-minimal-notebook-container@sha256:2217d8a9cbf84c2bd3e6c6dc09089559e8a3905687ca3739e897c4b45e2b00b3
     - name: quay.io/modh/odh-minimal-notebook-container@sha256:e2296a1386e4d9756c386b4c7dc44bac6f61b99b3b894a10c9ff2d8d5602ca4e
     - name: quay.io/modh/odh-minimal-notebook-container@sha256:4ba72ae7f367a36030470fa4ac22eca0aab285c7c3f1c4cdcc33dc07aa522143
