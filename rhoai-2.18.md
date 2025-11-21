@@ -76,7 +76,7 @@
 # ImageSetConfiguration example:
 ```yaml
 kind: ImageSetConfiguration
-apiVersion: mirror.openshift.io/v1alpha2
+apiVersion: mirror.openshift.io/v2alpha1
 archiveSize: 4
 storageConfig:
   registry: 
