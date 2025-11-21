@@ -192,7 +192,7 @@ else
     fi
 
     if is_rhods_version_greater_or_equal_to rhods-2.22; then
-      echo "Error: rhods-2.22 ditected"
+      echo "Error: rhods-2.22 detected"
       exit
     fi
   fi
