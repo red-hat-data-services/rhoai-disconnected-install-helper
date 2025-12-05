@@ -37,7 +37,7 @@ function help() {
 
 function get_latest_rhods_version() {
   local rhods_version
-  rhods_version=$(git ls-remote --heads https://github.com/red-hat-data-services/rhods-operator | grep 'rhoai' | awk -F'/' '{print $NF}' | sort -V | tail -1)
+  rhods_version=$(git ls-remote --branches https://github.com/red-hat-data-services/rhods-operator | grep -E 'refs/heads/rhoai' | awk -F'/' '{print $NF}' | sort -V | tail -1)
   echo "$rhods_version"
 }
 
@@ -383,7 +383,7 @@ function get_next_page_url() {
 function branch_exists() {
   local repo=$1
   local version=$2
-  git ls-remote --heads "https://github.com/red-hat-data-services/$repo.git" "$version" | grep -q "$version"
+  git ls-remote --branches "https://github.com/red-hat-data-services/$repo.git" "$version" | grep -q "$version"
 }
 
 function clone_repo() {
