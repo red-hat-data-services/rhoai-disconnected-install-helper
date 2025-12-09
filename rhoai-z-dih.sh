@@ -518,9 +518,9 @@ parse_args() {
 }
 function update_must_gather() {
   if is_rhods_version_greater_or_equal_to rhods-2.10; then
-    must_gather_image="quay.io/modh/must-gather:$rhods_version"
+    must_gather_image="quay.io/rhoai/must-gather:$rhods_version"
   else
-    must_gather_image="quay.io/modh/must-gather:stable"
+    must_gather_image="quay.io/rhoai/must-gather:stable"
   fi
   
 }
