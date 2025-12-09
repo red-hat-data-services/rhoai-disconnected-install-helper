@@ -26,8 +26,8 @@ function main(){
     file_name="$rhoai_version.md"
     echo "Use latest RHODS version $rhods_version"  
     echo "File Name $file_name"
-    update_must_gather
-    echo $must_gather_image
+    # update_must_gather
+    # echo $must_gather_image
   fi
   if is_rhods_version_greater_or_equal_to rhods-2.4; then
     echo "Cloning repositories"
