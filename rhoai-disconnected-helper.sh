@@ -5,7 +5,7 @@ source rhoai-dih.sh
 function validate_rhoai_branch() {
   local branch="$1"
   if [[ ! "$branch" =~ ^rhoai-[0-9]+\.[0-9]+$ ]]; then
-    echo "Error: Invalid rhoai branch format '$branch'. Expected format: rhoai-X.Y (e.g., rhoai-2.18)."
+    echo "Error: Invalid rhoai branch format '$branch'. Expected format: rhoai-X.Y (e.g., rhoai-2.25)."
     exit 1
   fi
 }
