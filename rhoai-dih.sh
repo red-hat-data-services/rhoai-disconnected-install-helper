@@ -15,7 +15,7 @@ set_defaults() {
   mirror_url="${mirror_url:-registry.example.com:5000/mirror/oc-mirror-metadata}"
   repository_url="${repository_url:-https://github.com/red-hat-data-services/odh-manifests}"
   notebooks_url="${notebooks_url:-https://github.com/red-hat-data-services/notebooks}"
-  openshift_version="${openshift_version:-v4.14}"
+  openshift_version="${openshift_version:-v4.19}"
   skip_image_verification="${skip_image_verification:-false}"
   channel="${channel:-fast}"
 }
@@ -192,7 +192,7 @@ else
     fi
 
     if is_rhods_version_greater_or_equal_to rhods-2.22; then
-      echo "Error: rhods-2.22 ditected"
+      echo "Error: rhods-2.22 detected"
       exit
     fi
   fi
