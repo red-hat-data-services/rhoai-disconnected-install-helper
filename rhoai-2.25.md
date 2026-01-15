@@ -60,7 +60,7 @@ storageConfig:
     skipTLS: false                       
 mirror:
   operators:
-  - catalog: registry.redhat.io/redhat/redhat-operator-index:v4.20
+  - catalog: registry.redhat.io/redhat/redhat-operator-index:v4.19
     packages:
     - name: rhods-operator
       channels:
