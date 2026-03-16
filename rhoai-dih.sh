@@ -113,8 +113,12 @@ function image_tag_to_digest() {
   echo "$image_name@$image_digest"
 }
 
-function filter_legacy_workbench_images() {
+function filter_legacy_workbench_images_33() {
   grep -Ev 'quay\.io/modh/(odh-minimal-notebook-container|cuda-notebooks|odh-pytorch-notebook|odh-generic-data-science-notebook|odh-trustyai-notebook|codeserver|rocm-notebooks)@'
+}
+
+function filter_legacy_workbench_images_34() {
+  grep -Ev 'registry\.redhat\.io/rhoai/(odh-workbench-jupyter-minimal-cpu-py311-rhel9|odh-workbench-jupyter-minimal-cuda-py311-rhel9|odh-workbench-jupyter-minimal-rocm-py311-rhel9|odh-workbench-jupyter-datascience-cpu-py311-rhel9|odh-workbench-jupyter-pytorch-cuda-py311-rhel9|odh-workbench-jupyter-pytorch-rocm-py311-rhel9|odh-workbench-jupyter-tensorflow-cuda-py311-rhel9|odh-workbench-jupyter-tensorflow-rocm-py311-rhel9|odh-workbench-jupyter-trustyai-cpu-py311-rhel9|odh-workbench-codeserver-datascience-cpu-py311-rhel9)@'
 }
 
 function find_images(){
@@ -125,9 +129,12 @@ if is_rhods_version_greater_or_equal_to rhods-2.25; then
   IMAGES_FILE="$repository_folder/rhoai-additional-images/rhoai-disconnected-images.yaml"
   if [ -f "$IMAGES_FILE" ]; then
     ADDITIONAL_IMAGES=$(yq e '.additional-images[]' "$IMAGES_FILE")
-    # For RHOAI 3.3+, filter out legacy workbench images
-    if is_rhods_version_greater_or_equal_to rhoai-3.3; then
-      echo "$ADDITIONAL_IMAGES" | filter_legacy_workbench_images
+    # For RHOAI 3.4+, filter out both legacy and new workbench images
+    if is_rhods_version_greater_or_equal_to rhoai-3.4; then
+      echo "$ADDITIONAL_IMAGES" | filter_legacy_workbench_images_33 | filter_legacy_workbench_images_34
+    # For RHOAI 3.3, filter out legacy workbench images only
+    elif is_rhods_version_greater_or_equal_to rhoai-3.3; then
+      echo "$ADDITIONAL_IMAGES" | filter_legacy_workbench_images_33
     else
       echo "$ADDITIONAL_IMAGES"
     fi
@@ -213,24 +220,39 @@ function find_notebooks_images() {
   grep -hrEo 'quay\.io/[^/]+/[^@{},]+@sha256:[a-f0-9]+' "$notebooks_folder" | sort -u
 }
 
-function legacy_workbench_images() {
+function legacy_workbench_images_33() {
   IMAGES_FILE="$repository_folder/rhoai-additional-images/rhoai-disconnected-images.yaml"
   if [ -f "$IMAGES_FILE" ]; then
     yq e '.additional-images[]' "$IMAGES_FILE" | grep -E 'quay\.io/modh/(odh-minimal-notebook-container|cuda-notebooks|odh-pytorch-notebook|odh-generic-data-science-notebook|odh-trustyai-notebook|codeserver|rocm-notebooks)@'
   fi
 }
 
+function legacy_workbench_images_34() {
+  IMAGES_FILE="$repository_folder/rhoai-additional-images/rhoai-disconnected-images.yaml"
+  if [ -f "$IMAGES_FILE" ]; then
+    yq e '.additional-images[]' "$IMAGES_FILE" | grep -E 'registry\.redhat\.io/rhoai/(odh-workbench-jupyter-minimal-cpu-py311-rhel9|odh-workbench-jupyter-minimal-cuda-py311-rhel9|odh-workbench-jupyter-minimal-rocm-py311-rhel9|odh-workbench-jupyter-datascience-cpu-py311-rhel9|odh-workbench-jupyter-pytorch-cuda-py311-rhel9|odh-workbench-jupyter-pytorch-rocm-py311-rhel9|odh-workbench-jupyter-tensorflow-cuda-py311-rhel9|odh-workbench-jupyter-tensorflow-rocm-py311-rhel9|odh-workbench-jupyter-trustyai-cpu-py311-rhel9|odh-workbench-codeserver-datascience-cpu-py311-rhel9)@'
+  fi
+}
+
+function filter_ubi9_2024_images() {
+  grep -Ev '\-ubi9-2024-1'
+}
+
 function unsupported_images() {
   if is_rhods_version_greater_or_equal_to rhods-2.22; then
-    # For RHOAI 3.3+, include legacy workbench images in unsupported section
-    if is_rhods_version_greater_or_equal_to rhoai-3.3; then
-      legacy_workbench_images
+    # For RHOAI 3.4+, include both legacy and new workbench images in unsupported section
+    if is_rhods_version_greater_or_equal_to rhoai-3.4; then
+      { legacy_workbench_images_33; legacy_workbench_images_34; } | filter_ubi9_2024_images
+    # For RHOAI 3.3, include legacy workbench images in unsupported section
+    elif is_rhods_version_greater_or_equal_to rhoai-3.3; then
+      legacy_workbench_images_33 | filter_ubi9_2024_images
     else
       find "$repository_folder" -type f -path "*/notebooks/manifests*" \
         -exec grep -hE 'n-(2|[3-9]|[1-9][0-9]+)' {} + \
         | grep -Eo "quay\.io/[^/]+/[^@\{\},]+@sha256:[a-f0-9]+" \
         | grep -v 'quay\.io/opendatahub' \
         | grep -v 'quay\.io/integreatly/prometheus-blackbox-exporter' \
+        | filter_ubi9_2024_images \
         | sort -u
     fi
   fi
