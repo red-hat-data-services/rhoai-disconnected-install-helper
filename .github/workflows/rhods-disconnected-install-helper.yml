@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       branch_name:
-        description: 'Enter branch name (rhoai-x.y) (optional)'
+        description: 'Enter branch name (rhoai-x.y or rhoai-x.y-ea.z) (optional)'
         required: false
         default: ''
       fbc_image:
@@ -26,8 +26,9 @@ jobs:
         rhoai_fbc_image="${{ github.event.inputs.fbc_image }}"
         echo "rhoai_fbc_image: '$rhoai_fbc_image'"
         # Validate format only if branch name is provided
-        if [[ -n "$rhoai_branch" && ! "$rhoai_branch" =~ ^rhoai-[0-9]+\.[0-9]+$ ]]; then
-          echo "❌ Invalid format! Expected rhoai-x.y (e.g., rhoai-2.18) but found '$rhoai_branch'"
+        # Accept both rhoai-x.y and rhoai-x.y-ea.z formats
+        if [[ -n "$rhoai_branch" && ! "$rhoai_branch" =~ ^rhoai-[0-9]+\.[0-9]+(-ea\.[0-9]+)?$ ]]; then
+          echo "❌ Invalid format! Expected rhoai-x.y or rhoai-x.y-ea.z (e.g., rhoai-2.18, rhoai-3.4-ea.1) but found '$rhoai_branch'"
           exit 1
         fi
 
