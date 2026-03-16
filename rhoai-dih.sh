@@ -54,6 +54,15 @@ is_rhods_version_greater_or_equal_to() {
   fi
 }
 
+is_rhoai_34_or_greater() {
+  # Check for rhoai-3.4-ea.* patterns (early access versions)
+  if [[ "$rhods_version" =~ ^rhoai-3\.4-ea\.[0-9]+$ ]]; then
+    return 0
+  fi
+  # Check for regular version comparison (3.4+)
+  is_rhods_version_greater_or_equal_to rhoai-3.4
+}
+
 function get_supported_versions() {
   pushd "$repository_folder" || echo "Error: Directory $repository_folder does not exist"
   latest_rhods_version=$(get_latest_rhods_version)
@@ -130,7 +139,7 @@ if is_rhods_version_greater_or_equal_to rhods-2.25; then
   if [ -f "$IMAGES_FILE" ]; then
     ADDITIONAL_IMAGES=$(yq e '.additional-images[]' "$IMAGES_FILE")
     # For RHOAI 3.4+, filter out both legacy and new workbench images
-    if is_rhods_version_greater_or_equal_to rhoai-3.4; then
+    if is_rhoai_34_or_greater; then
       echo "$ADDITIONAL_IMAGES" | filter_legacy_workbench_images_33 | filter_legacy_workbench_images_34
     # For RHOAI 3.3, filter out legacy workbench images only
     elif is_rhods_version_greater_or_equal_to rhoai-3.3; then
@@ -234,25 +243,21 @@ function legacy_workbench_images_34() {
   fi
 }
 
-function filter_ubi9_2024_images() {
-  grep -Ev '\-ubi9-2024-1'
-}
-
 function unsupported_images() {
   if is_rhods_version_greater_or_equal_to rhods-2.22; then
     # For RHOAI 3.4+, include both legacy and new workbench images in unsupported section
-    if is_rhods_version_greater_or_equal_to rhoai-3.4; then
-      { legacy_workbench_images_33; legacy_workbench_images_34; } | filter_ubi9_2024_images
+    if is_rhoai_34_or_greater; then
+      legacy_workbench_images_33
+      legacy_workbench_images_34
     # For RHOAI 3.3, include legacy workbench images in unsupported section
     elif is_rhods_version_greater_or_equal_to rhoai-3.3; then
-      legacy_workbench_images_33 | filter_ubi9_2024_images
+      legacy_workbench_images_33
     else
       find "$repository_folder" -type f -path "*/notebooks/manifests*" \
         -exec grep -hE 'n-(2|[3-9]|[1-9][0-9]+)' {} + \
         | grep -Eo "quay\.io/[^/]+/[^@\{\},]+@sha256:[a-f0-9]+" \
         | grep -v 'quay\.io/opendatahub' \
         | grep -v 'quay\.io/integreatly/prometheus-blackbox-exporter' \
-        | filter_ubi9_2024_images \
         | sort -u
     fi
   fi
