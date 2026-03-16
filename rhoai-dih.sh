@@ -63,6 +63,17 @@ is_rhoai_34_or_greater() {
   is_rhods_version_greater_or_equal_to rhoai-3.4
 }
 
+get_base_branch() {
+  # For EA versions like rhoai-3.4-ea.1, return the base branch rhoai-3.4
+  # For regular versions like rhoai-3.4, return as-is
+  local version="$1"
+  if [[ "$version" =~ ^(rhoai-[0-9]+\.[0-9]+)-ea\.[0-9]+$ ]]; then
+    echo "${BASH_REMATCH[1]}"
+  else
+    echo "$version"
+  fi
+}
+
 function get_supported_versions() {
   pushd "$repository_folder" || echo "Error: Directory $repository_folder does not exist"
   latest_rhods_version=$(get_latest_rhods_version)
