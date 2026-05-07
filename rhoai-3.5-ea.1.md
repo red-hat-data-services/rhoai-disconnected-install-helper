@@ -2,9 +2,11 @@
     - quay.io/modh/fms-hf-tuning@sha256:83f70e981657728ef9929fa50d06fe5c72f364e5ed41a9fc1331e99751f610e8
     - quay.io/modh/ray@sha256:595b3acd10244e33fca1ed5469dccb08df66f470df55ae196f80e56edf35ad5a
     - quay.io/modh/ray@sha256:7b9c6d524b64a07746caa7dc89e691fc40eb4c2b4e41ffde8361bcd8d3c94d68
+    - quay.io/modh/ray@sha256:42fbc5d898cb9c7d202ee89308ef328838d42985ec384f2476d8f3356acd01cb
     - quay.io/modh/ray@sha256:28a8745be454b0e881ce6c200599ddfcb3366b707a5b53cfa73087d599555158
     - quay.io/modh/ray@sha256:900c35ec2fe4279b958e044c781a179c8cfe0c584e8af16e253814dba01816e6
     - quay.io/modh/ray@sha256:4f771205ce0afc8ac69ce7c997bbae37e18d1077a3bb99b3af7ea8071884af57
+    - quay.io/modh/ray@sha256:d2af8349f4281e89915407a1439d374d8a2a763ae3f692d3663494f831a34c9b
     - registry.redhat.io/rhoai/odh-workbench-jupyter-minimal-cpu-py312-rhel9@sha256:792c7c809440655e19da5d50e4b7568f39b403e61eeacd9e0fa095fc01a5e167
     - registry.redhat.io/rhoai/odh-workbench-jupyter-minimal-cuda-py312-rhel9@sha256:bd15088088dd6258da62e6658fa66790036acc6bb9af43bdcc240b389ef52f47
     - registry.redhat.io/rhoai/odh-workbench-jupyter-minimal-rocm-py312-rhel9@sha256:9ba87a487d36694890868b26da34e8d4421488c5c862cc7409d26ee8aa0af63d
@@ -67,9 +69,11 @@ mirror:
     - name: quay.io/modh/fms-hf-tuning@sha256:83f70e981657728ef9929fa50d06fe5c72f364e5ed41a9fc1331e99751f610e8
     - name: quay.io/modh/ray@sha256:595b3acd10244e33fca1ed5469dccb08df66f470df55ae196f80e56edf35ad5a
     - name: quay.io/modh/ray@sha256:7b9c6d524b64a07746caa7dc89e691fc40eb4c2b4e41ffde8361bcd8d3c94d68
+    - name: quay.io/modh/ray@sha256:42fbc5d898cb9c7d202ee89308ef328838d42985ec384f2476d8f3356acd01cb
     - name: quay.io/modh/ray@sha256:28a8745be454b0e881ce6c200599ddfcb3366b707a5b53cfa73087d599555158
     - name: quay.io/modh/ray@sha256:900c35ec2fe4279b958e044c781a179c8cfe0c584e8af16e253814dba01816e6
     - name: quay.io/modh/ray@sha256:4f771205ce0afc8ac69ce7c997bbae37e18d1077a3bb99b3af7ea8071884af57
+    - name: quay.io/modh/ray@sha256:d2af8349f4281e89915407a1439d374d8a2a763ae3f692d3663494f831a34c9b
     - name: registry.redhat.io/rhoai/odh-workbench-jupyter-minimal-cpu-py312-rhel9@sha256:792c7c809440655e19da5d50e4b7568f39b403e61eeacd9e0fa095fc01a5e167
     - name: registry.redhat.io/rhoai/odh-workbench-jupyter-minimal-cuda-py312-rhel9@sha256:bd15088088dd6258da62e6658fa66790036acc6bb9af43bdcc240b389ef52f47
     - name: registry.redhat.io/rhoai/odh-workbench-jupyter-minimal-rocm-py312-rhel9@sha256:9ba87a487d36694890868b26da34e8d4421488c5c862cc7409d26ee8aa0af63d
