@@ -18,17 +18,17 @@
     - registry.redhat.io/rhoai/odh-workbench-jupyter-trustyai-cpu-py312-rhel9@sha256:33c5f1f41404cb9b493cc69197f6faef23da54dcab2d292775fe37f6eaae6852
     - registry.redhat.io/rhoai/odh-workbench-codeserver-datascience-cpu-py312-rhel9@sha256:8a82997a29741ecf41492c7aa5c9ee57aa0e7c3bcda1fc854c1ae8686632a36f
     - registry.redhat.io/rhoai/odh-workbench-jupyter-pytorch-llmcompressor-cuda-py312-rhel9@sha256:3e8f45e17ec6d8ad6150835d8566a611de83fde0a45c56ce09efa02b1074c480
-    - registry.redhat.io/rhoai/odh-workbench-jupyter-minimal-cpu-py312-rhel9@sha256:e8ab6c3573191cdee72bf45e1c3a73b11fad69074c470b853ee88a75a29b2537
-    - registry.redhat.io/rhoai/odh-workbench-jupyter-minimal-cuda-py312-rhel9@sha256:a93104cb8658c83cce32fd3342ef61e4d2ca8b12222ea4086265c2480739abe7
-    - registry.redhat.io/rhoai/odh-workbench-jupyter-minimal-rocm-py312-rhel9@sha256:ee8083db7dd2f47a02feec2abebdfe60ea3ac24a4b917bd9566cdea2f4faf9e0
-    - registry.redhat.io/rhoai/odh-workbench-jupyter-datascience-cpu-py312-rhel9@sha256:9475a642a9c89e95aed528265b5bbf87efc8a6ddf87c0c49e442c0a63b42fdda
-    - registry.redhat.io/rhoai/odh-workbench-jupyter-pytorch-cuda-py312-rhel9@sha256:345f24be761230703c7c2e57c355dea731d70faeba7147e7c09a39ea94c126d0
-    - registry.redhat.io/rhoai/odh-workbench-jupyter-pytorch-rocm-py312-rhel9@sha256:f2e5aac8abece4427e906d3a6ce58a743e6d8445c2c63de515ea5c762341ab40
-    - registry.redhat.io/rhoai/odh-workbench-jupyter-tensorflow-cuda-py312-rhel9@sha256:7bb644561348fa3cbc4ca678e699a4b5a87096747d7558e30719a9cedb8ebe99
-    - registry.redhat.io/rhoai/odh-workbench-jupyter-tensorflow-rocm-py312-rhel9@sha256:b6ee72d4f32a6cee578ae159eb2c7e69dc4b3452e83c194ad9f141b3f36856d5
-    - registry.redhat.io/rhoai/odh-workbench-jupyter-trustyai-cpu-py312-rhel9@sha256:6d7fa5ed8af3af0671218475500ef3c97babf26685a1336cb62410c4038bb24c
-    - registry.redhat.io/rhoai/odh-workbench-codeserver-datascience-cpu-py312-rhel9@sha256:d558e13aff317da9aa1e7808998176c187e67f11c04d660905c3b31749298de7
-    - registry.redhat.io/rhoai/odh-workbench-jupyter-pytorch-llmcompressor-cuda-py312-rhel9@sha256:c839409bb1c519f27b62944a578c33bbb90570ad9a00bffbf08987904923bec2
+    - registry.redhat.io/rhoai/odh-workbench-jupyter-minimal-cpu-py312-rhel9@sha256:01b22d2179dfa4cb57ff042a2c87c9082e2c57f331b818218b690c9a747b168e
+    - registry.redhat.io/rhoai/odh-workbench-jupyter-minimal-cuda-py312-rhel9@sha256:8bacb849ae17424c4b613ed50089ae24b7ea69e92cdb4f558f561d2031e153b9
+    - registry.redhat.io/rhoai/odh-workbench-jupyter-minimal-rocm-py312-rhel9@sha256:496b9ff80594d486f594bba69652c3ae4445265b94a44995b25f5ebd1e5767b3
+    - registry.redhat.io/rhoai/odh-workbench-jupyter-datascience-cpu-py312-rhel9@sha256:19e62e604a6b74ded1c5df88112e5be44424fb1752df46dc1587447fe024865f
+    - registry.redhat.io/rhoai/odh-workbench-jupyter-pytorch-cuda-py312-rhel9@sha256:6ccdf5e6cf1cbd46c5f844738889e671130c513de6bd64a48029fd4d177c0a82
+    - registry.redhat.io/rhoai/odh-workbench-jupyter-pytorch-rocm-py312-rhel9@sha256:1fafb4f2f909b13d7dbdc03cb865469a7feb2ceadc2ca0995b2d2933e9b0d027
+    - registry.redhat.io/rhoai/odh-workbench-jupyter-tensorflow-cuda-py312-rhel9@sha256:9180767bd0ff3bae9827c1e584036cdfb442467252328b8b89058b2b907f996a
+    - registry.redhat.io/rhoai/odh-workbench-jupyter-tensorflow-rocm-py312-rhel9@sha256:c8be5cfe590e3a08c2515b3224826aaf125fc3e7a26d1018d78dfd316ef8640d
+    - registry.redhat.io/rhoai/odh-workbench-jupyter-trustyai-cpu-py312-rhel9@sha256:cada04c9bd1c8ad4e167dfbbde3b3b955b6a6d322726602c8b109a986d62ac73
+    - registry.redhat.io/rhoai/odh-workbench-codeserver-datascience-cpu-py312-rhel9@sha256:05bf03b4b7858cfd60f46f8b58206bba20d95b5b16e99443417fef7425b1bb04
+    - registry.redhat.io/rhoai/odh-workbench-jupyter-pytorch-llmcompressor-cuda-py312-rhel9@sha256:3fe23bc6e7689dc4d825a1d44f05d226009caebcf9602ec1ec7529f855af067b
 
 
 
@@ -85,17 +85,17 @@ mirror:
     - name: registry.redhat.io/rhoai/odh-workbench-jupyter-trustyai-cpu-py312-rhel9@sha256:33c5f1f41404cb9b493cc69197f6faef23da54dcab2d292775fe37f6eaae6852
     - name: registry.redhat.io/rhoai/odh-workbench-codeserver-datascience-cpu-py312-rhel9@sha256:8a82997a29741ecf41492c7aa5c9ee57aa0e7c3bcda1fc854c1ae8686632a36f
     - name: registry.redhat.io/rhoai/odh-workbench-jupyter-pytorch-llmcompressor-cuda-py312-rhel9@sha256:3e8f45e17ec6d8ad6150835d8566a611de83fde0a45c56ce09efa02b1074c480
-    - name: registry.redhat.io/rhoai/odh-workbench-jupyter-minimal-cpu-py312-rhel9@sha256:e8ab6c3573191cdee72bf45e1c3a73b11fad69074c470b853ee88a75a29b2537
-    - name: registry.redhat.io/rhoai/odh-workbench-jupyter-minimal-cuda-py312-rhel9@sha256:a93104cb8658c83cce32fd3342ef61e4d2ca8b12222ea4086265c2480739abe7
-    - name: registry.redhat.io/rhoai/odh-workbench-jupyter-minimal-rocm-py312-rhel9@sha256:ee8083db7dd2f47a02feec2abebdfe60ea3ac24a4b917bd9566cdea2f4faf9e0
-    - name: registry.redhat.io/rhoai/odh-workbench-jupyter-datascience-cpu-py312-rhel9@sha256:9475a642a9c89e95aed528265b5bbf87efc8a6ddf87c0c49e442c0a63b42fdda
-    - name: registry.redhat.io/rhoai/odh-workbench-jupyter-pytorch-cuda-py312-rhel9@sha256:345f24be761230703c7c2e57c355dea731d70faeba7147e7c09a39ea94c126d0
-    - name: registry.redhat.io/rhoai/odh-workbench-jupyter-pytorch-rocm-py312-rhel9@sha256:f2e5aac8abece4427e906d3a6ce58a743e6d8445c2c63de515ea5c762341ab40
-    - name: registry.redhat.io/rhoai/odh-workbench-jupyter-tensorflow-cuda-py312-rhel9@sha256:7bb644561348fa3cbc4ca678e699a4b5a87096747d7558e30719a9cedb8ebe99
-    - name: registry.redhat.io/rhoai/odh-workbench-jupyter-tensorflow-rocm-py312-rhel9@sha256:b6ee72d4f32a6cee578ae159eb2c7e69dc4b3452e83c194ad9f141b3f36856d5
-    - name: registry.redhat.io/rhoai/odh-workbench-jupyter-trustyai-cpu-py312-rhel9@sha256:6d7fa5ed8af3af0671218475500ef3c97babf26685a1336cb62410c4038bb24c
-    - name: registry.redhat.io/rhoai/odh-workbench-codeserver-datascience-cpu-py312-rhel9@sha256:d558e13aff317da9aa1e7808998176c187e67f11c04d660905c3b31749298de7
-    - name: registry.redhat.io/rhoai/odh-workbench-jupyter-pytorch-llmcompressor-cuda-py312-rhel9@sha256:c839409bb1c519f27b62944a578c33bbb90570ad9a00bffbf08987904923bec2
+    - name: registry.redhat.io/rhoai/odh-workbench-jupyter-minimal-cpu-py312-rhel9@sha256:01b22d2179dfa4cb57ff042a2c87c9082e2c57f331b818218b690c9a747b168e
+    - name: registry.redhat.io/rhoai/odh-workbench-jupyter-minimal-cuda-py312-rhel9@sha256:8bacb849ae17424c4b613ed50089ae24b7ea69e92cdb4f558f561d2031e153b9
+    - name: registry.redhat.io/rhoai/odh-workbench-jupyter-minimal-rocm-py312-rhel9@sha256:496b9ff80594d486f594bba69652c3ae4445265b94a44995b25f5ebd1e5767b3
+    - name: registry.redhat.io/rhoai/odh-workbench-jupyter-datascience-cpu-py312-rhel9@sha256:19e62e604a6b74ded1c5df88112e5be44424fb1752df46dc1587447fe024865f
+    - name: registry.redhat.io/rhoai/odh-workbench-jupyter-pytorch-cuda-py312-rhel9@sha256:6ccdf5e6cf1cbd46c5f844738889e671130c513de6bd64a48029fd4d177c0a82
+    - name: registry.redhat.io/rhoai/odh-workbench-jupyter-pytorch-rocm-py312-rhel9@sha256:1fafb4f2f909b13d7dbdc03cb865469a7feb2ceadc2ca0995b2d2933e9b0d027
+    - name: registry.redhat.io/rhoai/odh-workbench-jupyter-tensorflow-cuda-py312-rhel9@sha256:9180767bd0ff3bae9827c1e584036cdfb442467252328b8b89058b2b907f996a
+    - name: registry.redhat.io/rhoai/odh-workbench-jupyter-tensorflow-rocm-py312-rhel9@sha256:c8be5cfe590e3a08c2515b3224826aaf125fc3e7a26d1018d78dfd316ef8640d
+    - name: registry.redhat.io/rhoai/odh-workbench-jupyter-trustyai-cpu-py312-rhel9@sha256:cada04c9bd1c8ad4e167dfbbde3b3b955b6a6d322726602c8b109a986d62ac73
+    - name: registry.redhat.io/rhoai/odh-workbench-codeserver-datascience-cpu-py312-rhel9@sha256:05bf03b4b7858cfd60f46f8b58206bba20d95b5b16e99443417fef7425b1bb04
+    - name: registry.redhat.io/rhoai/odh-workbench-jupyter-pytorch-llmcompressor-cuda-py312-rhel9@sha256:3fe23bc6e7689dc4d825a1d44f05d226009caebcf9602ec1ec7529f855af067b
 
 
 
