@@ -25,7 +25,8 @@ mirror:
       - name: fast
         minVersion: 3.5-ea.2.0
         maxVersion: 3.5-ea.2.0
-  additionalImages:   
+  additionalImages:
+    - name: registry.redhat.io/openshift4/ose-kube-rbac-proxy-rhel9@sha256:11828cdb31cd9c1e15bc9e31c7e4669daf71c84c028cad2df5dbab68150da273
 
 
 
