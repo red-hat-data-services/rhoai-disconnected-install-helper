@@ -56,6 +56,7 @@ These images are no longer officially supported but are still provided for conve
     - quay.io/modh/rocm-notebooks@sha256:199367d2946fc8427611b4b96071cb411433ffbb5f0988279b10150020af22db
     - quay.io/modh/rocm-notebooks@sha256:1f0b19b7ae587d638e78697c67f1290d044e48bfecccfb72d7a16faeba13f980
     - quay.io/modh/rocm-notebooks@sha256:f94702219419e651327636b390d1872c58fd7b8f9f6b16a02c958ffb918eded3
+    - registry.redhat.io/openshift4/ose-kube-rbac-proxy-rhel9@sha256:11828cdb31cd9c1e15bc9e31c7e4669daf71c84c028cad2df5dbab68150da273
 
 # ImageSetConfiguration example:
 ```yaml
@@ -91,6 +92,7 @@ mirror:
     - name: registry.redhat.io/rhoai/odh-workbench-jupyter-tensorflow-rocm-py311-rhel9@sha256:4d1b945221fe7f3e7a486277f27529b9ba2b73b03b9a7e2a3382c133671fcff3
     - name: registry.redhat.io/rhoai/odh-workbench-jupyter-trustyai-cpu-py311-rhel9@sha256:4331bd07ffb9676a3d9f387b56148e679e0bc50a05dbcc5e693df5aafb097bc0
     - name: registry.redhat.io/rhoai/odh-workbench-codeserver-datascience-cpu-py311-rhel9@sha256:755f8dacf495f6abb29233edb422ca473ba82cc23370d4fcbaa4f938e90a9c25
+    - name: registry.redhat.io/openshift4/ose-kube-rbac-proxy-rhel9@sha256:11828cdb31cd9c1e15bc9e31c7e4669daf71c84c028cad2df5dbab68150da273
 
 
 
