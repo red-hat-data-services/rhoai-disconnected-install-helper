@@ -18,6 +18,13 @@
     - registry.redhat.io/rhoai/odh-workbench-jupyter-trustyai-cpu-py312-rhel9@sha256:33c5f1f41404cb9b493cc69197f6faef23da54dcab2d292775fe37f6eaae6852
     - registry.redhat.io/rhoai/odh-workbench-codeserver-datascience-cpu-py312-rhel9@sha256:8a82997a29741ecf41492c7aa5c9ee57aa0e7c3bcda1fc854c1ae8686632a36f
     - registry.redhat.io/rhoai/odh-workbench-jupyter-pytorch-llmcompressor-cuda-py312-rhel9@sha256:3e8f45e17ec6d8ad6150835d8566a611de83fde0a45c56ce09efa02b1074c480
+    - registry.redhat.io/rhoai/odh-pipeline-runtime-datascience-cpu-py312-rhel9@sha256:22ea9fc4352ec427a240fb983afb0ad3e7c1b2f2dc97bce4587695777f23ef07
+    - registry.redhat.io/rhoai/odh-pipeline-runtime-minimal-cpu-py312-rhel9@sha256:d3d4d82d0685feb25ec91cf8928dc5c5859436f44a21cd93b5d2ce7c1869a603
+    - registry.redhat.io/rhoai/odh-pipeline-runtime-pytorch-cuda-py312-rhel9@sha256:8b059881d8d7ef85883c7672a4464368ae564f2ce6104d54ebb03ac5d152d536
+    - registry.redhat.io/rhoai/odh-pipeline-runtime-pytorch-llmcompressor-cuda-py312-rhel9@sha256:7c2ce6c9e93266a11cbfdef8b3abbeb9ffd13f983b9fb3a091607d1065d597e0
+    - registry.redhat.io/rhoai/odh-pipeline-runtime-pytorch-rocm-py312-rhel9@sha256:d9c32296f9b8b6b9b0fccaafe0e910d96e3e700fa14876f19ad7570523b4b384
+    - registry.redhat.io/rhoai/odh-pipeline-runtime-tensorflow-rocm-py312-rhel9@sha256:a4cfdf3f66e855efd3809f83e806becd5f30a8e18e73ef157f81aab37f07cd47
+    - registry.redhat.io/rhoai/odh-pipeline-runtime-tensorflow-cuda-py312-rhel9@sha256:917272fc0483b20ac426626f5ee5bcdcbc4c88b5bbdbf00cf00a7a59d6bf5686
     - registry.redhat.io/rhoai/odh-workbench-jupyter-minimal-cpu-py312-rhel9@sha256:01b22d2179dfa4cb57ff042a2c87c9082e2c57f331b818218b690c9a747b168e
     - registry.redhat.io/rhoai/odh-workbench-jupyter-minimal-cuda-py312-rhel9@sha256:8bacb849ae17424c4b613ed50089ae24b7ea69e92cdb4f558f561d2031e153b9
     - registry.redhat.io/rhoai/odh-workbench-jupyter-minimal-rocm-py312-rhel9@sha256:496b9ff80594d486f594bba69652c3ae4445265b94a44995b25f5ebd1e5767b3
@@ -85,6 +92,13 @@ mirror:
     - name: registry.redhat.io/rhoai/odh-workbench-jupyter-trustyai-cpu-py312-rhel9@sha256:33c5f1f41404cb9b493cc69197f6faef23da54dcab2d292775fe37f6eaae6852
     - name: registry.redhat.io/rhoai/odh-workbench-codeserver-datascience-cpu-py312-rhel9@sha256:8a82997a29741ecf41492c7aa5c9ee57aa0e7c3bcda1fc854c1ae8686632a36f
     - name: registry.redhat.io/rhoai/odh-workbench-jupyter-pytorch-llmcompressor-cuda-py312-rhel9@sha256:3e8f45e17ec6d8ad6150835d8566a611de83fde0a45c56ce09efa02b1074c480
+    - name: registry.redhat.io/rhoai/odh-pipeline-runtime-datascience-cpu-py312-rhel9@sha256:22ea9fc4352ec427a240fb983afb0ad3e7c1b2f2dc97bce4587695777f23ef07
+    - name: registry.redhat.io/rhoai/odh-pipeline-runtime-minimal-cpu-py312-rhel9@sha256:d3d4d82d0685feb25ec91cf8928dc5c5859436f44a21cd93b5d2ce7c1869a603
+    - name: registry.redhat.io/rhoai/odh-pipeline-runtime-pytorch-cuda-py312-rhel9@sha256:8b059881d8d7ef85883c7672a4464368ae564f2ce6104d54ebb03ac5d152d536
+    - name: registry.redhat.io/rhoai/odh-pipeline-runtime-pytorch-llmcompressor-cuda-py312-rhel9@sha256:7c2ce6c9e93266a11cbfdef8b3abbeb9ffd13f983b9fb3a091607d1065d597e0
+    - name: registry.redhat.io/rhoai/odh-pipeline-runtime-pytorch-rocm-py312-rhel9@sha256:d9c32296f9b8b6b9b0fccaafe0e910d96e3e700fa14876f19ad7570523b4b384
+    - name: registry.redhat.io/rhoai/odh-pipeline-runtime-tensorflow-rocm-py312-rhel9@sha256:a4cfdf3f66e855efd3809f83e806becd5f30a8e18e73ef157f81aab37f07cd47
+    - name: registry.redhat.io/rhoai/odh-pipeline-runtime-tensorflow-cuda-py312-rhel9@sha256:917272fc0483b20ac426626f5ee5bcdcbc4c88b5bbdbf00cf00a7a59d6bf5686
     - name: registry.redhat.io/rhoai/odh-workbench-jupyter-minimal-cpu-py312-rhel9@sha256:01b22d2179dfa4cb57ff042a2c87c9082e2c57f331b818218b690c9a747b168e
     - name: registry.redhat.io/rhoai/odh-workbench-jupyter-minimal-cuda-py312-rhel9@sha256:8bacb849ae17424c4b613ed50089ae24b7ea69e92cdb4f558f561d2031e153b9
     - name: registry.redhat.io/rhoai/odh-workbench-jupyter-minimal-rocm-py312-rhel9@sha256:496b9ff80594d486f594bba69652c3ae4445265b94a44995b25f5ebd1e5767b3
