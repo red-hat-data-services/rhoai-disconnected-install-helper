@@ -159,7 +159,7 @@ The XKS charts script discovers all container images by following these steps:
 1. **Pull the Helm chart and add its image reference to the list** -- downloads the chart OCI artifact using `skopeo copy`, resolves its digest, and adds the chart image reference to the image list.
 2. **Extract the chart locally** -- extracts the downloaded `.tgz` to access the chart's YAML files.
 3. **Search chart YAML files** -- recursively searches all `.yaml` files in the chart for Red Hat image references (`registry.redhat.io`, `registry.access.redhat.com`) with SHA256 digests and adds them to the list.
-4. **Identify and pull the operator image** -- locates the operator image reference (matching `odh-rhel9-operator` by default) in `values.yaml` and pulls it.
+4. **Identify and pull the operator image** -- locates the operator image reference (matching `odh-rhel9-operator` by default) in `values.yaml` and pulls it. If the chart was pulled from the dev registry (i.e., the release has not been published to the GA registry yet) and the operator image is not found in `registry.redhat.io`, it falls back to the dev registry (`quay.io`) with the same image path and digest.
 5. **Extract dependency charts from operator image** -- extracts the operator container image's filesystem layers to access `/opt/charts/`, where dependency charts are packaged.
 6. **Search dependency chart YAML files** -- recursively searches all `.yaml` files in the dependency charts for Red Hat image references with SHA256 digests and adds them to the list. Sail Operator images are [version-filtered](#sail-operator-image-filtering).
 7. **Deduplicate and generate output** -- all discovered images are deduplicated and written to a skopeo sync YAML file, grouped by registry and repository.

@@ -33,6 +33,13 @@
 #   ci - use dev registry directly:
 #     quay.io/rhoai/rhai-on-xks-chart:rhoai-<MAJOR>.<MINOR><EA_SUFFIX>
 #
+# Operator image resolution:
+#   The operator image reference is read from values.yaml (GA registry path).
+#   If the chart was pulled from the dev registry (i.e., the release has not
+#   been published to the GA registry yet), and the operator image is not found
+#   in registry.redhat.io, the script falls back to quay.io with the same
+#   image path and digest.
+#
 # Environment Variables:
 #   REGISTRIES              - Space-separated list of registries to extract
 #                             Default: "registry.redhat.io registry.access.redhat.com"
@@ -424,8 +431,8 @@ echo ""
 # --------------------------------------------------------------------------
 echo "2. Adding chart image reference to list..."
 if [ -n "$CHART_DIGEST" ]; then
-    echo "   ${CHART_REPO}@${CHART_DIGEST}"
-    echo "${CHART_REPO}@${CHART_DIGEST}" >> "$IMAGES_RAW"
+    echo "   ${GA_CHART_REPOSITORY}@${CHART_DIGEST}"
+    echo "${GA_CHART_REPOSITORY}@${CHART_DIGEST}" >> "$IMAGES_RAW"
 else
     echo "   ✗ Could not resolve chart digest from OCI layout"
     exit 1
@@ -476,15 +483,41 @@ else
     # Step 6: Pull operator image and extract dependency charts
     # --------------------------------------------------------------------------
     echo "6. Pulling operator image (this requires authentication)..."
-    echo "   If this fails, run: skopeo login registry.redhat.io"
     echo ""
 
     OPERATOR_DIR="$WORK_DIR/operator-image"
     mkdir -p "$OPERATOR_DIR"
 
-    if skopeo copy --override-os linux --override-arch amd64 "docker://$OPERATOR_IMAGE" "dir:$OPERATOR_DIR" 2>&1 | grep -q "Error\|fatal"; then
-        echo "   ✗ Failed to pull operator image"
-        echo "   ℹ You need to authenticate: skopeo login registry.redhat.io"
+    # Check if the release has been published to the GA registry
+    IS_GA=true
+    [[ "$CHART_REPO" != "$GA_CHART_REPOSITORY" ]] && IS_GA=false
+
+    OPERATOR_PULLED=false
+    if skopeo copy --override-os linux --override-arch amd64 "docker://$OPERATOR_IMAGE" "dir:$OPERATOR_DIR" 2>"$WORK_DIR/.skopeo-err"; then
+        OPERATOR_PULLED=true
+        echo "   ✓ Operator image downloaded: $OPERATOR_IMAGE"
+    elif [ "$IS_GA" = false ]; then
+        # For non-GA builds, fall back to dev registry
+        DEV_OPERATOR_IMAGE="${OPERATOR_IMAGE/registry.redhat.io/quay.io}"
+        echo "   ⚠ Not found in GA registry, trying dev registry..."
+        echo "   Trying: $DEV_OPERATOR_IMAGE"
+        rm -rf "$OPERATOR_DIR"
+        mkdir -p "$OPERATOR_DIR"
+        if skopeo copy --override-os linux --override-arch amd64 "docker://$DEV_OPERATOR_IMAGE" "dir:$OPERATOR_DIR" 2>"$WORK_DIR/.skopeo-err"; then
+            OPERATOR_PULLED=true
+            echo "   ✓ Operator image downloaded: $DEV_OPERATOR_IMAGE"
+        fi
+    fi
+
+    if [ "$OPERATOR_PULLED" = false ]; then
+        echo "   ✗ Failed to pull operator image: $OPERATOR_IMAGE"
+        if grep -q "unauthorized\|authentication required\|denied\|401" "$WORK_DIR/.skopeo-err" 2>/dev/null; then
+            echo "   ℹ You need to authenticate: skopeo login registry.redhat.io"
+        elif grep -q "manifest unknown\|not found\|404" "$WORK_DIR/.skopeo-err" 2>/dev/null; then
+            echo "   ℹ Image digest not found in registry. The image may not have been published yet."
+        else
+            echo "   ℹ $(cat "$WORK_DIR/.skopeo-err")"
+        fi
         exit 1
     else
         echo "   ✓ Operator image downloaded"
