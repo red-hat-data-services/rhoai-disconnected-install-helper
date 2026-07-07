@@ -1,0 +1,84 @@
+name: XKS Charts - Generate disconnected install helper
+
+on:
+  workflow_dispatch:
+    inputs:
+      image_reference:
+        description: "Full image URI with SHA256 digest (e.g. quay.io/rhoai/rhai-on-xks-chart@sha256:...)"
+        required: true
+        type: string
+
+env:
+  GA_CHART_REPOSITORY: registry.redhat.io/rhai/rhai-on-xks-chart
+  DEV_CHART_REPOSITORY: quay.io/rhoai/rhai-on-xks-chart
+
+jobs:
+  show-info:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Display workflow inputs
+        run: |
+          echo "### image_reference: ${{ github.event.inputs.image_reference }}" >> $GITHUB_STEP_SUMMARY
+          echo "### workflow_run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" >> $GITHUB_STEP_SUMMARY
+
+  generate-image-list:
+    needs: show-info
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate image reference
+        run: |
+          IMAGE_REF="${{ github.event.inputs.image_reference }}"
+
+          # Must be a SHA256 digest reference
+          if [[ ! "$IMAGE_REF" =~ ^[a-zA-Z0-9]([a-zA-Z0-9.-]*)\.[a-zA-Z]{2,}/.+@sha256:[a-f0-9]{64}$ ]]; then
+            echo "Input must be a full image URI with a SHA256 digest."
+            echo "   Got: '$IMAGE_REF'"
+            echo "   Example: ${DEV_CHART_REPOSITORY}@sha256:abc123..."
+            exit 1
+          fi
+
+          # Must be from a known chart repository
+          if [[ "$IMAGE_REF" != "${GA_CHART_REPOSITORY}@"* ]] && [[ "$IMAGE_REF" != "${DEV_CHART_REPOSITORY}@"* ]]; then
+            echo "Image must be from below chart repository:"
+            echo "   - $GA_CHART_REPOSITORY"
+            echo "   - $DEV_CHART_REPOSITORY"
+            echo "   Got: '$IMAGE_REF'"
+            exit 1
+          fi
+
+      - uses: actions/checkout@v4
+
+      - name: Install skopeo
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y skopeo
+
+      - name: Login to registries
+        run: |
+          skopeo login registry.redhat.io \
+            -u "${{ secrets.REGISTRY_REDHAT_IO_USERNAME }}" \
+            -p "${{ secrets.REGISTRY_REDHAT_IO_PASSWORD }}"
+          skopeo login quay.io \
+            -u "${{ secrets.RHOAI_RO_QUAY_USERNAME }}" \
+            -p "${{ secrets.RHOAI_RO_QUAY_PASSWORD }}"
+
+      - name: Run xks-charts-disconnected-helper.sh
+        id: extract
+        run: |
+          CHART_NAME=$(basename "$GA_CHART_REPOSITORY")
+          scripts/xks-charts-disconnected-helper.sh "${{ github.event.inputs.image_reference }}"
+          echo "version=$(cat .${CHART_NAME}-work/.version)" >> "$GITHUB_OUTPUT"
+          echo "chart_name=${CHART_NAME}" >> "$GITHUB_OUTPUT"
+
+      - name: Pull latest changes from main branch
+        run: git pull origin main
+
+      - name: Commit and push changes to main branch
+        uses: actions-js/push@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
+          message: |
+            add ${{ steps.extract.outputs.chart_name }}-${{ steps.extract.outputs.version }}.yaml
+            Workflow run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          repository: red-hat-data-services/rhoai-disconnected-install-helper
