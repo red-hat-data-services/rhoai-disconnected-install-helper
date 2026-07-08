@@ -89,7 +89,7 @@ Output is saved as `rhoai-<version>.md`. Copy the image list into the `additiona
 
 ### XKS Charts (vanilla Kubernetes)
 
-**Requirements:** bash, skopeo
+**Requirements:** bash, skopeo, jq, yq ([mikefarah/yq](https://github.com/mikefarah/yq))
 
 ```bash
 # Login to registries
@@ -129,6 +129,12 @@ SAIL_OPERATOR_VERSION=v1.26 scripts/xks-charts-disconnected-helper.sh 3.5.0
 
 # Include all Istio versions (disable filtering)
 SAIL_OPERATOR_VERSION=all scripts/xks-charts-disconnected-helper.sh 3.5.0
+
+# Only include specific dependency charts
+INCLUDE_DEPENDENCY_CHARTS="sail-operator cert-manager-operator" scripts/xks-charts-disconnected-helper.sh 3.5.0
+
+# Skip dependency chart extraction entirely
+INCLUDE_DEPENDENCY_CHARTS="" scripts/xks-charts-disconnected-helper.sh 3.5.0
 ```
 
 Output is saved as `charts/rhai-on-xks-chart-<version>.yaml` in skopeo sync format.
@@ -139,16 +145,17 @@ See [`charts/README.md`](charts/README.md) for details on how to use the generat
 
 #### Configuration
 
-| Variable                 | Default                                          | Purpose                                                |
-| ------------------------ | ------------------------------------------------ | ------------------------------------------------------ |
-| `GA_CHART_REPOSITORY`    | `registry.redhat.io/rhai/rhai-on-xks-chart`      | GA chart repository; also derives output filenames     |
-| `DEV_CHART_REPOSITORY`   | `quay.io/rhoai/rhai-on-xks-chart`                | Dev chart repository for nightly and CI builds         |
-| `REGISTRIES`             | `registry.redhat.io registry.access.redhat.com`  | Space-separated registries to search for in YAML files |
-| `OUTPUT_DIR`             | `charts`                                         | Output directory (relative to repo root)               |
-| `OUTPUT_FILENAME`        | `rhai-on-xks-chart-<VERSION>.yaml`               | Output file name (derived from `GA_CHART_REPOSITORY`)  |
-| `OPERATOR_IMAGE_PATTERN` | `odh-rhel9-operator`                             | Pattern to find operator image in `values.yaml`        |
-| `SAIL_OPERATOR_VERSION`  | *(auto-detect)*                                  | Override Istio version filtering; `all` to disable     |
-| `BUILD_TYPE`             | `ga`                                             | `ga`, `nightly`, or `ci` (version input only)          |
+| Variable                     | Default                                          | Purpose                                                |
+| ---------------------------- | ------------------------------------------------ | ------------------------------------------------------ |
+| `GA_CHART_REPOSITORY`        | `registry.redhat.io/rhai/rhai-on-xks-chart`      | GA chart repository; also derives output filenames     |
+| `DEV_CHART_REPOSITORY`       | `quay.io/rhoai/rhai-on-xks-chart`                | Dev chart repository for nightly and CI builds         |
+| `REGISTRIES`                 | `registry.redhat.io registry.access.redhat.com`  | Space-separated registries to search for in YAML files |
+| `OUTPUT_DIR`                 | `charts`                                         | Output directory (relative to repo root)               |
+| `OUTPUT_FILENAME`            | `rhai-on-xks-chart-<VERSION>.yaml`               | Output file name (derived from `GA_CHART_REPOSITORY`)  |
+| `OPERATOR_IMAGE_PATTERN`     | `odh-rhel9-operator`                             | Pattern to find operator image in `values.yaml`        |
+| `SAIL_OPERATOR_VERSION`      | *(auto-detect)*                                  | Override Istio version filtering; `all` to disable     |
+| `BUILD_TYPE`                 | `ga`                                             | `ga`, `nightly`, or `ci` (version input only)          |
+| `INCLUDE_DEPENDENCY_CHARTS`  | `all`                                            | `all`, space-separated list, or `""` to skip           |
 
 ## How XKS Charts DIH Files Are Generated
 
@@ -183,4 +190,4 @@ This reduces the Sail Operator image count from ~56 (all versions) to ~12 (singl
 
 - `SAIL_OPERATOR_VERSION=v1.26` -- filter for a specific version instead of auto-detecting
 - `SAIL_OPERATOR_VERSION=all` -- disable filtering entirely, include all Istio versions
-- If `istio.yaml` or the deployment manifest cannot be found or parsed, the script falls back to including all images with a warning
+- If `istio.yaml` or the deployment manifest cannot be found or parsed, the script exits with an error

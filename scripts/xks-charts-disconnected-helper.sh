@@ -56,6 +56,10 @@
 #                             Default: "ga" (try GA registry, fall back to nightly builds from dev registry)
 #                             "nightly" - use dev registry nightly build directly
 #                             "ci"      - use dev registry CI build directly
+#   INCLUDE_DEPENDENCY_CHARTS - Dependency charts to include from the operator image
+#                             Default: "all" (include every chart under /opt/charts/)
+#                             Space-separated list to include specific charts
+#                             Empty string to skip dependency chart extraction entirely
 #
 # Examples with environment variables:
 #   REGISTRIES="registry.redhat.io" ./xks-charts-disconnected-helper.sh 3.5.0
@@ -64,6 +68,8 @@
 #   SAIL_OPERATOR_VERSION="v1.26" ./xks-charts-disconnected-helper.sh 3.5.0
 #   BUILD_TYPE="nightly" ./xks-charts-disconnected-helper.sh 3.5.0
 #   BUILD_TYPE="ci" ./xks-charts-disconnected-helper.sh 3.5.0-ea.1
+#   INCLUDE_DEPENDENCY_CHARTS="sail-operator cert-manager-operator" ./xks-charts-disconnected-helper.sh 3.5.0
+#   INCLUDE_DEPENDENCY_CHARTS="" ./xks-charts-disconnected-helper.sh 3.5.0
 
 set -euo pipefail
 
@@ -74,135 +80,162 @@ set -euo pipefail
 GA_CHART_REPOSITORY="${GA_CHART_REPOSITORY:-registry.redhat.io/rhai/rhai-on-xks-chart}"
 DEV_CHART_REPOSITORY="${DEV_CHART_REPOSITORY:-quay.io/rhoai/rhai-on-xks-chart}"
 
-# Derive chart name from GA repository (e.g. "rhai-on-xks-chart")
 CHART_NAME="$(basename "$GA_CHART_REPOSITORY")"
 
 # ============================================================================
 # CONFIGURATION
 # ============================================================================
 
-# Resolve repo root (for output directory)
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 
-# Registries to extract (space-separated)
 REGISTRIES="${REGISTRIES:-registry.redhat.io registry.access.redhat.com}"
-
-# Output directory and file (default derived from version after parsing)
 OUTPUT_DIR="${OUTPUT_DIR:-charts}"
 OUTPUT_FILENAME="${OUTPUT_FILENAME:-}"
-
-# Pattern to identify the operator image in values.yaml
 OPERATOR_IMAGE_PATTERN="${OPERATOR_IMAGE_PATTERN:-odh-rhel9-operator}"
-
-# Override Sail Operator Istio version filtering (auto-detected from chart if not set)
-# Set to "all" to disable filtering and include all Istio versions
 SAIL_OPERATOR_VERSION="${SAIL_OPERATOR_VERSION:-}"
-
-# Build type: "ga" (default), "nightly", or "ci"
-#   ga      - Try GA registry first, fall back to dev nightly
-#   nightly - Use dev registry nightly build directly
-#   ci      - Use dev registry CI build directly
 BUILD_TYPE="${BUILD_TYPE:-ga}"
+INCLUDE_DEPENDENCY_CHARTS="${INCLUDE_DEPENDENCY_CHARTS:-all}"
+
+# ============================================================================
+# BUILD REGISTRY PATTERN (computed once)
+# ============================================================================
+
+REGISTRY_PATTERN=""
+for reg in $REGISTRIES; do
+    local_escaped="${reg//./\\.}"
+    if [ -n "$REGISTRY_PATTERN" ]; then
+        REGISTRY_PATTERN="${REGISTRY_PATTERN}|${local_escaped}"
+    else
+        REGISTRY_PATTERN="$local_escaped"
+    fi
+done
 
 # ============================================================================
 # FUNCTIONS
 # ============================================================================
 
-# Build grep patterns from REGISTRIES into global variables:
-#   GREP_PATTERN — BRE pattern for initial grep (uses \| alternation)
-#   REGEX_PATTERN — ERE pattern for grep -oE extraction (uses | alternation, dots escaped)
-build_registry_pattern() {
-    GREP_PATTERN=""
-    REGEX_PATTERN=""
-    for reg in $REGISTRIES; do
-        local escaped_reg=$(echo "$reg" | sed 's/\./\\./g')
-        if [ -n "$GREP_PATTERN" ]; then
-            GREP_PATTERN="${GREP_PATTERN}\|${reg}"
-            REGEX_PATTERN="${REGEX_PATTERN}|${escaped_reg}"
-        else
-            GREP_PATTERN="$reg"
-            REGEX_PATTERN="$escaped_reg"
-        fi
+# Check if a dependency chart should be processed based on INCLUDE_DEPENDENCY_CHARTS
+should_process_chart() {
+    local name="$1"
+    [ "$INCLUDE_DEPENDENCY_CHARTS" = "all" ] && return 0
+    for chart in $INCLUDE_DEPENDENCY_CHARTS; do
+        [ "$chart" = "$name" ] && return 0
     done
+    return 1
+}
+
+# Diagnose a skopeo pull failure from captured stderr
+# Usage: diagnose_pull_failure <error_file> <image_ref>
+diagnose_pull_failure() {
+    local err_file="$1"
+    local image_ref="$2"
+    local registry="${image_ref%%/*}"
+
+    if grep -q "unauthorized\|authentication required\|denied\|401" "$err_file" 2>/dev/null; then
+        echo "   ℹ You may need to authenticate: skopeo login $registry"
+    elif grep -q "manifest unknown\|not found\|404" "$err_file" 2>/dev/null; then
+        echo "   ℹ Image not found in registry. It may not have been published yet."
+    elif [ -s "$err_file" ]; then
+        echo "   ℹ $(cat "$err_file")"
+    fi
+}
+
+# Extract image references matching REGISTRY_PATTERN from lines piped to stdin,
+# and append them with a source annotation to the output file.
+# Usage: grep ... | extract_matching_images <output_file> <annotation>
+extract_matching_images() {
+    local output="$1"
+    local annotation="$2"
+
+    grep -oE "(${REGISTRY_PATTERN})/[^\"'[:space:]]+@sha256:[a-f0-9]{64}" | \
+        while IFS= read -r img; do
+            echo "$img # ${annotation}" >> "$output"
+        done || true
 }
 
 # Extract images from YAML files in a directory
 # Recursively searches all .yaml files for image references matching configured
 # registries with SHA256 digests, and appends them to the output file.
-# Usage: extract_images_from_dir <directory> <output_file>
+# Each line is annotated with the source file path as a comment.
+# Usage: extract_images_from_dir <directory> <output_file> [<source_prefix>] [<path_base>]
 extract_images_from_dir() {
     local dir="$1"
     local output="$2"
+    local source_prefix="${3:-}"
+    local path_base="${4:-$dir}"
 
-    build_registry_pattern
-
-    grep -rh "$GREP_PATTERN" "$dir" \
-        --include="*.yaml" 2>/dev/null | \
-        grep -oE "(${REGEX_PATTERN})/[^\"'[:space:]]+@sha256:[a-f0-9]{64}" \
-        >> "$output" || true
+    find "$dir" -name "*.yaml" -type f 2>/dev/null | while IFS= read -r file; do
+        local rel_path="${file#$path_base/}"
+        grep -E "(${REGISTRY_PATTERN})/" "$file" 2>/dev/null | \
+            extract_matching_images "$output" "${source_prefix}${rel_path}"
+    done || true
 }
 
 # Extract version-filtered images from the Sail Operator chart.
 # Parses the pinned Istio version from istio.yaml, then extracts only
 # the operator image and matching version annotations from the deployment.
-# Falls back to extract_images_from_dir if required files are missing.
-# Usage: extract_sail_operator_images <sail_operator_chart_dir> <output_file>
+# Exits with an error if required files are missing (unless SAIL_OPERATOR_VERSION=all).
+# Each line is annotated with the source file path as a comment.
+# Usage: extract_sail_operator_images <sail_operator_chart_dir> <output_file> [<source_prefix>] [<path_base>]
 extract_sail_operator_images() {
     local sail_dir="$1"
     local output="$2"
+    local source_prefix="${3:-}"
+    local path_base="${4:-$sail_dir}"
 
-    build_registry_pattern
-
-    # Determine the Istio version to filter for
     local version_key=""
     if [ "$SAIL_OPERATOR_VERSION" = "all" ]; then
         echo "   Sail Operator: filtering disabled (SAIL_OPERATOR_VERSION=all)"
-        extract_images_from_dir "$sail_dir" "$output"
+        extract_images_from_dir "$sail_dir" "$output" "$source_prefix" "$path_base"
         return
     elif [ -n "$SAIL_OPERATOR_VERSION" ]; then
         local pinned_version="$SAIL_OPERATOR_VERSION"
-        version_key=$(echo "$pinned_version" | sed 's/-latest$//' | sed 's/\./_/g')
+        local stripped="${pinned_version%-latest}"
+        version_key="${stripped//./_}"
         echo "   Sail Operator: using override version $pinned_version (${version_key}_*)"
     else
-        # Auto-detect from istio.yaml
         local istio_file="$sail_dir/templates/istio.yaml"
         if [ ! -f "$istio_file" ]; then
-            echo "   ⚠ No istio.yaml found in Sail Operator chart; extracting all images"
-            extract_images_from_dir "$sail_dir" "$output"
-            return
+            echo "   ✗ No istio.yaml found in Sail Operator chart"
+            exit 1
         fi
 
-        local pinned_version
-        pinned_version=$(grep -E '^\s+version:\s+' "$istio_file" | sed 's/.*version:[[:space:]]*//' | sed 's/[[:space:]]*$//' | head -1)
+        # istio.yaml is a Helm template — parse the version field from non-templated lines
+        local pinned_version=""
+        while IFS= read -r line; do
+            if [[ "$line" =~ ^[[:space:]]+version:[[:space:]]+(.*) ]]; then
+                pinned_version="${BASH_REMATCH[1]}"
+                pinned_version="${pinned_version%"${pinned_version##*[![:space:]]}"}"
+                break
+            fi
+        done < "$istio_file"
+
         if [ -z "$pinned_version" ]; then
-            echo "   ⚠ Could not parse spec.version from istio.yaml; extracting all images"
-            extract_images_from_dir "$sail_dir" "$output"
-            return
+            echo "   ✗ Could not parse spec.version from istio.yaml"
+            exit 1
         fi
 
-        version_key=$(echo "$pinned_version" | sed 's/-latest$//' | sed 's/\./_/g')
+        local stripped="${pinned_version%-latest}"
+        version_key="${stripped//./_}"
         echo "   Sail Operator: pinned Istio version $pinned_version (filtering for ${version_key}_*)"
     fi
 
-    # Find the deployment manifest
     local deployment_file
     deployment_file=$(find "$sail_dir/templates" -name "deployment-servicemesh-operator*.yaml" -type f 2>/dev/null | head -1)
     if [ -z "$deployment_file" ]; then
-        echo "   ⚠ No deployment manifest found in Sail Operator chart; extracting all images"
-        extract_images_from_dir "$sail_dir" "$output"
-        return
+        echo "   ✗ No deployment manifest found in Sail Operator chart"
+        exit 1
     fi
 
-    # Extract the operator image from spec.containers[].image
-    grep -E '^\s+image:\s+' "$deployment_file" | \
-        grep -oE "(${REGEX_PATTERN})/[^\"'[:space:]]+@sha256:[a-f0-9]{64}" \
-        >> "$output" || true
+    local rel_path="${deployment_file#$path_base/}"
+    local annotation="${source_prefix}${rel_path}"
 
-    # Extract only annotation images matching the pinned version
+    grep -E '^\s+image:\s+' "$deployment_file" | \
+        extract_matching_images "$output" "$annotation"
+
     grep "images\.${version_key}_" "$deployment_file" | \
-        grep -oE "(${REGEX_PATTERN})/[^\"'[:space:]]+@sha256:[a-f0-9]{64}" \
-        >> "$output" || true
+        extract_matching_images "$output" "$annotation"
 }
 
 # ============================================================================
@@ -210,7 +243,7 @@ extract_sail_operator_images() {
 # ============================================================================
 
 # ============================================================================
-# INPUT PARSING
+# INPUT PARSING — resolve to (CHART_REPOSITORY, CHART_TAG) pair
 # ============================================================================
 
 INPUT="${1:-}"
@@ -221,19 +254,19 @@ if [ -z "$INPUT" ]; then
     echo "  VERSION:    X.Y.Z or X.Y.Z-ea.N (e.g., 3.4.0, 3.5.1, 3.4.0-ea.1)"
     echo "              An optional \"v\" prefix is stripped automatically."
     echo "  IMAGE_REF:  Full image reference with tag or digest"
-    echo "              e.g., registry.redhat.io/rhai/rhai-on-xks-chart:v3.4.2"
+    echo "              e.g., registry.redhat.io/rhai/rhai-on-xks-chart:v3.5.0"
     echo "              e.g., quay.io/rhoai/rhai-on-xks-chart@sha256:abc123..."
     exit 1
 fi
 
 # Detect input type: image reference (contains /) vs version string
 DIRECT_REF=false
-if [[ "$INPUT" == */* ]]; then
-    DIRECT_REF=true
-fi
+FALLBACK_REFS=()
 
-if [ "$DIRECT_REF" = true ]; then
-    CHART_REF_INPUT="$INPUT"
+if [[ "$INPUT" == */* ]]; then
+    # Image reference input
+    DIRECT_REF=true
+
     if [[ "$INPUT" != *:* ]] && [[ "$INPUT" != *@sha256:* ]]; then
         echo "Error: Image reference must include a tag (:tag) or digest (@sha256:...)"
         exit 1
@@ -244,7 +277,16 @@ if [ "$DIRECT_REF" = true ]; then
         echo "  - $DEV_CHART_REPOSITORY"
         exit 1
     fi
+
+    if [[ "$INPUT" == *@sha256:* ]]; then
+        CHART_REPOSITORY="${INPUT%%@*}"
+        CHART_TAG="${INPUT#*@}"
+    else
+        CHART_REPOSITORY="${INPUT%:*}"
+        CHART_TAG="${INPUT##*:}"
+    fi
 else
+    # Version string input
     VERSION="${INPUT#v}"
 
     RHOAI_GA_VERSION_REGEX="^[0-9]\.[0-9]{1,2}\.[0-9]{1,2}$"
@@ -256,37 +298,43 @@ else
         exit 1
     fi
 
-    MAJOR_VERSION=$(echo "$VERSION" | cut -d'.' -f1)
-    MINOR_VERSION=$(echo "$VERSION" | cut -d'.' -f2)
-    MICRO_VERSION=$(echo "$VERSION" | cut -d'.' -f3 | sed 's/-.*//')
+    MAJOR_VERSION="${VERSION%%.*}"
+    local_rest="${VERSION#*.}"
+    MINOR_VERSION="${local_rest%%.*}"
+    local_micro_rest="${local_rest#*.}"
+    MICRO_VERSION="${local_micro_rest%%-*}"
     EA_SUFFIX=""
     if [[ "$VERSION" == *-ea.* ]]; then
-        EA_SUFFIX=$(echo "$VERSION" | sed 's/^[0-9]*\.[0-9]*\.[0-9]*//')
+        EA_SUFFIX="-${VERSION#*-}"
     fi
-fi
 
-# parse_version_from_manifest: extract org.opencontainers.image.version from OCI manifest
-# Sets VERSION (stripped of v prefix) from the manifest annotations
-parse_version_from_manifest() {
-    local oci_dir="$WORK_DIR/.chart-oci"
-    local manifest_digest
-    manifest_digest=$(grep -oE 'sha256:[a-f0-9]{64}' "$oci_dir/index.json" 2>/dev/null | head -1)
-    if [ -n "$manifest_digest" ]; then
-        local manifest_file="$oci_dir/blobs/sha256/${manifest_digest#sha256:}"
-        local oci_version
-        oci_version=$(grep -oE '"org\.opencontainers\.image\.version"\s*:\s*"[^"]*"' "$manifest_file" 2>/dev/null | sed 's/.*"org.opencontainers.image.version"\s*:\s*"//' | sed 's/"//')
-        if [ -n "$oci_version" ]; then
-            VERSION="${oci_version#v}"
-        fi
-    fi
-}
+    case "$BUILD_TYPE" in
+        ga)
+            CHART_REPOSITORY="$GA_CHART_REPOSITORY"
+            CHART_TAG="v${VERSION}"
+            FALLBACK_REFS=("${DEV_CHART_REPOSITORY}:rhoai-${MAJOR_VERSION}.${MINOR_VERSION}${EA_SUFFIX}-nightly")
+            ;;
+        ci)
+            CHART_REPOSITORY="$DEV_CHART_REPOSITORY"
+            CHART_TAG="rhoai-${MAJOR_VERSION}.${MINOR_VERSION}${EA_SUFFIX}"
+            ;;
+        nightly)
+            CHART_REPOSITORY="$DEV_CHART_REPOSITORY"
+            CHART_TAG="rhoai-${MAJOR_VERSION}.${MINOR_VERSION}${EA_SUFFIX}-nightly"
+            ;;
+        *)
+            echo "Error: Invalid BUILD_TYPE '$BUILD_TYPE' (must be ga, nightly, or ci)"
+            exit 1
+            ;;
+    esac
+fi
 
 echo "=========================================================================="
 echo "Preparing disconnected install helper file for RHAI on XKS Helm Chart"
 echo "=========================================================================="
 echo ""
 if [ "$DIRECT_REF" = true ]; then
-    echo "Image reference:     $CHART_REF_INPUT"
+    echo "Image reference:     $INPUT"
 else
     echo "Version:             $VERSION"
     echo "  Major:             $MAJOR_VERSION"
@@ -299,140 +347,113 @@ echo "Configuration:"
 echo "  Registries:        $REGISTRIES"
 echo "  Operator pattern:  $OPERATOR_IMAGE_PATTERN"
 [ -n "$SAIL_OPERATOR_VERSION" ] && echo "  Sail version:      $SAIL_OPERATOR_VERSION (override)"
+echo "  Dep charts:        $INCLUDE_DEPENDENCY_CHARTS"
 echo ""
 
 # ============================================================================
-# CHART PULL
+# WORK DIRECTORY SETUP
 # ============================================================================
 
 WORK_DIR="$(pwd)/.${CHART_NAME}-work"
-# .images      — raw collected image references (appended to by each extraction step)
-# .images.final — deduplicated and filtered (only @sha256: refs), used to generate output
 IMAGES_RAW="${WORK_DIR}/.images"
 
 if [ -d "$WORK_DIR" ]; then
     chmod -R +w "$WORK_DIR" 2>/dev/null
     rm -rf "$WORK_DIR"
 fi
-mkdir -p "$WORK_DIR"
+mkdir -p "$WORK_DIR/chart/oci" "$WORK_DIR/chart/extracted" "$WORK_DIR/operator/oci" "$WORK_DIR/operator/extracted"
 
-# try_pull_chart: attempt to pull a chart by repo and tag/digest using skopeo, return 0 on success
-# Downloads as OCI layout, extracts the chart .tgz from the blob layers
+# ============================================================================
+# CHART PULL
+# ============================================================================
+
+# Pull a chart OCI artifact by repo and tag/digest, extract digest and chart .tgz.
+# Usage: try_pull_chart <repo> <tag> <label>
 try_pull_chart() {
     local repo="$1"
     local tag="$2"
     local label="$3"
 
-    # Use @ separator for digests, : for tags
     local separator=":"
     if [[ "$tag" == sha256:* ]]; then
         separator="@"
     fi
 
-    echo "   Trying $label: ${repo}${separator}${tag}"
-
-    local oci_dir="$WORK_DIR/.chart-oci"
+    local ref="${repo}${separator}${tag}"
+    local oci_dir="$WORK_DIR/chart/oci"
     rm -rf "$oci_dir"
     mkdir -p "$oci_dir"
 
-    if ! skopeo copy "docker://${repo}${separator}${tag}" "oci:${oci_dir}:${tag}" 2>/dev/null; then
+    echo "   Trying $label: $ref"
+
+    if ! skopeo copy --quiet "docker://${ref}" "oci:${oci_dir}:${tag}" 2>"$WORK_DIR/.skopeo-err"; then
         return 1
     fi
 
-    CHART_REF="${repo}${separator}${tag}"
     CHART_REPO="$repo"
+    CHART_DIGEST=$(jq -r '.manifests[0].digest' "$oci_dir/index.json")
 
-    # Extract digest and chart .tgz from OCI layout
-    # index.json has the manifest digest; the manifest lists the chart blob
-    local manifest_digest
-    manifest_digest=$(grep -oE 'sha256:[a-f0-9]{64}' "$oci_dir/index.json" | head -1)
-    CHART_DIGEST="$manifest_digest"
-    if [ -n "$manifest_digest" ]; then
+    if [ -n "$CHART_DIGEST" ] && [ "$CHART_DIGEST" != "null" ]; then
+        local manifest_file="$oci_dir/blobs/sha256/${CHART_DIGEST#sha256:}"
         local chart_blob
-        chart_blob=$(grep -oE 'sha256:[a-f0-9]{64}' "$oci_dir/blobs/sha256/${manifest_digest#sha256:}" | tail -1)
-        if [ -n "$chart_blob" ]; then
-            cp "$oci_dir/blobs/sha256/${chart_blob#sha256:}" "$WORK_DIR/chart.tgz"
+        chart_blob=$(jq -r '.layers[0].digest' "$manifest_file")
+        if [ -n "$chart_blob" ] && [ "$chart_blob" != "null" ]; then
+            cp "$oci_dir/blobs/sha256/${chart_blob#sha256:}" "$WORK_DIR/chart/chart.tgz"
         fi
     fi
 
-    echo "   ✓ Pulled: $CHART_REF"
-    [ -n "$CHART_DIGEST" ] && echo "   Digest: $CHART_DIGEST"
+    echo "   ✓ Pulled: $ref"
+    [ -n "$CHART_DIGEST" ] && [ "$CHART_DIGEST" != "null" ] && echo "   Digest: $CHART_DIGEST"
     return 0
 }
 
 cd "$WORK_DIR"
 
+echo "1. Pulling chart..."
+
+CHART_DIGEST=""
+CHART_REPO=""
+
 if [ "$DIRECT_REF" = true ]; then
-    echo "1. Pulling chart (direct reference)..."
-
-    if [[ "$CHART_REF_INPUT" == *@sha256:* ]]; then
-        CHART_REPOSITORY="${CHART_REF_INPUT%%@*}"
-        CHART_TAG="${CHART_REF_INPUT#*@}"
-    else
-        CHART_REPOSITORY="${CHART_REF_INPUT%:*}"
-        CHART_TAG="${CHART_REF_INPUT##*:}"
-    fi
-
-    try_pull_chart "$CHART_REPOSITORY" "$CHART_TAG" "direct" || {
-        echo "   ✗ Chart not found: $CHART_REF_INPUT"
-        exit 1
-    }
-
-    # Extract version from OCI manifest annotation
-    parse_version_from_manifest
-    if [ -z "${VERSION:-}" ]; then
-        echo "   ✗ Could not determine version from chart manifest"
-        exit 1
-    fi
-    echo "   Version from manifest: $VERSION"
-
+    PULL_LABEL="direct"
 else
-    case "$BUILD_TYPE" in
-        ga)      CHART_REPOSITORY="$GA_CHART_REPOSITORY";  CHART_TAG="v${VERSION}" ;;
-        ci)      CHART_REPOSITORY="$DEV_CHART_REPOSITORY"; CHART_TAG="rhoai-${MAJOR_VERSION}.${MINOR_VERSION}${EA_SUFFIX}" ;;
-        nightly) CHART_REPOSITORY="$DEV_CHART_REPOSITORY"; CHART_TAG="rhoai-${MAJOR_VERSION}.${MINOR_VERSION}${EA_SUFFIX}-nightly" ;;
-        *)
-            echo "Error: Invalid BUILD_TYPE '$BUILD_TYPE' (must be ga, nightly, or ci)"
-            exit 1
-            ;;
-    esac
+    PULL_LABEL="$BUILD_TYPE"
+fi
 
-    echo "1. Pulling chart (build_type=$BUILD_TYPE)..."
-
-    if [ "$BUILD_TYPE" = "ga" ]; then
-        try_pull_chart "$CHART_REPOSITORY" "$CHART_TAG" "GA registry" || {
-            FALLBACK_TAG="rhoai-${MAJOR_VERSION}.${MINOR_VERSION}${EA_SUFFIX}-nightly"
-            try_pull_chart "$DEV_CHART_REPOSITORY" "$FALLBACK_TAG" "dev nightly" || {
-                echo "   ✗ Chart not found"
-                echo "   Tried: ${GA_CHART_REPOSITORY}:${CHART_TAG}"
-                echo "          ${DEV_CHART_REPOSITORY}:${FALLBACK_TAG}"
-                exit 1
-            }
-        }
-    else
-        try_pull_chart "$CHART_REPOSITORY" "$CHART_TAG" "dev $BUILD_TYPE" || {
-            echo "   ✗ Chart not found: ${CHART_REPOSITORY}:${CHART_TAG}"
-            exit 1
-        }
+if ! try_pull_chart "$CHART_REPOSITORY" "$CHART_TAG" "$PULL_LABEL"; then
+    echo "   ⚠ Not found"
+    PULLED=false
+    for fallback in "${FALLBACK_REFS[@]}"; do
+        fallback_repo="${fallback%:*}"
+        fallback_tag="${fallback##*:}"
+        if try_pull_chart "$fallback_repo" "$fallback_tag" "fallback"; then
+            PULLED=true
+            break
+        fi
+    done
+    if [ "$PULLED" = false ]; then
+        echo "   ✗ Chart not found"
+        if [ "$DIRECT_REF" = true ]; then
+            echo "   Tried: $INPUT"
+        else
+            echo "   Tried: ${CHART_REPOSITORY}:${CHART_TAG}"
+            for fallback in "${FALLBACK_REFS[@]}"; do
+                echo "          $fallback"
+            done
+        fi
+        diagnose_pull_failure "$WORK_DIR/.skopeo-err" "$CHART_REPOSITORY"
+        exit 1
     fi
 fi
-
-# Set output filename and path now that VERSION is known
-if [ -z "$OUTPUT_FILENAME" ]; then
-    OUTPUT_FILENAME="${CHART_NAME}-${VERSION}.yaml"
-fi
-OUTPUT_PATH="${REPO_ROOT}/${OUTPUT_DIR}/${OUTPUT_FILENAME}"
-mkdir -p "$(dirname "$OUTPUT_PATH")"
-echo "   Output: $OUTPUT_PATH"
 echo ""
 
 # --------------------------------------------------------------------------
 # Step 2: Add the helm chart OCI image reference to the list
 # --------------------------------------------------------------------------
 echo "2. Adding chart image reference to list..."
-if [ -n "$CHART_DIGEST" ]; then
+if [ -n "$CHART_DIGEST" ] && [ "$CHART_DIGEST" != "null" ]; then
     echo "   ${GA_CHART_REPOSITORY}@${CHART_DIGEST}"
-    echo "${GA_CHART_REPOSITORY}@${CHART_DIGEST}" >> "$IMAGES_RAW"
+    echo "${GA_CHART_REPOSITORY}@${CHART_DIGEST} # chart-oci" >> "$IMAGES_RAW"
 else
     echo "   ✗ Could not resolve chart digest from OCI layout"
     exit 1
@@ -444,132 +465,175 @@ echo ""
 # --------------------------------------------------------------------------
 echo "3. Extracting chart locally..."
 
-CHART_FILE=$(ls "$WORK_DIR"/*.tgz 2>/dev/null | head -1)
-if [ -z "$CHART_FILE" ]; then
+CHART_FILE="$WORK_DIR/chart/chart.tgz"
+if [ ! -f "$CHART_FILE" ]; then
     echo "   ✗ No .tgz file found after chart pull"
     exit 1
 fi
-tar -xzf "$CHART_FILE" -C "$WORK_DIR"
-CHART_DIR=$(find "$WORK_DIR" -mindepth 1 -maxdepth 1 -type d ! -name '.*' | head -1)
+tar -xzf "$CHART_FILE" -C "$WORK_DIR/chart/extracted"
+CHART_DIR=$(find "$WORK_DIR/chart/extracted" -mindepth 1 -maxdepth 1 -type d | head -1)
 if [ -z "$CHART_DIR" ]; then
     echo "   ✗ No chart directory found after extraction"
     exit 1
 fi
 echo "   ✓ Chart extracted: $(basename "$CHART_DIR")"
+
+# For direct image reference input, extract version from Chart.yaml
+if [ "$DIRECT_REF" = true ]; then
+    VERSION=$(yq '.version' "$CHART_DIR/Chart.yaml")
+    VERSION="${VERSION#v}"
+    if [ -z "$VERSION" ] || [ "$VERSION" = "null" ]; then
+        echo "   ✗ Could not determine version from Chart.yaml"
+        exit 1
+    fi
+    echo "   Version from Chart.yaml: $VERSION"
+fi
+
+if [ -z "$OUTPUT_FILENAME" ]; then
+    OUTPUT_FILENAME="${CHART_NAME}-${VERSION}.yaml"
+fi
+OUTPUT_PATH="${REPO_ROOT}/${OUTPUT_DIR}/${OUTPUT_FILENAME}"
+mkdir -p "$(dirname "$OUTPUT_PATH")"
+echo "   Output: $OUTPUT_PATH"
 echo ""
 
 # --------------------------------------------------------------------------
 # Step 4: Extract images from chart YAML files
 # --------------------------------------------------------------------------
 echo "4. Extracting images from chart YAML files..."
-extract_images_from_dir "$CHART_DIR" "$IMAGES_RAW"
-MAIN_COUNT=$(sort -u "$IMAGES_RAW" | grep -c '@sha256:' || true)
-echo "   ✓ Found $MAIN_COUNT images with SHA256 digests"
+BEFORE_CHART=$(wc -l < "$IMAGES_RAW")
+extract_images_from_dir "$CHART_DIR" "$IMAGES_RAW" "" "$WORK_DIR/chart/extracted"
+AFTER_CHART=$(wc -l < "$IMAGES_RAW")
+MAIN_CHART_COUNT=$((AFTER_CHART - BEFORE_CHART))
+echo "   ✓ Found $MAIN_CHART_COUNT images"
 echo ""
 
 # --------------------------------------------------------------------------
 # Step 5: Identify the operator image
 # --------------------------------------------------------------------------
 echo "5. Identifying operator image (pattern: $OPERATOR_IMAGE_PATTERN)..."
-OPERATOR_IMAGE=$(grep '  image:' "$CHART_DIR/values.yaml" | grep "$OPERATOR_IMAGE_PATTERN" | sed 's/.*image: "//' | sed 's/".*//' | head -1)
-if [ -z "$OPERATOR_IMAGE" ]; then
+OPERATOR_IMAGE=$(yq -r ".. | select(tag == \"!!str\" and test(\"${OPERATOR_IMAGE_PATTERN}\") and test(\"@sha256:\"))" "$CHART_DIR/values.yaml" | head -1)
+if [ -z "$OPERATOR_IMAGE" ] || [ "$OPERATOR_IMAGE" = "null" ]; then
     echo "   ✗ Could not find operator image matching '$OPERATOR_IMAGE_PATTERN' in $CHART_DIR/values.yaml"
     exit 1
+fi
+echo "   ✓ Found: $OPERATOR_IMAGE"
+echo ""
+
+# --------------------------------------------------------------------------
+# Step 6: Pull operator image and extract dependency charts
+# --------------------------------------------------------------------------
+echo "6. Pulling operator image..."
+
+OPERATOR_DIR="$WORK_DIR/operator/oci"
+OPERATOR_EXTRACTED="$WORK_DIR/operator/extracted"
+
+IS_GA=true
+[[ "$CHART_REPO" != "$GA_CHART_REPOSITORY" ]] && IS_GA=false
+
+OPERATOR_PULLED=false
+echo "   Trying ga: $OPERATOR_IMAGE"
+if skopeo copy --quiet --override-os linux --override-arch amd64 "docker://$OPERATOR_IMAGE" "dir:$OPERATOR_DIR" 2>"$WORK_DIR/.skopeo-err"; then
+    OPERATOR_PULLED=true
+    echo "   ✓ Pulled: $OPERATOR_IMAGE"
 else
-    echo "   ✓ Found: $OPERATOR_IMAGE"
-    echo ""
+    echo "   ⚠ Not found"
+fi
 
-    # --------------------------------------------------------------------------
-    # Step 6: Pull operator image and extract dependency charts
-    # --------------------------------------------------------------------------
-    echo "6. Pulling operator image (this requires authentication)..."
-    echo ""
-
-    OPERATOR_DIR="$WORK_DIR/operator-image"
+if [ "$OPERATOR_PULLED" = false ] && [ "$IS_GA" = false ]; then
+    DEV_OPERATOR_IMAGE="${OPERATOR_IMAGE/registry.redhat.io/quay.io}"
+    echo "   Trying fallback: $DEV_OPERATOR_IMAGE"
+    rm -rf "$OPERATOR_DIR"
     mkdir -p "$OPERATOR_DIR"
-
-    # Check if the release has been published to the GA registry
-    IS_GA=true
-    [[ "$CHART_REPO" != "$GA_CHART_REPOSITORY" ]] && IS_GA=false
-
-    OPERATOR_PULLED=false
-    if skopeo copy --override-os linux --override-arch amd64 "docker://$OPERATOR_IMAGE" "dir:$OPERATOR_DIR" 2>"$WORK_DIR/.skopeo-err"; then
+    if skopeo copy --quiet --override-os linux --override-arch amd64 "docker://$DEV_OPERATOR_IMAGE" "dir:$OPERATOR_DIR" 2>"$WORK_DIR/.skopeo-err"; then
         OPERATOR_PULLED=true
-        echo "   ✓ Operator image downloaded: $OPERATOR_IMAGE"
-    elif [ "$IS_GA" = false ]; then
-        # For non-GA builds, fall back to dev registry
-        DEV_OPERATOR_IMAGE="${OPERATOR_IMAGE/registry.redhat.io/quay.io}"
-        echo "   ⚠ Not found in GA registry, trying dev registry..."
-        echo "   Trying: $DEV_OPERATOR_IMAGE"
-        rm -rf "$OPERATOR_DIR"
-        mkdir -p "$OPERATOR_DIR"
-        if skopeo copy --override-os linux --override-arch amd64 "docker://$DEV_OPERATOR_IMAGE" "dir:$OPERATOR_DIR" 2>"$WORK_DIR/.skopeo-err"; then
-            OPERATOR_PULLED=true
-            echo "   ✓ Operator image downloaded: $DEV_OPERATOR_IMAGE"
-        fi
-    fi
-
-    if [ "$OPERATOR_PULLED" = false ]; then
-        echo "   ✗ Failed to pull operator image: $OPERATOR_IMAGE"
-        if grep -q "unauthorized\|authentication required\|denied\|401" "$WORK_DIR/.skopeo-err" 2>/dev/null; then
-            echo "   ℹ You need to authenticate: skopeo login registry.redhat.io"
-        elif grep -q "manifest unknown\|not found\|404" "$WORK_DIR/.skopeo-err" 2>/dev/null; then
-            echo "   ℹ Image digest not found in registry. The image may not have been published yet."
-        else
-            echo "   ℹ $(cat "$WORK_DIR/.skopeo-err")"
-        fi
-        exit 1
-    else
-        echo "   ✓ Operator image downloaded"
-
-        echo "   Extracting dependency charts from /opt/charts/..."
-        for layer_file in "$OPERATOR_DIR"/*; do
-            if [ -f "$layer_file" ] && [ "$(basename "$layer_file")" != "manifest.json" ] && [ "$(basename "$layer_file")" != "version" ]; then
-                if file "$layer_file" | grep -q "gzip"; then
-                    tar -xzf "$layer_file" -C "$WORK_DIR" 2>/dev/null || true
-                fi
-            fi
-        done
-
-        if [ -d "$WORK_DIR/opt/charts" ]; then
-            echo "   ✓ Found dependency charts:"
-            ls "$WORK_DIR/opt/charts/" | sed 's/^/      - /'
-            echo ""
-
-            # ------------------------------------------------------------------
-            # Step 7: Extract images from dependency chart YAML files
-            # ------------------------------------------------------------------
-            echo "7. Extracting images from dependency chart YAML files..."
-            BEFORE_COUNT=$(sort -u "$IMAGES_RAW" | grep -c '@sha256:' || true)
-
-            # 7a: Sail Operator — version-aware filtering
-            SAIL_OPERATOR_DIR="$WORK_DIR/opt/charts/sail-operator"
-            if [ -d "$SAIL_OPERATOR_DIR" ]; then
-                extract_sail_operator_images "$SAIL_OPERATOR_DIR" "$IMAGES_RAW"
-            fi
-
-            # 7b: All other dependency charts — standard extraction
-            for chart_dir in "$WORK_DIR/opt/charts"/*/; do
-                if [ "$(basename "$chart_dir")" = "sail-operator" ]; then
-                    continue
-                fi
-                extract_images_from_dir "$chart_dir" "$IMAGES_RAW"
-            done
-
-            AFTER_COUNT=$(sort -u "$IMAGES_RAW" | grep -c '@sha256:' || true)
-            DEP_COUNT=$((AFTER_COUNT - BEFORE_COUNT))
-            echo "   ✓ Found $DEP_COUNT dependency images"
-        else
-            echo "   ⚠ No /opt/charts/ found in operator image"
-            echo "7. Skipped - no dependency charts found"
-        fi
+        echo "   ✓ Pulled: $DEV_OPERATOR_IMAGE"
     fi
 fi
 
-# Deduplicate and count
+if [ "$OPERATOR_PULLED" = false ]; then
+    echo "   ✗ Failed to pull operator image"
+    diagnose_pull_failure "$WORK_DIR/.skopeo-err" "$OPERATOR_IMAGE"
+    exit 1
+fi
+
+OPERATOR_NAME="${OPERATOR_IMAGE##*/}"
+OPERATOR_NAME="${OPERATOR_NAME%%@*}"
+
+if [ -z "$INCLUDE_DEPENDENCY_CHARTS" ]; then
+    echo "   Skipping dependency chart extraction (INCLUDE_DEPENDENCY_CHARTS is empty)"
+    echo ""
+    echo "7. Skipped - dependency chart extraction disabled"
+    DEP_COUNT=0
+else
+    echo "   Extracting dependency charts from /opt/charts/..."
+
+    jq -r '.layers[].digest' "$OPERATOR_DIR/manifest.json" | while IFS= read -r layer_digest; do
+        local_blob="$OPERATOR_DIR/${layer_digest#sha256:}"
+        if [ -f "$local_blob" ]; then
+            tar -xzf "$local_blob" -C "$OPERATOR_EXTRACTED" --include='opt/charts/*' 2>/dev/null || true
+        fi
+    done
+
+    if [ -d "$OPERATOR_EXTRACTED/opt/charts" ]; then
+        echo "   ✓ Found dependency charts:"
+        for chart_dir in "$OPERATOR_EXTRACTED/opt/charts"/*/; do
+            chart_name="$(basename "$chart_dir")"
+            if should_process_chart "$chart_name"; then
+                echo "      - $chart_name"
+            else
+                echo "      - $chart_name (skipped)"
+            fi
+        done
+        echo ""
+
+        # ------------------------------------------------------------------
+        # Step 7: Extract images from dependency chart YAML files
+        # ------------------------------------------------------------------
+        echo "7. Extracting images from dependency chart YAML files..."
+        BEFORE_DEP=$(wc -l < "$IMAGES_RAW" | tr -d ' ')
+
+        for chart_dir in "$OPERATOR_EXTRACTED/opt/charts"/*/; do
+            chart_name="$(basename "$chart_dir")"
+            if ! should_process_chart "$chart_name"; then
+                echo "   Skipping $chart_name (not in INCLUDE_DEPENDENCY_CHARTS)"
+                continue
+            fi
+            BEFORE_CHART_DEP=$(wc -l < "$IMAGES_RAW" | tr -d ' ')
+            if [ "$chart_name" = "sail-operator" ]; then
+                echo "   Processing $chart_name (version-filtered)..."
+                extract_sail_operator_images "$chart_dir" "$IMAGES_RAW" "${OPERATOR_NAME}:" "$OPERATOR_EXTRACTED"
+            else
+                echo "   Processing $chart_name..."
+                extract_images_from_dir "$chart_dir" "$IMAGES_RAW" "${OPERATOR_NAME}:" "$OPERATOR_EXTRACTED"
+            fi
+            AFTER_CHART_DEP=$(wc -l < "$IMAGES_RAW" | tr -d ' ')
+            CHART_DEP_COUNT=$((AFTER_CHART_DEP - BEFORE_CHART_DEP))
+            echo "   ✓ $chart_name: $CHART_DEP_COUNT images"
+        done
+
+        AFTER_DEP=$(wc -l < "$IMAGES_RAW" | tr -d ' ')
+        DEP_COUNT=$((AFTER_DEP - BEFORE_DEP))
+        echo "   Total: $DEP_COUNT dependency images"
+    else
+        echo "   ⚠ No /opt/charts/ found in operator image"
+        echo "7. Skipped - no dependency charts found"
+        DEP_COUNT=0
+    fi
+fi
+
+# ============================================================================
+# DEDUPLICATION AND OUTPUT
+# ============================================================================
+
 echo ""
 echo "Processing and deduplicating..."
-sort -u "$IMAGES_RAW" | grep -E '@sha256:' > "${WORK_DIR}/.images.final"
+
+# Strip annotations and deduplicate
+while IFS= read -r line; do
+    echo "${line%% #*}"
+done < "$IMAGES_RAW" | sort -u | grep -E '@sha256:' > "${WORK_DIR}/.images.final"
+
 TOTAL=$(wc -l < "${WORK_DIR}/.images.final" | tr -d ' ')
 
 echo ""
@@ -578,7 +642,7 @@ echo "Extraction Complete - Found $TOTAL unique images"
 echo "=========================================================================="
 echo ""
 
-# Create output file in charts directory
+# Create output file
 cat > "$OUTPUT_PATH" << HEADER
 # Skopeo sync configuration (auto-generated)
 #
@@ -591,16 +655,14 @@ cat > "$OUTPUT_PATH" << HEADER
 
 HEADER
 
-# Process each registry and group by image name
-for registry in $(cut -d'/' -f1 "${WORK_DIR}/.images.final" | sort -u); do
+# Group images by registry and repository
+while IFS= read -r registry; do
     echo "${registry}:" >> "$OUTPUT_PATH"
     echo "  images:" >> "$OUTPUT_PATH"
 
     grep "^${registry}/" "${WORK_DIR}/.images.final" | sort -u | while IFS= read -r img; do
         if [[ $img =~ ^([^/]+)/(.+)@(sha256:[a-f0-9]{64})$ ]]; then
-            repo="${BASH_REMATCH[2]}"
-            digest="${BASH_REMATCH[3]}"
-            echo "${repo}|${digest}"
+            echo "${BASH_REMATCH[2]}|${BASH_REMATCH[3]}"
         fi
     done | sort | \
     awk -F'|' '
@@ -627,19 +689,19 @@ for registry in $(cut -d'/' -f1 "${WORK_DIR}/.images.final" | sort -u); do
             }
         }
     }' >> "$OUTPUT_PATH"
-done
-
-# Count images by category
-MAIN_CHART=$(grep -cE "registry.redhat.io/(rhoai|rhaii|openshift4)" "${WORK_DIR}/.images.final" || true)
-CERT_MGR=$(grep -c "cert-manager" "${WORK_DIR}/.images.final" || true)
-LWS=$(grep -c "leader-worker-set" "${WORK_DIR}/.images.final" || true)
-ISTIO=$(grep -c "openshift-service-mesh" "${WORK_DIR}/.images.final" || true)
+done < <(cut -d'/' -f1 "${WORK_DIR}/.images.final" | sort -u)
 
 echo "Image Breakdown:"
-echo "  • Main Chart (RHAI):      $MAIN_CHART images"
-[ "$CERT_MGR" -gt 0 ] && echo "  • cert-manager:           $CERT_MGR images"
-[ "$LWS" -gt 0 ] && echo "  • LeaderWorkerSet (LWS):  $LWS images"
-[ "$ISTIO" -gt 0 ] && echo "  • Istio/Service Mesh:     $ISTIO images"
+printf "  • %-28s %d image\n" "Helm chart (OCI artifact):" 1
+printf "  • %-28s %d images\n" "$(basename "$CHART_DIR"):" "$MAIN_CHART_COUNT"
+if [ -n "$INCLUDE_DEPENDENCY_CHARTS" ] && [ -d "$OPERATOR_EXTRACTED/opt/charts" ]; then
+    for chart_dir in "$OPERATOR_EXTRACTED/opt/charts"/*/; do
+        chart_name="$(basename "$chart_dir")"
+        should_process_chart "$chart_name" || continue
+        count=$(grep -c "# ${OPERATOR_NAME}:opt/charts/${chart_name}/" "$IMAGES_RAW" || true)
+        [ "$count" -gt 0 ] && printf "  • %-28s %d images\n" "${chart_name}:" "$count"
+    done
+fi
 echo ""
 echo "Generated: $OUTPUT_PATH"
 echo ""

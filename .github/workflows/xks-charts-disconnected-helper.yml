@@ -11,6 +11,9 @@ on:
 env:
   GA_CHART_REPOSITORY: registry.redhat.io/rhai/rhai-on-xks-chart
   DEV_CHART_REPOSITORY: quay.io/rhoai/rhai-on-xks-chart
+  # Dependency charts to include from /opt/charts/ in the operator image.
+  # "all" = include all, "" = exclude all, or space-separated list of chart names.
+  INCLUDE_DEPENDENCY_CHARTS: "all"
 
 jobs:
   show-info:
@@ -25,33 +28,14 @@ jobs:
     needs: show-info
     runs-on: ubuntu-latest
     steps:
-      - name: Validate image reference
-        run: |
-          IMAGE_REF="${{ github.event.inputs.image_reference }}"
-
-          # Must be a SHA256 digest reference
-          if [[ ! "$IMAGE_REF" =~ ^[a-zA-Z0-9]([a-zA-Z0-9.-]*)\.[a-zA-Z]{2,}/.+@sha256:[a-f0-9]{64}$ ]]; then
-            echo "Input must be a full image URI with a SHA256 digest."
-            echo "   Got: '$IMAGE_REF'"
-            echo "   Example: ${DEV_CHART_REPOSITORY}@sha256:abc123..."
-            exit 1
-          fi
-
-          # Must be from a known chart repository
-          if [[ "$IMAGE_REF" != "${GA_CHART_REPOSITORY}@"* ]] && [[ "$IMAGE_REF" != "${DEV_CHART_REPOSITORY}@"* ]]; then
-            echo "Image must be from below chart repository:"
-            echo "   - $GA_CHART_REPOSITORY"
-            echo "   - $DEV_CHART_REPOSITORY"
-            echo "   Got: '$IMAGE_REF'"
-            exit 1
-          fi
-
       - uses: actions/checkout@v4
 
-      - name: Install skopeo
+      - name: Install dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y skopeo
+          sudo wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64
+          sudo chmod +x /usr/local/bin/yq
 
       - name: Login to registries
         run: |
@@ -69,11 +53,30 @@ jobs:
           scripts/xks-charts-disconnected-helper.sh "${{ github.event.inputs.image_reference }}"
           echo "version=$(cat .${CHART_NAME}-work/.version)" >> "$GITHUB_OUTPUT"
           echo "chart_name=${CHART_NAME}" >> "$GITHUB_OUTPUT"
+          echo "work_dir=.${CHART_NAME}-work" >> "$GITHUB_OUTPUT"
+
+      - name: Upload image list artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.extract.outputs.chart_name }}-${{ steps.extract.outputs.version }}-images
+          path: ${{ steps.extract.outputs.work_dir }}/.images
+
+      - name: Check for changes
+        id: changes
+        run: |
+          if git diff --quiet HEAD; then
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+            echo "No changes to commit — DIH file already up to date."
+          else
+            echo "has_changes=true" >> "$GITHUB_OUTPUT"
+          fi
 
       - name: Pull latest changes from main branch
+        if: steps.changes.outputs.has_changes == 'true'
         run: git pull origin main
 
       - name: Commit and push changes to main branch
+        if: steps.changes.outputs.has_changes == 'true'
         uses: actions-js/push@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
