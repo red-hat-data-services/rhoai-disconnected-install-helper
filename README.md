@@ -1,11 +1,11 @@
 # RHOAI DIH (Disconnected Install Helper)
 
-This repository generates and maintains the complete list of container images needed to install RHOAI in disconnected (air-gapped) environments. Image lists are updated automatically via GitHub Actions.
+This repository generates and maintains lists of container/oci images needed to install RHOAI in disconnected (air-gapped) environments.
 
 Two flavors are supported:
 
-- **RHOAI (OpenShift)** -- generates `rhoai-<version>.md` files for use with `oc-mirror`
-- **XKS Charts (vanilla Kubernetes)** -- generates `charts/rhai-on-xks-chart-<version>.yaml` files for use with `skopeo sync`
+- **RHOAI (OpenShift)** -- generates `rhoai-<version>.md` files containing additional container images (deprecated/unsupported) for use with `oc-mirror`
+- **XKS Charts (vanilla Kubernetes)** -- generates `charts/rhai-on-xks-chart-<version>.yaml` files containing the complete list of container/oci images for use with `skopeo sync`
 
 ## Table of Contents
 
