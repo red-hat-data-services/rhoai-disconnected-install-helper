@@ -38,6 +38,9 @@
     - registry.redhat.io/rhoai/odh-workbench-jupyter-trustyai-cpu-py312-rhel9@sha256:cada04c9bd1c8ad4e167dfbbde3b3b955b6a6d322726602c8b109a986d62ac73
     - registry.redhat.io/rhoai/odh-workbench-codeserver-datascience-cpu-py312-rhel9@sha256:05bf03b4b7858cfd60f46f8b58206bba20d95b5b16e99443417fef7425b1bb04
     - registry.redhat.io/rhoai/odh-workbench-jupyter-pytorch-llmcompressor-cuda-py312-rhel9@sha256:3fe23bc6e7689dc4d825a1d44f05d226009caebcf9602ec1ec7529f855af067b
+    - registry.redhat.io/rhoai/odh-th06-cuda130-torch210-py312-rhel9@sha256:6f6eeb1eb7923fe3212cf7de043b7980bec9099b518cbeb95c5fe9d83af954bf
+    - registry.redhat.io/rhoai/odh-th06-rocm64-torch291-py312-rhel9@sha256:c566e96379510c34dbc78358d75fa17db563285f9a2d486eea8e15f6b00da3bc
+    - registry.redhat.io/rhoai/odh-th06-cpu-torch210-py312-rhel9@sha256:06d6b335fbcd50709a36e99b60245b4e49614ed0d5f7e2906d629477527ac1d6
 
 
 
@@ -114,6 +117,9 @@ mirror:
     - name: registry.redhat.io/rhoai/odh-workbench-jupyter-trustyai-cpu-py312-rhel9@sha256:cada04c9bd1c8ad4e167dfbbde3b3b955b6a6d322726602c8b109a986d62ac73
     - name: registry.redhat.io/rhoai/odh-workbench-codeserver-datascience-cpu-py312-rhel9@sha256:05bf03b4b7858cfd60f46f8b58206bba20d95b5b16e99443417fef7425b1bb04
     - name: registry.redhat.io/rhoai/odh-workbench-jupyter-pytorch-llmcompressor-cuda-py312-rhel9@sha256:3fe23bc6e7689dc4d825a1d44f05d226009caebcf9602ec1ec7529f855af067b
+    - name: registry.redhat.io/rhoai/odh-th06-cuda130-torch210-py312-rhel9@sha256:6f6eeb1eb7923fe3212cf7de043b7980bec9099b518cbeb95c5fe9d83af954bf
+    - name: registry.redhat.io/rhoai/odh-th06-rocm64-torch291-py312-rhel9@sha256:c566e96379510c34dbc78358d75fa17db563285f9a2d486eea8e15f6b00da3bc
+    - name: registry.redhat.io/rhoai/odh-th06-cpu-torch210-py312-rhel9@sha256:06d6b335fbcd50709a36e99b60245b4e49614ed0d5f7e2906d629477527ac1d6
 
 
 
