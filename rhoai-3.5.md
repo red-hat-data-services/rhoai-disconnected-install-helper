@@ -27,6 +27,7 @@
     - registry.redhat.io/rhoai/odh-pipeline-runtime-pytorch-rocm-py312-rhel9@sha256:d9c32296f9b8b6b9b0fccaafe0e910d96e3e700fa14876f19ad7570523b4b384
     - registry.redhat.io/rhoai/odh-pipeline-runtime-tensorflow-rocm-py312-rhel9@sha256:a4cfdf3f66e855efd3809f83e806becd5f30a8e18e73ef157f81aab37f07cd47
     - registry.redhat.io/rhoai/odh-pipeline-runtime-tensorflow-cuda-py312-rhel9@sha256:917272fc0483b20ac426626f5ee5bcdcbc4c88b5bbdbf00cf00a7a59d6bf5686
+    - quay.io/opendatahub/data-processing@sha256:43d2e56d78f374d18210ef5f75713174bc27a7e05c260a2fb0c8c623ed0f084d
     - registry.redhat.io/rhoai/odh-workbench-jupyter-minimal-cpu-py312-rhel9@sha256:01b22d2179dfa4cb57ff042a2c87c9082e2c57f331b818218b690c9a747b168e
     - registry.redhat.io/rhoai/odh-workbench-jupyter-minimal-cuda-py312-rhel9@sha256:8bacb849ae17424c4b613ed50089ae24b7ea69e92cdb4f558f561d2031e153b9
     - registry.redhat.io/rhoai/odh-workbench-jupyter-minimal-rocm-py312-rhel9@sha256:496b9ff80594d486f594bba69652c3ae4445265b94a44995b25f5ebd1e5767b3
@@ -106,6 +107,7 @@ mirror:
     - name: registry.redhat.io/rhoai/odh-pipeline-runtime-pytorch-rocm-py312-rhel9@sha256:d9c32296f9b8b6b9b0fccaafe0e910d96e3e700fa14876f19ad7570523b4b384
     - name: registry.redhat.io/rhoai/odh-pipeline-runtime-tensorflow-rocm-py312-rhel9@sha256:a4cfdf3f66e855efd3809f83e806becd5f30a8e18e73ef157f81aab37f07cd47
     - name: registry.redhat.io/rhoai/odh-pipeline-runtime-tensorflow-cuda-py312-rhel9@sha256:917272fc0483b20ac426626f5ee5bcdcbc4c88b5bbdbf00cf00a7a59d6bf5686
+    - name: quay.io/opendatahub/data-processing@sha256:43d2e56d78f374d18210ef5f75713174bc27a7e05c260a2fb0c8c623ed0f084d
     - name: registry.redhat.io/rhoai/odh-workbench-jupyter-minimal-cpu-py312-rhel9@sha256:01b22d2179dfa4cb57ff042a2c87c9082e2c57f331b818218b690c9a747b168e
     - name: registry.redhat.io/rhoai/odh-workbench-jupyter-minimal-cuda-py312-rhel9@sha256:8bacb849ae17424c4b613ed50089ae24b7ea69e92cdb4f558f561d2031e153b9
     - name: registry.redhat.io/rhoai/odh-workbench-jupyter-minimal-rocm-py312-rhel9@sha256:496b9ff80594d486f594bba69652c3ae4445265b94a44995b25f5ebd1e5767b3
