@@ -20,8 +20,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Display workflow inputs
+        env:
+          IMAGE_REFERENCE: ${{ github.event.inputs.image_reference }}
         run: |
-          echo "### image_reference: ${{ github.event.inputs.image_reference }}" >> $GITHUB_STEP_SUMMARY
+          echo "### image_reference: ${IMAGE_REFERENCE}" >> $GITHUB_STEP_SUMMARY
           echo "### workflow_run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" >> $GITHUB_STEP_SUMMARY
 
   generate-image-list:
@@ -48,9 +50,11 @@ jobs:
 
       - name: Run xks-charts-disconnected-helper.sh
         id: extract
+        env:
+          IMAGE_REFERENCE: ${{ github.event.inputs.image_reference }}
         run: |
           CHART_NAME=$(basename "$GA_CHART_REPOSITORY")
-          scripts/xks-charts-disconnected-helper.sh "${{ github.event.inputs.image_reference }}"
+          scripts/xks-charts-disconnected-helper.sh "${IMAGE_REFERENCE}"
           echo "version=$(cat .${CHART_NAME}-work/.version)" >> "$GITHUB_OUTPUT"
           echo "chart_name=${CHART_NAME}" >> "$GITHUB_OUTPUT"
           echo "work_dir=.${CHART_NAME}-work" >> "$GITHUB_OUTPUT"
@@ -77,7 +81,7 @@ jobs:
 
       - name: Commit and push changes to main branch
         if: steps.changes.outputs.has_changes == 'true'
-        uses: actions-js/push@master
+        uses: actions-js/push@5a7cbd780d82c0c937b5977586e641b2fd94acc5 # v1.5
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: main
