@@ -1,0 +1,91 @@
+name: XKS Charts - Generate disconnected install helper
+
+on:
+  workflow_dispatch:
+    inputs:
+      image_reference:
+        description: "Full image URI with SHA256 digest (e.g. quay.io/rhoai/rhai-on-xks-chart@sha256:...)"
+        required: true
+        type: string
+
+env:
+  GA_CHART_REPOSITORY: registry.redhat.io/rhai/rhai-on-xks-chart
+  DEV_CHART_REPOSITORY: quay.io/rhoai/rhai-on-xks-chart
+  # Dependency charts to include from /opt/charts/ in the operator image.
+  # "all" = include all, "" = exclude all, or space-separated list of chart names.
+  INCLUDE_DEPENDENCY_CHARTS: "all"
+
+jobs:
+  show-info:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Display workflow inputs
+        env:
+          IMAGE_REFERENCE: ${{ github.event.inputs.image_reference }}
+        run: |
+          echo "### image_reference: ${IMAGE_REFERENCE}" >> $GITHUB_STEP_SUMMARY
+          echo "### workflow_run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" >> $GITHUB_STEP_SUMMARY
+
+  generate-image-list:
+    needs: show-info
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y skopeo
+          sudo wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64
+          sudo chmod +x /usr/local/bin/yq
+
+      - name: Login to registries
+        run: |
+          skopeo login registry.redhat.io \
+            -u "${{ secrets.REGISTRY_REDHAT_IO_USERNAME }}" \
+            -p "${{ secrets.REGISTRY_REDHAT_IO_PASSWORD }}"
+          skopeo login quay.io \
+            -u "${{ secrets.RHOAI_RO_QUAY_USERNAME }}" \
+            -p "${{ secrets.RHOAI_RO_QUAY_PASSWORD }}"
+
+      - name: Run xks-charts-disconnected-helper.sh
+        id: extract
+        env:
+          IMAGE_REFERENCE: ${{ github.event.inputs.image_reference }}
+        run: |
+          CHART_NAME=$(basename "$GA_CHART_REPOSITORY")
+          scripts/xks-charts-disconnected-helper.sh "${IMAGE_REFERENCE}"
+          echo "version=$(cat .${CHART_NAME}-work/.version)" >> "$GITHUB_OUTPUT"
+          echo "chart_name=${CHART_NAME}" >> "$GITHUB_OUTPUT"
+          echo "work_dir=.${CHART_NAME}-work" >> "$GITHUB_OUTPUT"
+
+      - name: Upload image list artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.extract.outputs.chart_name }}-${{ steps.extract.outputs.version }}-images
+          path: ${{ steps.extract.outputs.work_dir }}/.images
+
+      - name: Check for changes
+        id: changes
+        run: |
+          if git diff --quiet HEAD; then
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+            echo "No changes to commit — DIH file already up to date."
+          else
+            echo "has_changes=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Pull latest changes from main branch
+        if: steps.changes.outputs.has_changes == 'true'
+        run: git pull origin main
+
+      - name: Commit and push changes to main branch
+        if: steps.changes.outputs.has_changes == 'true'
+        uses: actions-js/push@5a7cbd780d82c0c937b5977586e641b2fd94acc5 # v1.5
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
+          message: |
+            add ${{ steps.extract.outputs.chart_name }}-${{ steps.extract.outputs.version }}.yaml
+            Workflow run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          repository: red-hat-data-services/rhoai-disconnected-install-helper
