@@ -4,6 +4,7 @@
     - quay.io/modh/ray@sha256:7b9c6d524b64a07746caa7dc89e691fc40eb4c2b4e41ffde8361bcd8d3c94d68
     - quay.io/modh/ray@sha256:42fbc5d898cb9c7d202ee89308ef328838d42985ec384f2476d8f3356acd01cb
     - quay.io/modh/ray@sha256:e29b721f02896093fa8d128d7838200d42f0b3d6ae7d680c1e643e1dd469abe5
+    - quay.io/modh/ray@sha256:f63a015302758f805e5332605669b886e4d7ac60ec929413a2ffc19a904211c6
     - quay.io/modh/ray@sha256:28a8745be454b0e881ce6c200599ddfcb3366b707a5b53cfa73087d599555158
     - quay.io/modh/ray@sha256:900c35ec2fe4279b958e044c781a179c8cfe0c584e8af16e253814dba01816e6
     - quay.io/modh/ray@sha256:4f771205ce0afc8ac69ce7c997bbae37e18d1077a3bb99b3af7ea8071884af57
@@ -84,6 +85,7 @@ mirror:
     - name: quay.io/modh/ray@sha256:7b9c6d524b64a07746caa7dc89e691fc40eb4c2b4e41ffde8361bcd8d3c94d68
     - name: quay.io/modh/ray@sha256:42fbc5d898cb9c7d202ee89308ef328838d42985ec384f2476d8f3356acd01cb
     - name: quay.io/modh/ray@sha256:e29b721f02896093fa8d128d7838200d42f0b3d6ae7d680c1e643e1dd469abe5
+    - name: quay.io/modh/ray@sha256:f63a015302758f805e5332605669b886e4d7ac60ec929413a2ffc19a904211c6
     - name: quay.io/modh/ray@sha256:28a8745be454b0e881ce6c200599ddfcb3366b707a5b53cfa73087d599555158
     - name: quay.io/modh/ray@sha256:900c35ec2fe4279b958e044c781a179c8cfe0c584e8af16e253814dba01816e6
     - name: quay.io/modh/ray@sha256:4f771205ce0afc8ac69ce7c997bbae37e18d1077a3bb99b3af7ea8071884af57
