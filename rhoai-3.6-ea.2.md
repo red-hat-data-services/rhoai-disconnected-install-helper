@@ -77,8 +77,8 @@ mirror:
     - name: rhods-operator
       channels:
       - name: fast
-        minVersion: 3.6-ea.1.0
-        maxVersion: 3.6-ea.1.0
+        minVersion: 3.6-ea.2.0
+        maxVersion: 3.6-ea.2.0
   additionalImages:   
     - name: quay.io/modh/fms-hf-tuning@sha256:83f70e981657728ef9929fa50d06fe5c72f364e5ed41a9fc1331e99751f610e8
     - name: quay.io/modh/ray@sha256:595b3acd10244e33fca1ed5469dccb08df66f470df55ae196f80e56edf35ad5a
