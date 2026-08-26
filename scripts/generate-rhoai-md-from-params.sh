@@ -103,7 +103,7 @@ Mirror a subsection below only if users will select those images in the dashboar
 Current-release workbench and pipeline runtime images are mirrored automatically with
 the RHOAI operator.
 
-## Previous GA release (${previous_ga_label}) workbench images
+## Previous GA release (${previous_ga_label} version) workbench images
 Mirror only if users need workbench images from the immediately preceding GA release
 (for example, existing notebooks or imported resources created on ${previous_ga_label}).
 
