@@ -65,9 +65,12 @@ is_rhoai_34_or_greater() {
 
 get_base_branch() {
   # For EA versions like rhoai-3.4-ea.1, return the base branch rhoai-3.4
+  # For z-stream versions like rhoai-3.4.1, return the base branch rhoai-3.4
   # For regular versions like rhoai-3.4, return as-is
   local version="$1"
   if [[ "$version" =~ ^(rhoai-[0-9]+\.[0-9]+)-ea\.[0-9]+$ ]]; then
+    echo "${BASH_REMATCH[1]}"
+  elif [[ "$version" =~ ^(rhoai-[0-9]+\.[0-9]+)\.[0-9]+$ ]]; then
     echo "${BASH_REMATCH[1]}"
   else
     echo "$version"
@@ -365,6 +368,12 @@ fi)
 
 \`\`\`
 EOF
+
+  echo ""
+  echo "=== Extracting ImageSetConfiguration YAML from $file_name ==="
+  local script_dir
+  script_dir="$(cd "$(dirname "$0")" && pwd)"
+  "$script_dir/extract-imagesetconfig.sh" -f "$file_name"
 }
 #$(image_tag_to_digest "$must_gather_image" | sed 's/^/    - name: /')
 function change_rhods_version() {

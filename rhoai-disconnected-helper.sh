@@ -4,8 +4,8 @@ source rhoai-dih.sh
 
 function validate_rhoai_branch() {
   local branch="$1"
-  if [[ ! "$branch" =~ ^rhoai-[0-9]+\.[0-9]+(-ea\.[0-9]+)?$ ]]; then
-    echo "Error: Invalid rhoai branch format '$branch'. Expected format: rhoai-X.Y or rhoai-X.Y-ea.Z (e.g., rhoai-2.25, rhoai-3.4-ea.1)."
+  if [[ ! "$branch" =~ ^rhoai-[0-9]+\.[0-9]+(\.[0-9]+)?(-ea\.[0-9]+)?$ ]]; then
+    echo "Error: Invalid rhoai branch format '$branch'. Expected format: rhoai-X.Y, rhoai-X.Y.Z, or rhoai-X.Y-ea.Z (e.g., rhoai-2.25, rhoai-3.4.1, rhoai-3.4-ea.1)."
     exit 1
   fi
 }
@@ -35,7 +35,13 @@ function main() {
       # update_must_gather
       # echo "$must_gather_image"
 
-      if is_rhods_version_greater_or_equal_to rhods-2.4; then
+      if is_rhods_version_greater_or_equal_to rhods-2.25; then
+        local repo_branch
+        repo_branch=$(get_base_branch "$rhods_version")
+        echo "Fetching additional images from rhoai-additional-images repo (branch: $repo_branch)"
+        mkdir -p "$repository_folder"
+        clone_repo "rhoai-additional-images" "$repo_branch"
+      elif is_rhods_version_greater_or_equal_to rhods-2.4; then
         echo "Cloning repositories"
         clone_all_repos
       else

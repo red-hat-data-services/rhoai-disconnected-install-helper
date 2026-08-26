@@ -239,7 +239,7 @@ function image_set_configuration() {
         verify_image_exists "$image"
       done < <(find_notebooks_images)
     fi
-    verify_image_exists "$(image_tag_to_digest $must_gather_image)"
+    # verify_image_exists "$(image_tag_to_digest $must_gather_image)"
   else
     echo "Skipping image verification"
   fi
@@ -258,7 +258,6 @@ function image_set_configuration() {
 cat <<EOF >"$file_name"
 # Additional images:
 $(find_images | sed 's/^/    - /')
-$(image_tag_to_digest "$must_gather_image" | sed 's/^/    - /')
 $(if [ -n "$branch_main" ]; then echo "    - quay.io/modh/kserve-agent:nightly"
     echo "    - quay.io/modh/kserve-controller:nightly"
     echo "    - quay.io/modh/kserve-router:nightly"
@@ -287,7 +286,6 @@ mirror:
         $min_max_version
   additionalImages:   
 $(find_images | sed 's/^/    - name: /')
-$(image_tag_to_digest "$must_gather_image" | sed 's/^/    - name: /')
 $(if [ -n "$branch_main" ]; then echo "    - name: quay.io/modh/kserve-agent:nightly"
     echo "    - name: quay.io/modh/kserve-controller:nightly"
     echo "    - name: quay.io/modh/kserve-router:nightly"
@@ -299,6 +297,12 @@ fi)
 
 \`\`\`
 EOF
+
+  echo ""
+  echo "=== Extracting ImageSetConfiguration YAML from $file_name ==="
+  local script_dir
+  script_dir="$(cd "$(dirname "$0")" && pwd)"
+  "$script_dir/extract-imagesetconfig.sh" -f "$file_name"
 }
 
 function change_rhods_version() {
