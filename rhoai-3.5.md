@@ -41,7 +41,9 @@ Mirror only if users need workbench images from the immediately preceding GA rel
 
 ## PyPI-enabled (2025.2 version) workbench and pipeline runtime images
 Mirror only if users need PyPI-enabled (2025.2) workbench or pipeline runtime images
-that remain selectable in RHOAI 3.5.
+that remain selectable in RHOAI 3.5. See the
+[Red Hat AI Python Index](https://access.redhat.com/articles/7137881) article
+for background on the move away from PyPI-enabled images.
 
 <!-- Source: https://github.com/red-hat-data-services/notebooks/blob/rhoai-3.5/manifests/rhoai/base/params.env keys *-2025-2 -->
     - registry.redhat.io/rhoai/odh-workbench-jupyter-minimal-cpu-py312-rhel9@sha256:792c7c809440655e19da5d50e4b7568f39b403e61eeacd9e0fa095fc01a5e167
@@ -64,9 +66,7 @@ that remain selectable in RHOAI 3.5.
     - registry.redhat.io/rhoai/odh-pipeline-runtime-tensorflow-cuda-py312-rhel9@sha256:917272fc0483b20ac426626f5ee5bcdcbc4c88b5bbdbf00cf00a7a59d6bf5686
 
 ## PyPI-enabled (2025.1 version) workbench images
-Mirror only if users need PyPI-enabled (2025.1) workbench images. See the
-[Red Hat AI Python Index](https://access.redhat.com/articles/7137881) article
-for background on the move away from PyPI-enabled images.
+Mirror only if users need PyPI-enabled (2025.1) workbench images.
 
 <!-- Source: https://github.com/red-hat-data-services/notebooks/blob/rhoai-3.5/manifests/rhoai/base/params.env keys *-2025-1 -->
     - registry.redhat.io/rhoai/odh-workbench-jupyter-minimal-cpu-py311-rhel9@sha256:2b00a5b676b07d4fd6ab894d5dcaeb5bf88ef35bde76cbf3b4c0951987e5aad6

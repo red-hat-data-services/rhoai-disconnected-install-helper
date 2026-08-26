@@ -114,7 +114,9 @@ EOF
   cat <<EOF
 ## PyPI-enabled (2025.2 version) workbench and pipeline runtime images
 Mirror only if users need PyPI-enabled (2025.2) workbench or pipeline runtime images
-that remain selectable in RHOAI ${semver}.
+that remain selectable in RHOAI ${semver}. See the
+[Red Hat AI Python Index](https://access.redhat.com/articles/7137881) article
+for background on the move away from PyPI-enabled images.
 
 <!-- Source: ${PARAMS_ENV_SOURCE} keys *-2025-2 -->
 EOF
@@ -122,9 +124,7 @@ EOF
 
   cat <<'EOF'
 ## PyPI-enabled (2025.1 version) workbench images
-Mirror only if users need PyPI-enabled (2025.1) workbench images. See the
-[Red Hat AI Python Index](https://access.redhat.com/articles/7137881) article
-for background on the move away from PyPI-enabled images.
+Mirror only if users need PyPI-enabled (2025.1) workbench images.
 
 EOF
   printf '<!-- Source: %s keys *-2025-1 -->\n' "$PARAMS_ENV_SOURCE"
