@@ -34,9 +34,12 @@
     - registry.redhat.io/rhoai/odh-workbench-jupyter-trustyai-cpu-py312-rhel9@sha256:cada04c9bd1c8ad4e167dfbbde3b3b955b6a6d322726602c8b109a986d62ac73
     - registry.redhat.io/rhoai/odh-workbench-codeserver-datascience-cpu-py312-rhel9@sha256:05bf03b4b7858cfd60f46f8b58206bba20d95b5b16e99443417fef7425b1bb04
     - registry.redhat.io/rhoai/odh-workbench-jupyter-pytorch-llmcompressor-cuda-py312-rhel9@sha256:3fe23bc6e7689dc4d825a1d44f05d226009caebcf9602ec1ec7529f855af067b
-    - registry.redhat.io/rhoai/odh-th06-cuda130-torch210-py312-rhel9@sha256:c18bb50a0082f9258afeb95cf9d8bbc6af7a48e712a7587073f2b281ca2200b8
-    - registry.redhat.io/rhoai/odh-th06-rocm64-torch291-py312-rhel9@sha256:3f3fdca286cfa6ab1f48cdfa109e78e6c8615f823568bb8cc18263db42f1beed
-    - registry.redhat.io/rhoai/odh-th06-cpu-torch210-py312-rhel9@sha256:4b762d722faa80d7c6641a631d891f0ddf048950a4f8b6e5b93010d65134687d
+    - registry.redhat.io/rhoai/odh-th06-cuda130-torch210-py312-rhel9@sha256:2a0cff93937d63672ed4e9387ee7bf189013d9d1ddf76fefdd4c23ff861f9182
+    - registry.redhat.io/rhoai/odh-th06-rocm64-torch291-py312-rhel9@sha256:6137ce91274aa8aaa76b3b47fe0ae58414c0e719240dbd21b98c4182a9acd132
+    - registry.redhat.io/rhoai/odh-th06-cpu-torch210-py312-rhel9@sha256:14f316b8cfa75d3703e4ce9493e347a6b64352944b494442c2162c457db370c4
+    - registry.redhat.io/rhoai/odh-th-torch-cuda-py312-rhel9@sha256:884aeeb039f9592252fe0c518acf31803a208757d4fa6500fe79884a022ea52d
+    - registry.redhat.io/rhoai/odh-th-torch-rocm-py312-rhel9@sha256:a7fc004ceb94b36cf9d7cec557e0fb5e2f7b59223508fd395c343e12aacc3a76
+    - registry.redhat.io/rhoai/odh-th-torch-cpu-py312-rhel9@sha256:1507a4f986742f856c0cd717071169b3499f1b51eed85b3135136565da49b998
 
 
 
@@ -109,9 +112,12 @@ mirror:
     - name: registry.redhat.io/rhoai/odh-workbench-jupyter-trustyai-cpu-py312-rhel9@sha256:cada04c9bd1c8ad4e167dfbbde3b3b955b6a6d322726602c8b109a986d62ac73
     - name: registry.redhat.io/rhoai/odh-workbench-codeserver-datascience-cpu-py312-rhel9@sha256:05bf03b4b7858cfd60f46f8b58206bba20d95b5b16e99443417fef7425b1bb04
     - name: registry.redhat.io/rhoai/odh-workbench-jupyter-pytorch-llmcompressor-cuda-py312-rhel9@sha256:3fe23bc6e7689dc4d825a1d44f05d226009caebcf9602ec1ec7529f855af067b
-    - name: registry.redhat.io/rhoai/odh-th06-cuda130-torch210-py312-rhel9@sha256:c18bb50a0082f9258afeb95cf9d8bbc6af7a48e712a7587073f2b281ca2200b8
-    - name: registry.redhat.io/rhoai/odh-th06-rocm64-torch291-py312-rhel9@sha256:3f3fdca286cfa6ab1f48cdfa109e78e6c8615f823568bb8cc18263db42f1beed
-    - name: registry.redhat.io/rhoai/odh-th06-cpu-torch210-py312-rhel9@sha256:4b762d722faa80d7c6641a631d891f0ddf048950a4f8b6e5b93010d65134687d
+    - name: registry.redhat.io/rhoai/odh-th06-cuda130-torch210-py312-rhel9@sha256:2a0cff93937d63672ed4e9387ee7bf189013d9d1ddf76fefdd4c23ff861f9182
+    - name: registry.redhat.io/rhoai/odh-th06-rocm64-torch291-py312-rhel9@sha256:6137ce91274aa8aaa76b3b47fe0ae58414c0e719240dbd21b98c4182a9acd132
+    - name: registry.redhat.io/rhoai/odh-th06-cpu-torch210-py312-rhel9@sha256:14f316b8cfa75d3703e4ce9493e347a6b64352944b494442c2162c457db370c4
+    - name: registry.redhat.io/rhoai/odh-th-torch-cuda-py312-rhel9@sha256:884aeeb039f9592252fe0c518acf31803a208757d4fa6500fe79884a022ea52d
+    - name: registry.redhat.io/rhoai/odh-th-torch-rocm-py312-rhel9@sha256:a7fc004ceb94b36cf9d7cec557e0fb5e2f7b59223508fd395c343e12aacc3a76
+    - name: registry.redhat.io/rhoai/odh-th-torch-cpu-py312-rhel9@sha256:1507a4f986742f856c0cd717071169b3499f1b51eed85b3135136565da49b998
 
 
 
