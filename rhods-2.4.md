@@ -37,6 +37,7 @@
     - quay.io/modh/runtime-images@sha256:f48c69cbf6e1cfdb33dd7039ba6c361e617baf9b2121cb88263dda969098b173
     - quay.io/opendatahub/openvino_model_server@sha256:20dbfbaf53d1afbd47c612d953984238cb0e207972ed544a5ea662c2404f276d
     - quay.io/modh/must-gather@sha256:c2d780156a0e7cec975c9c150bee00b1facb8f6213e7b98a7a489448d76dfd94
+    - registry.redhat.io/rhel8/mariadb-103@sha256:d0eea30ae4fc8c5bb06d0e4d61d92fba9c0ae40b8023f72702301b70a7537faa
 
 
 # ImageSetConfiguration example:
@@ -94,5 +95,6 @@ mirror:
     - name: quay.io/modh/runtime-images@sha256:f48c69cbf6e1cfdb33dd7039ba6c361e617baf9b2121cb88263dda969098b173
     - name: quay.io/opendatahub/openvino_model_server@sha256:20dbfbaf53d1afbd47c612d953984238cb0e207972ed544a5ea662c2404f276d
     - name: quay.io/modh/must-gather@sha256:c2d780156a0e7cec975c9c150bee00b1facb8f6213e7b98a7a489448d76dfd94
+    - name: registry.redhat.io/rhel8/mariadb-103@sha256:d0eea30ae4fc8c5bb06d0e4d61d92fba9c0ae40b8023f72702301b70a7537faa
 
 ```
