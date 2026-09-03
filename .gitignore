@@ -2,3 +2,4 @@
 actions-runner
 .idea
 .odh-manifests
+.*-work/
