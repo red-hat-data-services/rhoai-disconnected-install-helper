@@ -1,10 +1,10 @@
 # Additional images:
     - quay.io/modh/fms-hf-tuning@sha256:83f70e981657728ef9929fa50d06fe5c72f364e5ed41a9fc1331e99751f610e8
     - quay.io/modh/ray@sha256:595b3acd10244e33fca1ed5469dccb08df66f470df55ae196f80e56edf35ad5a
-    - quay.io/modh/ray@sha256:e29b721f02896093fa8d128d7838200d42f0b3d6ae7d680c1e643e1dd469abe5
-    - quay.io/modh/ray@sha256:f63a015302758f805e5332605669b886e4d7ac60ec929413a2ffc19a904211c6
+    - quay.io/modh/ray@sha256:e375ff49b3fa046aea31b1d504675db5db41ec011f945af67772620a822465cd
+    - quay.io/modh/ray@sha256:c713469fd8d8053df549946fbbac2ae92eba4dc17ca1141274243db5ae7db31b
     - quay.io/modh/ray@sha256:28a8745be454b0e881ce6c200599ddfcb3366b707a5b53cfa73087d599555158
-    - quay.io/modh/ray@sha256:31023d53c31f13fe863979426fd2b69c20856d02b749f16707926eb945edda9e
+    - quay.io/modh/ray@sha256:4426b3602c1e34bbf6d37bc210d082706fcf77eb5d771d56c8b0712fda4f95f4
     - registry.redhat.io/rhoai/odh-th06-cuda130-torch210-py312-rhel9@sha256:c18bb50a0082f9258afeb95cf9d8bbc6af7a48e712a7587073f2b281ca2200b8
     - registry.redhat.io/rhoai/odh-th06-rocm64-torch291-py312-rhel9@sha256:3f3fdca286cfa6ab1f48cdfa109e78e6c8615f823568bb8cc18263db42f1beed
     - registry.redhat.io/rhoai/odh-th06-cpu-torch210-py312-rhel9@sha256:4b762d722faa80d7c6641a631d891f0ddf048950a4f8b6e5b93010d65134687d
@@ -87,10 +87,10 @@ mirror:
   additionalImages:   
     - name: quay.io/modh/fms-hf-tuning@sha256:83f70e981657728ef9929fa50d06fe5c72f364e5ed41a9fc1331e99751f610e8
     - name: quay.io/modh/ray@sha256:595b3acd10244e33fca1ed5469dccb08df66f470df55ae196f80e56edf35ad5a
-    - name: quay.io/modh/ray@sha256:e29b721f02896093fa8d128d7838200d42f0b3d6ae7d680c1e643e1dd469abe5
-    - name: quay.io/modh/ray@sha256:f63a015302758f805e5332605669b886e4d7ac60ec929413a2ffc19a904211c6
+    - name: quay.io/modh/ray@sha256:e375ff49b3fa046aea31b1d504675db5db41ec011f945af67772620a822465cd
+    - name: quay.io/modh/ray@sha256:c713469fd8d8053df549946fbbac2ae92eba4dc17ca1141274243db5ae7db31b
     - name: quay.io/modh/ray@sha256:28a8745be454b0e881ce6c200599ddfcb3366b707a5b53cfa73087d599555158
-    - name: quay.io/modh/ray@sha256:31023d53c31f13fe863979426fd2b69c20856d02b749f16707926eb945edda9e
+    - name: quay.io/modh/ray@sha256:4426b3602c1e34bbf6d37bc210d082706fcf77eb5d771d56c8b0712fda4f95f4
     - name: registry.redhat.io/rhoai/odh-th06-cuda130-torch210-py312-rhel9@sha256:c18bb50a0082f9258afeb95cf9d8bbc6af7a48e712a7587073f2b281ca2200b8
     - name: registry.redhat.io/rhoai/odh-th06-rocm64-torch291-py312-rhel9@sha256:3f3fdca286cfa6ab1f48cdfa109e78e6c8615f823568bb8cc18263db42f1beed
     - name: registry.redhat.io/rhoai/odh-th06-cpu-torch210-py312-rhel9@sha256:4b762d722faa80d7c6641a631d891f0ddf048950a4f8b6e5b93010d65134687d
