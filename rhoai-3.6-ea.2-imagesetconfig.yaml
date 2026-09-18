@@ -17,7 +17,7 @@ mirror:
   additionalImages:   
     - name: quay.io/modh/fms-hf-tuning@sha256:83f70e981657728ef9929fa50d06fe5c72f364e5ed41a9fc1331e99751f610e8
     - name: quay.io/modh/ray@sha256:595b3acd10244e33fca1ed5469dccb08df66f470df55ae196f80e56edf35ad5a
-    - name: quay.io/modh/ray@sha256:e375ff49b3fa046aea31b1d504675db5db41ec011f945af67772620a822465cd
+    - name: quay.io/modh/ray@sha256:8183007c9b46b359bdc75ea74346f10d642e585bb4f22fa3aa02524b3c966fa0
     - name: quay.io/modh/ray@sha256:c713469fd8d8053df549946fbbac2ae92eba4dc17ca1141274243db5ae7db31b
     - name: quay.io/modh/ray@sha256:28a8745be454b0e881ce6c200599ddfcb3366b707a5b53cfa73087d599555158
     - name: quay.io/modh/ray@sha256:4426b3602c1e34bbf6d37bc210d082706fcf77eb5d771d56c8b0712fda4f95f4
