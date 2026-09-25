@@ -1,0 +1,17 @@
+kind: ImageSetConfiguration
+apiVersion: mirror.openshift.io/v1alpha2
+archiveSize: 4
+storageConfig:
+  registry: 
+    imageURL: registry.example.com:5000/mirror/oc-mirror-metadata
+    skipTLS: false                       
+mirror:
+  operators:
+  - catalog: registry.redhat.io/redhat/redhat-operator-index:v4.20
+    packages:
+    - name: rhods-operator
+      channels:
+      - name: fast
+        minVersion: 3.6.0
+        maxVersion: 3.6.0
+  additionalImages:   
