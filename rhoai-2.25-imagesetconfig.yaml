@@ -20,6 +20,10 @@ mirror:
     - name: quay.io/modh/ray@sha256:6b135421b6e756593a58b4df6664f82fc4b55237ca81475f2867518f15fe6d84
     - name: quay.io/modh/ray@sha256:28a8745be454b0e881ce6c200599ddfcb3366b707a5b53cfa73087d599555158
     - name: quay.io/modh/ray@sha256:900c35ec2fe4279b958e044c781a179c8cfe0c584e8af16e253814dba01816e6
+    - name: quay.io/rhoai/odh-training-cuda128-torch28-py312-rhel9@sha256:0e246b98191baab0c941d385d5395d3daf9f8e21ef81fbdad743bac67539395f
+    - name: quay.io/rhoai/odh-training-rocm64-torch28-py312-rhel9@sha256:8a6ac7de784713695a94573eaa5fc5425541966f5702e3d9738df8754e8fe2a5
+    - name: quay.io/rhoai/odh-training-cuda128-torch29-py312-rhel9@sha256:a211c710baf687e5250f43c76c7b7184411e55fdd76dab3fce6fc06e4a4d959c
+    - name: quay.io/rhoai/odh-training-rocm64-torch29-py312-rhel9@sha256:1a92fa96322103ac7f6704c3dc3e28925c32b5bd055353ae51bb9de85deea9f6
     - name: registry.redhat.io/rhelai1/instructlab-nvidia-rhel9@sha256:b3dc9af0244aa6b84e6c3ef53e714a316daaefaae67e28de397cd71ee4b2ac7e
     - name: registry.redhat.io/openshift4/ose-oauth-proxy-rhel9@sha256:d3056b35d9a205b9f2c48d924f199c5ac23904eb18d526e4bff229e7c7181415
     - name: registry.redhat.io/rhoai/odh-workbench-jupyter-minimal-cpu-py311-rhel9@sha256:2b00a5b676b07d4fd6ab894d5dcaeb5bf88ef35bde76cbf3b4c0951987e5aad6
