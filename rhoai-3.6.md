@@ -5,9 +5,12 @@
     - quay.io/modh/ray@sha256:c713469fd8d8053df549946fbbac2ae92eba4dc17ca1141274243db5ae7db31b
     - quay.io/modh/ray@sha256:28a8745be454b0e881ce6c200599ddfcb3366b707a5b53cfa73087d599555158
     - quay.io/modh/ray@sha256:4426b3602c1e34bbf6d37bc210d082706fcf77eb5d771d56c8b0712fda4f95f4
-    - registry.redhat.io/rhoai/odh-th06-cuda130-torch210-py312-rhel9@sha256:c18bb50a0082f9258afeb95cf9d8bbc6af7a48e712a7587073f2b281ca2200b8
-    - registry.redhat.io/rhoai/odh-th06-rocm64-torch291-py312-rhel9@sha256:3f3fdca286cfa6ab1f48cdfa109e78e6c8615f823568bb8cc18263db42f1beed
-    - registry.redhat.io/rhoai/odh-th06-cpu-torch210-py312-rhel9@sha256:4b762d722faa80d7c6641a631d891f0ddf048950a4f8b6e5b93010d65134687d
+    - registry.redhat.io/rhoai/odh-th06-cuda130-torch210-py312-rhel9@sha256:2a0cff93937d63672ed4e9387ee7bf189013d9d1ddf76fefdd4c23ff861f9182
+    - registry.redhat.io/rhoai/odh-th06-rocm64-torch291-py312-rhel9@sha256:6137ce91274aa8aaa76b3b47fe0ae58414c0e719240dbd21b98c4182a9acd132
+    - registry.redhat.io/rhoai/odh-th06-cpu-torch210-py312-rhel9@sha256:14f316b8cfa75d3703e4ce9493e347a6b64352944b494442c2162c457db370c4
+    - registry.redhat.io/rhoai/odh-th-torch-cuda-py312-rhel9@sha256:b962ae70930d0d933f81cf77f643744b19dff7f17f4d27bd5e6541cdd8feb53e
+    - registry.redhat.io/rhoai/odh-th-torch-rocm-py312-rhel9@sha256:0906aeb065fa7936806df4cb1d46e76269a05e81ca54b972c5df84c0755ad6e3
+    - registry.redhat.io/rhoai/odh-th-torch-cpu-py312-rhel9@sha256:03347e1c305f1951cbab6e742647dee126b664975429498b86b579c43f368647
     - registry.redhat.io/rhoai/odh-workbench-jupyter-minimal-cpu-py312-rhel9@sha256:4e0c3457dc3d9fd552a367f0d17f838e7021f0b479a0a1f4bfeacb7fda6375e0
     - registry.redhat.io/rhoai/odh-workbench-jupyter-minimal-cuda-py312-rhel9@sha256:2bb6a58b9455f1ca48793955a0ab4b9f4429fbbf3b6d99a5eee102f0c29a7bcd
     - registry.redhat.io/rhoai/odh-workbench-jupyter-minimal-rocm-py312-rhel9@sha256:f0e01346fd678d592b5d021a82aee96ec83bf29201602dfc544dd5921519c9f9
@@ -91,9 +94,12 @@ mirror:
     - name: quay.io/modh/ray@sha256:c713469fd8d8053df549946fbbac2ae92eba4dc17ca1141274243db5ae7db31b
     - name: quay.io/modh/ray@sha256:28a8745be454b0e881ce6c200599ddfcb3366b707a5b53cfa73087d599555158
     - name: quay.io/modh/ray@sha256:4426b3602c1e34bbf6d37bc210d082706fcf77eb5d771d56c8b0712fda4f95f4
-    - name: registry.redhat.io/rhoai/odh-th06-cuda130-torch210-py312-rhel9@sha256:c18bb50a0082f9258afeb95cf9d8bbc6af7a48e712a7587073f2b281ca2200b8
-    - name: registry.redhat.io/rhoai/odh-th06-rocm64-torch291-py312-rhel9@sha256:3f3fdca286cfa6ab1f48cdfa109e78e6c8615f823568bb8cc18263db42f1beed
-    - name: registry.redhat.io/rhoai/odh-th06-cpu-torch210-py312-rhel9@sha256:4b762d722faa80d7c6641a631d891f0ddf048950a4f8b6e5b93010d65134687d
+    - name: registry.redhat.io/rhoai/odh-th06-cuda130-torch210-py312-rhel9@sha256:2a0cff93937d63672ed4e9387ee7bf189013d9d1ddf76fefdd4c23ff861f9182
+    - name: registry.redhat.io/rhoai/odh-th06-rocm64-torch291-py312-rhel9@sha256:6137ce91274aa8aaa76b3b47fe0ae58414c0e719240dbd21b98c4182a9acd132
+    - name: registry.redhat.io/rhoai/odh-th06-cpu-torch210-py312-rhel9@sha256:14f316b8cfa75d3703e4ce9493e347a6b64352944b494442c2162c457db370c4
+    - name: registry.redhat.io/rhoai/odh-th-torch-cuda-py312-rhel9@sha256:b962ae70930d0d933f81cf77f643744b19dff7f17f4d27bd5e6541cdd8feb53e
+    - name: registry.redhat.io/rhoai/odh-th-torch-rocm-py312-rhel9@sha256:0906aeb065fa7936806df4cb1d46e76269a05e81ca54b972c5df84c0755ad6e3
+    - name: registry.redhat.io/rhoai/odh-th-torch-cpu-py312-rhel9@sha256:03347e1c305f1951cbab6e742647dee126b664975429498b86b579c43f368647
     - name: registry.redhat.io/rhoai/odh-workbench-jupyter-minimal-cpu-py312-rhel9@sha256:4e0c3457dc3d9fd552a367f0d17f838e7021f0b479a0a1f4bfeacb7fda6375e0
     - name: registry.redhat.io/rhoai/odh-workbench-jupyter-minimal-cuda-py312-rhel9@sha256:2bb6a58b9455f1ca48793955a0ab4b9f4429fbbf3b6d99a5eee102f0c29a7bcd
     - name: registry.redhat.io/rhoai/odh-workbench-jupyter-minimal-rocm-py312-rhel9@sha256:f0e01346fd678d592b5d021a82aee96ec83bf29201602dfc544dd5921519c9f9
