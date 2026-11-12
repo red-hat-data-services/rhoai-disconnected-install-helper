@@ -58,20 +58,17 @@
 
 
 
-# ImageSetConfiguration example:
+# ImageSetConfiguration example (oc-mirror v2):
 ```yaml
 kind: ImageSetConfiguration
-apiVersion: mirror.openshift.io/v1alpha2
+apiVersion: mirror.openshift.io/v2alpha1
 archiveSize: 4
-storageConfig:
-  registry: 
-    imageURL: registry.example.com:5000/mirror/oc-mirror-metadata
-    skipTLS: false                       
 mirror:
   operators:
   - catalog: registry.redhat.io/redhat/redhat-operator-index:v4.20
     packages:
     - name: rhods-operator
+      defaultChannel: stable
       channels:
       - name: stable
         minVersion: 2.25.12

@@ -12,6 +12,35 @@ The list of images and versions are updated automatically by a GitHub action.
 
 Copy the list from the file of the version you want to install and paste it in the additionalImages section of the ImageSetConfiguration file you are using to mirror the images. In the file there is also an example of ImageSetConfiguration.
 
+### Mirror with oc-mirror v2
+
+The ImageSetConfiguration examples use the oc-mirror v2 format (`apiVersion: mirror.openshift.io/v2alpha1`). oc-mirror v1 (`v1alpha2`) is deprecated. Files for older releases that are no longer updated still contain the v1 format.
+
+Differences from v1 to be aware of:
+
+- v2 has no `storageConfig`. oc-mirror keeps its state in a local cache (`--cache-dir`, default `$HOME`) and a workspace directory, not in a registry. A v1 file containing `storageConfig` fails in v2 with `unknown field "storageConfig"`.
+- TLS settings are command-line flags, not part of the ImageSetConfiguration: `--src-tls-verify=false` and `--dest-tls-verify=false`.
+- When the configuration selects a channel that is not the package's default channel, v2 requires `defaultChannel` on the package. The examples set it to the selected channel.
+- Pass registry credentials with `--authfile <pull-secret.json>` (default `${XDG_RUNTIME_DIR}/containers/auth.json`). Do not set `REGISTRY_AUTH_FILE`, because it interferes with oc-mirror v2's local cache registry.
+
+Save the example as `imageset-config.yaml`, then:
+
+```bash
+# Partially disconnected: mirror straight into the mirror registry
+oc mirror --v2 -c imageset-config.yaml --workspace file://<workspace-dir> docker://<mirror-registry>
+
+# Fully disconnected, step 1 (connected host): mirror to disk
+oc mirror --v2 -c imageset-config.yaml file://<archive-dir>
+
+# Fully disconnected, step 2 (disconnected host): disk to mirror registry
+oc mirror --v2 -c imageset-config.yaml --from file://<archive-dir> docker://<mirror-registry>
+
+# Preview what would be mirrored, without copying anything
+oc mirror --v2 -c imageset-config.yaml --dry-run file://<archive-dir>
+```
+
+After mirroring, apply the cluster resources that oc-mirror generates (`IDMS`, `ITMS` and `CatalogSource`). They are written to `working-dir/cluster-resources/` under `<workspace-dir>` (mirror to mirror) or `<archive-dir>` (disk to mirror). See the OpenShift documentation *Mirroring images for a disconnected installation by using the oc-mirror plugin v2*.
+
 ### Run the script using GitHub Actions:
 
 You can run the scripts directly from GitHub Actions without needing to set up the local environment. GitHub Actions workflows are available for both y-stream (regular releases) and z-stream (patch releases).
