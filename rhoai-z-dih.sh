@@ -9,8 +9,6 @@ set_defaults() {
   notebooks_folder="${notebooks_folder:-.odh-notebooks}"
   notebooks_branch="${rhods_version:-main}"
   file_name="${file_name:-$rhods_version.md}"
-  skip_tls="${skip_tls:-false}"
-  mirror_url="${mirror_url:-registry.example.com:5000/mirror/oc-mirror-metadata}"
   repository_url="${repository_url:-https://github.com/red-hat-data-services/odh-manifests}"
   notebooks_url="${notebooks_url:-https://github.com/red-hat-data-services/notebooks}"
   openshift_version="${openshift_version:-v4.20}"
@@ -25,10 +23,10 @@ function help() {
   echo "  -h, --help  Display this help message"
   echo "  -v, --rhods-version  RHODS version. Valid format: rhods-X.Y"
   echo "  --skip-image-verification  Skip image verification"
-  echo "  --skip-tls  Skip TLS verification"
+  echo "  --skip-tls  DEPRECATED: no effect. oc-mirror v2 has no storageConfig; pass --src-tls-verify=false / --dest-tls-verify=false to oc-mirror instead"
   echo "  --set-repository-source  Set the repository source"
   echo "  --set-file-name  Set the file name"
-  echo "  --set-registry  Set the registry"
+  echo "  --set-registry  DEPRECATED: no effect. oc-mirror v2 has no storageConfig registry; use --cache-dir / --workspace with oc-mirror instead"
   echo "  --set-openshift-version  Set the OpenShift version"
   echo "  --set-channel  Set the channel"
 }
@@ -267,20 +265,17 @@ $(if ! is_rhods_version_greater_or_equal_to rhods-2.4; then
 find_notebooks_images | sed 's/^/    - name: /' 
 fi)
 
-# ImageSetConfiguration example:
+# ImageSetConfiguration example (oc-mirror v2):
 \`\`\`yaml
 kind: ImageSetConfiguration
-apiVersion: mirror.openshift.io/v1alpha2
+apiVersion: mirror.openshift.io/v2alpha1
 archiveSize: 4
-storageConfig:
-  registry: 
-    imageURL: $mirror_url
-    skipTLS: $skip_tls                       
 mirror:
   operators:
   - catalog: registry.redhat.io/redhat/redhat-operator-index:$openshift_version
     packages:
     - name: rhods-operator
+      defaultChannel: $channel
       channels:
       - name: $channel
         $min_max_version
@@ -495,7 +490,7 @@ parse_args() {
       shift
       ;;
     --skip-tls)
-      skip_tls="true"
+      echo "WARNING: --skip-tls is deprecated and has no effect: oc-mirror v2 ImageSetConfiguration has no storageConfig. Pass --src-tls-verify=false or --dest-tls-verify=false to oc-mirror instead." >&2
       shift
       ;;
     --set-file-name)
@@ -504,7 +499,7 @@ parse_args() {
       shift
       ;;
     --set-registry)
-      mirror_url="$2"
+      echo "WARNING: --set-registry is deprecated and has no effect: oc-mirror v2 ImageSetConfiguration has no storageConfig. Use --cache-dir or --workspace with oc-mirror instead." >&2
       shift
       shift
       ;;
