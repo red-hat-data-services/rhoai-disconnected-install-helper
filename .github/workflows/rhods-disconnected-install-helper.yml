@@ -13,7 +13,6 @@ on:
           description: 'Enter fbc details (optional)'
           required: false
           default: ''
-  repository_dispatch:
 
 jobs:
   run-script:

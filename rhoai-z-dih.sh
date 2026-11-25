@@ -52,6 +52,26 @@ is_rhods_version_greater_or_equal_to() {
   fi
 }
 
+is_rhoai_34_or_greater() {
+  # Check for rhoai-3.4-ea.* patterns (early access versions)
+  if [[ "$rhods_version" =~ ^rhoai-3\.4-ea\.[0-9]+$ ]]; then
+    return 0
+  fi
+  # Check for regular version comparison (3.4+)
+  is_rhods_version_greater_or_equal_to rhoai-3.4
+}
+
+get_base_branch() {
+  # For EA versions like rhoai-3.4-ea.1, return the base branch rhoai-3.4
+  # For regular versions like rhoai-3.4, return as-is
+  local version="$1"
+  if [[ "$version" =~ ^(rhoai-[0-9]+\.[0-9]+)-ea\.[0-9]+$ ]]; then
+    echo "${BASH_REMATCH[1]}"
+  else
+    echo "$version"
+  fi
+}
+
 function get_supported_versions() {
   pushd "$repository_folder" || echo "Error: Directory $repository_folder does not exist"
   latest_rhods_version=$(get_latest_rhods_version)
@@ -111,14 +131,25 @@ function image_tag_to_digest() {
   echo "$image_name@$image_digest"
 }
 
-function filter_legacy_workbench_images() {
+function filter_legacy_workbench_images_33() {
   grep -Ev 'quay\.io/modh/(odh-minimal-notebook-container|cuda-notebooks|odh-pytorch-notebook|odh-generic-data-science-notebook|odh-trustyai-notebook|codeserver|rocm-notebooks)@'
 }
 
-function legacy_workbench_images() {
+function filter_legacy_workbench_images_34() {
+  grep -Ev 'registry\.redhat\.io/rhoai/(odh-workbench-jupyter-minimal-cpu-py311-rhel9|odh-workbench-jupyter-minimal-cuda-py311-rhel9|odh-workbench-jupyter-minimal-rocm-py311-rhel9|odh-workbench-jupyter-datascience-cpu-py311-rhel9|odh-workbench-jupyter-pytorch-cuda-py311-rhel9|odh-workbench-jupyter-pytorch-rocm-py311-rhel9|odh-workbench-jupyter-tensorflow-cuda-py311-rhel9|odh-workbench-jupyter-tensorflow-rocm-py311-rhel9|odh-workbench-jupyter-trustyai-cpu-py311-rhel9|odh-workbench-codeserver-datascience-cpu-py311-rhel9)@'
+}
+
+function legacy_workbench_images_33() {
   IMAGES_FILE="$repository_folder/rhoai-additional-images/rhoai-disconnected-images.yaml"
   if [ -f "$IMAGES_FILE" ]; then
     yq e '.additional-images[]' "$IMAGES_FILE" | grep -E 'quay\.io/modh/(odh-minimal-notebook-container|cuda-notebooks|odh-pytorch-notebook|odh-generic-data-science-notebook|odh-trustyai-notebook|codeserver|rocm-notebooks)@'
+  fi
+}
+
+function legacy_workbench_images_34() {
+  IMAGES_FILE="$repository_folder/rhoai-additional-images/rhoai-disconnected-images.yaml"
+  if [ -f "$IMAGES_FILE" ]; then
+    yq e '.additional-images[]' "$IMAGES_FILE" | grep -E 'registry\.redhat\.io/rhoai/(odh-workbench-jupyter-minimal-cpu-py311-rhel9|odh-workbench-jupyter-minimal-cuda-py311-rhel9|odh-workbench-jupyter-minimal-rocm-py311-rhel9|odh-workbench-jupyter-datascience-cpu-py311-rhel9|odh-workbench-jupyter-pytorch-cuda-py311-rhel9|odh-workbench-jupyter-pytorch-rocm-py311-rhel9|odh-workbench-jupyter-tensorflow-cuda-py311-rhel9|odh-workbench-jupyter-tensorflow-rocm-py311-rhel9|odh-workbench-jupyter-trustyai-cpu-py311-rhel9|odh-workbench-codeserver-datascience-cpu-py311-rhel9)@'
   fi
 }
 
@@ -168,9 +199,12 @@ function find_images(){
       # Read the YAML file and parse it using yq
       ADDITIONAL_IMAGES=$(yq e '.additional-images[]' "$IMAGES_FILE")
 
-      # For RHOAI 3.3+, filter out legacy workbench images
-      if is_rhods_version_greater_or_equal_to rhoai-3.3; then
-        echo "$ADDITIONAL_IMAGES" | filter_legacy_workbench_images
+      # For RHOAI 3.4+, filter out both legacy and new workbench images
+      if is_rhoai_34_or_greater; then
+        echo "$ADDITIONAL_IMAGES" | filter_legacy_workbench_images_33 | filter_legacy_workbench_images_34
+      # For RHOAI 3.3, filter out legacy workbench images only
+      elif is_rhods_version_greater_or_equal_to rhoai-3.3; then
+        echo "$ADDITIONAL_IMAGES" | filter_legacy_workbench_images_33
       else
         echo "$ADDITIONAL_IMAGES"
       fi
@@ -209,9 +243,13 @@ function find_notebooks_images() {
 }
 function unsupported_images() {
   if is_rhods_version_greater_or_equal_to rhods-2.22; then
-    # For RHOAI 3.3+, include legacy workbench images in unsupported section
-    if is_rhods_version_greater_or_equal_to rhoai-3.3; then
-      legacy_workbench_images
+    # For RHOAI 3.4+, include both legacy and new workbench images in unsupported section
+    if is_rhoai_34_or_greater; then
+      legacy_workbench_images_33
+      legacy_workbench_images_34
+    # For RHOAI 3.3, include legacy workbench images in unsupported section
+    elif is_rhods_version_greater_or_equal_to rhoai-3.3; then
+      legacy_workbench_images_33
     else
       find "$repository_folder" -type f -path "*/notebooks/manifests*" \
         -exec grep -hE 'n-(2|[3-9]|[1-9][0-9]+)' {} + \
